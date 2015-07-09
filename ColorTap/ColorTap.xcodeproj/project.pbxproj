@@ -1,0 +1,468 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0DC974721B4F0284008F5ADE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974711B4F0284008F5ADE /* main.m */; };
+		0DC974751B4F0284008F5ADE /* CAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974741B4F0284008F5ADE /* CAAppDelegate.m */; };
+		0DC974781B4F0284008F5ADE /* CAMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974771B4F0284008F5ADE /* CAMainViewController.m */; };
+		0DC9747B1B4F0284008F5ADE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DC974791B4F0284008F5ADE /* Main.storyboard */; };
+		0DC9747D1B4F0284008F5ADE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9747C1B4F0284008F5ADE /* Images.xcassets */; };
+		0DC974801B4F0284008F5ADE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9747E1B4F0284008F5ADE /* LaunchScreen.xib */; };
+		0DC9748C1B4F0284008F5ADE /* ColorTapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9748B1B4F0284008F5ADE /* ColorTapTests.m */; };
+		0DC974961B4F02A1008F5ADE /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC974951B4F02A1008F5ADE /* SpriteKit.framework */; };
+		0DC9749A1B4F0370008F5ADE /* CAGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974991B4F0370008F5ADE /* CAGameScene.m */; };
+		0DC9749E1B4F045D008F5ADE /* CAUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9749D1B4F045D008F5ADE /* CAUtilities.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0DC974861B4F0284008F5ADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DC974641B4F0284008F5ADE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0DC9746B1B4F0284008F5ADE;
+			remoteInfo = ColorTap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0DC9746C1B4F0284008F5ADE /* ColorTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DC974701B4F0284008F5ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0DC974711B4F0284008F5ADE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0DC974731B4F0284008F5ADE /* CAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAAppDelegate.h; sourceTree = "<group>"; };
+		0DC974741B4F0284008F5ADE /* CAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAAppDelegate.m; sourceTree = "<group>"; };
+		0DC974761B4F0284008F5ADE /* CAMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAMainViewController.h; sourceTree = "<group>"; };
+		0DC974771B4F0284008F5ADE /* CAMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAMainViewController.m; sourceTree = "<group>"; };
+		0DC9747A1B4F0284008F5ADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0DC9747C1B4F0284008F5ADE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0DC9747F1B4F0284008F5ADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		0DC974851B4F0284008F5ADE /* ColorTapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColorTapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DC9748A1B4F0284008F5ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0DC9748B1B4F0284008F5ADE /* ColorTapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorTapTests.m; sourceTree = "<group>"; };
+		0DC974951B4F02A1008F5ADE /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		0DC974981B4F0370008F5ADE /* CAGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAGameScene.h; path = Scenes/CAGameScene.h; sourceTree = "<group>"; };
+		0DC974991B4F0370008F5ADE /* CAGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAGameScene.m; path = Scenes/CAGameScene.m; sourceTree = "<group>"; };
+		0DC9749C1B4F045D008F5ADE /* CAUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAUtilities.h; path = Utilities/CAUtilities.h; sourceTree = "<group>"; };
+		0DC9749D1B4F045D008F5ADE /* CAUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAUtilities.m; path = Utilities/CAUtilities.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0DC974691B4F0284008F5ADE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DC974961B4F02A1008F5ADE /* SpriteKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DC974821B4F0284008F5ADE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0DC974631B4F0284008F5ADE = {
+			isa = PBXGroup;
+			children = (
+				0DC974951B4F02A1008F5ADE /* SpriteKit.framework */,
+				0DC9746E1B4F0284008F5ADE /* ColorTap */,
+				0DC974881B4F0284008F5ADE /* ColorTapTests */,
+				0DC9746D1B4F0284008F5ADE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0DC9746D1B4F0284008F5ADE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0DC9746C1B4F0284008F5ADE /* ColorTap.app */,
+				0DC974851B4F0284008F5ADE /* ColorTapTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0DC9746E1B4F0284008F5ADE /* ColorTap */ = {
+			isa = PBXGroup;
+			children = (
+				0DC9749B1B4F0445008F5ADE /* Utilities */,
+				0DC974971B4F0330008F5ADE /* Scenes */,
+				0DC974731B4F0284008F5ADE /* CAAppDelegate.h */,
+				0DC974741B4F0284008F5ADE /* CAAppDelegate.m */,
+				0DC974761B4F0284008F5ADE /* CAMainViewController.h */,
+				0DC974771B4F0284008F5ADE /* CAMainViewController.m */,
+				0DC974791B4F0284008F5ADE /* Main.storyboard */,
+				0DC9747C1B4F0284008F5ADE /* Images.xcassets */,
+				0DC9747E1B4F0284008F5ADE /* LaunchScreen.xib */,
+				0DC9746F1B4F0284008F5ADE /* Supporting Files */,
+			);
+			path = ColorTap;
+			sourceTree = "<group>";
+		};
+		0DC9746F1B4F0284008F5ADE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0DC974701B4F0284008F5ADE /* Info.plist */,
+				0DC974711B4F0284008F5ADE /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0DC974881B4F0284008F5ADE /* ColorTapTests */ = {
+			isa = PBXGroup;
+			children = (
+				0DC9748B1B4F0284008F5ADE /* ColorTapTests.m */,
+				0DC974891B4F0284008F5ADE /* Supporting Files */,
+			);
+			path = ColorTapTests;
+			sourceTree = "<group>";
+		};
+		0DC974891B4F0284008F5ADE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0DC9748A1B4F0284008F5ADE /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0DC974971B4F0330008F5ADE /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				0DC974981B4F0370008F5ADE /* CAGameScene.h */,
+				0DC974991B4F0370008F5ADE /* CAGameScene.m */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		0DC9749B1B4F0445008F5ADE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0DC9749C1B4F045D008F5ADE /* CAUtilities.h */,
+				0DC9749D1B4F045D008F5ADE /* CAUtilities.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0DC9746B1B4F0284008F5ADE /* ColorTap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DC9748F1B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "ColorTap" */;
+			buildPhases = (
+				0DC974681B4F0284008F5ADE /* Sources */,
+				0DC974691B4F0284008F5ADE /* Frameworks */,
+				0DC9746A1B4F0284008F5ADE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ColorTap;
+			productName = ColorTap;
+			productReference = 0DC9746C1B4F0284008F5ADE /* ColorTap.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0DC974841B4F0284008F5ADE /* ColorTapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DC974921B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "ColorTapTests" */;
+			buildPhases = (
+				0DC974811B4F0284008F5ADE /* Sources */,
+				0DC974821B4F0284008F5ADE /* Frameworks */,
+				0DC974831B4F0284008F5ADE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0DC974871B4F0284008F5ADE /* PBXTargetDependency */,
+			);
+			name = ColorTapTests;
+			productName = ColorTapTests;
+			productReference = 0DC974851B4F0284008F5ADE /* ColorTapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0DC974641B4F0284008F5ADE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Cohen Adair";
+				TargetAttributes = {
+					0DC9746B1B4F0284008F5ADE = {
+						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = RQ74DU9PML;
+					};
+					0DC974841B4F0284008F5ADE = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 0DC9746B1B4F0284008F5ADE;
+					};
+				};
+			};
+			buildConfigurationList = 0DC974671B4F0284008F5ADE /* Build configuration list for PBXProject "ColorTap" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0DC974631B4F0284008F5ADE;
+			productRefGroup = 0DC9746D1B4F0284008F5ADE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0DC9746B1B4F0284008F5ADE /* ColorTap */,
+				0DC974841B4F0284008F5ADE /* ColorTapTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0DC9746A1B4F0284008F5ADE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DC9747B1B4F0284008F5ADE /* Main.storyboard in Resources */,
+				0DC974801B4F0284008F5ADE /* LaunchScreen.xib in Resources */,
+				0DC9747D1B4F0284008F5ADE /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DC974831B4F0284008F5ADE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0DC974681B4F0284008F5ADE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DC974781B4F0284008F5ADE /* CAMainViewController.m in Sources */,
+				0DC974751B4F0284008F5ADE /* CAAppDelegate.m in Sources */,
+				0DC9749A1B4F0370008F5ADE /* CAGameScene.m in Sources */,
+				0DC9749E1B4F045D008F5ADE /* CAUtilities.m in Sources */,
+				0DC974721B4F0284008F5ADE /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DC974811B4F0284008F5ADE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DC9748C1B4F0284008F5ADE /* ColorTapTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0DC974871B4F0284008F5ADE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0DC9746B1B4F0284008F5ADE /* ColorTap */;
+			targetProxy = 0DC974861B4F0284008F5ADE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0DC974791B4F0284008F5ADE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DC9747A1B4F0284008F5ADE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0DC9747E1B4F0284008F5ADE /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DC9747F1B4F0284008F5ADE /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0DC9748D1B4F0284008F5ADE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0DC9748E1B4F0284008F5ADE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0DC974901B4F0284008F5ADE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = ColorTap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0DC974911B4F0284008F5ADE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = ColorTap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0DC974931B4F0284008F5ADE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ColorTapTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ColorTap.app/ColorTap";
+			};
+			name = Debug;
+		};
+		0DC974941B4F0284008F5ADE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ColorTapTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ColorTap.app/ColorTap";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0DC974671B4F0284008F5ADE /* Build configuration list for PBXProject "ColorTap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DC9748D1B4F0284008F5ADE /* Debug */,
+				0DC9748E1B4F0284008F5ADE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0DC9748F1B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "ColorTap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DC974901B4F0284008F5ADE /* Debug */,
+				0DC974911B4F0284008F5ADE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0DC974921B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "ColorTapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DC974931B4F0284008F5ADE /* Debug */,
+				0DC974941B4F0284008F5ADE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0DC974641B4F0284008F5ADE /* Project object */;
+}
