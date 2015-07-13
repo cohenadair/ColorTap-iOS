@@ -27,27 +27,34 @@
 @implementation CAGameScene
 
 - (void)didMoveToView: (SKView *)view {
+    
     if (!self.contentCreated) {
         self.screenHeight = [CAUtilities screenSize].height;
         self.contentCreated = YES;
         [self createSceneContents];
     }
+    
 }
 
 - (void)touchesBegan:(NSSet *) touches withEvent:(UIEvent *)event {
+    
     if (!self.animationBegan) {
         [self.redBackgroundNode startAnimatingWithInitialFactor:1];
         [self.blueBackgroundNode startAnimatingWithInitialFactor:2];
         self.animationBegan = YES;
     }
+    
 }
 
 - (void)update:(NSTimeInterval)currentTime {
+    
     [self.redBackgroundNode updatePosition];
     [self.blueBackgroundNode updatePosition];
+    
 }
 
 - (void)createSceneContents {
+    
     self.backgroundColor = [SKColor whiteColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     
@@ -57,8 +64,12 @@
     self.blueBackgroundNode =
         [CABackgroundNode withName:kBlueName color:[SKColor blueColor] yStartOffset:self.screenHeight];
     
+    [self.redBackgroundNode setSibling:self.blueBackgroundNode];
+    [self.blueBackgroundNode setSibling:self.redBackgroundNode];
+    
     [self addChild:self.redBackgroundNode];
     [self addChild:self.blueBackgroundNode];
+    
 }
 
 @end
