@@ -17,6 +17,7 @@
 		0DC974961B4F02A1008F5ADE /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC974951B4F02A1008F5ADE /* SpriteKit.framework */; };
 		0DC9749A1B4F0370008F5ADE /* CAGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974991B4F0370008F5ADE /* CAGameScene.m */; };
 		0DC9749E1B4F045D008F5ADE /* CAUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9749D1B4F045D008F5ADE /* CAUtilities.m */; };
+		0DC974A21B4F18CC008F5ADE /* CABackgroundNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974A11B4F18CC008F5ADE /* CABackgroundNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		0DC974991B4F0370008F5ADE /* CAGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAGameScene.m; path = Scenes/CAGameScene.m; sourceTree = "<group>"; };
 		0DC9749C1B4F045D008F5ADE /* CAUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAUtilities.h; path = Utilities/CAUtilities.h; sourceTree = "<group>"; };
 		0DC9749D1B4F045D008F5ADE /* CAUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAUtilities.m; path = Utilities/CAUtilities.m; sourceTree = "<group>"; };
+		0DC974A01B4F18CC008F5ADE /* CABackgroundNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CABackgroundNode.h; path = Nodes/CABackgroundNode.h; sourceTree = "<group>"; };
+		0DC974A11B4F18CC008F5ADE /* CABackgroundNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CABackgroundNode.m; path = Nodes/CABackgroundNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,7 @@
 		0DC9746E1B4F0284008F5ADE /* ColorTap */ = {
 			isa = PBXGroup;
 			children = (
+				0DC9749F1B4F189D008F5ADE /* Nodes */,
 				0DC9749B1B4F0445008F5ADE /* Utilities */,
 				0DC974971B4F0330008F5ADE /* Scenes */,
 				0DC974731B4F0284008F5ADE /* CAAppDelegate.h */,
@@ -147,6 +151,15 @@
 				0DC9749D1B4F045D008F5ADE /* CAUtilities.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		0DC9749F1B4F189D008F5ADE /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				0DC974A01B4F18CC008F5ADE /* CABackgroundNode.h */,
+				0DC974A11B4F18CC008F5ADE /* CABackgroundNode.m */,
+			);
+			name = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +266,7 @@
 				0DC974781B4F0284008F5ADE /* CAMainViewController.m in Sources */,
 				0DC974751B4F0284008F5ADE /* CAAppDelegate.m in Sources */,
 				0DC9749A1B4F0370008F5ADE /* CAGameScene.m in Sources */,
+				0DC974A21B4F18CC008F5ADE /* CABackgroundNode.m in Sources */,
 				0DC9749E1B4F045D008F5ADE /* CAUtilities.m in Sources */,
 				0DC974721B4F0284008F5ADE /* main.m in Sources */,
 			);

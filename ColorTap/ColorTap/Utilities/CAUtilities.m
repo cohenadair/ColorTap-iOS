@@ -10,8 +10,12 @@
 
 @implementation CAUtilities
 
++ (CGRect)screenBounds {
+    return [UIScreen mainScreen].bounds;
+}
+
 + (CGSize)screenSize {
-    return [UIScreen mainScreen].bounds.size;
+    return [self screenBounds].size;
 }
 
 @end

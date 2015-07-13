@@ -7,7 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import "CAUtilities.h"
+#import "CABackgroundNode.h"
 
 @interface CAGameScene : SKScene
 

@@ -11,6 +11,7 @@
 
 @interface CAUtilities : NSObject
 
++ (CGRect)screenBounds;
 + (CGSize)screenSize;
 
 @end

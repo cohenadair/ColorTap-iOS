@@ -11,59 +11,54 @@
 @interface CAGameScene()
 
 @property BOOL contentCreated;
+@property BOOL animationBegan;
 
 @property NSInteger screenHeight;
+@property NSInteger startY;
+
+@property CABackgroundNode *redBackgroundNode;
+@property CABackgroundNode *blueBackgroundNode;
 
 @end
 
-#define kTileName @"tileNode"
+#define kRedName @"redNode"
+#define kBlueName @"blueNode"
 
 @implementation CAGameScene
 
 - (void)didMoveToView: (SKView *)view {
     if (!self.contentCreated) {
         self.screenHeight = [CAUtilities screenSize].height;
-        
-        [self createSceneContents];
         self.contentCreated = YES;
+        [self createSceneContents];
     }
 }
 
 - (void)touchesBegan:(NSSet *) touches withEvent:(UIEvent *)event {
-    [self startAnimation];
+    if (!self.animationBegan) {
+        [self.redBackgroundNode startAnimatingWithInitialFactor:1];
+        [self.blueBackgroundNode startAnimatingWithInitialFactor:2];
+        self.animationBegan = YES;
+    }
+}
+
+- (void)update:(NSTimeInterval)currentTime {
+    [self.redBackgroundNode updatePosition];
+    [self.blueBackgroundNode updatePosition];
 }
 
 - (void)createSceneContents {
-    self.backgroundColor = [SKColor blueColor];
+    self.backgroundColor = [SKColor whiteColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     
-    [self addChild: [self newTileNode]];
-}
-
-- (SKSpriteNode *)newTileNode {
-    SKSpriteNode *tile = [SKSpriteNode spriteNodeWithColor:[SKColor redColor]
-                                                           size:CGSizeMake(50, 50)];
-
-    CGFloat startY = [CAUtilities screenSize].height + 50;
-    tile.name = kTileName;
-    tile.position = CGPointMake(CGRectGetMidX(self.frame), startY);
+    self.redBackgroundNode =
+        [CABackgroundNode withName:kRedName color:[SKColor redColor] yStartOffset:0];
     
-    return tile;
-}
-
-- (void)startAnimation {
-    SKNode __block *tileBoard = [self childNodeWithName:kTileName];
-    NSInteger __block screenHeight = self.screenHeight;
+    self.blueBackgroundNode =
+        [CABackgroundNode withName:kBlueName color:[SKColor blueColor] yStartOffset:self.screenHeight];
     
-    SKAction *completionBlock = [SKAction runBlock:^(void) {
-        [tileBoard setPosition:CGPointMake(tileBoard.position.x, screenHeight)];
-    }];
-    
-    SKAction *moveDown = [SKAction moveByX:0 y:-screenHeight - 25 duration:2.0];
-    SKAction *moveSequence = [SKAction sequence:@[moveDown, completionBlock]];
-    SKAction *moveForever = [SKAction repeatActionForever:moveSequence];
-    
-    [tileBoard runAction:moveForever];
+    [self addChild:self.redBackgroundNode];
+    [self addChild:self.blueBackgroundNode];
 }
 
 @end
