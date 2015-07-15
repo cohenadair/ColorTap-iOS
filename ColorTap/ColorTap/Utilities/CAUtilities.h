@@ -13,5 +13,7 @@
 
 + (CGRect)screenBounds;
 + (CGSize)screenSize;
++ (void)showStatusBar;
++ (void)hideStatusBar;
 
 @end

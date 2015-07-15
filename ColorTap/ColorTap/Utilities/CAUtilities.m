@@ -18,4 +18,12 @@
     return [self screenBounds].size;
 }
 
++ (void)showStatusBar {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
++ (void)hideStatusBar {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
+
 @end

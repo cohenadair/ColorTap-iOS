@@ -14,10 +14,11 @@
 @property BOOL animationBegan;
 
 @property NSInteger screenHeight;
-@property NSInteger startY;
 
 @property CABackgroundNode *redBackgroundNode;
 @property CABackgroundNode *blueBackgroundNode;
+
+@property CAColorTapGame *colorTap;
 
 @end
 
@@ -27,34 +28,32 @@
 @implementation CAGameScene
 
 - (void)didMoveToView: (SKView *)view {
-    
     if (!self.contentCreated) {
         self.screenHeight = [CAUtilities screenSize].height;
         self.contentCreated = YES;
+        self.colorTap = [CAColorTapGame withScore:0];
         [self createSceneContents];
     }
-    
 }
 
 - (void)touchesBegan:(NSSet *) touches withEvent:(UIEvent *)event {
-    
     if (!self.animationBegan) {
         [self.redBackgroundNode startAnimatingWithInitialFactor:1];
         [self.blueBackgroundNode startAnimatingWithInitialFactor:2];
         self.animationBegan = YES;
     }
     
+    NSLog(@"Touched!");
+    [self.colorTap incScoreBy:1];
 }
 
+// called once per frame
 - (void)update:(NSTimeInterval)currentTime {
-    
     [self.redBackgroundNode updatePosition];
     [self.blueBackgroundNode updatePosition];
-    
 }
 
 - (void)createSceneContents {
-    
     self.backgroundColor = [SKColor whiteColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     
@@ -69,7 +68,6 @@
     
     [self addChild:self.redBackgroundNode];
     [self addChild:self.blueBackgroundNode];
-    
 }
 
 @end

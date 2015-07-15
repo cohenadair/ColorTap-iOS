@@ -20,13 +20,10 @@
 @implementation CABackgroundNode
 
 + (id)withName:(NSString *)aName color:(UIColor *)aColor yStartOffset:(NSInteger)anOffset {
-    
     return [[self alloc] initWithName:aName color:aColor yStartOffset:anOffset];
-    
 }
 
 - (id)initWithName:(NSString *)aName color:(UIColor *)aColor yStartOffset:(NSInteger)anOffset {
-    
     if (self = [super initWithColor:aColor size:[CAUtilities screenSize]]) {
         [self setName:aName];
         [self setAnimationStart:[CAUtilities screenSize].height + ([CAUtilities screenSize].height / 2)];
@@ -35,26 +32,25 @@
     }
     
     return self;
-    
 }
 
 // aFactor: The animation height for the first animation is multipled by this.
 - (void)startAnimatingWithInitialFactor:(NSInteger)aFactor {
-    
     SKAction *moveDown = [SKAction moveByX:0 y:-[CAUtilities screenSize].height duration:1.0];
     SKAction *moveSequence = [SKAction sequence:@[moveDown]];
     SKAction *moveForever = [SKAction repeatActionForever:moveSequence];
     
     [self runAction:moveForever];
-    
 }
 
 // called in the scene's update method
 - (void)updatePosition {
-    
     if ([self getTop] <= 0)
-        [self setPosition:CGPointMake(self.position.x, [self.sibling getTop] + (self.frame.size.height / 2))];
+        [self setPosition:[self getResetPosition]];
+}
 
+- (CGPoint)getResetPosition {
+    return CGPointMake(self.position.x, [self.sibling getTop] + (self.frame.size.height / 2));
 }
 
 // returns the coordinate of the top of the node
