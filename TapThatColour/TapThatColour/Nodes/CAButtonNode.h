@@ -8,8 +8,11 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface CAButtonNode : SKSpriteNode
+@interface CAButtonNode : SKShapeNode
 
++ (id)withColor:(SKColor *)aColor radius:(CGFloat)aRadius;
+- (id)initWithColor:(SKColor *)aColor radius:(CGFloat)aRadius;
 
+- (void)onTouch;
 
 @end

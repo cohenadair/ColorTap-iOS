@@ -42,7 +42,7 @@
 
 #pragma mark - KVO
 
-#define kKeyPathScore @"gameScene.colorTap.score"
+#define kKeyPathScore @"gameScene.tapThatColor.score"
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:kKeyPathScore])
@@ -63,7 +63,7 @@
 }
 
 - (void)initScoreboard {
-    [self.scoreboard setBackgroundColor:[UIColor greenColor]];
+    [self.scoreboard setBackgroundColor:[SKColor greenColor]];
     [self.scoreLabel setText:@"0"];
     [self.colorLabel setText:@"Green"];
 }

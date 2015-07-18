@@ -8,17 +8,28 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "CAUtilities.h"
+#import "CAButtonNode.h"
 
 @interface CABackgroundNode : SKSpriteNode
 
 // the "other" background node needed to create an infinite scroll
 @property CABackgroundNode *sibling;
 
-+ (id)withName:(NSString *)aName color:(UIColor *)aColor yStartOffset:(NSInteger)anOffset;
-- (id)initWithName:(NSString *)aName color:(UIColor *)aColor yStartOffset:(NSInteger)anOffset;
+#pragma mark - Initializing
 
-- (void)startAnimatingWithInitialFactor:(NSInteger)aFactor;
-- (void)updatePosition;
++ (id)withName:(NSString *)aName color:(SKColor *)aColor yStartOffset:(NSInteger)anOffset;
+- (id)initWithName:(NSString *)aName color:(SKColor *)aColor yStartOffset:(NSInteger)anOffset;
+
+#pragma mark - Animating
+
+- (void)startAnimating;
+- (void)incAnimationSpeedBy:(CGFloat)aFloat;
+- (void)update;
 - (NSInteger)getTop;
+
+#pragma mark - Buttons
+
+- (void)addButtonNodes;
+- (CAButtonNode *)buttonAtTouch:(UITouch *)aTouch;
 
 @end

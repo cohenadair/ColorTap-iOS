@@ -15,5 +15,6 @@
 + (CGSize)screenSize;
 + (void)showStatusBar;
 + (void)hideStatusBar;
++ (SKColor *)randomColor;
 
 @end
