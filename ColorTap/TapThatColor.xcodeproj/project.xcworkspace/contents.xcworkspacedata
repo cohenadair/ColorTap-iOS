@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ColorTap.xcodeproj">
+      location = "self:/Volumes/Home/Workplace/ColorTap-iOS/ColorTap/TapThatColor.xcodeproj">
    </FileRef>
 </Workspace>

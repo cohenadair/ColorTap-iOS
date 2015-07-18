@@ -8,7 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "CABackgroundNode.h"
-#import "CAColorTapGame.h"
+#import "CATapGame.h"
 
 @interface CAGameScene : SKScene
 

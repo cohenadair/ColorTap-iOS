@@ -1,5 +1,5 @@
 //
-//  CAColorTapGame.h
+//  CATapGame.h
 //  ColorTap
 //
 //  Created by Cohen Adair on 2015-07-14.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CAColorTapGame : NSObject
+@interface CATapGame : NSObject
 
 + (id)withScore:(NSInteger)aScore;
 - (id)initWithScore:(NSInteger)aScore;

@@ -1,20 +1,20 @@
 //
-//  CAColorTapGame.m
+//  CATapGame.m
 //  ColorTap
 //
 //  Created by Cohen Adair on 2015-07-14.
 //  Copyright (c) 2015 Cohen Adair. All rights reserved.
 //
 
-#import "CAColorTapGame.h"
+#import "CATapGame.h"
 
-@interface CAColorTapGame ()
+@interface CATapGame ()
 
 @property NSInteger score;
 
 @end
 
-@implementation CAColorTapGame
+@implementation CATapGame
 
 + (id)withScore:(NSInteger)aScore {
     return [[self alloc] initWithScore:aScore];

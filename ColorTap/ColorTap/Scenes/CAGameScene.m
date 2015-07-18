@@ -18,7 +18,7 @@
 @property CABackgroundNode *redBackgroundNode;
 @property CABackgroundNode *blueBackgroundNode;
 
-@property CAColorTapGame *colorTap;
+@property CATapGame *colorTap;
 
 @end
 
@@ -31,7 +31,7 @@
     if (!self.contentCreated) {
         self.screenHeight = [CAUtilities screenSize].height;
         self.contentCreated = YES;
-        self.colorTap = [CAColorTapGame withScore:0];
+        self.colorTap = [CATapGame withScore:0];
         [self createSceneContents];
     }
 }

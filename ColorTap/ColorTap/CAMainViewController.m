@@ -70,6 +70,7 @@
 
 - (void)showGameView {
     [self setGameScene:[[CAGameScene alloc] initWithSize:[CAUtilities screenSize]]];
+    
     [self setValue:[NSNumber numberWithInt:0] forKeyPath:kKeyPathScore];
     [self addObserver:self forKeyPath:kKeyPathScore options:NSKeyValueObservingOptionNew context:nil];
     
