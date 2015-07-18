@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D497AF81B5A9C7400266A9C /* CAButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D497AF71B5A9C7400266A9C /* CAButtonNode.m */; };
 		0D5924D51B55F7E400AF9E77 /* CATapGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5924D41B55F7E400AF9E77 /* CATapGame.m */; };
 		0D5924D61B55F7E400AF9E77 /* CATapGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5924D41B55F7E400AF9E77 /* CATapGame.m */; };
 		0DC974721B4F0284008F5ADE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974711B4F0284008F5ADE /* main.m */; };
@@ -33,9 +34,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D497AF61B5A9C7400266A9C /* CAButtonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAButtonNode.h; path = Nodes/CAButtonNode.h; sourceTree = "<group>"; };
+		0D497AF71B5A9C7400266A9C /* CAButtonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAButtonNode.m; path = Nodes/CAButtonNode.m; sourceTree = "<group>"; };
 		0D5924D31B55F7E400AF9E77 /* CATapGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CATapGame.h; path = Model/CATapGame.h; sourceTree = "<group>"; };
 		0D5924D41B55F7E400AF9E77 /* CATapGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CATapGame.m; path = Model/CATapGame.m; sourceTree = "<group>"; };
-		0DC9746C1B4F0284008F5ADE /* TapThatColor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapThatColor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DC9746C1B4F0284008F5ADE /* TapThatColour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapThatColour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC974701B4F0284008F5ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DC974711B4F0284008F5ADE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0DC974731B4F0284008F5ADE /* CAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAAppDelegate.h; sourceTree = "<group>"; };
@@ -45,7 +48,7 @@
 		0DC9747A1B4F0284008F5ADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0DC9747C1B4F0284008F5ADE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0DC9747F1B4F0284008F5ADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		0DC974851B4F0284008F5ADE /* TapThatColorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TapThatColorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DC974851B4F0284008F5ADE /* TapThatColourTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TapThatColourTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC9748A1B4F0284008F5ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DC9748B1B4F0284008F5ADE /* ColorTapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorTapTests.m; sourceTree = "<group>"; };
 		0DC974951B4F02A1008F5ADE /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -89,8 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				0DC974951B4F02A1008F5ADE /* SpriteKit.framework */,
-				0DC9746E1B4F0284008F5ADE /* ColorTap */,
-				0DC974881B4F0284008F5ADE /* ColorTapTests */,
+				0DC9746E1B4F0284008F5ADE /* TapThatColour */,
+				0DC974881B4F0284008F5ADE /* TapThatColourTests */,
 				0DC9746D1B4F0284008F5ADE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,13 +101,13 @@
 		0DC9746D1B4F0284008F5ADE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0DC9746C1B4F0284008F5ADE /* TapThatColor.app */,
-				0DC974851B4F0284008F5ADE /* TapThatColorTests.xctest */,
+				0DC9746C1B4F0284008F5ADE /* TapThatColour.app */,
+				0DC974851B4F0284008F5ADE /* TapThatColourTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0DC9746E1B4F0284008F5ADE /* ColorTap */ = {
+		0DC9746E1B4F0284008F5ADE /* TapThatColour */ = {
 			isa = PBXGroup;
 			children = (
 				0D5924D21B55F7A000AF9E77 /* Model */,
@@ -120,7 +123,7 @@
 				0DC9747E1B4F0284008F5ADE /* LaunchScreen.xib */,
 				0DC9746F1B4F0284008F5ADE /* Supporting Files */,
 			);
-			path = ColorTap;
+			path = TapThatColour;
 			sourceTree = "<group>";
 		};
 		0DC9746F1B4F0284008F5ADE /* Supporting Files */ = {
@@ -132,13 +135,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0DC974881B4F0284008F5ADE /* ColorTapTests */ = {
+		0DC974881B4F0284008F5ADE /* TapThatColourTests */ = {
 			isa = PBXGroup;
 			children = (
 				0DC9748B1B4F0284008F5ADE /* ColorTapTests.m */,
 				0DC974891B4F0284008F5ADE /* Supporting Files */,
 			);
-			path = ColorTapTests;
+			path = TapThatColourTests;
 			sourceTree = "<group>";
 		};
 		0DC974891B4F0284008F5ADE /* Supporting Files */ = {
@@ -172,6 +175,8 @@
 			children = (
 				0DC974A01B4F18CC008F5ADE /* CABackgroundNode.h */,
 				0DC974A11B4F18CC008F5ADE /* CABackgroundNode.m */,
+				0D497AF61B5A9C7400266A9C /* CAButtonNode.h */,
+				0D497AF71B5A9C7400266A9C /* CAButtonNode.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -179,9 +184,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0DC9746B1B4F0284008F5ADE /* TapThatColor */ = {
+		0DC9746B1B4F0284008F5ADE /* TapThatColour */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0DC9748F1B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "TapThatColor" */;
+			buildConfigurationList = 0DC9748F1B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "TapThatColour" */;
 			buildPhases = (
 				0DC974681B4F0284008F5ADE /* Sources */,
 				0DC974691B4F0284008F5ADE /* Frameworks */,
@@ -191,14 +196,14 @@
 			);
 			dependencies = (
 			);
-			name = TapThatColor;
+			name = TapThatColour;
 			productName = ColorTap;
-			productReference = 0DC9746C1B4F0284008F5ADE /* TapThatColor.app */;
+			productReference = 0DC9746C1B4F0284008F5ADE /* TapThatColour.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0DC974841B4F0284008F5ADE /* TapThatColorTests */ = {
+		0DC974841B4F0284008F5ADE /* TapThatColourTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0DC974921B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "TapThatColorTests" */;
+			buildConfigurationList = 0DC974921B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "TapThatColourTests" */;
 			buildPhases = (
 				0DC974811B4F0284008F5ADE /* Sources */,
 				0DC974821B4F0284008F5ADE /* Frameworks */,
@@ -209,9 +214,9 @@
 			dependencies = (
 				0DC974871B4F0284008F5ADE /* PBXTargetDependency */,
 			);
-			name = TapThatColorTests;
+			name = TapThatColourTests;
 			productName = ColorTapTests;
-			productReference = 0DC974851B4F0284008F5ADE /* TapThatColorTests.xctest */;
+			productReference = 0DC974851B4F0284008F5ADE /* TapThatColourTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -233,8 +238,8 @@
 					};
 				};
 			};
-			buildConfigurationList = 0DC974671B4F0284008F5ADE /* Build configuration list for PBXProject "TapThatColor" */;
-			compatibilityVersion = "Xcode 3.2";
+			buildConfigurationList = 0DC974671B4F0284008F5ADE /* Build configuration list for PBXProject "TapThatColour" */;
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -246,8 +251,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0DC9746B1B4F0284008F5ADE /* TapThatColor */,
-				0DC974841B4F0284008F5ADE /* TapThatColorTests */,
+				0DC9746B1B4F0284008F5ADE /* TapThatColour */,
+				0DC974841B4F0284008F5ADE /* TapThatColourTests */,
 			);
 		};
 /* End PBXProject section */
@@ -284,6 +289,7 @@
 				0D5924D51B55F7E400AF9E77 /* CATapGame.m in Sources */,
 				0DC9749E1B4F045D008F5ADE /* CAUtilities.m in Sources */,
 				0DC974721B4F0284008F5ADE /* main.m in Sources */,
+				0D497AF81B5A9C7400266A9C /* CAButtonNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +307,7 @@
 /* Begin PBXTargetDependency section */
 		0DC974871B4F0284008F5ADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0DC9746B1B4F0284008F5ADE /* TapThatColor */;
+			target = 0DC9746B1B4F0284008F5ADE /* TapThatColour */;
 			targetProxy = 0DC974861B4F0284008F5ADE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -413,10 +419,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = ColorTap/Info.plist;
+				INFOPLIST_FILE = TapThatColour/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = TapThatColor;
+				PRODUCT_NAME = TapThatColour;
 			};
 			name = Debug;
 		};
@@ -425,10 +431,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = ColorTap/Info.plist;
+				INFOPLIST_FILE = TapThatColour/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = TapThatColor;
+				PRODUCT_NAME = TapThatColour;
 			};
 			name = Release;
 		};
@@ -444,10 +450,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ColorTapTests/Info.plist;
+				INFOPLIST_FILE = TapThatColour/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = TapThatColorTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapThatColor.app/TapThatColor";
+				PRODUCT_NAME = TapThatColourTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapThatColour.app/TapThatColour";
 			};
 			name = Debug;
 		};
@@ -459,17 +465,17 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ColorTapTests/Info.plist;
+				INFOPLIST_FILE = TapThatColour/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = TapThatColorTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapThatColor.app/TapThatColor";
+				PRODUCT_NAME = TapThatColourTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapThatColour.app/TapThatColour";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0DC974671B4F0284008F5ADE /* Build configuration list for PBXProject "TapThatColor" */ = {
+		0DC974671B4F0284008F5ADE /* Build configuration list for PBXProject "TapThatColour" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0DC9748D1B4F0284008F5ADE /* Debug */,
@@ -478,7 +484,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0DC9748F1B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "TapThatColor" */ = {
+		0DC9748F1B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "TapThatColour" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0DC974901B4F0284008F5ADE /* Debug */,
@@ -487,7 +493,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0DC974921B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "TapThatColorTests" */ = {
+		0DC974921B4F0284008F5ADE /* Build configuration list for PBXNativeTarget "TapThatColourTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0DC974931B4F0284008F5ADE /* Debug */,
