@@ -13,11 +13,10 @@
 @property BOOL doneFirstAnimation;
 @property NSInteger animationStart;
 @property NSInteger animationHeight;
-@property CGFloat animationDuration;
-
-@property SKAction *moveDownAction;
 
 @end
+
+#define kMaxSpeed 4.0
 
 @implementation CABackgroundNode
 
@@ -31,7 +30,6 @@
     if (self = [super initWithColor:aColor size:[CAUtilities screenSize]]) {
         [self setName:aName];
         [self setAnimationStart:[CAUtilities screenSize].height];
-        [self setAnimationDuration:3.0];
         [self setPosition:CGPointMake(0.0, self.animationStart + anOffset)];
         [self setAnchorPoint:CGPointMake(0.0, 0.0)];
         [self setDoneFirstAnimation:NO];
@@ -47,14 +45,13 @@
 
 // aFactor: The animation height for the first animation is multipled by this.
 - (void)startAnimating {
-    SKAction *moveDown = [SKAction moveByX:0 y:-[CAUtilities screenSize].height duration:self.animationDuration];
-    [self setMoveDownAction:[SKAction repeatActionForever:moveDown]];
-    [self runAction:self.moveDownAction];
+    SKAction *moveDown = [SKAction moveByX:0 y:-[CAUtilities screenSize].height duration:3.0];
+    [self runAction:[SKAction repeatActionForever:moveDown]];
 }
 
 - (void)incAnimationSpeedBy:(CGFloat)aFloat {
-    self.moveDownAction.speed += 0.5;
-    NSLog(@"%f", self.moveDownAction.speed);
+    if (self.speed + aFloat < kMaxSpeed)
+        self.speed += aFloat;
 }
 
 // called in the scene's update method
