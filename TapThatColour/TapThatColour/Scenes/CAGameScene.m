@@ -43,6 +43,7 @@
     if (buttonTouched) {
         [buttonTouched onTouch];
         [self.tapThatColor incScoreBy:1];
+        [self.tapThatColor setCurrentColor:[CAUtilities randomColor]];
         [self.blueBackgroundNode incAnimationSpeedBy:0.01];
         [self.redBackgroundNode incAnimationSpeedBy:0.01];
     }

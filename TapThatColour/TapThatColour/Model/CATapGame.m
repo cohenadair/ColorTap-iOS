@@ -10,8 +10,6 @@
 
 @interface CATapGame ()
 
-@property NSInteger score;
-
 @end
 
 @implementation CATapGame
@@ -23,6 +21,7 @@
 - (id)initWithScore:(NSInteger)aScore {
     if (self = [super init]) {
         [self setScore:aScore];
+        [self setCurrentColor:[CAUtilities randomColor]];
     }
     
     return self;

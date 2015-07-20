@@ -7,8 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <SpriteKit/SpriteKit.h>
+#import "CAUtilities.h"
 
 @interface CATapGame : NSObject
+
+@property NSInteger score;
+@property SKColor *currentColor;
 
 + (id)withScore:(NSInteger)aScore;
 - (id)initWithScore:(NSInteger)aScore;

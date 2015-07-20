@@ -43,14 +43,32 @@
 #pragma mark - KVO
 
 #define kKeyPathScore @"gameScene.tapThatColor.score"
+#define kKeyPathColor @"gameScene.tapThatColor.currentColor"
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:kKeyPathScore])
         [self onScoreChange:change];
+    
+    if ([keyPath isEqualToString:kKeyPathColor])
+        [self onColorChange:change];
 }
 
 - (void)onScoreChange:(NSDictionary *)aChange {
     [self.scoreLabel setText:[NSString stringWithFormat:@"%@", [aChange valueForKey:@"new"]]];
+}
+
+- (void)onColorChange:(NSDictionary *)aChange {
+    [self.scoreboard setBackgroundColor:[aChange valueForKey:@"new"]];
+}
+
+- (void)initObservers {
+    // score
+    [self setValue:[NSNumber numberWithInt:0] forKeyPath:kKeyPathScore];
+    [self addObserver:self forKeyPath:kKeyPathScore options:NSKeyValueObservingOptionNew context:nil];
+    
+    // color
+    [self setValue:@"Green" forKeyPath:kKeyPathColor];
+    [self addObserver:self forKeyPath:kKeyPathColor options:NSKeyValueObservingOptionNew context:nil];
 }
 
 #pragma mark - Initializing
@@ -63,17 +81,13 @@
 }
 
 - (void)initScoreboard {
-    [self.scoreboard setBackgroundColor:[SKColor greenColor]];
     [self.scoreLabel setText:@"0"];
     [self.colorLabel setText:@"Green"];
 }
 
 - (void)showGameView {
     [self setGameScene:[[CAGameScene alloc] initWithSize:[CAUtilities screenSize]]];
-    
-    [self setValue:[NSNumber numberWithInt:0] forKeyPath:kKeyPathScore];
-    [self addObserver:self forKeyPath:kKeyPathScore options:NSKeyValueObservingOptionNew context:nil];
-    
+    [self initObservers];
     [self.spriteView presentScene:self.gameScene];
 }
 
