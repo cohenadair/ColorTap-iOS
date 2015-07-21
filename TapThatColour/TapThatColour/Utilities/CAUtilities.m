@@ -30,7 +30,8 @@
 + (SKColor *)randomColor {
     NSArray *colors =
         @[[SKColor redColor], [SKColor orangeColor], [SKColor yellowColor],
-          [SKColor greenColor], [SKColor blueColor], [SKColor magentaColor]];
+          [SKColor greenColor], [SKColor blueColor], [SKColor magentaColor],
+          [SKColor cyanColor], [SKColor purpleColor], [SKColor brownColor]];
     
     return [colors objectAtIndex:arc4random_uniform((u_int32_t)[colors count])];
 }

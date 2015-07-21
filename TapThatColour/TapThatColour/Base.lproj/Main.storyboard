@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -17,35 +16,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4of-mE-e3q">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4of-mE-e3q">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lH6-my-VlG">
-                                        <rect key="frame" x="166" y="14" width="426" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COLOR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCb-qj-iyG">
-                                        <rect key="frame" x="8" y="14" width="150" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lH6-my-VlG">
+                                        <rect key="frame" x="250" y="0.0" width="100" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="qX9-SQ-GU4"/>
+                                            <constraint firstAttribute="width" constant="100" id="hZe-9M-gFj"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="LCb-qj-iyG" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="top" constant="14" id="6BJ-c4-SnS"/>
-                                    <constraint firstItem="lH6-my-VlG" firstAttribute="trailing" secondItem="4of-mE-e3q" secondAttribute="trailingMargin" id="9VJ-Ec-Aaj"/>
-                                    <constraint firstItem="LCb-qj-iyG" firstAttribute="leading" secondItem="4of-mE-e3q" secondAttribute="leadingMargin" id="O47-s6-J4W"/>
-                                    <constraint firstItem="lH6-my-VlG" firstAttribute="top" secondItem="LCb-qj-iyG" secondAttribute="top" id="Tk7-Oc-EFl"/>
-                                    <constraint firstAttribute="height" constant="50" id="W9E-bZ-o3b"/>
-                                    <constraint firstAttribute="bottom" secondItem="LCb-qj-iyG" secondAttribute="bottom" constant="15" id="cMf-fi-8Z8"/>
-                                    <constraint firstItem="lH6-my-VlG" firstAttribute="leading" secondItem="LCb-qj-iyG" secondAttribute="trailing" constant="8" symbolic="YES" id="kyA-Op-3rh"/>
-                                    <constraint firstItem="LCb-qj-iyG" firstAttribute="bottom" secondItem="lH6-my-VlG" secondAttribute="bottom" id="pJl-d7-dIH"/>
+                                    <constraint firstItem="lH6-my-VlG" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="top" id="bp2-Dc-cRE"/>
+                                    <constraint firstAttribute="bottom" secondItem="lH6-my-VlG" secondAttribute="bottom" id="dCI-TF-a1F"/>
+                                    <constraint firstItem="lH6-my-VlG" firstAttribute="centerX" secondItem="4of-mE-e3q" secondAttribute="centerX" id="eEm-bK-lnX"/>
+                                    <constraint firstAttribute="height" constant="50" id="sOl-gO-DDJ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -53,12 +42,13 @@
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="bottom" constant="550" id="50I-WV-k34"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="bottom" constant="550" id="5Jm-GY-oLP"/>
-                            <constraint firstItem="4of-mE-e3q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9uc-7t-WJV"/>
                             <constraint firstItem="4of-mE-e3q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Aid-dj-4Nr"/>
                             <constraint firstItem="4of-mE-e3q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="WNW-Th-sVq"/>
-                            <constraint firstAttribute="trailing" secondItem="4of-mE-e3q" secondAttribute="trailing" id="b0h-hf-S8A"/>
-                            <constraint firstItem="4of-mE-e3q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="b7U-DL-E3g"/>
+                            <constraint firstAttribute="trailing" secondItem="4of-mE-e3q" secondAttribute="trailing" id="aNz-nd-mvE"/>
+                            <constraint firstItem="4of-mE-e3q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="c4F-TB-c5Q"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="bottom" constant="550" id="kIA-t2-bd3"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="bottom" constant="550" id="kqD-Dl-Ld6"/>
+                            <constraint firstItem="4of-mE-e3q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="p9V-Dn-Q5S"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -67,12 +57,12 @@
                                 <exclude reference="50I-WV-k34"/>
                                 <exclude reference="5Jm-GY-oLP"/>
                                 <exclude reference="kIA-t2-bd3"/>
+                                <exclude reference="kqD-Dl-Ld6"/>
                             </mask>
                         </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="colorLabel" destination="LCb-qj-iyG" id="vc8-w3-V8q"/>
                         <outlet property="scoreLabel" destination="lH6-my-VlG" id="KPq-od-oZf"/>
                         <outlet property="scoreboard" destination="4of-mE-e3q" id="hdu-hv-SiA"/>
                     </connections>

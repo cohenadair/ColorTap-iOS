@@ -14,7 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *scoreboard;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *colorLabel;
 
 @property SKView *spriteView;
 @property CAGameScene *gameScene;
@@ -28,7 +27,6 @@
     
     [CAUtilities hideStatusBar];
     [self initSpriteView];
-    [self initScoreboard];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -40,7 +38,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - KVO
+#pragma mark - Observing
 
 #define kKeyPathScore @"gameScene.tapThatColor.score"
 #define kKeyPathColor @"gameScene.tapThatColor.currentColor"
@@ -67,7 +65,7 @@
     [self addObserver:self forKeyPath:kKeyPathScore options:NSKeyValueObservingOptionNew context:nil];
     
     // color
-    [self setValue:@"Green" forKeyPath:kKeyPathColor];
+    [self setValue:@"" forKeyPath:kKeyPathColor];
     [self addObserver:self forKeyPath:kKeyPathColor options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -78,11 +76,6 @@
     self.spriteView.showsDrawCount = YES;
     self.spriteView.showsNodeCount = YES;
     self.spriteView.showsFPS = YES;
-}
-
-- (void)initScoreboard {
-    [self.scoreLabel setText:@"0"];
-    [self.colorLabel setText:@"Green"];
 }
 
 - (void)showGameView {
