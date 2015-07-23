@@ -23,6 +23,7 @@
 #pragma mark - Animating
 
 - (void)startAnimating;
+- (void)stopAnimating;
 - (void)incAnimationSpeedBy:(CGFloat)aFloat;
 - (void)update;
 - (NSInteger)getTop;

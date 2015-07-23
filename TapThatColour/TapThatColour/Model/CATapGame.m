@@ -29,6 +29,10 @@
 
 - (void)incScoreBy:(NSInteger)anInteger {
     self.score += anInteger;
+    
+    if (self.score % 10 == 0) {
+        [self setCurrentColor:[CAUtilities randomColor]];
+    }
 }
 
 @end

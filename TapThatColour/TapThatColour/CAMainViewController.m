@@ -56,7 +56,7 @@
 }
 
 - (void)onColorChange:(NSDictionary *)aChange {
-    [self.scoreboard setBackgroundColor:[aChange valueForKey:@"new"]];
+    [self.scoreboard setBackgroundColor:[[aChange valueForKey:@"new"] color]];
 }
 
 - (void)initObservers {

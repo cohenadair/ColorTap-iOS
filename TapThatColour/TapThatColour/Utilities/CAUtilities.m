@@ -27,13 +27,17 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
-+ (SKColor *)randomColor {
++ (CAColor *)randomColor {
     NSArray *colors =
-        @[[SKColor redColor], [SKColor orangeColor], [SKColor yellowColor],
-          [SKColor greenColor], [SKColor blueColor], [SKColor magentaColor],
-          [SKColor cyanColor], [SKColor purpleColor], [SKColor brownColor]];
+        @[[CAColor redColor], [CAColor orangeColor], [CAColor yellowColor],
+          [CAColor greenColor], [CAColor blueColor], [CAColor magentaColor],
+          [CAColor cyanColor], [CAColor purpleColor], [CAColor brownColor]];
     
     return [colors objectAtIndex:arc4random_uniform((u_int32_t)[colors count])];
+}
+
++ (CGPathRef)pathForRadius:(CGFloat)aRadius {
+    return CGPathCreateWithEllipseInRect(CGRectMake(-aRadius, -aRadius, aRadius * 2, aRadius * 2), NULL);
 }
 
 @end

@@ -41,11 +41,16 @@
     
     CAButtonNode *buttonTouched = [self buttonTouched:[touches anyObject]];
     if (buttonTouched) {
-        [buttonTouched onTouch];
-        [self.tapThatColor incScoreBy:1];
-        [self.tapThatColor setCurrentColor:[CAUtilities randomColor]];
-        [self.blueBackgroundNode incAnimationSpeedBy:0.01];
-        [self.redBackgroundNode incAnimationSpeedBy:0.01];
+        // check for correct color touch
+        if ([buttonTouched.color isEqualToColor:self.tapThatColor.currentColor]) {
+            if (!buttonTouched.wasTapped) {
+                [self handleCorrectTouch];
+                [buttonTouched onCorrectTouch];
+            }
+        } else {
+            [self handleGameOver];
+            [buttonTouched onIncorrectTouch];
+        }
     }
     
 }
@@ -68,6 +73,22 @@
         [self.blueBackgroundNode startAnimating];
         self.animationBegan = YES;
     }
+}
+
+- (void)handleGameOver {
+    [self setUserInteractionEnabled:NO];
+    [self stopBackgroundAnimation];
+}
+
+- (void)handleCorrectTouch {
+    [self.tapThatColor incScoreBy:1];
+    [self.blueBackgroundNode incAnimationSpeedBy:0.01];
+    [self.redBackgroundNode incAnimationSpeedBy:0.01];
+}
+
+- (void)stopBackgroundAnimation {
+    [self.redBackgroundNode stopAnimating];
+    [self.blueBackgroundNode stopAnimating];
 }
 
 - (void)createSceneContents {

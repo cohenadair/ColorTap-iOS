@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "CAColor.h"
 
 @interface CAUtilities : NSObject
 
@@ -15,6 +15,7 @@
 + (CGSize)screenSize;
 + (void)showStatusBar;
 + (void)hideStatusBar;
-+ (SKColor *)randomColor;
++ (CAColor *)randomColor;
++ (CGPathRef)pathForRadius:(CGFloat)aRadius;
 
 @end

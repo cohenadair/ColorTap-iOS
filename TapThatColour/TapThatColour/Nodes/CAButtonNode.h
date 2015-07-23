@@ -7,12 +7,19 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "CAUtilities.h"
+#import "CAColor.h"
 
 @interface CAButtonNode : SKShapeNode
 
-+ (id)withColor:(SKColor *)aColor radius:(CGFloat)aRadius;
-- (id)initWithColor:(SKColor *)aColor radius:(CGFloat)aRadius;
+@property CAColor *color;
+@property BOOL wasTapped;
 
-- (void)onTouch;
++ (id)withColor:(CAColor *)aColor radius:(CGFloat)aRadius;
+- (id)initWithColor:(CAColor *)aColor radius:(CGFloat)aRadius;
+
+- (void)onCorrectTouch;
+- (void)onIncorrectTouch;
+- (void)reset;
 
 @end

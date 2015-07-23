@@ -49,6 +49,10 @@
     [self runAction:[SKAction repeatActionForever:moveDown]];
 }
 
+- (void)stopAnimating {
+    self.speed = 0;
+}
+
 - (void)incAnimationSpeedBy:(CGFloat)aFloat {
     if (self.speed + aFloat < kMaxSpeed)
         self.speed += aFloat;
@@ -111,7 +115,7 @@
 
 - (void)resetColors {
     for (CAButtonNode *btn in self.children)
-        [btn setFillColor:[CAUtilities randomColor]];
+        [btn reset];
 }
 
 @end
