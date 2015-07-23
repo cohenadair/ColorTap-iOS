@@ -12,5 +12,7 @@
 
 @interface CAGameScene : SKScene
 
+@property UIViewController *viewController;
+@property BOOL autoStart;
 
 @end

@@ -55,7 +55,7 @@
     [self setWasTapped:YES];
 }
 
-- (void)onIncorrectTouch {
+- (void)onIncorrectTouchWithCompletion:(void (^)())aCompletionBlock {
     id __block blockSelf = self;
     CGFloat __block zPos = self.zPosition;
     
@@ -69,6 +69,8 @@
     
     [self runAction:group completion:^() {
         [blockSelf setZPosition:zPos];
+        if (aCompletionBlock)
+            aCompletionBlock();
     }];
 }
 

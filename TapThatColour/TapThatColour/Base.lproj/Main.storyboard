@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -65,10 +66,67 @@
                     <connections>
                         <outlet property="scoreLabel" destination="lH6-my-VlG" id="KPq-od-oZf"/>
                         <outlet property="scoreboard" destination="4of-mE-e3q" id="hdu-hv-SiA"/>
+                        <segue destination="4ay-jh-Q1K" kind="presentation" identifier="fromMainToGameOver" id="VzZ-9S-5ID"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Game Over View Controller-->
+        <scene sceneID="bWg-XF-ZHG">
+            <objects>
+                <viewController id="4ay-jh-Q1K" customClass="CAGameOverViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5vK-GG-aTd"/>
+                        <viewControllerLayoutGuide type="bottom" id="YQh-Sx-T6f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="alq-aS-EKu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME OVER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxH-CG-L3Y">
+                                <rect key="frame" x="16" y="144" width="568" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="130-jF-bSi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sP-ge-f38">
+                                <rect key="frame" x="200" y="252" width="200" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="0t6-WU-XBn"/>
+                                    <constraint firstAttribute="width" constant="200" id="HZk-27-C8I"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Play Again">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapPlayAgain:" destination="4ay-jh-Q1K" eventType="touchUpInside" id="s03-nG-ace"/>
+                                    <segue destination="eg4-Ff-s2v" kind="unwind" unwindAction="unwindToMain:" id="Q0m-ap-B96"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fxH-CG-L3Y" firstAttribute="top" secondItem="5vK-GG-aTd" secondAttribute="bottom" constant="144" id="50U-na-fE7"/>
+                            <constraint firstItem="fxH-CG-L3Y" firstAttribute="leading" secondItem="alq-aS-EKu" secondAttribute="leadingMargin" id="BrG-9A-68H"/>
+                            <constraint firstItem="2sP-ge-f38" firstAttribute="top" secondItem="fxH-CG-L3Y" secondAttribute="bottom" constant="8" id="WVd-g2-zkL"/>
+                            <constraint firstItem="fxH-CG-L3Y" firstAttribute="trailing" secondItem="alq-aS-EKu" secondAttribute="trailingMargin" id="XKx-RY-BhR"/>
+                            <constraint firstAttribute="centerX" secondItem="2sP-ge-f38" secondAttribute="centerX" id="r9b-bt-so1"/>
+                            <constraint firstAttribute="centerX" secondItem="fxH-CG-L3Y" secondAttribute="centerX" id="sya-b0-AWs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playAgainButton" destination="2sP-ge-f38" id="VZf-SA-DhO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZGZ-6Z-b12" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="eg4-Ff-s2v" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="380" y="953"/>
         </scene>
     </scenes>
 </document>

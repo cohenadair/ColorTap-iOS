@@ -19,7 +19,7 @@
 - (id)initWithColor:(CAColor *)aColor radius:(CGFloat)aRadius;
 
 - (void)onCorrectTouch;
-- (void)onIncorrectTouch;
+- (void)onIncorrectTouchWithCompletion:(void (^)())aCompletionBlock;
 - (void)reset;
 
 @end

@@ -34,6 +34,9 @@
         self.tapThatColor = [CATapGame withScore:0];
         [self createSceneContents];
     }
+    
+    if (self.autoStart)
+        [self handleBackgroundAnimation];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -49,7 +52,11 @@
             }
         } else {
             [self handleGameOver];
-            [buttonTouched onIncorrectTouch];
+            
+            id __block blockSelf = self;
+            [buttonTouched onIncorrectTouchWithCompletion:^() {
+                [[blockSelf viewController] performSegueWithIdentifier:@"fromMainToGameOver" sender:self];
+            }];
         }
     }
     

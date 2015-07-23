@@ -17,6 +17,7 @@
 
 @property SKView *spriteView;
 @property CAGameScene *gameScene;
+@property BOOL autoStartGame;
 
 @end
 
@@ -56,7 +57,9 @@
 }
 
 - (void)onColorChange:(NSDictionary *)aChange {
-    [self.scoreboard setBackgroundColor:[[aChange valueForKey:@"new"] color]];
+    id new = [aChange valueForKey:@"new"];
+    if (![new isKindOfClass:[NSNull class]])
+        [self.scoreboard setBackgroundColor:[new color]];
 }
 
 - (void)initObservers {
@@ -80,8 +83,15 @@
 
 - (void)showGameView {
     [self setGameScene:[[CAGameScene alloc] initWithSize:[CAUtilities screenSize]]];
+    [self.gameScene setViewController:self];
+    [self.gameScene setAutoStart:self.autoStartGame];
+    
     [self initObservers];
     [self.spriteView presentScene:self.gameScene];
+}
+
+- (IBAction)unwindToMain:(UIStoryboardSegue *)aSegue {
+    [self setAutoStartGame:YES];
 }
 
 @end
