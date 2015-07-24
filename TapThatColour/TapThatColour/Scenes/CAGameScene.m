@@ -10,15 +10,15 @@
 
 @interface CAGameScene()
 
-@property BOOL contentCreated;
-@property BOOL animationBegan;
+@property (nonatomic) BOOL contentCreated;
+@property (nonatomic) BOOL animationBegan;
 
-@property NSInteger screenHeight;
+@property (nonatomic) NSInteger screenHeight;
 
-@property CABackgroundNode *redBackgroundNode;
-@property CABackgroundNode *blueBackgroundNode;
+@property (strong, nonatomic) CABackgroundNode *redBackgroundNode;
+@property (strong, nonatomic) CABackgroundNode *blueBackgroundNode;
 
-@property CATapGame *tapThatColor;
+@property (strong, nonatomic) CATapGame *tapThatColor;
 
 @end
 
@@ -113,6 +113,10 @@
     
     [self addChild:self.redBackgroundNode];
     [self addChild:self.blueBackgroundNode];
+}
+
+- (NSInteger)score {
+    return self.tapThatColor.score;
 }
 
 @end

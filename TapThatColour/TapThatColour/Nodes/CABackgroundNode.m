@@ -10,9 +10,9 @@
 
 @interface CABackgroundNode ()
 
-@property BOOL doneFirstAnimation;
-@property NSInteger animationStart;
-@property NSInteger animationHeight;
+@property (nonatomic) BOOL doneFirstAnimation;
+@property (nonatomic) NSInteger animationStart;
+@property (nonatomic) NSInteger animationHeight;
 
 @end
 

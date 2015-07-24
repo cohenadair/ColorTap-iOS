@@ -15,4 +15,6 @@
 @property UIViewController *viewController;
 @property BOOL autoStart;
 
+- (NSInteger)score;
+
 @end

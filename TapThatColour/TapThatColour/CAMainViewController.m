@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "CAMainViewController.h"
+#import "CAGameOverViewController.h"
 #import "CAGameScene.h"
 
 @interface CAMainViewController ()
@@ -15,9 +16,9 @@
 @property (weak, nonatomic) IBOutlet UIView *scoreboard;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
-@property SKView *spriteView;
-@property CAGameScene *gameScene;
-@property BOOL autoStartGame;
+@property (strong, nonatomic) SKView *spriteView;
+@property (strong, nonatomic) CAGameScene *gameScene;
+@property (nonatomic)BOOL autoStartGame;
 
 @end
 
@@ -92,6 +93,11 @@
 
 - (IBAction)unwindToMain:(UIStoryboardSegue *)aSegue {
     [self setAutoStartGame:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)aSegue sender:(id)aSender {
+    CAGameOverViewController *dest = [aSegue destinationViewController];
+    dest.score = [self.gameScene score];
 }
 
 @end

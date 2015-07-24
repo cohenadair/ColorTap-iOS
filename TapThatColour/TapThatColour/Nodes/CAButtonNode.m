@@ -10,11 +10,11 @@
 
 @interface CAButtonNode ()
 
-@property CGFloat radius;
-@property BOOL shouldResetPath;
+@property (nonatomic) CGFloat radius;
+@property (nonatomic) BOOL shouldResetPath;
 
-@property SKAction *correctSound;
-@property SKAction *incorrectSound;
+@property (strong, nonatomic) SKAction *correctSound;
+@property (strong, nonatomic) SKAction *incorrectSound;
 
 @end
 
