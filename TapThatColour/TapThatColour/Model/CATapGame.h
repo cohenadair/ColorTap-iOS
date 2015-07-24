@@ -12,7 +12,7 @@
 @interface CATapGame : NSObject
 
 @property (nonatomic) NSInteger score;
-@property (strong, nonatomic) CAColor *currentColor;
+@property (nonatomic) CAColor *currentColor;
 
 + (id)withScore:(NSInteger)aScore;
 - (id)initWithScore:(NSInteger)aScore;

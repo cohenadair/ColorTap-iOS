@@ -12,8 +12,8 @@
 
 @interface CAGameScene : SKScene
 
-@property UIViewController *viewController;
-@property BOOL autoStart;
+@property (nonatomic) UIViewController *viewController;
+@property (nonatomic) BOOL autoStart;
 
 - (NSInteger)score;
 

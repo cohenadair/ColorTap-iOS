@@ -13,8 +13,8 @@
 @property (nonatomic) CGFloat radius;
 @property (nonatomic) BOOL shouldResetPath;
 
-@property (strong, nonatomic) SKAction *correctSound;
-@property (strong, nonatomic) SKAction *incorrectSound;
+@property (nonatomic) SKAction *correctSound;
+@property (nonatomic) SKAction *incorrectSound;
 
 @end
 

@@ -15,10 +15,10 @@
 
 @property (nonatomic) NSInteger screenHeight;
 
-@property (strong, nonatomic) CABackgroundNode *redBackgroundNode;
-@property (strong, nonatomic) CABackgroundNode *blueBackgroundNode;
+@property (nonatomic) CABackgroundNode *redBackgroundNode;
+@property (nonatomic) CABackgroundNode *blueBackgroundNode;
 
-@property (strong, nonatomic) CATapGame *tapThatColor;
+@property (nonatomic) CATapGame *tapThatColor;
 
 @end
 

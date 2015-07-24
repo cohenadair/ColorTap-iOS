@@ -16,9 +16,9 @@
 @property (weak, nonatomic) IBOutlet UIView *scoreboard;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
-@property (strong, nonatomic) SKView *spriteView;
-@property (strong, nonatomic) CAGameScene *gameScene;
-@property (nonatomic)BOOL autoStartGame;
+@property (nonatomic) SKView *spriteView;
+@property (nonatomic) CAGameScene *gameScene;
+@property (nonatomic) BOOL autoStartGame;
 
 @end
 

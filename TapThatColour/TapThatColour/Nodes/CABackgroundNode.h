@@ -13,7 +13,7 @@
 @interface CABackgroundNode : SKSpriteNode
 
 // the "other" background node needed to create an infinite scroll
-@property CABackgroundNode *sibling;
+@property (nonatomic) CABackgroundNode *sibling;
 
 #pragma mark - Initializing
 

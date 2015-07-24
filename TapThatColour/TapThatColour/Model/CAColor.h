@@ -11,7 +11,7 @@
 
 @interface CAColor : NSObject
 
-@property (strong, nonatomic) SKColor *color;
+@property (nonatomic) SKColor *color;
 @property (nonatomic) NSInteger comparisonId;
 
 + (CAColor *)redColor;

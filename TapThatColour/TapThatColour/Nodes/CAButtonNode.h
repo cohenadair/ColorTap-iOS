@@ -12,8 +12,8 @@
 
 @interface CAButtonNode : SKShapeNode
 
-@property CAColor *color;
-@property BOOL wasTapped;
+@property (nonatomic) CAColor *color;
+@property (nonatomic) BOOL wasTapped;
 
 + (id)withColor:(CAColor *)aColor radius:(CGFloat)aRadius;
 - (id)initWithColor:(CAColor *)aColor radius:(CGFloat)aRadius;

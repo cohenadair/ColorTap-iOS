@@ -10,6 +10,6 @@
 
 @interface CAGameOverViewController : UIViewController
 
-@property (nonatomic)NSInteger score;
+@property (nonatomic) NSInteger score;
 
 @end
