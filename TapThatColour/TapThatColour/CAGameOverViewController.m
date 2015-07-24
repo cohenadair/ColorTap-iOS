@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.scoreLabel setText:[NSString stringWithFormat:@"%ld", self.score]];
+    [self.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)self.score]];
 }
 
 - (void)didReceiveMemoryWarning {

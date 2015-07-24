@@ -84,59 +84,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME OVER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxH-CG-L3Y">
-                                <rect key="frame" x="16" y="117" width="568" height="100"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sP-ge-f38">
-                                <rect key="frame" x="200" y="383" width="200" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7P-Sd-Mpy">
+                                <rect key="frame" x="140" y="100" width="320" height="400"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GAME OVER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxH-CG-L3Y">
+                                        <rect key="frame" x="10" y="10" width="300" height="50"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="141" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5U-Sp-1SX">
+                                        <rect key="frame" x="-55" y="68" width="430" height="150"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="115"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sP-ge-f38">
+                                        <rect key="frame" x="50" y="226" width="220" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="Play Again" image="replay">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="eg4-Ff-s2v" kind="unwind" unwindAction="unwindToMain:" id="Q0m-ap-B96"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldd-t0-fTi">
+                                        <rect key="frame" x="50" y="284" width="220" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="Share" image="share">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSG-Gd-ii2">
+                                        <rect key="frame" x="50" y="342" width="220" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="Rate" image="rate">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="Ja4-uN-Aya"/>
-                                    <constraint firstAttribute="height" constant="60" id="cfe-eR-03C"/>
+                                    <constraint firstAttribute="height" constant="400" id="L2a-jU-eW3"/>
+                                    <constraint firstAttribute="width" constant="320" id="OEP-vy-7CF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Play Again">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="eg4-Ff-s2v" kind="unwind" unwindAction="unwindToMain:" id="Q0m-ap-B96"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="141" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5U-Sp-1SX">
-                                <rect key="frame" x="19" y="225" width="562" height="150"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="150"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldd-t0-fTi">
-                                <rect key="frame" x="200" y="451" width="200" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Vkm-4U-AHj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Share">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="k5U-Sp-1SX" firstAttribute="top" secondItem="fxH-CG-L3Y" secondAttribute="bottom" constant="8" symbolic="YES" id="27j-0o-SWI"/>
-                            <constraint firstItem="fxH-CG-L3Y" firstAttribute="leading" secondItem="alq-aS-EKu" secondAttribute="leadingMargin" id="3aT-8m-rbQ"/>
-                            <constraint firstItem="2sP-ge-f38" firstAttribute="leading" secondItem="ldd-t0-fTi" secondAttribute="leading" id="64K-Rb-FPc"/>
-                            <constraint firstItem="k5U-Sp-1SX" firstAttribute="centerX" secondItem="2sP-ge-f38" secondAttribute="centerX" id="6bL-fX-arv"/>
-                            <constraint firstItem="k5U-Sp-1SX" firstAttribute="centerY" secondItem="alq-aS-EKu" secondAttribute="centerY" id="D06-l9-Ybp"/>
-                            <constraint firstItem="2sP-ge-f38" firstAttribute="top" secondItem="k5U-Sp-1SX" secondAttribute="bottom" constant="8" symbolic="YES" id="EMH-Lu-4ZG"/>
-                            <constraint firstItem="fxH-CG-L3Y" firstAttribute="top" secondItem="5vK-GG-aTd" secondAttribute="bottom" constant="117" id="Fze-3H-FvX"/>
-                            <constraint firstItem="YQh-Sx-T6f" firstAttribute="top" secondItem="ldd-t0-fTi" secondAttribute="bottom" constant="89" id="Jvu-7x-UY4"/>
-                            <constraint firstItem="fxH-CG-L3Y" firstAttribute="trailing" secondItem="alq-aS-EKu" secondAttribute="trailingMargin" id="KVP-fp-PXV"/>
-                            <constraint firstItem="ldd-t0-fTi" firstAttribute="top" secondItem="2sP-ge-f38" secondAttribute="bottom" constant="8" symbolic="YES" id="hia-T4-KSX"/>
-                            <constraint firstItem="ldd-t0-fTi" firstAttribute="trailing" secondItem="2sP-ge-f38" secondAttribute="trailing" id="hlN-eH-GDS"/>
-                            <constraint firstItem="k5U-Sp-1SX" firstAttribute="leading" secondItem="alq-aS-EKu" secondAttribute="leadingMargin" constant="3" id="uLC-ob-rs1"/>
-                            <constraint firstItem="k5U-Sp-1SX" firstAttribute="centerX" secondItem="fxH-CG-L3Y" secondAttribute="centerX" id="yuM-K1-8YS"/>
+                            <constraint firstItem="y7P-Sd-Mpy" firstAttribute="leading" secondItem="alq-aS-EKu" secondAttribute="leadingMargin" constant="69" id="1rU-Ve-Umg"/>
+                            <constraint firstItem="y7P-Sd-Mpy" firstAttribute="top" secondItem="5vK-GG-aTd" secondAttribute="bottom" constant="110" id="6bd-BU-3lV"/>
+                            <constraint firstAttribute="centerY" secondItem="y7P-Sd-Mpy" secondAttribute="centerY" id="Xrh-6B-uay"/>
+                            <constraint firstAttribute="centerX" secondItem="y7P-Sd-Mpy" secondAttribute="centerX" id="YjS-te-G0V"/>
+                            <constraint firstItem="YQh-Sx-T6f" firstAttribute="top" secondItem="y7P-Sd-Mpy" secondAttribute="bottom" constant="90" id="bad-vN-cxX"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1rU-Ve-Umg"/>
+                                <exclude reference="6bd-BU-3lV"/>
+                                <exclude reference="bad-vN-cxX"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="playAgainButton" destination="2sP-ge-f38" id="VZf-SA-DhO"/>
@@ -149,4 +167,9 @@
             <point key="canvasLocation" x="380" y="953"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="rate" width="25" height="25"/>
+        <image name="replay" width="25" height="25"/>
+        <image name="share" width="24" height="24"/>
+    </resources>
 </document>
