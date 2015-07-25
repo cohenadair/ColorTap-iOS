@@ -26,4 +26,17 @@
     [super didReceiveMemoryWarning];
 }
 
+- (IBAction)tapShareButton:(UIButton *)aSender {
+    NSArray *items = @[[NSString stringWithFormat:@"I just scored %ld on #TapThatColour! Check it out on the App Store!", (long)self.score]];
+    UIActivityViewController *act = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
+    [self presentViewController:act animated:YES completion:nil];
+}
+
+#define kAppId 1019522139
+
+- (IBAction)tapRateButton:(UIButton *)aSender {
+    NSString *stringUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d", kAppId];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringUrl]];
+}
+
 @end
