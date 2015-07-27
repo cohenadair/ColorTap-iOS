@@ -99,17 +99,6 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sP-ge-f38">
-                                        <rect key="frame" x="50" y="226" width="220" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                        <state key="normal" title="Play Again" image="replay"/>
-                                        <connections>
-                                            <segue destination="eg4-Ff-s2v" kind="unwind" unwindAction="unwindToMain:" id="Q0m-ap-B96"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldd-t0-fTi">
                                         <rect key="frame" x="50" y="284" width="220" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -132,33 +121,60 @@
                                             <action selector="tapRateButton:" destination="4ay-jh-Q1K" eventType="touchUpInside" id="hSn-6l-qNZ"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sP-ge-f38">
+                                        <rect key="frame" x="50" y="226" width="220" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="Play Again" image="replay"/>
+                                        <connections>
+                                            <segue destination="eg4-Ff-s2v" kind="unwind" unwindAction="unwindToMain:" id="Q0m-ap-B96"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="L2a-jU-eW3"/>
-                                    <constraint firstAttribute="width" constant="320" id="OEP-vy-7CF"/>
+                                    <constraint firstAttribute="height" constant="400" id="bOG-Yb-gaR"/>
+                                    <constraint firstAttribute="width" constant="320" id="gEB-a0-ehs"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="la6-g7-xbo">
+                                <rect key="frame" x="554" y="555" width="30" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Ryb-pX-MAa"/>
+                                    <constraint firstAttribute="height" constant="25" id="aAx-KO-dBr"/>
+                                </constraints>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="sound"/>
+                                <connections>
+                                    <action selector="tapSoundButton:" destination="4ay-jh-Q1K" eventType="touchUpInside" id="cjb-NK-7b0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="y7P-Sd-Mpy" firstAttribute="leading" secondItem="alq-aS-EKu" secondAttribute="leadingMargin" constant="69" id="1rU-Ve-Umg"/>
                             <constraint firstItem="y7P-Sd-Mpy" firstAttribute="top" secondItem="5vK-GG-aTd" secondAttribute="bottom" constant="110" id="6bd-BU-3lV"/>
-                            <constraint firstAttribute="centerY" secondItem="y7P-Sd-Mpy" secondAttribute="centerY" id="Xrh-6B-uay"/>
-                            <constraint firstAttribute="centerX" secondItem="y7P-Sd-Mpy" secondAttribute="centerX" id="YjS-te-G0V"/>
+                            <constraint firstItem="la6-g7-xbo" firstAttribute="trailing" secondItem="alq-aS-EKu" secondAttribute="trailingMargin" id="M2g-Ul-CYu"/>
+                            <constraint firstItem="la6-g7-xbo" firstAttribute="trailing" secondItem="alq-aS-EKu" secondAttribute="trailingMargin" id="Rat-CB-E2t"/>
                             <constraint firstItem="YQh-Sx-T6f" firstAttribute="top" secondItem="y7P-Sd-Mpy" secondAttribute="bottom" constant="90" id="bad-vN-cxX"/>
+                            <constraint firstAttribute="centerX" secondItem="y7P-Sd-Mpy" secondAttribute="centerX" id="v3n-5I-sNu"/>
+                            <constraint firstItem="YQh-Sx-T6f" firstAttribute="top" secondItem="la6-g7-xbo" secondAttribute="bottom" constant="20" id="wuc-8K-iUj"/>
+                            <constraint firstAttribute="centerY" secondItem="y7P-Sd-Mpy" secondAttribute="centerY" id="x77-Nb-H1o"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="1rU-Ve-Umg"/>
                                 <exclude reference="6bd-BU-3lV"/>
                                 <exclude reference="bad-vN-cxX"/>
+                                <exclude reference="Rat-CB-E2t"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="playAgainButton" destination="2sP-ge-f38" id="VZf-SA-DhO"/>
                         <outlet property="scoreLabel" destination="k5U-Sp-1SX" id="bCR-Z9-EGI"/>
+                        <outlet property="soundButton" destination="la6-g7-xbo" id="gqE-GD-2hs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGZ-6Z-b12" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -171,5 +187,6 @@
         <image name="rate" width="25" height="25"/>
         <image name="replay" width="25" height="25"/>
         <image name="share" width="24" height="24"/>
+        <image name="sound" width="25" height="25"/>
     </resources>
 </document>

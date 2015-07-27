@@ -67,7 +67,9 @@
     SKAction *repeat = [SKAction repeatAction:sequence count:2];
     SKAction *group = [SKAction group:@[repeat, self.incorrectSound]];
     
-    [self runAction:group completion:^() {
+    SKAction *action = ([[CAUserSettings sharedSettings] muted]) ? repeat : group;
+    
+    [self runAction:action completion:^() {
         [blockSelf setZPosition:zPos];
         if (aCompletionBlock)
             aCompletionBlock();
@@ -80,7 +82,8 @@
     SKAction *shrink = [SKAction scaleBy:0.25 duration:0.25];
     SKAction *group = [SKAction group:@[shrink, self.correctSound]];
     
-    [self runAction:group];
+    SKAction *action = ([[CAUserSettings sharedSettings] muted]) ? shrink : group;
+    [self runAction:action];
 }
 
 - (void)grow {

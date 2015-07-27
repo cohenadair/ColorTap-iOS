@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "CAUtilities.h"
 #import "CAColor.h"
+#import "CAUserSettings.h"
 
 @interface CAButtonNode : SKShapeNode
 
