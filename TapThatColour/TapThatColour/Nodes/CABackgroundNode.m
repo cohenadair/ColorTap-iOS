@@ -82,7 +82,7 @@
 - (void)addButtonNodes {
     CGSize screen = [CAUtilities screenSize];
     
-    CGFloat radius = 40.0;
+    CGFloat radius = (screen.width / 8);
     CGFloat diameter = (radius * 2);
     
     NSInteger numColumns = screen.width / diameter;
