@@ -20,41 +20,68 @@
                             <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4of-mE-e3q">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lH6-my-VlG">
-                                        <rect key="frame" x="250" y="0.0" width="100" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lH6-my-VlG">
+                                        <rect key="frame" x="472" y="0.0" width="120" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="hZe-9M-gFj"/>
+                                            <constraint firstAttribute="height" constant="50" id="cmB-b1-LuC"/>
+                                            <constraint firstAttribute="width" constant="120" id="gv0-Zo-G16"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJM-yC-Ob7">
+                                        <rect key="frame" x="8" y="12" width="30" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="uQA-23-oDg"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="sound"/>
+                                        <connections>
+                                            <action selector="tapSoundButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UE9-3h-L0e"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="lH6-my-VlG" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="top" id="bp2-Dc-cRE"/>
-                                    <constraint firstAttribute="bottom" secondItem="lH6-my-VlG" secondAttribute="bottom" id="dCI-TF-a1F"/>
-                                    <constraint firstItem="lH6-my-VlG" firstAttribute="centerX" secondItem="4of-mE-e3q" secondAttribute="centerX" id="eEm-bK-lnX"/>
-                                    <constraint firstAttribute="height" constant="50" id="sOl-gO-DDJ"/>
+                                    <constraint firstAttribute="centerY" secondItem="EJM-yC-Ob7" secondAttribute="centerY" constant="0.5" id="Awa-KI-3QS"/>
+                                    <constraint firstItem="lH6-my-VlG" firstAttribute="trailing" secondItem="4of-mE-e3q" secondAttribute="trailingMargin" id="CRl-ml-ppv"/>
+                                    <constraint firstItem="EJM-yC-Ob7" firstAttribute="leading" secondItem="4of-mE-e3q" secondAttribute="leadingMargin" id="Fz2-BW-Aff"/>
+                                    <constraint firstAttribute="centerY" secondItem="lH6-my-VlG" secondAttribute="centerY" id="IKa-IH-eE9"/>
+                                    <constraint firstItem="EJM-yC-Ob7" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="top" constant="12" id="IP6-Lm-zqj"/>
+                                    <constraint firstAttribute="height" constant="50" id="Lbw-t7-ZDQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="lH6-my-VlG" secondAttribute="bottom" id="brV-ZL-Bt1"/>
+                                    <constraint firstAttribute="trailing" secondItem="lH6-my-VlG" secondAttribute="trailing" constant="8" id="qvT-gO-b5g"/>
+                                    <constraint firstItem="lH6-my-VlG" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="top" id="trv-aT-Ll2"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="IP6-Lm-zqj"/>
+                                        <exclude reference="brV-ZL-Bt1"/>
+                                        <exclude reference="qvT-gO-b5g"/>
+                                        <exclude reference="trv-aT-Ll2"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="bottom" constant="550" id="00r-1v-gnF"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="bottom" constant="550" id="50I-WV-k34"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="bottom" constant="550" id="5Jm-GY-oLP"/>
                             <constraint firstItem="4of-mE-e3q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Aid-dj-4Nr"/>
+                            <constraint firstAttribute="trailing" secondItem="4of-mE-e3q" secondAttribute="trailing" id="AzG-XV-6h4"/>
+                            <constraint firstItem="4of-mE-e3q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="UJT-lw-pdg"/>
                             <constraint firstItem="4of-mE-e3q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="WNW-Th-sVq"/>
-                            <constraint firstAttribute="trailing" secondItem="4of-mE-e3q" secondAttribute="trailing" id="aNz-nd-mvE"/>
-                            <constraint firstItem="4of-mE-e3q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="c4F-TB-c5Q"/>
+                            <constraint firstItem="4of-mE-e3q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ef6-83-7aJ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="bottom" constant="550" id="kIA-t2-bd3"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4of-mE-e3q" secondAttribute="bottom" constant="550" id="kqD-Dl-Ld6"/>
-                            <constraint firstItem="4of-mE-e3q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="p9V-Dn-Q5S"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Aid-dj-4Nr"/>
                                 <exclude reference="WNW-Th-sVq"/>
+                                <exclude reference="00r-1v-gnF"/>
                                 <exclude reference="50I-WV-k34"/>
                                 <exclude reference="5Jm-GY-oLP"/>
                                 <exclude reference="kIA-t2-bd3"/>
@@ -66,11 +93,13 @@
                     <connections>
                         <outlet property="scoreLabel" destination="lH6-my-VlG" id="KPq-od-oZf"/>
                         <outlet property="scoreboard" destination="4of-mE-e3q" id="hdu-hv-SiA"/>
+                        <outlet property="soundButton" destination="EJM-yC-Ob7" id="WBp-YG-EPY"/>
                         <segue destination="4ay-jh-Q1K" kind="presentation" identifier="fromMainToGameOver" id="VzZ-9S-5ID"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="380" y="207"/>
         </scene>
         <!--Game Over View Controller-->
         <scene sceneID="bWg-XF-ZHG">
@@ -139,28 +168,13 @@
                                     <constraint firstAttribute="width" constant="320" id="gEB-a0-ehs"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="la6-g7-xbo">
-                                <rect key="frame" x="554" y="555" width="30" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="Ryb-pX-MAa"/>
-                                    <constraint firstAttribute="height" constant="25" id="aAx-KO-dBr"/>
-                                </constraints>
-                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="sound"/>
-                                <connections>
-                                    <action selector="tapSoundButton:" destination="4ay-jh-Q1K" eventType="touchUpInside" id="cjb-NK-7b0"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="y7P-Sd-Mpy" firstAttribute="leading" secondItem="alq-aS-EKu" secondAttribute="leadingMargin" constant="69" id="1rU-Ve-Umg"/>
                             <constraint firstItem="y7P-Sd-Mpy" firstAttribute="top" secondItem="5vK-GG-aTd" secondAttribute="bottom" constant="110" id="6bd-BU-3lV"/>
-                            <constraint firstItem="la6-g7-xbo" firstAttribute="trailing" secondItem="alq-aS-EKu" secondAttribute="trailingMargin" id="M2g-Ul-CYu"/>
-                            <constraint firstItem="la6-g7-xbo" firstAttribute="trailing" secondItem="alq-aS-EKu" secondAttribute="trailingMargin" id="Rat-CB-E2t"/>
                             <constraint firstItem="YQh-Sx-T6f" firstAttribute="top" secondItem="y7P-Sd-Mpy" secondAttribute="bottom" constant="90" id="bad-vN-cxX"/>
                             <constraint firstAttribute="centerX" secondItem="y7P-Sd-Mpy" secondAttribute="centerX" id="v3n-5I-sNu"/>
-                            <constraint firstItem="YQh-Sx-T6f" firstAttribute="top" secondItem="la6-g7-xbo" secondAttribute="bottom" constant="20" id="wuc-8K-iUj"/>
                             <constraint firstAttribute="centerY" secondItem="y7P-Sd-Mpy" secondAttribute="centerY" id="x77-Nb-H1o"/>
                         </constraints>
                         <variation key="default">
@@ -168,13 +182,11 @@
                                 <exclude reference="1rU-Ve-Umg"/>
                                 <exclude reference="6bd-BU-3lV"/>
                                 <exclude reference="bad-vN-cxX"/>
-                                <exclude reference="Rat-CB-E2t"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="scoreLabel" destination="k5U-Sp-1SX" id="bCR-Z9-EGI"/>
-                        <outlet property="soundButton" destination="la6-g7-xbo" id="gqE-GD-2hs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGZ-6Z-b12" userLabel="First Responder" sceneMemberID="firstResponder"/>

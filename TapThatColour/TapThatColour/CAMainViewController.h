@@ -11,6 +11,7 @@
 
 @interface CAMainViewController : UIViewController
 
+- (UIView *)scoreboardView;
 
 @end
 

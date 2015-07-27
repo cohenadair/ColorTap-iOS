@@ -10,11 +10,13 @@
 #import "CAMainViewController.h"
 #import "CAGameOverViewController.h"
 #import "CAGameScene.h"
+#import "CAUserSettings.h"
 
 @interface CAMainViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *scoreboard;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UIButton *soundButton;
 
 @property (nonatomic) SKView *spriteView;
 @property (nonatomic) CAGameScene *gameScene;
@@ -23,6 +25,10 @@
 @end
 
 @implementation CAMainViewController
+
+- (CAUserSettings *)userSettings {
+    return [CAUserSettings sharedSettings];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,6 +44,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIView *)scoreboardView {
+    return self.scoreboard;
 }
 
 #pragma mark - Observing
@@ -89,6 +99,19 @@
     
     [self initObservers];
     [self.spriteView presentScene:self.gameScene];
+}
+
+- (IBAction)tapSoundButton:(UIButton *)sender {
+    CAUserSettings *userSettings = [self userSettings];
+    userSettings.muted = !userSettings.muted;
+    [self initSoundButton];
+}
+
+- (void)initSoundButton {
+    if ([self userSettings].muted)
+        [self.soundButton setImage:[UIImage imageNamed:@"mute"] forState:UIControlStateNormal];
+    else
+        [self.soundButton setImage:[UIImage imageNamed:@"sound"] forState:UIControlStateNormal];
 }
 
 - (IBAction)unwindToMain:(UIStoryboardSegue *)aSegue {

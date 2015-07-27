@@ -7,12 +7,13 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "CAMainViewController.h"
 #import "CABackgroundNode.h"
 #import "CATapGame.h"
 
 @interface CAGameScene : SKScene
 
-@property (nonatomic) UIViewController *viewController;
+@property (nonatomic) CAMainViewController *viewController;
 @property (nonatomic) BOOL autoStart;
 
 - (NSInteger)score;

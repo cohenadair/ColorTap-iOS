@@ -42,6 +42,9 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self handleBackgroundAnimation];
     
+    if ([self touchedInScoreboard:[touches anyObject]])
+        return;
+    
     CAButtonNode *buttonTouched = [self buttonTouched:[touches anyObject]];
     if (buttonTouched) {
         // check for correct color touch
@@ -60,6 +63,10 @@
         }
     }
     
+}
+
+- (BOOL)touchedInScoreboard:(UITouch *)aTouch {
+    return [aTouch locationInView:self.view].y < [self.viewController scoreboardView].frame.size.height;
 }
 
 - (CAButtonNode *)buttonTouched:(UITouch *)aTouch {

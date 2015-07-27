@@ -17,6 +17,7 @@
 		0D5A07AD1B60725500D75E6A /* CAGameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07AC1B60725500D75E6A /* CAGameOverViewController.m */; };
 		0D5A07C41B65BE8E00D75E6A /* CAUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07C31B65BE8E00D75E6A /* CAUserSettings.m */; };
 		0D5A07C51B65BE8E00D75E6A /* CAUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07C31B65BE8E00D75E6A /* CAUserSettings.m */; };
+		0D5A07C81B66F06500D75E6A /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5A07C71B66F06500D75E6A /* texture.png */; };
 		0DC974721B4F0284008F5ADE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974711B4F0284008F5ADE /* main.m */; };
 		0DC974751B4F0284008F5ADE /* CAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974741B4F0284008F5ADE /* CAAppDelegate.m */; };
 		0DC974781B4F0284008F5ADE /* CAMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974771B4F0284008F5ADE /* CAMainViewController.m */; };
@@ -53,6 +54,7 @@
 		0D5A07AC1B60725500D75E6A /* CAGameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAGameOverViewController.m; sourceTree = "<group>"; };
 		0D5A07C21B65BE8E00D75E6A /* CAUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAUserSettings.h; path = Model/CAUserSettings.h; sourceTree = "<group>"; };
 		0D5A07C31B65BE8E00D75E6A /* CAUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAUserSettings.m; path = Model/CAUserSettings.m; sourceTree = "<group>"; };
+		0D5A07C71B66F06500D75E6A /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texture.png; path = Images/texture.png; sourceTree = "<group>"; };
 		0DC9746C1B4F0284008F5ADE /* TapThatColour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapThatColour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC974701B4F0284008F5ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DC974711B4F0284008F5ADE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -116,6 +118,14 @@
 			name = Sounds;
 			sourceTree = "<group>";
 		};
+		0D5A07C61B66F05800D75E6A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0D5A07C71B66F06500D75E6A /* texture.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		0DC974631B4F0284008F5ADE = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +148,7 @@
 		0DC9746E1B4F0284008F5ADE /* TapThatColour */ = {
 			isa = PBXGroup;
 			children = (
+				0D5A07C61B66F05800D75E6A /* Images */,
 				0D5A07A21B6064CB00D75E6A /* Sounds */,
 				0D5924D21B55F7A000AF9E77 /* Model */,
 				0DC9749F1B4F189D008F5ADE /* Nodes */,
@@ -296,6 +307,7 @@
 				0DC9747B1B4F0284008F5ADE /* Main.storyboard in Resources */,
 				0D5A07AA1B606E8300D75E6A /* incorrect.wav in Resources */,
 				0D5A07A81B606B0500D75E6A /* correct.wav in Resources */,
+				0D5A07C81B66F06500D75E6A /* texture.png in Resources */,
 				0DC974801B4F0284008F5ADE /* LaunchScreen.xib in Resources */,
 				0DC9747D1B4F0284008F5ADE /* Images.xcassets in Resources */,
 			);
