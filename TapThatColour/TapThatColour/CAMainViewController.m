@@ -92,12 +92,20 @@
     self.spriteView.showsFPS = YES;
 }
 
+- (void)initSoundButton {
+    if ([self userSettings].muted)
+        [self.soundButton setImage:[UIImage imageNamed:@"mute"] forState:UIControlStateNormal];
+    else
+        [self.soundButton setImage:[UIImage imageNamed:@"sound"] forState:UIControlStateNormal];
+}
+
 - (void)showGameView {
     [self setGameScene:[[CAGameScene alloc] initWithSize:[CAUtilities screenSize]]];
     [self.gameScene setViewController:self];
     [self.gameScene setAutoStart:self.autoStartGame];
     
     [self initObservers];
+    [self initSoundButton];
     [self.spriteView presentScene:self.gameScene];
 }
 
@@ -105,13 +113,6 @@
     CAUserSettings *userSettings = [self userSettings];
     userSettings.muted = !userSettings.muted;
     [self initSoundButton];
-}
-
-- (void)initSoundButton {
-    if ([self userSettings].muted)
-        [self.soundButton setImage:[UIImage imageNamed:@"mute"] forState:UIControlStateNormal];
-    else
-        [self.soundButton setImage:[UIImage imageNamed:@"sound"] forState:UIControlStateNormal];
 }
 
 - (IBAction)unwindToMain:(UIStoryboardSegue *)aSegue {

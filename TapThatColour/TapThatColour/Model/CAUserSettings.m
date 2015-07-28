@@ -11,8 +11,10 @@
 @implementation CAUserSettings
 
 @synthesize muted = _muted;
+@synthesize highscore = _highscore;
 
 #define kMutedKey @"cohenadair.tapthatcolor.muted"
+#define kHighschoreKey @"cohenadair.tapthatcolor.highscore"
 
 + (id)sharedSettings {
     static CAUserSettings *sharedSettings = nil;
@@ -33,6 +35,16 @@
 - (BOOL)muted {
     _muted = [[NSUserDefaults standardUserDefaults] boolForKey:kMutedKey];
     return _muted;
+}
+
+- (void)setHighscore:(NSInteger)anInteger {
+    _highscore = anInteger;
+    [[NSUserDefaults standardUserDefaults] setInteger:_highscore forKey:kHighschoreKey];
+}
+
+- (NSInteger)highscore {
+    _highscore = [[NSUserDefaults standardUserDefaults] integerForKey:kHighschoreKey];
+    return _highscore;
 }
 
 @end

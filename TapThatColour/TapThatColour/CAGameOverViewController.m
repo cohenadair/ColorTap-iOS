@@ -7,10 +7,12 @@
 //
 
 #import "CAGameOverViewController.h"
+#import "CAUserSettings.h"
 
 @interface CAGameOverViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *highscoreLabel;
 
 @property (nonatomic) BOOL muted;
 
@@ -18,14 +20,29 @@
 
 @implementation CAGameOverViewController
 
+#pragma mark - Initializing
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)self.score]];
+    [self initHighscore];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+- (void)initHighscore {
+    NSInteger highscore = [[CAUserSettings sharedSettings] highscore];
+    if (self.score > highscore) {
+        highscore = self.score;
+        [[CAUserSettings sharedSettings] setHighscore:highscore];
+    }
+    
+    [self.highscoreLabel setText:[NSString stringWithFormat:@"Highscore: %ld", (long)highscore]];
+}
+
+#pragma mark - Events
 
 - (IBAction)tapShareButton:(UIButton *)aSender {
     NSArray *items = @[[NSString stringWithFormat:@"I just scored %ld on #TapThatColour! Check it out on the App Store!", (long)self.score]];

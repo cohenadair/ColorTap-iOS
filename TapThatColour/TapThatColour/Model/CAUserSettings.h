@@ -11,6 +11,7 @@
 @interface CAUserSettings : NSObject
 
 @property (nonatomic) BOOL muted;
+@property (nonatomic) NSInteger highscore;
 
 + (id)sharedSettings;
 
