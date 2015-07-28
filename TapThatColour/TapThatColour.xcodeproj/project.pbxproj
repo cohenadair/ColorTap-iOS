@@ -18,6 +18,7 @@
 		0D5A07C41B65BE8E00D75E6A /* CAUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07C31B65BE8E00D75E6A /* CAUserSettings.m */; };
 		0D5A07C51B65BE8E00D75E6A /* CAUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07C31B65BE8E00D75E6A /* CAUserSettings.m */; };
 		0D5A07C81B66F06500D75E6A /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5A07C71B66F06500D75E6A /* texture.png */; };
+		0D5A07CA1B68259B00D75E6A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5A07C91B68259B00D75E6A /* GameKit.framework */; };
 		0DC974721B4F0284008F5ADE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974711B4F0284008F5ADE /* main.m */; };
 		0DC974751B4F0284008F5ADE /* CAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974741B4F0284008F5ADE /* CAAppDelegate.m */; };
 		0DC974781B4F0284008F5ADE /* CAMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974771B4F0284008F5ADE /* CAMainViewController.m */; };
@@ -55,6 +56,7 @@
 		0D5A07C21B65BE8E00D75E6A /* CAUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAUserSettings.h; path = Model/CAUserSettings.h; sourceTree = "<group>"; };
 		0D5A07C31B65BE8E00D75E6A /* CAUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAUserSettings.m; path = Model/CAUserSettings.m; sourceTree = "<group>"; };
 		0D5A07C71B66F06500D75E6A /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texture.png; path = Images/texture.png; sourceTree = "<group>"; };
+		0D5A07C91B68259B00D75E6A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		0DC9746C1B4F0284008F5ADE /* TapThatColour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapThatColour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC974701B4F0284008F5ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DC974711B4F0284008F5ADE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DC974961B4F02A1008F5ADE /* SpriteKit.framework in Frameworks */,
+				0D5A07CA1B68259B00D75E6A /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +132,7 @@
 		0DC974631B4F0284008F5ADE = {
 			isa = PBXGroup;
 			children = (
+				0D5A07C91B68259B00D75E6A /* GameKit.framework */,
 				0DC974951B4F02A1008F5ADE /* SpriteKit.framework */,
 				0DC9746E1B4F0284008F5ADE /* TapThatColour */,
 				0DC974881B4F0284008F5ADE /* TapThatColourTests */,
@@ -273,6 +277,11 @@
 					0DC9746B1B4F0284008F5ADE = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = RQ74DU9PML;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					0DC974841B4F0284008F5ADE = {
 						CreatedOnToolsVersion = 6.4;
@@ -469,10 +478,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TapThatColour/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = TapThatColour;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -481,10 +492,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TapThatColour/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = TapThatColour;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
