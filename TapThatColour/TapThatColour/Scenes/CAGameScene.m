@@ -43,6 +43,10 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self handleBackgroundAnimation];
     
+    // so touches on the scoreboard don't register
+    if ([self touchInScoreboard:[touches anyObject]])
+        return;
+    
     CAButtonNode *buttonTouched = [self buttonTouched:[touches anyObject]];
     if (buttonTouched) {
         // check for correct color touch
@@ -62,6 +66,15 @@
         }
     }
     
+}
+
+- (BOOL)touchInScoreboard:(UITouch *)aTouch {
+    CGRect f = self.scoreboardNode.frame;
+    
+    // need to "reverse" the y-coordinate because the scoreboard node's position starts at the bottom left of the screen rather than the top left
+    f.origin.y = [CAUtilities screenSize].height - (f.origin.y + f.size.height);
+
+    return CGRectContainsPoint(f, [aTouch locationInView:self.view]);
 }
 
 - (CAButtonNode *)buttonTouched:(UITouch *)aTouch {
