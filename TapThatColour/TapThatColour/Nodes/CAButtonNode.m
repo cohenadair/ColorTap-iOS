@@ -32,7 +32,7 @@
         self.path = [CAUtilities pathForRadius:self.radius];
         self.color = aColor;
         self.fillColor = aColor.color;
-        self.fillTexture = [SKTexture textureWithImage:[UIImage imageNamed:@"texture.png"]];
+        self.fillTexture = [SKTexture textureWithImage:[UIImage imageNamed:@"texture"]];
         self.strokeColor = [SKColor clearColor];
         self.shouldResetPath = NO;
         self.wasTapped = NO;

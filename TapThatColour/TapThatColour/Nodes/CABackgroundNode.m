@@ -45,7 +45,7 @@
 
 // aFactor: The animation height for the first animation is multipled by this.
 - (void)startAnimating {
-    SKAction *moveDown = [SKAction moveByX:0 y:-[CAUtilities screenSize].height duration:3.0];
+    SKAction *moveDown = [SKAction moveByX:0 y:-[CAUtilities screenSize].height duration:2.5];
     [self runAction:[SKAction repeatActionForever:moveDown]];
 }
 
