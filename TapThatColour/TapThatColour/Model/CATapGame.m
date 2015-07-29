@@ -21,7 +21,7 @@
 - (id)initWithScore:(NSInteger)aScore {
     if (self = [super init]) {
         [self setScore:aScore];
-        [self setCurrentColor:[CAUtilities randomColor]];
+        [self setCurrentColor:[CAColor randomColor]];
     }
     
     return self;
@@ -31,7 +31,7 @@
     self.score += anInteger;
     
     if (self.score % 10 == 0) {
-        [self setCurrentColor:[CAUtilities randomColor]];
+        [self setCurrentColor:[CAColor randomColor]];
     }
 }
 

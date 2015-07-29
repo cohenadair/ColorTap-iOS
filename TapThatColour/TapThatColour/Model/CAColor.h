@@ -23,6 +23,7 @@
 + (CAColor *)magentaColor;
 + (CAColor *)cyanColor;
 + (CAColor *)brownColor;
++ (CAColor *)randomColor;
 
 - (BOOL)isEqualToColor:(CAColor *)aColor;
 

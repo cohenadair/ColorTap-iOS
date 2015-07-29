@@ -14,8 +14,6 @@
 
 @interface CAMainViewController ()
 
-@property (weak, nonatomic) IBOutlet UIView *scoreboard;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UIButton *soundButton;
 
 @property (nonatomic) SKView *spriteView;
@@ -46,38 +44,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (UIView *)scoreboardView {
-    return self.scoreboard;
-}
-
 #pragma mark - Observing
 
-#define kKeyPathScore @"gameScene.tapThatColor.score"
 #define kKeyPathColor @"gameScene.tapThatColor.currentColor"
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:kKeyPathScore])
-        [self onScoreChange:change];
-    
     if ([keyPath isEqualToString:kKeyPathColor])
         [self onColorChange:change];
-}
-
-- (void)onScoreChange:(NSDictionary *)aChange {
-    [self.scoreLabel setText:[NSString stringWithFormat:@"%@", [aChange valueForKey:@"new"]]];
 }
 
 - (void)onColorChange:(NSDictionary *)aChange {
     id new = [aChange valueForKey:@"new"];
     if (![new isKindOfClass:[NSNull class]])
-        [self.scoreboard setBackgroundColor:[new color]];
+        [self.gameScene.scoreboardNode updateColor:(CAColor *)new];
 }
 
 - (void)initObservers {
-    // score
-    [self setValue:[NSNumber numberWithInt:0] forKeyPath:kKeyPathScore];
-    [self addObserver:self forKeyPath:kKeyPathScore options:NSKeyValueObservingOptionNew context:nil];
-    
     // color
     [self setValue:@"" forKeyPath:kKeyPathColor];
     [self addObserver:self forKeyPath:kKeyPathColor options:NSKeyValueObservingOptionNew context:nil];
@@ -103,7 +85,7 @@
     [self setGameScene:[[CAGameScene alloc] initWithSize:[CAUtilities screenSize]]];
     [self.gameScene setViewController:self];
     [self.gameScene setAutoStart:self.autoStartGame];
-    
+
     [self initObservers];
     [self initSoundButton];
     [self.spriteView presentScene:self.gameScene];

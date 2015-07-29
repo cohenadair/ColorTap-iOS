@@ -13,8 +13,6 @@
 @property (nonatomic) BOOL contentCreated;
 @property (nonatomic) BOOL animationBegan;
 
-@property (nonatomic) NSInteger screenHeight;
-
 @property (nonatomic) CABackgroundNode *redBackgroundNode;
 @property (nonatomic) CABackgroundNode *blueBackgroundNode;
 
@@ -27,23 +25,23 @@
 
 @implementation CAGameScene
 
+#pragma mark - View Initializing
+
 - (void)didMoveToView: (SKView *)view {
     if (!self.contentCreated) {
-        self.screenHeight = [CAUtilities screenSize].height;
+        [self createSceneContents];
         self.contentCreated = YES;
         self.tapThatColor = [CATapGame withScore:0];
-        [self createSceneContents];
     }
     
     if (self.autoStart)
         [self handleBackgroundAnimation];
 }
 
+#pragma mark - Events
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self handleBackgroundAnimation];
-    
-    if ([self touchedInScoreboard:[touches anyObject]])
-        return;
     
     CAButtonNode *buttonTouched = [self buttonTouched:[touches anyObject]];
     if (buttonTouched) {
@@ -64,10 +62,6 @@
         }
     }
     
-}
-
-- (BOOL)touchedInScoreboard:(UITouch *)aTouch {
-    return [aTouch locationInView:self.view].y < [self.viewController scoreboardView].frame.size.height;
 }
 
 - (CAButtonNode *)buttonTouched:(UITouch *)aTouch {
@@ -97,6 +91,7 @@
 
 - (void)handleCorrectTouch {
     [self.tapThatColor incScoreBy:1];
+    [self.scoreboardNode updateScoreLabel:self.tapThatColor.score];
     [self.blueBackgroundNode incAnimationSpeedBy:0.01];
     [self.redBackgroundNode incAnimationSpeedBy:0.01];
 }
@@ -110,17 +105,22 @@
     self.backgroundColor = [SKColor whiteColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     
+    // backgrounds
     self.redBackgroundNode =
         [CABackgroundNode withName:kRedName color:[SKColor clearColor] yStartOffset:0];
     
     self.blueBackgroundNode =
-        [CABackgroundNode withName:kBlueName color:[SKColor clearColor] yStartOffset:self.screenHeight];
+        [CABackgroundNode withName:kBlueName color:[SKColor clearColor] yStartOffset:[CAUtilities screenSize].height];
     
     [self.redBackgroundNode setSibling:self.blueBackgroundNode];
     [self.blueBackgroundNode setSibling:self.redBackgroundNode];
     
     [self addChild:self.redBackgroundNode];
     [self addChild:self.blueBackgroundNode];
+    
+    // scoreboard
+    [self setScoreboardNode:[CAScoreboardNode withScore:0 color:[CAColor blueColor]]];
+    [self addChild:self.scoreboardNode];
 }
 
 - (NSInteger)score {

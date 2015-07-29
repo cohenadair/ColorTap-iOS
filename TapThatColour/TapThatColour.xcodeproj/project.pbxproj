@@ -20,6 +20,7 @@
 		0D5A07C81B66F06500D75E6A /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5A07C71B66F06500D75E6A /* texture.png */; };
 		0D5A07CA1B68259B00D75E6A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5A07C91B68259B00D75E6A /* GameKit.framework */; };
 		0D5A07CD1B683F7A00D75E6A /* CAGameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07CC1B683F7A00D75E6A /* CAGameCenterManager.m */; };
+		0D5A07D21B6872E200D75E6A /* CAScoreboardNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07D11B6872E200D75E6A /* CAScoreboardNode.m */; };
 		0DC974721B4F0284008F5ADE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974711B4F0284008F5ADE /* main.m */; };
 		0DC974751B4F0284008F5ADE /* CAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974741B4F0284008F5ADE /* CAAppDelegate.m */; };
 		0DC974781B4F0284008F5ADE /* CAMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974771B4F0284008F5ADE /* CAMainViewController.m */; };
@@ -60,6 +61,8 @@
 		0D5A07C91B68259B00D75E6A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		0D5A07CB1B683F7A00D75E6A /* CAGameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAGameCenterManager.h; sourceTree = "<group>"; };
 		0D5A07CC1B683F7A00D75E6A /* CAGameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAGameCenterManager.m; sourceTree = "<group>"; };
+		0D5A07D01B6872E200D75E6A /* CAScoreboardNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAScoreboardNode.h; path = Nodes/CAScoreboardNode.h; sourceTree = "<group>"; };
+		0D5A07D11B6872E200D75E6A /* CAScoreboardNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAScoreboardNode.m; path = Nodes/CAScoreboardNode.m; sourceTree = "<group>"; };
 		0DC9746C1B4F0284008F5ADE /* TapThatColour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapThatColour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC974701B4F0284008F5ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DC974711B4F0284008F5ADE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -228,6 +231,8 @@
 				0DC974A11B4F18CC008F5ADE /* CABackgroundNode.m */,
 				0D497AF61B5A9C7400266A9C /* CAButtonNode.h */,
 				0D497AF71B5A9C7400266A9C /* CAButtonNode.m */,
+				0D5A07D01B6872E200D75E6A /* CAScoreboardNode.h */,
+				0D5A07D11B6872E200D75E6A /* CAScoreboardNode.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 				0DC974721B4F0284008F5ADE /* main.m in Sources */,
 				0D497AF81B5A9C7400266A9C /* CAButtonNode.m in Sources */,
 				0D5A07C41B65BE8E00D75E6A /* CAUserSettings.m in Sources */,
+				0D5A07D21B6872E200D75E6A /* CAScoreboardNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -92,7 +92,7 @@
 }
 
 - (void)reset {
-    self.color = [CAUtilities randomColor];
+    self.color = [CAColor randomColor];
     self.fillColor = self.color.color;
     
     if (self.shouldResetPath) {

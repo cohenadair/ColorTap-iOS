@@ -48,6 +48,15 @@
     return [[self alloc] initWithColor:[UIColor brownColor] comparisonId:8];
 }
 
++ (CAColor *)randomColor {
+    NSArray *colors =
+        @[[self redColor], [self orangeColor], [self yellowColor],
+          [self greenColor], [self blueColor], [self magentaColor],
+          [self cyanColor], [self purpleColor], [self brownColor]];
+    
+    return [colors objectAtIndex:arc4random_uniform((u_int32_t)[colors count])];
+}
+
 - (CAColor *)initWithColor:(UIColor *)aColor comparisonId:(NSInteger)anId {
     if (self = [super init]) {
         self.color = aColor;

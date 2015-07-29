@@ -94,7 +94,7 @@
     
     for (int r = 0; r < numRows; r++)
         for (int c = 0; c < numColumns; c++) {
-            CAButtonNode *btn = [CAButtonNode withColor:[CAUtilities randomColor] radius:radius];
+            CAButtonNode *btn = [CAButtonNode withColor:[CAColor randomColor] radius:radius];
             
             btn.position =
                 CGPointMake((c * diameter) + radius + ((c + 1) * xSpacing),

@@ -15,7 +15,6 @@
 + (CGSize)screenSize;
 + (void)showStatusBar;
 + (void)hideStatusBar;
-+ (CAColor *)randomColor;
 + (CGPathRef)pathForRadius:(CGFloat)aRadius;
 
 @end
