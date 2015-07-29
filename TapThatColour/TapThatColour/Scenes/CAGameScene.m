@@ -94,6 +94,9 @@
         [self.redBackgroundNode startAnimating];
         [self.blueBackgroundNode startAnimating];
         self.animationBegan = YES;
+        
+        if (self.onGameStart)
+            self.onGameStart();
     }
 }
 
@@ -138,6 +141,11 @@
 
 - (NSInteger)score {
     return self.tapThatColor.score;
+}
+
+- (void)togglePaused {
+    self.paused = !self.paused;
+    self.userInteractionEnabled = !self.paused;
 }
 
 @end

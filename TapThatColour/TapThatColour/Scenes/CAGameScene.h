@@ -17,7 +17,9 @@
 @property (nonatomic) CAMainViewController *viewController;
 @property (nonatomic) CAScoreboardNode *scoreboardNode;
 @property (nonatomic) BOOL autoStart;
+@property (nonatomic, copy) void (^onGameStart)();
 
 - (NSInteger)score;
+- (void)togglePaused;
 
 @end

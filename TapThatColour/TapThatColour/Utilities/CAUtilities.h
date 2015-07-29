@@ -16,5 +16,6 @@
 + (void)showStatusBar;
 + (void)hideStatusBar;
 + (CGPathRef)pathForRadius:(CGFloat)aRadius;
++ (void)makeToolbarTransparent:(UIToolbar *)aToolbar;
 
 @end
