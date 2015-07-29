@@ -27,14 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)self.score]];
-    [self initHighscore];
+    [self initHighscoreLabel];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)initHighscore {
+- (void)initHighscoreLabel {
     [self.highscoreLabel setText:[NSString stringWithFormat:@"Highscore: %ld", (long)[[CAUserSettings sharedSettings] highscore]]];
 }
 

@@ -39,8 +39,6 @@
     return self;
 }
 
-#pragma mark - Touch Events
-
 #pragma mark - Animating
 
 // aFactor: The animation height for the first animation is multipled by this.
@@ -67,6 +65,7 @@
     }
 }
 
+// returns the position to reset to (i.e. above sibling)
 - (CGPoint)getResetPosition {
     return CGPointMake(self.position.x, [self.sibling getTop]);
 }
@@ -104,6 +103,7 @@
         }
 }
 
+// returns the button at aTouch or nil of no button exists
 - (CAButtonNode *)buttonAtTouch:(UITouch *)aTouch {
     id node = [self nodeAtPoint:[aTouch locationInNode:self]];
     

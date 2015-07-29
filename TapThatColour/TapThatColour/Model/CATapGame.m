@@ -27,6 +27,8 @@
     return self;
 }
 
+// increments score by anInteger
+// if score is a multiple of 10 the color changes
 - (void)incScoreBy:(NSInteger)anInteger {
     self.score += anInteger;
     

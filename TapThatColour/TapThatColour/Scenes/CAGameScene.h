@@ -16,7 +16,7 @@
 
 @property (nonatomic) CAMainViewController *viewController;
 @property (nonatomic) CAScoreboardNode *scoreboardNode;
-@property (nonatomic) BOOL autoStart;
+@property (nonatomic) BOOL autoStart; // used when users tap the "replay" button
 @property (nonatomic, copy) void (^onGameStart)();
 
 - (NSInteger)score;

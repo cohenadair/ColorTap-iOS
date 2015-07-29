@@ -48,6 +48,7 @@
     return _highscore;
 }
 
+// updates local highscore and sends to Game Center if aScore is greater than the current highscore
 - (void)updateHighscore:(NSInteger)aScore {
     if (aScore > self.highscore) {
         [self setHighscore:aScore];

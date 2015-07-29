@@ -11,7 +11,7 @@
 @interface CAButtonNode ()
 
 @property (nonatomic) CGFloat radius;
-@property (nonatomic) BOOL shouldResetPath;
+@property (nonatomic) BOOL shouldResetPath; // used to reset the button's size if it was correctly tapped
 
 @property (nonatomic) SKAction *correctSound;
 @property (nonatomic) SKAction *incorrectSound;
@@ -91,6 +91,7 @@
     [self runAction:[SKAction scaleBy:4 duration:0]];
 }
 
+// resets color and path if necessary
 - (void)reset {
     self.color = [CAColor randomColor];
     self.fillColor = self.color.color;

@@ -68,6 +68,8 @@
     
 }
 
+// returns true if aTouch was inside the scoreboard
+// needed so touches don't "pass-through" the scoreboard
 - (BOOL)touchInScoreboard:(UITouch *)aTouch {
     CGRect f = self.scoreboardNode.frame;
     
@@ -77,18 +79,20 @@
     return CGRectContainsPoint(f, [aTouch locationInView:self.view]);
 }
 
+// retrieves the button at aTouch from the background nodes
 - (CAButtonNode *)buttonTouched:(UITouch *)aTouch {
     CAButtonNode *btn1 = [self.blueBackgroundNode buttonAtTouch:aTouch];
     CAButtonNode *btn2 = [self.redBackgroundNode buttonAtTouch:aTouch];
     return btn1 ? btn1 : btn2;
 }
 
-// called once per frame
+// automatically called once per frame
 - (void)update:(NSTimeInterval)currentTime {
     [self.redBackgroundNode update];
     [self.blueBackgroundNode update];
 }
 
+// starts the background animation if it hasn't already been started
 - (void)handleBackgroundAnimation {
     if (!self.animationBegan) {
         [self.redBackgroundNode startAnimating];
