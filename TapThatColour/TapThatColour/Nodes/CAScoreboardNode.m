@@ -32,6 +32,8 @@
     if (self = [super initWithColor:aColor radius:kScoreboardRadius]) {
         [self setPosition:pos];
         [self setUserInteractionEnabled:NO];
+        [self setStrokeColor:[UIColor colorWithWhite:1.0 alpha:0.35]];
+        [self setGlowWidth:3.0];
         
         // score label init
         [self setScoreLabel:[SKLabelNode labelNodeWithFontNamed:@"HelveticaNeue"]];
