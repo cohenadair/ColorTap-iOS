@@ -7,6 +7,7 @@
 //
 
 #import "CAGameOverViewController.h"
+#import "CAGameCenterManager.h"
 #import "CAUserSettings.h"
 
 @interface CAGameOverViewController ()
@@ -33,13 +34,7 @@
 }
 
 - (void)initHighscore {
-    NSInteger highscore = [[CAUserSettings sharedSettings] highscore];
-    if (self.score > highscore) {
-        highscore = self.score;
-        [[CAUserSettings sharedSettings] setHighscore:highscore];
-    }
-    
-    [self.highscoreLabel setText:[NSString stringWithFormat:@"Highscore: %ld", (long)highscore]];
+    [self.highscoreLabel setText:[NSString stringWithFormat:@"Highscore: %ld", (long)[[CAUserSettings sharedSettings] highscore]]];
 }
 
 #pragma mark - Events
@@ -53,6 +48,16 @@
 - (IBAction)tapRateButton:(UIButton *)aSender {
     NSString *stringUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d", 1019522139];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringUrl]];
+}
+
+- (IBAction)tapLeaderboardsButton:(UIButton *)aSender {
+    [[CAGameCenterManager sharedManager] presentLeaderboardsInViewController:self];
+}
+
+#pragma mark - Game Center Delgate
+
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

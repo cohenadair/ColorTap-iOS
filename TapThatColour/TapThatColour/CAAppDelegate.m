@@ -7,6 +7,7 @@
 //
 
 #import "CAAppDelegate.h"
+#import "CAGameCenterManager.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [[CAGameCenterManager sharedManager] authenticateInViewController:self.window.rootViewController];
     return YES;
 }
 

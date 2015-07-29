@@ -7,6 +7,7 @@
 //
 
 #import "CAUserSettings.h"
+#import "CAGameCenterManager.h"
 
 @implementation CAUserSettings
 
@@ -45,6 +46,13 @@
 - (NSInteger)highscore {
     _highscore = [[NSUserDefaults standardUserDefaults] integerForKey:kHighschoreKey];
     return _highscore;
+}
+
+- (void)updateHighscore:(NSInteger)aScore {
+    if (aScore > self.highscore) {
+        [self setHighscore:aScore];
+        [[CAGameCenterManager sharedManager] reportScore:aScore];
+    }
 }
 
 @end

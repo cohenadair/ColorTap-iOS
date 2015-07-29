@@ -35,4 +35,8 @@
     }
 }
 
+- (void)updateHighscore {
+    [[CAUserSettings sharedSettings] updateHighscore:self.score];
+}
+
 @end

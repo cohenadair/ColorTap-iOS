@@ -15,4 +15,6 @@
 
 + (id)sharedSettings;
 
+- (void)updateHighscore:(NSInteger)anInteger;
+
 @end

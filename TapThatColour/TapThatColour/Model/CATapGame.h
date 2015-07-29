@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CAUtilities.h"
+#import "CAUserSettings.h"
 
 @interface CATapGame : NSObject
 
@@ -18,5 +19,6 @@
 - (id)initWithScore:(NSInteger)aScore;
 
 - (void)incScoreBy:(NSInteger)anInteger;
+- (void)updateHighscore;
 
 @end

@@ -55,6 +55,7 @@
             }
         } else {
             [self handleGameOver];
+            [self.tapThatColor updateHighscore];
             
             id __block blockSelf = self;
             [buttonTouched onIncorrectTouchWithCompletion:^() {

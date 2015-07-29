@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
-@interface CAGameOverViewController : UIViewController
+@interface CAGameOverViewController : UIViewController <GKGameCenterControllerDelegate>
 
 @property (nonatomic) NSInteger score;
 
