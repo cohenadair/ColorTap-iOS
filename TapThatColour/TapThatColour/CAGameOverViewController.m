@@ -9,6 +9,7 @@
 #import "CAGameOverViewController.h"
 #import "CAGameCenterManager.h"
 #import "CAUserSettings.h"
+#import "CAUtilities.h"
 
 @interface CAGameOverViewController ()
 
@@ -52,6 +53,10 @@
 
 - (IBAction)tapLeaderboardsButton:(UIButton *)aSender {
     [[CAGameCenterManager sharedManager] presentLeaderboardsInViewController:self];
+}
+
+- (IBAction)tapIcons8Button:(UIButton *)sender {
+    [CAUtilities openUrl:@"https://icons8.com/"];
 }
 
 #pragma mark - Game Center Delgate

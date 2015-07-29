@@ -114,12 +114,40 @@
                                     <constraint firstAttribute="width" constant="320" id="gEB-a0-ehs"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zws-Ox-Q8e">
+                                <rect key="frame" x="150" y="571" width="300" height="21"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Zu-Ah-Zho">
+                                        <rect key="frame" x="153" y="0.0" width="46" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Icons8">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapIcons8Button:" destination="4ay-jh-Q1K" eventType="touchUpInside" id="GUR-Gs-Kba"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Icons by" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YM-lm-eH2">
+                                        <rect key="frame" x="54" y="0.0" width="100" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="KSL-b3-T2a"/>
+                                    <constraint firstAttribute="width" constant="300" id="kid-mK-hQs"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="y7P-Sd-Mpy" firstAttribute="leading" secondItem="alq-aS-EKu" secondAttribute="leadingMargin" constant="69" id="1rU-Ve-Umg"/>
                             <constraint firstItem="y7P-Sd-Mpy" firstAttribute="top" secondItem="5vK-GG-aTd" secondAttribute="bottom" constant="110" id="6bd-BU-3lV"/>
                             <constraint firstItem="YQh-Sx-T6f" firstAttribute="top" secondItem="y7P-Sd-Mpy" secondAttribute="bottom" constant="90" id="bad-vN-cxX"/>
+                            <constraint firstAttribute="centerX" secondItem="Zws-Ox-Q8e" secondAttribute="centerX" id="rcr-Vn-wfc"/>
+                            <constraint firstItem="YQh-Sx-T6f" firstAttribute="top" secondItem="Zws-Ox-Q8e" secondAttribute="bottom" constant="8" id="sbB-gR-p5H"/>
                             <constraint firstAttribute="centerX" secondItem="y7P-Sd-Mpy" secondAttribute="centerX" id="v3n-5I-sNu"/>
                             <constraint firstAttribute="centerY" secondItem="y7P-Sd-Mpy" secondAttribute="centerY" id="x77-Nb-H1o"/>
                         </constraints>
@@ -139,7 +167,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGZ-6Z-b12" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="eg4-Ff-s2v" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="380" y="953"/>
+            <point key="canvasLocation" x="1192" y="977"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kcc-Rd-sSl">

@@ -36,4 +36,8 @@
     [aToolbar setShadowImage:[UIImage new] forToolbarPosition:UIToolbarPositionAny];
 }
 
++ (void)openUrl:(NSString *)aUrl {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:aUrl]];
+}
+
 @end
