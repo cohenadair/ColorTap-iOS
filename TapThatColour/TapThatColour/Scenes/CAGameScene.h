@@ -21,5 +21,6 @@
 
 - (NSInteger)score;
 - (void)togglePaused;
+- (void)onColorChange:(CAColor *)newColor;
 
 @end

@@ -10,7 +10,6 @@
 
 @interface CAButtonNode ()
 
-@property (nonatomic) CGFloat radius;
 @property (nonatomic) BOOL shouldResetPath; // used to reset the button's size if it was correctly tapped
 
 @property (nonatomic) SKAction *correctSound;

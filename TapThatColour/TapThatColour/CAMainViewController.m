@@ -68,7 +68,7 @@
 - (void)onColorChange:(NSDictionary *)aChange {
     id new = [aChange valueForKey:@"new"];
     if (![new isKindOfClass:[NSNull class]])
-        [self.gameScene.scoreboardNode updateColor:(CAColor *)new];
+        [self.gameScene onColorChange:(CAColor *)new];
 }
 
 - (void)initObservers {

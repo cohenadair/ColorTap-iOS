@@ -7,21 +7,29 @@
 //
 
 #import "CAGameScene.h"
+#import "CAConstants.h"
+#import "CAColor.h"
 
 @interface CAGameScene()
 
 @property (nonatomic) BOOL contentCreated;
 @property (nonatomic) BOOL animationBegan;
+@property (nonatomic) BOOL isGameOver; // used to prevent unwanted update: calls
+@property (nonatomic) CFTimeInterval gracePeriod; // starts immediately after a color change
 
 @property (nonatomic) CABackgroundNode *redBackgroundNode;
 @property (nonatomic) CABackgroundNode *blueBackgroundNode;
 
 @property (nonatomic) CATapGame *tapThatColor;
+@property (nonatomic) NSMutableArray *buttonCheckPoints;
 
 @end
 
 #define kRedName @"redNode"
 #define kBlueName @"blueNode"
+
+#define kGracePeriodInSeconds 2.0
+#define kGracePeriodNone -1
 
 @implementation CAGameScene
 
@@ -30,15 +38,33 @@
 - (void)didMoveToView: (SKView *)view {
     if (!self.contentCreated) {
         [self createSceneContents];
+        [self initButtonCheckPoints];
         self.contentCreated = YES;
         self.tapThatColor = [CATapGame withScore:0];
     }
     
     if (self.autoStart)
         [self handleBackgroundAnimation];
+    
+    self.gracePeriod = kGracePeriodNone;
 }
 
 #pragma mark - Events
+
+- (void)onIncorrectTouch:(CAButtonNode *)aButton {
+    id __block blockSelf = self;
+    [aButton onIncorrectTouchWithCompletion:^() {
+        [blockSelf segueToGameOver];
+    }];
+}
+
+- (void)onColorChange:(CAColor *)newColor {
+    // only call color change methods if the color actually changed
+    if (![newColor isEqualToColor:self.scoreboardNode.color]) {
+        [self.scoreboardNode updateColor:newColor];
+        self.gracePeriod = [CAUtilities systemTime] + kGracePeriodInSeconds;
+    }
+}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self handleBackgroundAnimation];
@@ -55,15 +81,8 @@
                 [self handleCorrectTouch];
                 [buttonTouched onCorrectTouch];
             }
-        } else {
-            [self handleGameOver];
-            [self.tapThatColor updateHighscore];
-            
-            id __block blockSelf = self;
-            [buttonTouched onIncorrectTouchWithCompletion:^() {
-                [[blockSelf viewController] performSegueWithIdentifier:@"fromMainToGameOver" sender:self];
-            }];
-        }
+        } else
+            [self handleGameOverFromButton:buttonTouched];
     }
     
 }
@@ -88,8 +107,46 @@
 
 // automatically called once per frame
 - (void)update:(NSTimeInterval)currentTime {
+    if (self.isGameOver)
+        return;
+    
+    [self checkForMissedButtons];
+    
+    // reset background nodes and buttons if needed
     [self.redBackgroundNode update];
     [self.blueBackgroundNode update];
+}
+
+- (void)checkForMissedButtons {
+    // check for missed buttons if we're passed the grace period
+    if ([CAUtilities systemTime] > self.gracePeriod) {
+        self.gracePeriod = kGracePeriodNone;
+        
+        // check each checkpoint for a button node with a color equal to the current color
+        for (id point in self.buttonCheckPoints) {
+            id btn = [self nodeAtPoint:[point CGPointValue]];
+            
+            if ([btn isKindOfClass:[CAButtonNode class]]) {
+                CAColor *color = (CAColor *)[btn color];
+                
+                if (![btn wasTapped] && [color isEqualToColor:self.tapThatColor.currentColor])
+                    [self handleGameOverFromButton:btn];
+            }
+        }
+    }
+}
+
+- (void)initButtonCheckPoints {
+    CAButtonNode *dummy = [self.blueBackgroundNode anyButton];
+    CGFloat radius = dummy.radius;
+    CGFloat diameter = (radius * 2);
+    
+    self.buttonCheckPoints = [NSMutableArray array];
+    
+    for (int i = 0; i < BUTTONS_PER_ROW; i++) {
+        CGPoint p = CGPointMake((radius + (i * diameter)), -diameter);
+        [self.buttonCheckPoints addObject:[NSValue valueWithCGPoint:p]];
+    }
 }
 
 // starts the background animation if it hasn't already been started
@@ -104,9 +161,12 @@
     }
 }
 
-- (void)handleGameOver {
+- (void)handleGameOverFromButton:(CAButtonNode *)aButton {
+    [self setIsGameOver:YES];
     [self setUserInteractionEnabled:NO];
     [self stopBackgroundAnimation];
+    [self.tapThatColor updateHighscore];
+    [self onIncorrectTouch:aButton];
 }
 
 - (void)handleCorrectTouch {
@@ -150,6 +210,12 @@
 - (void)togglePaused {
     self.paused = !self.paused;
     self.userInteractionEnabled = !self.paused;
+}
+
+#pragma mark - Navigation
+
+- (void)segueToGameOver {
+    [[self viewController] performSegueWithIdentifier:@"fromMainToGameOver" sender:self];
 }
 
 @end

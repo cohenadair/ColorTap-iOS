@@ -40,4 +40,8 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:aUrl]];
 }
 
++ (CFTimeInterval)systemTime {
+    return CACurrentMediaTime();
+}
+
 @end

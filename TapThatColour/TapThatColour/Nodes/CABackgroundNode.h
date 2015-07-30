@@ -32,5 +32,7 @@
 
 - (void)addButtonNodes;
 - (CAButtonNode *)buttonAtTouch:(UITouch *)aTouch;
+- (CAButtonNode *)buttonAtPoint:(CGPoint)aPoint;
+- (CAButtonNode *)anyButton;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "CABackgroundNode.h"
+#import "CAConstants.h"
 
 @interface CABackgroundNode ()
 
@@ -81,8 +82,9 @@
 - (void)addButtonNodes {
     CGSize screen = [CAUtilities screenSize];
     
-    CGFloat radius = (screen.width / 8);
-    CGFloat diameter = (radius * 2);
+    CGFloat diameter = (screen.width / BUTTONS_PER_ROW);
+    CGFloat radius = (diameter / 2);
+    
     
     NSInteger numColumns = screen.width / diameter;
     NSInteger numRows = screen.height / diameter;
@@ -105,12 +107,21 @@
 
 // returns the button at aTouch or nil of no button exists
 - (CAButtonNode *)buttonAtTouch:(UITouch *)aTouch {
-    id node = [self nodeAtPoint:[aTouch locationInNode:self]];
+    return [self buttonAtPoint:[aTouch locationInNode:self]];
+}
+
+// returns the button at aPoint or nil of no button exists
+- (CAButtonNode *)buttonAtPoint:(CGPoint)aPoint {
+    id node = [self nodeAtPoint:aPoint];
     
     if ([node isKindOfClass:[CAButtonNode class]])
         return node;
     
     return nil;
+}
+
+- (CAButtonNode *)anyButton {
+    return (CAButtonNode *)[self.children firstObject];
 }
 
 - (void)resetColors {

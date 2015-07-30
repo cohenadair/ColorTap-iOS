@@ -13,6 +13,7 @@
 
 @interface CAButtonNode : SKShapeNode
 
+@property (nonatomic) CGFloat radius;
 @property (nonatomic) CAColor *color;
 @property (nonatomic) BOOL wasTapped; // so the same button can't be tapped twice for 2x the points
 

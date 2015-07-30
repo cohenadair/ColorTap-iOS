@@ -20,5 +20,6 @@
 + (CGPathRef)pathForRadius:(CGFloat)aRadius;
 + (void)makeToolbarTransparent:(UIToolbar *)aToolbar;
 + (void)openUrl:(NSString *)aUrl;
++ (CFTimeInterval)systemTime;
 
 @end
