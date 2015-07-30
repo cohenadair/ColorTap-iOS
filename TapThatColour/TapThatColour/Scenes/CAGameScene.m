@@ -117,6 +117,7 @@
     [self.blueBackgroundNode update];
 }
 
+// ends the game if a button of the current color scrolls off the screen
 - (void)checkForMissedButtons {
     // check for missed buttons if we're passed the grace period
     if ([CAUtilities systemTime] > self.gracePeriod) {
