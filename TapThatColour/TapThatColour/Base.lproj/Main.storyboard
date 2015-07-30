@@ -16,13 +16,30 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to begin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZg-pG-De5">
+                                <rect key="frame" x="250" y="267" width="100" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Upj-CI-9C3"/>
+                                    <constraint firstAttribute="width" constant="100" id="lk7-1o-yhc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="cZg-pG-De5" secondAttribute="centerX" id="Cle-sc-EEP"/>
+                            <constraint firstAttribute="centerY" secondItem="cZg-pG-De5" secondAttribute="centerY" constant="0.5" id="qdx-3Y-wXq"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="01n-kL-O5A"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="tapToBeginLabel" destination="cZg-pG-De5" id="K9w-Af-koe"/>
                         <segue destination="4ay-jh-Q1K" kind="presentation" identifier="fromMainToGameOver" id="VzZ-9S-5ID"/>
                     </connections>
                 </viewController>

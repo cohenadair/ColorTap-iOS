@@ -14,6 +14,8 @@
 
 @interface CAMainViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *tapToBeginLabel;
+
 @property (nonatomic) UIBarButtonItem *soundButton;
 @property (nonatomic) UIBarButtonItem *flexibleSpace;
 @property (nonatomic) UIBarButtonItem *playButton;
@@ -92,6 +94,7 @@
     [self.gameScene setAutoStart:self.autoStartGame];
     [self.gameScene setOnGameStart:^(void) {
         [[blockSelf pauseButton] setEnabled:YES];
+        [[blockSelf tapToBeginLabel] setHidden:YES];
     }];
 
     [self initObservers];
