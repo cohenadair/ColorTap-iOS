@@ -69,6 +69,9 @@
 }
 
 - (void)reportScore:(NSInteger)aScore {
+    if (!self.isEnabled)
+        return;
+    
     GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:self.leaderboardId];
     score.value = aScore;
     
