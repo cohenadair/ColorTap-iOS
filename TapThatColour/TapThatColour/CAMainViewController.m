@@ -159,6 +159,10 @@
     dest.score = [self.gameScene score];
 }
 
+- (void)segueToGameOver {
+    [self performSegueWithIdentifier:@"fromMainToGameOver" sender:nil];
+}
+
 #pragma mark - Application Closing/Opening
 
 - (void)applicationWillEnterBackground {

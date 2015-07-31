@@ -11,6 +11,7 @@
 
 @interface CAMainViewController : UIViewController
 
+- (void)segueToGameOver;
 - (void)applicationWillEnterBackground;
 - (void)applicationWillEnterForeground;
 - (void)applicationDidBecomeActive;

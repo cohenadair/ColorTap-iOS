@@ -207,7 +207,7 @@
 #pragma mark - Navigation
 
 - (void)segueToGameOver {
-    [[self viewController] performSegueWithIdentifier:@"fromMainToGameOver" sender:self];
+    [self.viewController segueToGameOver];
 }
 
 @end
