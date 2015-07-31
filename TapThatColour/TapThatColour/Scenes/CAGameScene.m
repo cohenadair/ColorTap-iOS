@@ -168,7 +168,7 @@
     };
     
     [self.redBackgroundNode stopAnimatingWithReverse:shouldReverse completion:onAnimationComplete];
-    [self.blueBackgroundNode stopAnimatingWithReverse:shouldReverse completion:onAnimationComplete];
+    [self.blueBackgroundNode stopAnimatingWithReverse:shouldReverse completion:nil];
 }
 
 - (void)handleCorrectTouch {
