@@ -9,6 +9,10 @@
 #import <SpriteKit/SpriteKit.h>
 #import "CAUtilities.h"
 
+@interface CAUtilities ()
+
+@end
+
 @implementation CAUtilities
 
 + (CGRect)screenBounds {

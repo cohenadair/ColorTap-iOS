@@ -13,8 +13,6 @@
 @interface CAGameScene()
 
 @property (nonatomic) BOOL contentCreated;
-@property (nonatomic) BOOL animationBegan;
-@property (nonatomic) BOOL isGameOver; // used to prevent unwanted update: calls
 @property (nonatomic) CFTimeInterval gracePeriod; // starts immediately after a color change
 
 @property (nonatomic) CABackgroundNode *redBackgroundNode;
@@ -206,10 +204,6 @@
 
 - (NSInteger)score {
     return self.tapThatColor.score;
-}
-
-- (BOOL)animationStarted {
-    return self.animationBegan;
 }
 
 #pragma mark - Navigation

@@ -179,8 +179,10 @@
     
     // needs a short delay to override the SKView's callback actions
     [CAUtilities executeBlockAfterMs:1 block:^(void) {
-        // pause game if it's being reopened and has already started
-        if ([blockSelf didEnterBackground] && [[blockSelf gameScene] animationStarted])
+        if ([blockSelf didEnterBackground] &&
+            [[blockSelf gameScene] animationBegan] && // no need to pause if the game hasn't started
+            ![[blockSelf gameScene] isGameOver]) // no need to pause if the game is over
+            
             [blockSelf tapPlayPauseButton];
     }];
 }

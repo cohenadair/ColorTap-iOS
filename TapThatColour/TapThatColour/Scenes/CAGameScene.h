@@ -18,9 +18,10 @@
 @property (nonatomic) CAScoreboardNode *scoreboardNode;
 @property (nonatomic) BOOL autoStart; // used when users tap the "replay" button
 @property (nonatomic, copy) void (^onGameStart)();
+@property (nonatomic) BOOL isGameOver; // used to prevent unwanted update: calls
+@property (nonatomic) BOOL animationBegan;
 
 - (NSInteger)score;
 - (void)onColorChange:(CAColor *)newColor;
-- (BOOL)animationStarted;
 
 @end

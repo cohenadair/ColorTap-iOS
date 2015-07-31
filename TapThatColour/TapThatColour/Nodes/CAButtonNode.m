@@ -7,6 +7,7 @@
 //
 
 #import "CAButtonNode.h"
+#import "CAAudio.h"
 
 @interface CAButtonNode ()
 
@@ -37,8 +38,8 @@
         self.wasTapped = NO;
         
         // preload the sound to remove lag
-        self.correctSound = [SKAction playSoundFileNamed:@"correct.wav" waitForCompletion:YES];
-        self.incorrectSound = [SKAction playSoundFileNamed:@"incorrect.wav" waitForCompletion:YES];
+        self.correctSound = [[CAAudio sharedAudio] correctSound];
+        self.incorrectSound = [[CAAudio sharedAudio] incorrectSound];
     }
     
     return self;
