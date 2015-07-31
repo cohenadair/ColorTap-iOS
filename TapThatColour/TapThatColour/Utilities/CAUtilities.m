@@ -31,10 +31,6 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
-+ (CGPathRef)pathForRadius:(CGFloat)aRadius {
-    return CGPathCreateWithEllipseInRect(CGRectMake(-aRadius, -aRadius, aRadius * 2, aRadius * 2), NULL);
-}
-
 + (void)makeToolbarTransparent:(UIToolbar *)aToolbar {
     [aToolbar setBackgroundImage:[UIImage new] forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [aToolbar setShadowImage:[UIImage new] forToolbarPosition:UIToolbarPositionAny];

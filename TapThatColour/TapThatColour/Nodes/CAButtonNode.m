@@ -29,13 +29,17 @@
 - (id)initWithColor:(CAColor *)aColor radius:(CGFloat)aRadius {
     if (self = [super init]) {
         self.radius = aRadius - 1;
-        self.path = [CAUtilities pathForRadius:self.radius];
         self.color = aColor;
         self.fillColor = aColor.color;
         self.fillTexture = [SKTexture textureWithImage:[UIImage imageNamed:@"texture"]];
         self.strokeColor = [SKColor clearColor];
         self.shouldResetPath = NO;
         self.wasTapped = NO;
+        
+        // create and release path
+        CGPathRef path = CGPathCreateWithEllipseInRect(CGRectMake(-self.radius, -self.radius, self.radius * 2, self.radius * 2), NULL);
+        self.path = path;
+        CFRelease(path);
         
         // preload the sound to remove lag
         self.correctSound = [[CAAudio sharedAudio] correctSound];
