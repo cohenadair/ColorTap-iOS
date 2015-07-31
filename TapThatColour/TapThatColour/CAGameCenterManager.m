@@ -30,7 +30,7 @@
 
 - (void)authenticateInViewController:(UIViewController *)aViewController {
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
-    id __block blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     localPlayer.authenticateHandler =
         ^(UIViewController *authController, NSError *error) {
@@ -41,10 +41,10 @@
                 [aViewController presentViewController:authController animated:YES completion:nil];
             else {
                 if ([GKLocalPlayer localPlayer].authenticated) {
-                    [blockSelf setIsEnabled:YES];
-                    [blockSelf loadLeaderboard];
+                    [weakSelf setIsEnabled:YES];
+                    [weakSelf loadLeaderboard];
                 } else
-                    [blockSelf setIsEnabled:NO];
+                    [weakSelf setIsEnabled:NO];
             }
         };
 }

@@ -57,8 +57,8 @@
 }
 
 - (void)onIncorrectTouchWithCompletion:(void (^)())aCompletionBlock {
-    id __block blockSelf = self;
-    CGFloat __block zPos = self.zPosition;
+    __weak typeof(self) weakSelf = self;
+    CGFloat zPos = self.zPosition;
     
     [self setZPosition:5000];
     
@@ -71,7 +71,7 @@
     SKAction *action = ([[CAUserSettings sharedSettings] muted]) ? repeat : group;
     
     [self runAction:action completion:^() {
-        [blockSelf setZPosition:zPos];
+        [weakSelf setZPosition:zPos];
         if (aCompletionBlock)
             aCompletionBlock();
     }];

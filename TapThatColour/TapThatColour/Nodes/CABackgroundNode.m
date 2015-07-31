@@ -48,8 +48,18 @@
     [self runAction:[SKAction repeatActionForever:moveDown]];
 }
 
-- (void)stopAnimating {
-    self.speed = 0;
+- (void)stopAnimatingWithReverse:(BOOL)shouldReverse completion:(void (^)())aCompletionBlock {
+    [self removeAllActions];
+    
+    if (shouldReverse) {
+        SKAction *moveUp = [SKAction moveByX:0 y:200 duration:0.25];
+        [self runAction:moveUp completion:^{
+            if (aCompletionBlock)
+                aCompletionBlock();
+        }];
+    } else
+        if (aCompletionBlock)
+            aCompletionBlock();
 }
 
 - (void)incAnimationSpeedBy:(CGFloat)aFloat {

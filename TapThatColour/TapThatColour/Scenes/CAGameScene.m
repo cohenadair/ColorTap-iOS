@@ -49,13 +49,6 @@
 
 #pragma mark - Events
 
-- (void)onIncorrectTouch:(CAButtonNode *)aButton {
-    id __block blockSelf = self;
-    [aButton onIncorrectTouchWithCompletion:^() {
-        [blockSelf segueToGameOver];
-    }];
-}
-
 - (void)onColorChange:(CAColor *)newColor {
     // only call color change methods if the color actually changed
     if (![newColor isEqualToColor:self.scoreboardNode.color]) {
@@ -80,7 +73,7 @@
                 [buttonTouched onCorrectTouch];
             }
         } else
-            [self handleGameOverFromButton:buttonTouched];
+            [self handleGameOverWithReverse:NO buttonTapped:buttonTouched];
     }
     
 }
@@ -128,8 +121,9 @@
             if ([btn isKindOfClass:[CAButtonNode class]]) {
                 CAColor *color = (CAColor *)[btn color];
                 
-                if (![btn wasTapped] && [color isEqualToColor:self.tapThatColor.currentColor])
-                    [self handleGameOverFromButton:btn];
+                if (![btn wasTapped] && [color isEqualToColor:self.tapThatColor.currentColor]) {
+                    [self handleGameOverWithReverse:YES buttonTapped:btn];
+                }
             }
         }
     }
@@ -160,12 +154,21 @@
     }
 }
 
-- (void)handleGameOverFromButton:(CAButtonNode *)aButton {
+- (void)handleGameOverWithReverse:(BOOL)shouldReverse buttonTapped:(CAButtonNode *)aButton {
     [self setIsGameOver:YES];
     [self setUserInteractionEnabled:NO];
-    [self stopBackgroundAnimation];
     [self.tapThatColor updateHighscore];
-    [self onIncorrectTouch:aButton];
+
+    __weak typeof(self) weakSelf = self;
+    
+    void (^onAnimationComplete)() = ^{
+        [aButton onIncorrectTouchWithCompletion:^() {
+            [weakSelf segueToGameOver];
+        }];
+    };
+    
+    [self.redBackgroundNode stopAnimatingWithReverse:shouldReverse completion:onAnimationComplete];
+    [self.blueBackgroundNode stopAnimatingWithReverse:shouldReverse completion:onAnimationComplete];
 }
 
 - (void)handleCorrectTouch {
@@ -173,11 +176,6 @@
     [self.scoreboardNode updateScoreLabel:self.tapThatColor.score];
     [self.blueBackgroundNode incAnimationSpeedBy:0.01];
     [self.redBackgroundNode incAnimationSpeedBy:0.01];
-}
-
-- (void)stopBackgroundAnimation {
-    [self.redBackgroundNode stopAnimating];
-    [self.blueBackgroundNode stopAnimating];
 }
 
 - (void)createSceneContents {

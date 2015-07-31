@@ -23,7 +23,7 @@
 #pragma mark - Animating
 
 - (void)startAnimating;
-- (void)stopAnimating;
+- (void)stopAnimatingWithReverse:(BOOL)shouldReverse completion:(void (^)())aCompletionBlock;
 - (void)incAnimationSpeedBy:(CGFloat)aFloat;
 - (void)update;
 - (NSInteger)getTop;

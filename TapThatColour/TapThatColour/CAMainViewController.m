@@ -89,14 +89,14 @@
 }
 
 - (void)showGameView {
-    id __block blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     [self setGameScene:[[CAGameScene alloc] initWithSize:[CAUtilities screenSize]]];
     [self.gameScene setViewController:self];
     [self.gameScene setAutoStart:self.autoStartGame];
     [self.gameScene setOnGameStart:^(void) {
-        [[blockSelf pauseButton] setEnabled:YES];
-        [[blockSelf tapToBeginLabel] setHidden:YES];
+        [[weakSelf pauseButton] setEnabled:YES];
+        [[weakSelf tapToBeginLabel] setHidden:YES];
     }];
 
     [self initObservers];
@@ -175,15 +175,15 @@
 }
 
 - (void)pauseGameAfterDidBecomeActive {
-    id __block blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     // needs a short delay to override the SKView's callback actions
     [CAUtilities executeBlockAfterMs:1 block:^(void) {
-        if ([blockSelf didEnterBackground] &&
-            [[blockSelf gameScene] animationBegan] && // no need to pause if the game hasn't started
-            ![[blockSelf gameScene] isGameOver]) // no need to pause if the game is over
+        if (weakSelf.didEnterBackground &&
+            weakSelf.gameScene.animationBegan && // no need to pause if the game hasn't started
+            !weakSelf.gameScene.isGameOver) // no need to pause if the game is over
             
-            [blockSelf tapPlayPauseButton];
+            [weakSelf tapPlayPauseButton];
     }];
 }
 
