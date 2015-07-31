@@ -7,6 +7,7 @@
 //
 
 #import <AVFoundation/AVFoundation.h>
+#import <iAd/iAd.h>
 #import "CAAppDelegate.h"
 #import "CAGameCenterManager.h"
 #import "CAMainViewController.h"
@@ -19,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[CAGameCenterManager sharedManager] authenticateInViewController:self.window.rootViewController];
+    [UIViewController prepareInterstitialAds];
     return YES;
 }
 

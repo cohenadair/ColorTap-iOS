@@ -23,6 +23,7 @@
 		0D5A07D51B69B34300D75E6A /* CAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07D41B69B34300D75E6A /* CAConstants.m */; };
 		0D5A07D81B6BB43A00D75E6A /* CAAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07D71B6BB43A00D75E6A /* CAAudio.m */; };
 		0D5A07D91B6BB43A00D75E6A /* CAAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07D71B6BB43A00D75E6A /* CAAudio.m */; };
+		0D5A07DC1B6C0F6300D75E6A /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5A07DA1B6C0F4E00D75E6A /* iAd.framework */; };
 		0DC974721B4F0284008F5ADE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974711B4F0284008F5ADE /* main.m */; };
 		0DC974751B4F0284008F5ADE /* CAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974741B4F0284008F5ADE /* CAAppDelegate.m */; };
 		0DC974781B4F0284008F5ADE /* CAMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974771B4F0284008F5ADE /* CAMainViewController.m */; };
@@ -68,6 +69,7 @@
 		0D5A07D41B69B34300D75E6A /* CAConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAConstants.m; path = Utilities/CAConstants.m; sourceTree = "<group>"; };
 		0D5A07D61B6BB43A00D75E6A /* CAAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAAudio.h; path = Utilities/CAAudio.h; sourceTree = "<group>"; };
 		0D5A07D71B6BB43A00D75E6A /* CAAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAAudio.m; path = Utilities/CAAudio.m; sourceTree = "<group>"; };
+		0D5A07DA1B6C0F4E00D75E6A /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		0DC9746C1B4F0284008F5ADE /* TapThatColour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapThatColour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC974701B4F0284008F5ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DC974711B4F0284008F5ADE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D5A07DC1B6C0F6300D75E6A /* iAd.framework in Frameworks */,
 				0DC974961B4F02A1008F5ADE /* SpriteKit.framework in Frameworks */,
 				0D5A07CA1B68259B00D75E6A /* GameKit.framework in Frameworks */,
 			);
@@ -135,6 +138,7 @@
 		0DC974631B4F0284008F5ADE = {
 			isa = PBXGroup;
 			children = (
+				0D5A07DA1B6C0F4E00D75E6A /* iAd.framework */,
 				0D5A07C91B68259B00D75E6A /* GameKit.framework */,
 				0DC974951B4F02A1008F5ADE /* SpriteKit.framework */,
 				0DC9746E1B4F0284008F5ADE /* TapThatColour */,

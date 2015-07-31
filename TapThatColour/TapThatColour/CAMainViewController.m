@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <iAd/iAd.h>
 #import "CAMainViewController.h"
 #import "CAGameOverViewController.h"
 #import "CAGameScene.h"
@@ -157,6 +158,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)aSegue sender:(id)aSender {
     CAGameOverViewController *dest = [aSegue destinationViewController];
     dest.score = [self.gameScene score];
+    dest.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
 }
 
 - (void)segueToGameOver {
