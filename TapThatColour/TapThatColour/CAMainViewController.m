@@ -25,6 +25,8 @@
 @property (nonatomic) CAGameScene *gameScene;
 @property (nonatomic) BOOL autoStartGame;
 
+@property (nonatomic) BOOL didEnterBackground;
+
 @end
 
 @implementation CAMainViewController
@@ -128,7 +130,7 @@
 }
 
 - (void)togglePlayPauseButton {
-    if (self.gameScene.paused)
+    if (self.spriteView.paused)
         self.toolbarItems = @[self.soundButton, self.flexibleSpace, self.playButton];
     else
         self.toolbarItems = @[self.soundButton, self.flexibleSpace, self.pauseButton];
@@ -141,7 +143,8 @@
 }
 
 - (void)tapPlayPauseButton {
-    [self.gameScene togglePaused];
+    self.spriteView.paused = !self.spriteView.paused;
+    self.spriteView.userInteractionEnabled = !self.spriteView.paused;
     [self togglePlayPauseButton];
 }
 
@@ -154,6 +157,32 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)aSegue sender:(id)aSender {
     CAGameOverViewController *dest = [aSegue destinationViewController];
     dest.score = [self.gameScene score];
+}
+
+#pragma mark - Application Closing/Opening
+
+- (void)applicationWillEnterBackground {
+    self.didEnterBackground = YES;
+}
+
+- (void)applicationWillEnterForeground {
+    
+}
+
+// an SKView is automatically unpaused when the application becomes active
+- (void)applicationDidBecomeActive {
+    [self pauseGameAfterDidBecomeActive];
+}
+
+- (void)pauseGameAfterDidBecomeActive {
+    id __block blockSelf = self;
+    
+    // needs a short delay to override the SKView's callback actions
+    [CAUtilities executeBlockAfterMs:1 block:^(void) {
+        // pause game if it's being reopened and has already started
+        if ([blockSelf didEnterBackground] && [[blockSelf gameScene] animationStarted])
+            [blockSelf tapPlayPauseButton];
+    }];
 }
 
 @end

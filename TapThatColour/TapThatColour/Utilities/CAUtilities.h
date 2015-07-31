@@ -21,5 +21,6 @@
 + (void)makeToolbarTransparent:(UIToolbar *)aToolbar;
 + (void)openUrl:(NSString *)aUrl;
 + (CFTimeInterval)systemTime;
++ (void)executeBlockAfterMs:(NSInteger)milliseconds block:(void (^)())aBlock;
 
 @end

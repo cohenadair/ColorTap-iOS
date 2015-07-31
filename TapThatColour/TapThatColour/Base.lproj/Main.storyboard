@@ -189,6 +189,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Kcc-Rd-sSl">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="600-Cy-Efq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" toolbarHidden="NO" id="dZT-dk-ro4" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -202,7 +203,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="HZR-yB-aIr"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="600-Cy-Efq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="380" y="207"/>
         </scene>

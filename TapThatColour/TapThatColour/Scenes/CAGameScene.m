@@ -208,9 +208,8 @@
     return self.tapThatColor.score;
 }
 
-- (void)togglePaused {
-    self.paused = !self.paused;
-    self.userInteractionEnabled = !self.paused;
+- (BOOL)animationStarted {
+    return self.animationBegan;
 }
 
 #pragma mark - Navigation

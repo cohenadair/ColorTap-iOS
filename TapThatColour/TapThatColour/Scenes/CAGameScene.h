@@ -20,7 +20,7 @@
 @property (nonatomic, copy) void (^onGameStart)();
 
 - (NSInteger)score;
-- (void)togglePaused;
 - (void)onColorChange:(CAColor *)newColor;
+- (BOOL)animationStarted;
 
 @end

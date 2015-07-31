@@ -11,5 +11,9 @@
 
 @interface CAMainViewController : UIViewController
 
+- (void)applicationWillEnterBackground;
+- (void)applicationWillEnterForeground;
+- (void)applicationDidBecomeActive;
+
 @end
 
