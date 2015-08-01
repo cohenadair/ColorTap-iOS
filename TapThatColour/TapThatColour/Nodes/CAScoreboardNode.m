@@ -15,26 +15,27 @@
 
 @property (nonatomic) SKLabelNode *scoreLabel;
 @property (nonatomic) SKView *spriteView;
+@property (nonatomic) CGFloat radius;
 
 @end
 
 @implementation CAScoreboardNode
-
-#define kScoreboardRadius 50.0
 
 + (id)withScore:(NSInteger)aScore {
     return [[self alloc] initWithScore:aScore];
 }
 
 - (id)initWithScore:(NSInteger)aScore {
+    CGFloat radius = [CAUtilities iPad] ? 75.0: 50.0;
     CGPoint pos;
     pos.x = [CAUtilities screenSize].width / 2;
-    pos.y = [CAUtilities screenSize].height - kScoreboardRadius - 20;
+    pos.y = [CAUtilities screenSize].height - radius - 20;
     
     // create a texture
-    NSDictionary *dict = [[CATexture sharedTexture] newTextureWithRadius:kScoreboardRadius color:[CAColor randomColor]];
+    NSDictionary *dict = [[CATexture sharedTexture] newTextureWithRadius:radius color:[CAColor randomColor]];
     
     if (self = [super initWithTexture:[dict objectForKey:@"SKTexture"] color:[dict objectForKey:@"CAColor"]]) {
+        [self setRadius:radius];
         [self setPosition:pos];
         [self setUserInteractionEnabled:NO];
         
@@ -56,7 +57,7 @@
 }
 
 - (void)updateColor:(CAColor *)aColor {
-    NSDictionary *dict = [[CATexture sharedTexture] newTextureWithRadius:kScoreboardRadius color:aColor];
+    NSDictionary *dict = [[CATexture sharedTexture] newTextureWithRadius:self.radius color:aColor];
     [self setTexture:[dict objectForKey:@"SKTexture"]];
     [self setMyColor:[dict objectForKey:@"CAColor"]];
 }
