@@ -9,10 +9,12 @@
 #import "CAUtilities.h"
 #import "CAButtonNode.h"
 #import "CAScoreboardNode.h"
+#import "CATexture.h"
 
 @interface CAScoreboardNode ()
 
 @property (nonatomic) SKLabelNode *scoreLabel;
+@property (nonatomic) SKView *spriteView;
 
 @end
 
@@ -20,20 +22,21 @@
 
 #define kScoreboardRadius 50.0
 
-+ (id)withScore:(NSInteger)aScore color:(CAColor *)aColor {
-    return [[self alloc] initWithScore:aScore color:aColor];
++ (id)withScore:(NSInteger)aScore {
+    return [[self alloc] initWithScore:aScore];
 }
 
-- (id)initWithScore:(NSInteger)aScore color:(CAColor *)aColor {
+- (id)initWithScore:(NSInteger)aScore {
     CGPoint pos;
     pos.x = [CAUtilities screenSize].width / 2;
-    pos.y = [CAUtilities screenSize].height - kScoreboardRadius - 5;
+    pos.y = [CAUtilities screenSize].height - kScoreboardRadius - 20;
     
-    if (self = [super initWithColor:aColor radius:kScoreboardRadius]) {
+    // create a texture
+    NSDictionary *dict = [[CATexture sharedTexture] newTextureWithRadius:kScoreboardRadius color:[CAColor randomColor]];
+    
+    if (self = [super initWithTexture:[dict objectForKey:@"SKTexture"] color:[dict objectForKey:@"CAColor"]]) {
         [self setPosition:pos];
         [self setUserInteractionEnabled:NO];
-        [self setStrokeColor:[UIColor colorWithWhite:1.0 alpha:0.35]];
-        [self setGlowWidth:3.0];
         
         // score label init
         [self setScoreLabel:[SKLabelNode labelNodeWithFontNamed:@"HelveticaNeue"]];
@@ -53,8 +56,9 @@
 }
 
 - (void)updateColor:(CAColor *)aColor {
-    self.color = aColor;
-    self.fillColor = self.color.color;
+    NSDictionary *dict = [[CATexture sharedTexture] newTextureWithRadius:kScoreboardRadius color:aColor];
+    [self setTexture:[dict objectForKey:@"SKTexture"]];
+    [self setMyColor:[dict objectForKey:@"CAColor"]];
 }
 
 @end

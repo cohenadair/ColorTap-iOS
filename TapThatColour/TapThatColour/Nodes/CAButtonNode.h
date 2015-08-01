@@ -11,14 +11,14 @@
 #import "CAColor.h"
 #import "CAUserSettings.h"
 
-@interface CAButtonNode : SKShapeNode
+@interface CAButtonNode : SKSpriteNode
 
-@property (nonatomic) CGFloat radius;
-@property (nonatomic) CAColor *color;
+@property (nonatomic) CAColor *myColor;
 @property (nonatomic) BOOL wasTapped; // so the same button can't be tapped twice for 2x the points
 
-+ (id)withColor:(CAColor *)aColor radius:(CGFloat)aRadius;
-- (id)initWithColor:(CAColor *)aColor radius:(CGFloat)aRadius;
++ (id)withTexture:(SKTexture *)aTexture color:(CAColor *)aColor;
++ (id)withRandomColor;
+- (id)initWithTexture:(SKTexture *)aTexture color:(CAColor *)aColor;
 
 - (void)onCorrectTouch;
 - (void)onIncorrectTouchWithCompletion:(void (^)())aCompletionBlock;

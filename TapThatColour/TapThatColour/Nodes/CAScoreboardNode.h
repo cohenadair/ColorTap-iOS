@@ -10,8 +10,8 @@
 
 @interface CAScoreboardNode : CAButtonNode
 
-+ (id)withScore:(NSInteger)aScore color:(CAColor *)aColor;
-- (id)initWithScore:(NSInteger)aScore color:(CAColor *)aColor;
++ (id)withScore:(NSInteger)aScore;
+- (id)initWithScore:(NSInteger)aScore;
 
 - (void)updateScoreLabel:(NSInteger)aScore;
 - (void)updateColor:(CAColor *)aColor;

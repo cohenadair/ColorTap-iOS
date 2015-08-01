@@ -8,6 +8,7 @@
 
 #import "CABackgroundNode.h"
 #import "CAConstants.h"
+#import "CATexture.h"
 
 @interface CABackgroundNode ()
 
@@ -92,9 +93,11 @@
 - (void)addButtonNodes {
     CGSize screen = [CAUtilities screenSize];
     
-    CGFloat diameter = (screen.width / BUTTONS_PER_ROW);
+    CGFloat diameter = (screen.width / BUTTONS_PER_ROW) - 4; // "-4" to add some spacing between buttons
     CGFloat radius = (diameter / 2);
     
+    // REQUIRED to create textures
+    [[CATexture sharedTexture] setRadius:radius];
     
     NSInteger numColumns = screen.width / diameter;
     NSInteger numRows = screen.height / diameter;
@@ -105,7 +108,7 @@
     
     for (int r = 0; r < numRows; r++)
         for (int c = 0; c < numColumns; c++) {
-            CAButtonNode *btn = [CAButtonNode withColor:[CAColor randomColor] radius:radius];
+            CAButtonNode *btn = [CAButtonNode withRandomColor];
             
             btn.position =
                 CGPointMake((c * diameter) + radius + ((c + 1) * xSpacing),

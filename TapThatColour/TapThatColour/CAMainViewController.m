@@ -12,6 +12,7 @@
 #import "CAGameOverViewController.h"
 #import "CAGameScene.h"
 #import "CAUserSettings.h"
+#import "CATexture.h"
 
 @interface CAMainViewController ()
 
@@ -88,6 +89,8 @@
     self.spriteView.showsDrawCount = YES;
     self.spriteView.showsNodeCount = YES;
     self.spriteView.showsFPS = YES;
+    
+    [[CATexture sharedTexture] setSpriteView:self.spriteView];
 }
 
 - (void)showGameView {

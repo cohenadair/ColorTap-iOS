@@ -51,7 +51,7 @@
 
 - (void)onColorChange:(CAColor *)newColor {
     // only call color change methods if the color actually changed
-    if (![newColor isEqualToColor:self.scoreboardNode.color]) {
+    if (![newColor isEqualToColor:self.scoreboardNode.myColor]) {
         [self.scoreboardNode updateColor:newColor];
         self.gracePeriod = [CAUtilities systemTime] + kGracePeriodInSeconds;
     }
@@ -67,7 +67,7 @@
     CAButtonNode *buttonTouched = [self buttonTouched:[touches anyObject]];
     if (buttonTouched) {
         // check for correct color touch
-        if ([buttonTouched.color isEqualToColor:self.tapThatColor.currentColor]) {
+        if ([buttonTouched.myColor isEqualToColor:self.tapThatColor.currentColor]) {
             if (!buttonTouched.wasTapped) {
                 [self handleCorrectTouch];
                 [buttonTouched onCorrectTouch];
@@ -119,7 +119,7 @@
             id btn = [self nodeAtPoint:[point CGPointValue]];
             
             if ([btn isKindOfClass:[CAButtonNode class]]) {
-                CAColor *color = (CAColor *)[btn color];
+                CAColor *color = (CAColor *)[btn myColor];
                 
                 if (![btn wasTapped] && [color isEqualToColor:self.tapThatColor.currentColor]) {
                     [self handleGameOverWithReverse:YES buttonTapped:btn];
@@ -131,8 +131,8 @@
 
 - (void)initButtonCheckPoints {
     CAButtonNode *dummy = [self.blueBackgroundNode anyButton];
-    CGFloat radius = dummy.radius;
-    CGFloat diameter = (radius * 2);
+    CGFloat diameter = dummy.size.width;
+    CGFloat radius = (diameter / 2);
     
     self.buttonCheckPoints = [NSMutableArray array];
     
@@ -196,7 +196,7 @@
     [self addChild:self.blueBackgroundNode];
     
     // scoreboard
-    [self setScoreboardNode:[CAScoreboardNode withScore:0 color:[CAColor blueColor]]];
+    [self setScoreboardNode:[CAScoreboardNode withScore:0]];
     [self addChild:self.scoreboardNode];
 }
 

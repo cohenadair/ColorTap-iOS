@@ -8,6 +8,7 @@
 
 #import "CAButtonNode.h"
 #import "CAAudio.h"
+#import "CATexture.h"
 
 @interface CAButtonNode ()
 
@@ -22,31 +23,30 @@
 
 #pragma mark - Initializing
 
-+ (id)withColor:(CAColor *)aColor radius:(CGFloat)aRadius {
-    return [[self alloc] initWithColor:aColor radius: aRadius];
++ (id)withTexture:(SKTexture *)aTexture color:(CAColor *)aColor {
+    return [[self alloc] initWithTexture:aTexture color:aColor];
 }
 
-- (id)initWithColor:(CAColor *)aColor radius:(CGFloat)aRadius {
-    if (self = [super init]) {
-        self.radius = aRadius - 1;
-        self.color = aColor;
-        self.fillColor = aColor.color;
-        self.fillTexture = [SKTexture textureWithImage:[UIImage imageNamed:@"texture"]];
-        self.strokeColor = [SKColor clearColor];
-        self.shouldResetPath = NO;
-        self.wasTapped = NO;
-        
-        // create and release path
-        CGPathRef path = CGPathCreateWithEllipseInRect(CGRectMake(-self.radius, -self.radius, self.radius * 2, self.radius * 2), NULL);
-        self.path = path;
-        CFRelease(path);
-        
-        // preload the sound to remove lag
-        self.correctSound = [[CAAudio sharedAudio] correctSound];
-        self.incorrectSound = [[CAAudio sharedAudio] incorrectSound];
-    }
++ (id)withRandomColor {
+    NSDictionary *dict = [[CATexture sharedTexture] randomTexture];
+    return [[self alloc] initWithTexture:[dict objectForKey:@"SKTexture"] color:[dict objectForKey:@"CAColor"]];
+}
+
+- (id)initWithTexture:(SKTexture *)aTexture color:(CAColor *)aColor {
+    if (self = [super initWithTexture:aTexture])
+        [self initDefaultsWithColor:aColor];
     
     return self;
+}
+        
+- (void)initDefaultsWithColor:(CAColor *)aColor {
+    self.myColor = aColor;
+    self.shouldResetPath = NO;
+    self.wasTapped = NO;
+    
+    // preload the sound to remove lag
+    self.correctSound = [[CAAudio sharedAudio] correctSound];
+    self.incorrectSound = [[CAAudio sharedAudio] incorrectSound];
 }
 
 #pragma mark - Touching
@@ -97,8 +97,10 @@
 
 // resets color and path if necessary
 - (void)reset {
-    self.color = [CAColor randomColor];
-    self.fillColor = self.color.color;
+    NSDictionary *dict = [[CATexture sharedTexture] randomTexture];
+    
+    self.texture = [dict objectForKey:@"SKTexture"];
+    self.myColor = [dict objectForKey:@"CAColor"];
     
     if (self.shouldResetPath) {
         [self grow];

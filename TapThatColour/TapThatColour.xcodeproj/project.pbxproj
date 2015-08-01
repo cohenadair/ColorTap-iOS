@@ -24,6 +24,8 @@
 		0D5A07D81B6BB43A00D75E6A /* CAAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07D71B6BB43A00D75E6A /* CAAudio.m */; };
 		0D5A07D91B6BB43A00D75E6A /* CAAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07D71B6BB43A00D75E6A /* CAAudio.m */; };
 		0D5A07DC1B6C0F6300D75E6A /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5A07DA1B6C0F4E00D75E6A /* iAd.framework */; };
+		0D5A07E31B6D330400D75E6A /* CATexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07E21B6D330400D75E6A /* CATexture.m */; };
+		0D5A07E41B6D330400D75E6A /* CATexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07E21B6D330400D75E6A /* CATexture.m */; };
 		0DC974721B4F0284008F5ADE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974711B4F0284008F5ADE /* main.m */; };
 		0DC974751B4F0284008F5ADE /* CAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974741B4F0284008F5ADE /* CAAppDelegate.m */; };
 		0DC974781B4F0284008F5ADE /* CAMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974771B4F0284008F5ADE /* CAMainViewController.m */; };
@@ -70,6 +72,8 @@
 		0D5A07D61B6BB43A00D75E6A /* CAAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAAudio.h; path = Utilities/CAAudio.h; sourceTree = "<group>"; };
 		0D5A07D71B6BB43A00D75E6A /* CAAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAAudio.m; path = Utilities/CAAudio.m; sourceTree = "<group>"; };
 		0D5A07DA1B6C0F4E00D75E6A /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		0D5A07E11B6D330400D75E6A /* CATexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CATexture.h; path = Utilities/CATexture.h; sourceTree = "<group>"; };
+		0D5A07E21B6D330400D75E6A /* CATexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CATexture.m; path = Utilities/CATexture.m; sourceTree = "<group>"; };
 		0DC9746C1B4F0284008F5ADE /* TapThatColour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapThatColour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC974701B4F0284008F5ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DC974711B4F0284008F5ADE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 				0D5A07D41B69B34300D75E6A /* CAConstants.m */,
 				0D5A07D61B6BB43A00D75E6A /* CAAudio.h */,
 				0D5A07D71B6BB43A00D75E6A /* CAAudio.m */,
+				0D5A07E11B6D330400D75E6A /* CATexture.h */,
+				0D5A07E21B6D330400D75E6A /* CATexture.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -360,6 +366,7 @@
 				0D5924D51B55F7E400AF9E77 /* CATapGame.m in Sources */,
 				0DC9749E1B4F045D008F5ADE /* CAUtilities.m in Sources */,
 				0DC974721B4F0284008F5ADE /* main.m in Sources */,
+				0D5A07E31B6D330400D75E6A /* CATexture.m in Sources */,
 				0D497AF81B5A9C7400266A9C /* CAButtonNode.m in Sources */,
 				0D5A07D81B6BB43A00D75E6A /* CAAudio.m in Sources */,
 				0D5A07C41B65BE8E00D75E6A /* CAUserSettings.m in Sources */,
@@ -372,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D5A07A01B60537F00D75E6A /* CAColor.m in Sources */,
+				0D5A07E41B6D330400D75E6A /* CATexture.m in Sources */,
 				0DC9748C1B4F0284008F5ADE /* ColorTapTests.m in Sources */,
 				0D5A07D91B6BB43A00D75E6A /* CAAudio.m in Sources */,
 				0D5924D61B55F7E400AF9E77 /* CATapGame.m in Sources */,
