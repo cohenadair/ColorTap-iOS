@@ -171,8 +171,8 @@
 				0D5A07AB1B60725500D75E6A /* CAGameOverViewController.h */,
 				0D5A07AC1B60725500D75E6A /* CAGameOverViewController.m */,
 				0DC974791B4F0284008F5ADE /* Main.storyboard */,
-				0DC9747C1B4F0284008F5ADE /* Images.xcassets */,
 				0DC9747E1B4F0284008F5ADE /* LaunchScreen.xib */,
+				0DC9747C1B4F0284008F5ADE /* Images.xcassets */,
 				0DC9746F1B4F0284008F5ADE /* Supporting Files */,
 			);
 			path = TapThatColour;
