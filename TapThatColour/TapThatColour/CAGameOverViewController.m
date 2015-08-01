@@ -10,6 +10,7 @@
 #import "CAGameCenterManager.h"
 #import "CAUserSettings.h"
 #import "CAUtilities.h"
+#import "CAConstants.h"
 
 @interface CAGameOverViewController ()
 
@@ -42,12 +43,11 @@
 
 - (IBAction)tapShareButton:(UIButton *)aSender {
     NSArray *items = @[[NSString stringWithFormat:@"I just scored %ld on #TapThatColour! Check it out on the App Store!", (long)self.score]];
-    UIActivityViewController *act = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
-    [self presentViewController:act animated:YES completion:nil];
+    [CAUtilities presentShareActivityForViewController:self items:items];
 }
 
 - (IBAction)tapRateButton:(UIButton *)aSender {
-    NSString *stringUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d", 1019522139];
+    NSString *stringUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d", APP_ID];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringUrl]];
 }
 

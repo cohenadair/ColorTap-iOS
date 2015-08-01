@@ -21,5 +21,6 @@
 + (void)openUrl:(NSString *)aUrl;
 + (CFTimeInterval)systemTime;
 + (void)executeBlockAfterMs:(NSInteger)milliseconds block:(void (^)())aBlock;
++ (void)presentShareActivityForViewController:(UIViewController *)aViewController items:(NSArray *)anArray;
 
 @end

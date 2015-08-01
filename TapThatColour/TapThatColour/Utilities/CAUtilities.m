@@ -50,4 +50,15 @@
     });
 }
 
++ (void)presentShareActivityForViewController:(UIViewController *)aViewController items:(NSArray *)anArray {
+    
+    UIActivityViewController *act = [[UIActivityViewController alloc] initWithActivityItems:anArray applicationActivities:nil];
+    
+    // for iPads
+    if ([act respondsToSelector:@selector(popoverPresentationController)])
+        act.popoverPresentationController.sourceView = aViewController.view;
+    
+    [aViewController presentViewController:act animated:YES completion:nil];
+}
+
 @end
