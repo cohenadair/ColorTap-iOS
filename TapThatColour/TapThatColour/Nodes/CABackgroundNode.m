@@ -52,7 +52,7 @@
     [self removeAllActions];
     
     if (shouldReverse) {
-        SKAction *moveUp = [SKAction moveByX:0 y:200 duration:0.25];
+        SKAction *moveUp = [SKAction moveByX:0 y:[CAUtilities screenSize].height / 2 duration:0.25];
         [self runAction:moveUp completion:^{
             if (aCompletionBlock)
                 aCompletionBlock();
