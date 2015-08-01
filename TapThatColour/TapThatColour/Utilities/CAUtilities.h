@@ -13,6 +13,7 @@
 
 @interface CAUtilities : NSObject
 
++ (BOOL)iPad;
 + (CGRect)screenBounds;
 + (CGSize)screenSize;
 + (void)showStatusBar;

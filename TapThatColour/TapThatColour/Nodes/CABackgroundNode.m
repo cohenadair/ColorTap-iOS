@@ -93,7 +93,9 @@
 - (void)addButtonNodes {
     CGSize screen = [CAUtilities screenSize];
     
-    CGFloat diameter = (screen.width / BUTTONS_PER_ROW) - 4; // "-4" to add some spacing between buttons
+    NSInteger buttonsPerRow = [CAUtilities iPad] ? 5 : 4;
+    
+    CGFloat diameter = (screen.width / buttonsPerRow) - 4; // "-4" to add some spacing between buttons
     CGFloat radius = (diameter / 2);
     
     // REQUIRED to create textures

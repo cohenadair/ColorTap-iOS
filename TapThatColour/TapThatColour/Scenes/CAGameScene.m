@@ -9,6 +9,7 @@
 #import "CAGameScene.h"
 #import "CAConstants.h"
 #import "CAColor.h"
+#import "CATexture.h"
 
 @interface CAGameScene()
 
@@ -130,13 +131,13 @@
 }
 
 - (void)initButtonCheckPoints {
-    CAButtonNode *dummy = [self.blueBackgroundNode anyButton];
-    CGFloat diameter = dummy.size.width;
-    CGFloat radius = (diameter / 2);
+    CGFloat radius = [[CATexture sharedTexture] radius];
+    CGFloat diameter = (radius * 2);
+    NSInteger buttonsPerRow = [CAUtilities screenSize].width / diameter;
     
     self.buttonCheckPoints = [NSMutableArray array];
     
-    for (int i = 0; i < BUTTONS_PER_ROW; i++) {
+    for (int i = 0; i < buttonsPerRow; i++) {
         CGPoint p = CGPointMake((radius + (i * diameter)), -diameter);
         [self.buttonCheckPoints addObject:[NSValue valueWithCGPoint:p]];
     }

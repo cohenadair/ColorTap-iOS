@@ -15,6 +15,10 @@
 
 @implementation CAUtilities
 
++ (BOOL)iPad {
+    return [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad;
+}
+
 + (CGRect)screenBounds {
     return [UIScreen mainScreen].bounds;
 }
