@@ -69,4 +69,9 @@
     [aViewController presentViewController:act animated:YES completion:nil];
 }
 
++ (CGFloat)buttonRadius {
+    NSInteger buttonsPerRow = [CAUtilities iPad] ? 5 : 4;
+    return ([CAUtilities screenSize].width / (buttonsPerRow * 2)) - 4; // "-4" to add some spacing between buttons
+}
+
 @end

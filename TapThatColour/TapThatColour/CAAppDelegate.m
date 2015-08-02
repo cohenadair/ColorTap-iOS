@@ -11,6 +11,7 @@
 #import "CAAppDelegate.h"
 #import "CAGameCenterManager.h"
 #import "CAMainViewController.h"
+#import "CATexture.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,11 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onOrientationChange)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+    
     [[CAGameCenterManager sharedManager] authenticateInViewController:self.window.rootViewController];
     [UIViewController prepareInterstitialAds];
     return YES;
@@ -45,6 +51,10 @@
 
 - (CAMainViewController *)mainViewController {
     return (CAMainViewController *)[(UINavigationController *)self.window.rootViewController topViewController];
+}
+
+- (void)onOrientationChange {
+    [[CATexture sharedTexture] resetWithRadius:[CAUtilities buttonRadius]];
 }
 
 @end

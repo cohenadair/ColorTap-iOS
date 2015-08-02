@@ -99,14 +99,8 @@
 // adds all the child button nodes
 - (void)addButtonNodes {
     CGSize screen = [CAUtilities screenSize];
-    
-    NSInteger buttonsPerRow = [CAUtilities iPad] ? 5 : 4;
-    
-    CGFloat diameter = (screen.width / buttonsPerRow) - 4; // "-4" to add some spacing between buttons
-    CGFloat radius = (diameter / 2);
-    
-    // REQUIRED to create textures
-    [[CATexture sharedTexture] setRadius:radius];
+    CGFloat radius = [CAUtilities buttonRadius];
+    CGFloat diameter = (radius * 2);
     
     NSInteger numColumns = screen.width / diameter;
     NSInteger numRows = screen.height / diameter;
