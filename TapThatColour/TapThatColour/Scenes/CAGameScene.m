@@ -181,8 +181,6 @@
     CGFloat incSpeedFactor = 0.000025;
     CGFloat incBy = [CAUtilities factorOfScreenHeight:incSpeedFactor];
     
-    NSLog(@"Increasing speed by: %f", incBy);
-    
     [self.blueBackgroundNode incAnimationSpeedBy:incBy];
     [self.redBackgroundNode incAnimationSpeedBy:incBy];
 }

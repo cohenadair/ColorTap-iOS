@@ -16,6 +16,8 @@
 
 + (id)sharedTexture;
 
+- (void)resetWithRadius:(CGFloat)aRadius;
+
 - (NSDictionary *)redTexture;
 - (NSDictionary *)orangeTexture;
 - (NSDictionary *)yellowTexture;
