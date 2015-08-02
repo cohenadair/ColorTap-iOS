@@ -29,6 +29,7 @@
     [super viewDidLoad];
     [self.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)self.score]];
     [self initHighscoreLabel];
+    [CAUtilities makeNavigationBarTransparent:self.navigationController.navigationBar];
 }
 
 - (void)didReceiveMemoryWarning {

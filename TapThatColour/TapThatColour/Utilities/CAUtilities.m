@@ -44,6 +44,13 @@
     [aToolbar setShadowImage:[UIImage new] forToolbarPosition:UIToolbarPositionAny];
 }
 
++ (void)makeNavigationBarTransparent:(UINavigationBar *)aNavigationBar {
+    [aNavigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [aNavigationBar setShadowImage:[UIImage new]];
+    [aNavigationBar setTranslucent:YES];
+    [aNavigationBar setBackgroundColor:[UIColor clearColor]];
+}
+
 + (void)openUrl:(NSString *)aUrl {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:aUrl]];
 }

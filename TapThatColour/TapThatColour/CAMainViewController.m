@@ -160,9 +160,9 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)aSegue sender:(id)aSender {
-    CAGameOverViewController *dest = [aSegue destinationViewController];
-    dest.score = [self.gameScene score];
-    dest.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+    id dest = [[[aSegue destinationViewController] viewControllers] objectAtIndex:0];
+    [dest setScore:[self.gameScene score]];
+    [dest setInterstitialPresentationPolicy:ADInterstitialPresentationPolicyAutomatic];
 }
 
 - (void)segueToGameOver {

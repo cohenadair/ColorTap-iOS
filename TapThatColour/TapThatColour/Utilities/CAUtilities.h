@@ -20,6 +20,7 @@
 + (void)showStatusBar;
 + (void)hideStatusBar;
 + (void)makeToolbarTransparent:(UIToolbar *)aToolbar;
++ (void)makeNavigationBarTransparent:(UINavigationBar *)aNavigationBar;
 + (void)openUrl:(NSString *)aUrl;
 + (CFTimeInterval)systemTime;
 + (void)executeBlockAfterMs:(NSInteger)milliseconds block:(void (^)())aBlock;
