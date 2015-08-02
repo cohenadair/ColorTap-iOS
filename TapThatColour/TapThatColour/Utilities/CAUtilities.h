@@ -16,6 +16,7 @@
 + (BOOL)iPad;
 + (CGRect)screenBounds;
 + (CGSize)screenSize;
++ (CGFloat)factorOfScreenHeight:(CGFloat)aFactor;
 + (void)showStatusBar;
 + (void)hideStatusBar;
 + (void)makeToolbarTransparent:(UIToolbar *)aToolbar;

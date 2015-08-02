@@ -27,6 +27,10 @@
     return [self screenBounds].size;
 }
 
++ (CGFloat)factorOfScreenHeight:(CGFloat)aFactor {
+    return [self screenSize].height * aFactor;
+}
+
 + (void)showStatusBar {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }

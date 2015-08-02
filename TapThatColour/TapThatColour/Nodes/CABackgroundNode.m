@@ -43,10 +43,17 @@
 
 #pragma mark - Animating
 
-// aFactor: The animation height for the first animation is multipled by this.
 - (void)startAnimating {
-    SKAction *moveDown = [SKAction moveByX:0 y:-[CAUtilities screenSize].height duration:2.5];
+    CGFloat duration = 2.5;
+    CGFloat distance = [CAUtilities screenSize].height;
+    
+    SKAction *moveDown = [SKAction moveByX:0 y:-distance duration:duration];
     [self runAction:[SKAction repeatActionForever:moveDown]];
+    
+    // slightly increase starting speed for different screen sizes
+    // narrows the difficulty gap for different devices
+    CGFloat velocity = distance / duration;
+    self.speed += velocity * 0.0001;
 }
 
 - (void)stopAnimatingWithReverse:(BOOL)shouldReverse completion:(void (^)())aCompletionBlock {

@@ -175,8 +175,16 @@
 - (void)handleCorrectTouch {
     [self.tapThatColor incScoreBy:1];
     [self.scoreboardNode updateScoreLabel:self.tapThatColor.score];
-    [self.blueBackgroundNode incAnimationSpeedBy:0.01];
-    [self.redBackgroundNode incAnimationSpeedBy:0.01];
+    
+    // the amount of speed added after each correct touch is dependent on the screen size
+    // this narrows the difficulty gap between different devices
+    CGFloat incSpeedFactor = 0.000025;
+    CGFloat incBy = [CAUtilities factorOfScreenHeight:incSpeedFactor];
+    
+    NSLog(@"Increasing speed by: %f", incBy);
+    
+    [self.blueBackgroundNode incAnimationSpeedBy:incBy];
+    [self.redBackgroundNode incAnimationSpeedBy:incBy];
 }
 
 - (void)createSceneContents {
