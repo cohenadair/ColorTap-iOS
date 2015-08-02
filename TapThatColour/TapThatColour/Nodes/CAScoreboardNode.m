@@ -26,7 +26,7 @@
 }
 
 - (id)initWithScore:(NSInteger)aScore {
-    CGFloat radius = [CAUtilities iPad] ? 75.0: 50.0;
+    CGFloat radius = [CAUtilities iPad] ? 90.0: 50.0;
     CGPoint pos;
     pos.x = [CAUtilities screenSize].width / 2;
     pos.y = [CAUtilities screenSize].height - radius - 20;
