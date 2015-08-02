@@ -178,7 +178,7 @@
     
     // the amount of speed added after each correct touch is dependent on the screen size
     // this narrows the difficulty gap between different devices
-    CGFloat incSpeedFactor = 0.000025;
+    CGFloat incSpeedFactor = 0.000015;
     CGFloat incBy = [CAUtilities factorOfScreenHeight:incSpeedFactor];
     
     [self.blueBackgroundNode incAnimationSpeedBy:incBy];

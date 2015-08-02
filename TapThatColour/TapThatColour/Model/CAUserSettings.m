@@ -11,11 +11,10 @@
 
 @implementation CAUserSettings
 
-@synthesize muted = _muted;
-@synthesize highscore = _highscore;
-
-#define kMutedKey @"cohenadair.tapthatcolor.muted"
-#define kHighschoreKey @"cohenadair.tapthatcolor.highscore"
+#define kKeyMuted @"cohenadair.tapthatcolour.muted"
+#define kKeyKidsMode @"cohenadair.tapthatcolour.kidsMode"
+#define kKeyHighscore @"cohenadair.tapthatcolour.highscore"
+#define kKeyDifficulty @"cohenadair.tapthatcolour.difficulty"
 
 + (id)sharedSettings {
     static CAUserSettings *sharedSettings = nil;
@@ -29,28 +28,40 @@
 }
 
 - (void)setMuted:(BOOL)aBool {
-    _muted = aBool;
-    [[NSUserDefaults standardUserDefaults] setBool:_muted forKey:kMutedKey];
+    [[NSUserDefaults standardUserDefaults] setBool:aBool forKey:kKeyMuted];
 }
 
 - (BOOL)muted {
-    _muted = [[NSUserDefaults standardUserDefaults] boolForKey:kMutedKey];
-    return _muted;
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kKeyMuted];
+}
+
+- (void)setKidsMode:(BOOL)aBool {
+    [[NSUserDefaults standardUserDefaults] setBool:aBool forKey:kKeyKidsMode];
+}
+
+- (BOOL)kidsMode {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kKeyKidsMode];
 }
 
 - (void)setHighscore:(NSInteger)anInteger {
-    _highscore = anInteger;
-    [[NSUserDefaults standardUserDefaults] setInteger:_highscore forKey:kHighschoreKey];
+    [[NSUserDefaults standardUserDefaults] setInteger:anInteger forKey:kKeyHighscore];
 }
 
 - (NSInteger)highscore {
-    _highscore = [[NSUserDefaults standardUserDefaults] integerForKey:kHighschoreKey];
-    return _highscore;
+    return [[NSUserDefaults standardUserDefaults] integerForKey:kKeyHighscore];
+}
+
+- (void)setDifficulty:(NSInteger)anInteger {
+    [[NSUserDefaults standardUserDefaults] setInteger:anInteger forKey:kKeyDifficulty];
+}
+
+- (NSInteger)difficulty {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:kKeyDifficulty];
 }
 
 // updates local highscore and sends to Game Center if aScore is greater than the current highscore
 - (void)updateHighscore:(NSInteger)aScore {
-    if (aScore > self.highscore) {
+    if (aScore > [self highscore]) {
         [self setHighscore:aScore];
         [[CAGameCenterManager sharedManager] reportScore:aScore];
     }
