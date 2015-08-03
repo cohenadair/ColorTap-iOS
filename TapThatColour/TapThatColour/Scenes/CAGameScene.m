@@ -49,7 +49,8 @@
     if (self.autoStart)
         [self handleBackgroundAnimation];
     
-    self.gracePeriod = kGracePeriodNone;
+    [self setGracePeriod:kGracePeriodNone];
+    [[self tapGame] setScore:0];
 }
 
 - (void)initTapGame {

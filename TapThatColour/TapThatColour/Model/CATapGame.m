@@ -8,6 +8,7 @@
 
 #import "CATapGame.h"
 #import "CAUserSettings.h"
+#import "CATexture.h"
 
 @interface CATapGame ()
 
@@ -32,12 +33,20 @@
 
 #pragma mark - Getting and Setting
 
+- (CADifficulty)difficulty {
+    return (CADifficulty)[[CAUserSettings sharedSettings] difficulty];
+}
+
 - (void)setDifficulty:(CADifficulty)aDifficulty {
     _difficulty = aDifficulty;
     [[CAUserSettings sharedSettings] setDifficulty:aDifficulty];
+    [[CATexture sharedTexture] resetWithRadius:[CAUtilities buttonRadiusForTapGame:self]];
 }
 
 - (NSString *)difficultyAsString {
+    if ([[CAUserSettings sharedSettings] kidsMode])
+        return @"Difficulty: Kids Mode";
+    
     switch (self.difficulty) {
         case CADifficultyMedium:
             return @"Difficulty: Regular";

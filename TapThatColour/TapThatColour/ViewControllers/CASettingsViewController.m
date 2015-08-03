@@ -33,6 +33,7 @@
     [super viewDidLoad];
     
     [self.difficultyControl setSelectedSegmentIndex:[self tapGame].difficulty];
+    [self.difficultyControl setEnabled:![[CAUserSettings sharedSettings] kidsMode]];
     [self.kidsModeSwitch setOn:[[CAUserSettings sharedSettings] kidsMode]];
     [self.soundSwitch setOn:![[CAUserSettings sharedSettings] muted]];
 }
@@ -57,6 +58,7 @@
 
 - (IBAction)changeKidsMode:(UISwitch *)aSender {
     [[CAUserSettings sharedSettings] setKidsMode:aSender.on];
+    [self.difficultyControl setEnabled:!aSender.on];
 }
 
 - (IBAction)changeSound:(UISwitch *)aSender {

@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "CAUtilities.h"
 #import "CAAlertController.h"
+#import "CATapGame.h"
 
 @interface CAUtilities ()
 
@@ -77,9 +78,14 @@
     [aViewController presentViewController:act animated:YES completion:nil];
 }
 
-+ (CGFloat)buttonRadius {
-    NSInteger buttonsPerRow = [CAUtilities iPad] ? 5 : 4;
-    return ([CAUtilities screenSize].width / (buttonsPerRow * 2)) - 1; // "-1" to add some spacing between buttons
++ (CGFloat)buttonRadiusForTapGame:(id)aTapGame {
+    NSInteger buttonsPerRow = ([CAUtilities iPad] ? 5 : 4) + [aTapGame difficulty];
+    
+    if ([[CAUserSettings sharedSettings] kidsMode])
+        buttonsPerRow--;
+    
+    // "-1" to add some spacing between buttons
+    return ([CAUtilities screenSize].width / (buttonsPerRow * 2)) - 1;
 }
 
 + (void)showAlertWithMessage:(NSString *)aString view:(UIViewController *)aViewController {

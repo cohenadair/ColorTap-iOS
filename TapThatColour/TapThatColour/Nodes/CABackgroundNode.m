@@ -9,6 +9,8 @@
 #import "CABackgroundNode.h"
 #import "CAConstants.h"
 #import "CATexture.h"
+#import "CAAppDelegate.h"
+#import "CATapGame.h"
 
 @interface CABackgroundNode ()
 
@@ -21,6 +23,10 @@
 #define kMaxSpeed 4.0
 
 @implementation CABackgroundNode
+
+- (CATapGame *)tapGame {
+    return [(CAAppDelegate *)[[UIApplication sharedApplication] delegate] tapGame];
+}
 
 #pragma mark - Initializing
 
@@ -71,8 +77,10 @@
 }
 
 - (void)incAnimationSpeedBy:(CGFloat)aFloat {
-    if (self.speed + aFloat < kMaxSpeed)
+    if (![[CAUserSettings sharedSettings] kidsMode] && self.speed + aFloat < kMaxSpeed) {
+        NSLog(@"Increasing speed by: %f", aFloat);
         self.speed += aFloat;
+    }
 }
 
 // called in the scene's update method
@@ -99,7 +107,7 @@
 // adds all the child button nodes
 - (void)addButtonNodes {
     CGSize screen = [CAUtilities screenSize];
-    CGFloat radius = [CAUtilities buttonRadius];
+    CGFloat radius = [CAUtilities buttonRadiusForTapGame:[self tapGame]];
     CGFloat diameter = (radius * 2);
     
     NSInteger numColumns = screen.width / diameter;
