@@ -73,6 +73,7 @@
     SKAction *group = [SKAction group:@[repeat, self.incorrectSound]];
     
     SKAction *action = ([[CAUserSettings sharedSettings] muted]) ? repeat : group;
+    action.speed = 1.0;
     
     [self runAction:action completion:^() {
         [weakSelf setZPosition:zPos];
