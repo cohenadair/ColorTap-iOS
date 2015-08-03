@@ -63,11 +63,12 @@
     
     // increase starting speed for landscape
     if ([CAUtilities orientationIsLandscape])
-        self.speed += 0.35;
+        self.speed += 0.3;
 }
 
 - (void)stopAnimatingWithReverse:(BOOL)shouldReverse completion:(void (^)())aCompletionBlock {
     [self removeAllActions];
+    [self setSpeed:1.0];
     
     if (shouldReverse) {
         SKAction *moveUp = [SKAction moveByX:0 y:[CAUtilities screenSize].height / 2 duration:0.25];
@@ -86,7 +87,7 @@
         
         // increase speed faster or landscape games
         if ([CAUtilities orientationIsLandscape])
-            self.speed += 0.025;
+            self.speed += 0.015;
     }
 }
 
