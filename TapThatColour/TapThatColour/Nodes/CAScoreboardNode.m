@@ -10,6 +10,8 @@
 #import "CAButtonNode.h"
 #import "CAScoreboardNode.h"
 #import "CATexture.h"
+#import "CAAppDelegate.h"
+#import "CATapGame.h"
 
 @interface CAScoreboardNode ()
 
@@ -20,6 +22,10 @@
 @end
 
 @implementation CAScoreboardNode
+
+- (CATapGame *)tapGame {
+    return [(CAAppDelegate *)[[UIApplication sharedApplication] delegate] tapGame];
+}
 
 + (id)withScore:(NSInteger)aScore {
     return [[self alloc] initWithScore:aScore];
@@ -32,7 +38,7 @@
     pos.y = [CAUtilities screenSize].height - radius - 20;
     
     // create a texture
-    NSDictionary *dict = [[CATexture sharedTexture] newTextureWithRadius:radius color:[CAColor randomColor]];
+    NSDictionary *dict = [[CATexture sharedTexture] newTextureWithRadius:radius color:[[self tapGame] currentColor]];
     
     if (self = [super initWithTexture:[dict objectForKey:@"SKTexture"] color:[dict objectForKey:@"CAColor"]]) {
         [self setRadius:radius];

@@ -11,6 +11,4 @@
 
 @interface CAGameOverViewController : UIViewController <GKGameCenterControllerDelegate>
 
-@property (nonatomic) NSInteger score;
-
 @end

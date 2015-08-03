@@ -10,7 +10,6 @@
 #import "CAMainViewController.h"
 #import "CAScoreboardNode.h"
 #import "CABackgroundNode.h"
-#import "CATapGame.h"
 
 @interface CAGameScene : SKScene
 
@@ -20,8 +19,5 @@
 @property (nonatomic, copy) void (^onGameStart)();
 @property (nonatomic) BOOL isGameOver; // used to prevent unwanted update: calls
 @property (nonatomic) BOOL animationBegan;
-
-- (NSInteger)score;
-- (void)onColorChange:(CAColor *)newColor;
 
 @end

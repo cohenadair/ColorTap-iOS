@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CATapGame.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface CAAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic) UIWindow *window;
+@property (nonatomic) CATapGame *tapGame;
 
 @end
 

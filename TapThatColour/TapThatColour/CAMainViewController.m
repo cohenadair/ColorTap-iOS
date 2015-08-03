@@ -61,27 +61,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Observing
-
-#define kKeyPathColor @"gameScene.tapThatColor.currentColor"
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:kKeyPathColor])
-        [self onColorChange:change];
-}
-
-- (void)onColorChange:(NSDictionary *)aChange {
-    id new = [aChange valueForKey:@"new"];
-    if (![new isKindOfClass:[NSNull class]])
-        [self.gameScene onColorChange:(CAColor *)new];
-}
-
-- (void)initObservers {
-    // color
-    [self setValue:@"" forKeyPath:kKeyPathColor];
-    [self addObserver:self forKeyPath:kKeyPathColor options:NSKeyValueObservingOptionNew context:nil];
-}
-
 #pragma mark - Sprite View
 
 - (void)initSpriteView {
@@ -104,7 +83,6 @@
         [[weakSelf tapToBeginLabel] setHidden:YES];
     }];
 
-    [self initObservers];
     [self.spriteView presentScene:self.gameScene];
 }
 
@@ -161,7 +139,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)aSegue sender:(id)aSender {
     id dest = [[[aSegue destinationViewController] viewControllers] objectAtIndex:0];
-    [dest setScore:[self.gameScene score]];
     [dest setInterstitialPresentationPolicy:ADInterstitialPresentationPolicyAutomatic];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "CAGameScene.h"
+#import "CAAppDelegate.h"
 #import "CAConstants.h"
 #import "CAColor.h"
 #import "CATexture.h"
@@ -19,7 +20,6 @@
 @property (nonatomic) CABackgroundNode *redBackgroundNode;
 @property (nonatomic) CABackgroundNode *blueBackgroundNode;
 
-@property (nonatomic) CATapGame *tapThatColor;
 @property (nonatomic) NSMutableArray *buttonCheckPoints;
 
 @end
@@ -32,14 +32,18 @@
 
 @implementation CAGameScene
 
+- (CATapGame *)tapGame {
+    return [(CAAppDelegate *)[[UIApplication sharedApplication] delegate] tapGame];
+}
+
 #pragma mark - View Initializing
 
 - (void)didMoveToView: (SKView *)view {
     if (!self.contentCreated) {
+        [self setContentCreated:YES];
         [self createSceneContents];
         [self initButtonCheckPoints];
-        self.contentCreated = YES;
-        self.tapThatColor = [CATapGame withScore:0];
+        [self initTapGame];
     }
     
     if (self.autoStart)
@@ -48,15 +52,21 @@
     self.gracePeriod = kGracePeriodNone;
 }
 
-#pragma mark - Events
-
-- (void)onColorChange:(CAColor *)newColor {
-    // only call color change methods if the color actually changed
-    if (![newColor isEqualToColor:self.scoreboardNode.myColor]) {
-        [self.scoreboardNode updateColor:newColor];
-        self.gracePeriod = [CAUtilities systemTime] + kGracePeriodInSeconds;
-    }
+- (void)initTapGame {
+    __weak typeof(self) weakSelf = self;
+    
+    [[self tapGame] setOnColorChange:^{
+        CAColor *newColor = [[weakSelf tapGame] currentColor];
+        
+        // only call color change methods if the color actually changed
+        if (![newColor isEqualToColor:self.scoreboardNode.myColor]) {
+            [weakSelf.scoreboardNode updateColor:newColor];
+            [weakSelf setGracePeriod:[CAUtilities systemTime] + kGracePeriodInSeconds];
+        }
+    }];
 }
+
+#pragma mark - Events
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self handleBackgroundAnimation];
@@ -68,7 +78,7 @@
     CAButtonNode *buttonTouched = [self buttonTouched:[touches anyObject]];
     if (buttonTouched) {
         // check for correct color touch
-        if ([buttonTouched.myColor isEqualToColor:self.tapThatColor.currentColor]) {
+        if ([buttonTouched.myColor isEqualToColor:[self tapGame].currentColor]) {
             if (!buttonTouched.wasTapped) {
                 [self handleCorrectTouch];
                 [buttonTouched onCorrectTouch];
@@ -122,7 +132,7 @@
             if ([btn isKindOfClass:[CAButtonNode class]]) {
                 CAColor *color = (CAColor *)[btn myColor];
                 
-                if (![btn wasTapped] && [color isEqualToColor:self.tapThatColor.currentColor]) {
+                if (![btn wasTapped] && [color isEqualToColor:[self tapGame].currentColor]) {
                     [self handleGameOverWithReverse:YES buttonTapped:btn];
                 }
             }
@@ -158,7 +168,7 @@
 - (void)handleGameOverWithReverse:(BOOL)shouldReverse buttonTapped:(CAButtonNode *)aButton {
     [self setIsGameOver:YES];
     [self setUserInteractionEnabled:NO];
-    [self.tapThatColor updateHighscore];
+    [[self tapGame] updateHighscore];
 
     __weak typeof(self) weakSelf = self;
     
@@ -173,8 +183,8 @@
 }
 
 - (void)handleCorrectTouch {
-    [self.tapThatColor incScoreBy:1];
-    [self.scoreboardNode updateScoreLabel:self.tapThatColor.score];
+    [[self tapGame] incScoreBy:1];
+    [self.scoreboardNode updateScoreLabel:[[self tapGame] score]];
     
     // the amount of speed added after each correct touch is dependent on the screen size
     // this narrows the difficulty gap between different devices
@@ -205,10 +215,6 @@
     // scoreboard
     [self setScoreboardNode:[CAScoreboardNode withScore:0]];
     [self addChild:self.scoreboardNode];
-}
-
-- (NSInteger)score {
-    return self.tapThatColor.score;
 }
 
 #pragma mark - Navigation

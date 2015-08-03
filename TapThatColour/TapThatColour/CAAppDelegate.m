@@ -13,11 +13,11 @@
 #import "CAMainViewController.h"
 #import "CATexture.h"
 
-@interface AppDelegate ()
+@interface CAAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation CAAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -27,6 +27,7 @@
     
     [[CAGameCenterManager sharedManager] authenticateInViewController:self.window.rootViewController];
     [UIViewController prepareInterstitialAds];
+    [self setTapGame:[CATapGame withScore:0]];
     return YES;
 }
 

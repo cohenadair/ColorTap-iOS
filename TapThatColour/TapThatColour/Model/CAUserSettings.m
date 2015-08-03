@@ -51,8 +51,8 @@
     return [[NSUserDefaults standardUserDefaults] integerForKey:kKeyHighscore];
 }
 
-- (void)setDifficulty:(NSInteger)anInteger {
-    [[NSUserDefaults standardUserDefaults] setInteger:anInteger forKey:kKeyDifficulty];
+- (void)setDifficulty:(CADifficulty)aDifficulty {
+    [[NSUserDefaults standardUserDefaults] setInteger:aDifficulty forKey:kKeyDifficulty];
 }
 
 - (NSInteger)difficulty {

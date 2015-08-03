@@ -7,12 +7,15 @@
 //
 
 #import "CATapGame.h"
+#import "CAUserSettings.h"
 
 @interface CATapGame ()
 
 @end
 
 @implementation CATapGame
+
+@synthesize difficulty = _difficulty;
 
 + (id)withScore:(NSInteger)aScore {
     return [[self alloc] initWithScore:aScore];
@@ -27,6 +30,33 @@
     return self;
 }
 
+#pragma mark - Getting and Setting
+
+- (void)setDifficulty:(CADifficulty)aDifficulty {
+    _difficulty = aDifficulty;
+    [[CAUserSettings sharedSettings] setDifficulty:aDifficulty];
+}
+
+- (NSString *)difficultyAsString {
+    switch (self.difficulty) {
+        case CADifficultyMedium:
+            return @"Medium";
+        
+        case CADifficultyExpert:
+            return @"Expert";
+            
+        default:
+            NSLog(@"Invalid difficulty in difficultyAsString.");
+            break;
+    }
+}
+
+- (NSString *)scoreAsString {
+    return [NSString stringWithFormat:@"%ld", (long)self.score];
+}
+
+#pragma mark - Modifying
+
 // increments score by anInteger
 // if score is a multiple of 10 the color changes
 - (void)incScoreBy:(NSInteger)anInteger {
@@ -34,6 +64,11 @@
     
     if (self.score % 10 == 0) {
         [self setCurrentColor:[CAColor randomColor]];
+        
+        if (self.onColorChange)
+            self.onColorChange();
+        else
+            NSLog(@"Warning: 'onColorChange' for CATapGame instance is nil.");
     }
 }
 

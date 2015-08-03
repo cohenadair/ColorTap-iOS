@@ -10,7 +10,11 @@
 #define TapThatColour_CAConstants_h
 
 extern int const APP_ID;
-extern int const DIFFICULTY_REGULAR;
-extern int const DIFFICULTY_EXPERT;
+
+// indexes of the settings scene segmented control
+typedef enum {
+    CADifficultyMedium = 0,
+    CADifficultyExpert = 1
+} CADifficulty;
 
 #endif

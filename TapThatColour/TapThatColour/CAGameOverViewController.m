@@ -8,6 +8,8 @@
 
 #import "CAGameOverViewController.h"
 #import "CAGameCenterManager.h"
+#import "CATapGame.h"
+#import "CAAppDelegate.h"
 #import "CAUserSettings.h"
 #import "CAUtilities.h"
 #import "CAConstants.h"
@@ -23,11 +25,15 @@
 
 @implementation CAGameOverViewController
 
+- (CATapGame *)tapGame {
+    return [(CAAppDelegate *)[[UIApplication sharedApplication] delegate] tapGame];
+}
+
 #pragma mark - Initializing
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)self.score]];
+    [self.scoreLabel setText:[[self tapGame] scoreAsString]];
     [self initHighscoreLabel];
     [CAUtilities makeNavigationBarTransparent:self.navigationController.navigationBar];
 }
@@ -43,7 +49,7 @@
 #pragma mark - Events
 
 - (IBAction)tapShareButton:(UIButton *)aSender {
-    NSArray *items = @[[NSString stringWithFormat:@"I just scored %ld on #TapThatColour! Check it out on the App Store!", (long)self.score]];
+    NSArray *items = @[[NSString stringWithFormat:@"I just scored %ld on #TapThatColour! Check it out on the App Store!", (long)[[self tapGame] score]]];
     [CAUtilities presentShareActivityForViewController:self items:items];
 }
 

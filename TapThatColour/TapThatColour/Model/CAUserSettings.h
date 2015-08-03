@@ -9,10 +9,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CAConstants.h"
 
 @interface CAUserSettings : NSObject
 
 + (id)sharedSettings;
+
+- (void)setMuted:(BOOL)aBool;
+- (BOOL)muted;
+- (void)setKidsMode:(BOOL)aBool;
+- (BOOL)kidsMode;
+- (void)setHighscore:(NSInteger)anInteger;
+- (NSInteger)highscore;
+- (void)setDifficulty:(CADifficulty)aDifficulty;
+- (NSInteger)difficulty;
 - (void)updateHighscore:(NSInteger)anInteger;
 
 @end
