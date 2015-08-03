@@ -10,11 +10,8 @@
 		0D497AF81B5A9C7400266A9C /* CAButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D497AF71B5A9C7400266A9C /* CAButtonNode.m */; };
 		0D5924D51B55F7E400AF9E77 /* CATapGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5924D41B55F7E400AF9E77 /* CATapGame.m */; };
 		0D5924D61B55F7E400AF9E77 /* CATapGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5924D41B55F7E400AF9E77 /* CATapGame.m */; };
-		0D5A079F1B60537F00D75E6A /* CAColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A079E1B60537F00D75E6A /* CAColor.m */; };
-		0D5A07A01B60537F00D75E6A /* CAColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A079E1B60537F00D75E6A /* CAColor.m */; };
 		0D5A07A81B606B0500D75E6A /* correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5A07A71B606B0500D75E6A /* correct.wav */; };
 		0D5A07AA1B606E8300D75E6A /* incorrect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5A07A91B606E8300D75E6A /* incorrect.wav */; };
-		0D5A07AD1B60725500D75E6A /* CAGameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07AC1B60725500D75E6A /* CAGameOverViewController.m */; };
 		0D5A07C41B65BE8E00D75E6A /* CAUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07C31B65BE8E00D75E6A /* CAUserSettings.m */; };
 		0D5A07C51B65BE8E00D75E6A /* CAUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07C31B65BE8E00D75E6A /* CAUserSettings.m */; };
 		0D5A07CA1B68259B00D75E6A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5A07C91B68259B00D75E6A /* GameKit.framework */; };
@@ -27,10 +24,12 @@
 		0D5A07E31B6D330400D75E6A /* CATexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07E21B6D330400D75E6A /* CATexture.m */; };
 		0D5A07E41B6D330400D75E6A /* CATexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07E21B6D330400D75E6A /* CATexture.m */; };
 		0D5A07E81B6EBE8F00D75E6A /* CASettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07E71B6EBE8F00D75E6A /* CASettingsViewController.m */; };
-		0D5A07EC1B6EF8BE00D75E6A /* CAAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07EB1B6EF8BE00D75E6A /* CAAlertController.m */; };
+		0D5A07F31B6F0AC000D75E6A /* CAAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07EE1B6F0AC000D75E6A /* CAAlertController.m */; };
+		0D5A07F41B6F0AC000D75E6A /* CAGameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07F01B6F0AC000D75E6A /* CAGameOverViewController.m */; };
+		0D5A07F51B6F0AC000D75E6A /* CAMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07F21B6F0AC000D75E6A /* CAMainViewController.m */; };
+		0D5A07F81B6F0B0600D75E6A /* CAColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07F71B6F0B0600D75E6A /* CAColor.m */; };
 		0DC974721B4F0284008F5ADE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974711B4F0284008F5ADE /* main.m */; };
 		0DC974751B4F0284008F5ADE /* CAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974741B4F0284008F5ADE /* CAAppDelegate.m */; };
-		0DC974781B4F0284008F5ADE /* CAMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974771B4F0284008F5ADE /* CAMainViewController.m */; };
 		0DC9747B1B4F0284008F5ADE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DC974791B4F0284008F5ADE /* Main.storyboard */; };
 		0DC9747D1B4F0284008F5ADE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9747C1B4F0284008F5ADE /* Images.xcassets */; };
 		0DC974801B4F0284008F5ADE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9747E1B4F0284008F5ADE /* LaunchScreen.xib */; };
@@ -56,12 +55,8 @@
 		0D497AF71B5A9C7400266A9C /* CAButtonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAButtonNode.m; path = Nodes/CAButtonNode.m; sourceTree = "<group>"; };
 		0D5924D31B55F7E400AF9E77 /* CATapGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CATapGame.h; path = Model/CATapGame.h; sourceTree = "<group>"; };
 		0D5924D41B55F7E400AF9E77 /* CATapGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CATapGame.m; path = Model/CATapGame.m; sourceTree = "<group>"; };
-		0D5A079D1B60537F00D75E6A /* CAColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAColor.h; path = Model/CAColor.h; sourceTree = "<group>"; };
-		0D5A079E1B60537F00D75E6A /* CAColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAColor.m; path = Model/CAColor.m; sourceTree = "<group>"; };
 		0D5A07A71B606B0500D75E6A /* correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = correct.wav; path = Sounds/correct.wav; sourceTree = "<group>"; };
 		0D5A07A91B606E8300D75E6A /* incorrect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = incorrect.wav; path = Sounds/incorrect.wav; sourceTree = "<group>"; };
-		0D5A07AB1B60725500D75E6A /* CAGameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAGameOverViewController.h; sourceTree = "<group>"; };
-		0D5A07AC1B60725500D75E6A /* CAGameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAGameOverViewController.m; sourceTree = "<group>"; };
 		0D5A07C21B65BE8E00D75E6A /* CAUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAUserSettings.h; path = Model/CAUserSettings.h; sourceTree = "<group>"; };
 		0D5A07C31B65BE8E00D75E6A /* CAUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAUserSettings.m; path = Model/CAUserSettings.m; sourceTree = "<group>"; };
 		0D5A07C91B68259B00D75E6A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -78,15 +73,19 @@
 		0D5A07E21B6D330400D75E6A /* CATexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CATexture.m; path = Utilities/CATexture.m; sourceTree = "<group>"; };
 		0D5A07E61B6EBE8F00D75E6A /* CASettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CASettingsViewController.h; path = ViewControllers/CASettingsViewController.h; sourceTree = "<group>"; };
 		0D5A07E71B6EBE8F00D75E6A /* CASettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CASettingsViewController.m; path = ViewControllers/CASettingsViewController.m; sourceTree = "<group>"; };
-		0D5A07EA1B6EF8BE00D75E6A /* CAAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAAlertController.h; path = Views/CAAlertController.h; sourceTree = "<group>"; };
-		0D5A07EB1B6EF8BE00D75E6A /* CAAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAAlertController.m; path = Views/CAAlertController.m; sourceTree = "<group>"; };
+		0D5A07ED1B6F0AC000D75E6A /* CAAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAAlertController.h; path = ViewControllers/CAAlertController.h; sourceTree = "<group>"; };
+		0D5A07EE1B6F0AC000D75E6A /* CAAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAAlertController.m; path = ViewControllers/CAAlertController.m; sourceTree = "<group>"; };
+		0D5A07EF1B6F0AC000D75E6A /* CAGameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAGameOverViewController.h; path = ViewControllers/CAGameOverViewController.h; sourceTree = "<group>"; };
+		0D5A07F01B6F0AC000D75E6A /* CAGameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAGameOverViewController.m; path = ViewControllers/CAGameOverViewController.m; sourceTree = "<group>"; };
+		0D5A07F11B6F0AC000D75E6A /* CAMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAMainViewController.h; path = ViewControllers/CAMainViewController.h; sourceTree = "<group>"; };
+		0D5A07F21B6F0AC000D75E6A /* CAMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAMainViewController.m; path = ViewControllers/CAMainViewController.m; sourceTree = "<group>"; };
+		0D5A07F61B6F0B0600D75E6A /* CAColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAColor.h; path = Utilities/CAColor.h; sourceTree = "<group>"; };
+		0D5A07F71B6F0B0600D75E6A /* CAColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAColor.m; path = Utilities/CAColor.m; sourceTree = "<group>"; };
 		0DC9746C1B4F0284008F5ADE /* TapThatColour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapThatColour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC974701B4F0284008F5ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DC974711B4F0284008F5ADE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0DC974731B4F0284008F5ADE /* CAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAAppDelegate.h; sourceTree = "<group>"; };
 		0DC974741B4F0284008F5ADE /* CAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAAppDelegate.m; sourceTree = "<group>"; };
-		0DC974761B4F0284008F5ADE /* CAMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAMainViewController.h; sourceTree = "<group>"; };
-		0DC974771B4F0284008F5ADE /* CAMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAMainViewController.m; sourceTree = "<group>"; };
 		0DC9747A1B4F0284008F5ADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0DC9747C1B4F0284008F5ADE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0DC9747F1B4F0284008F5ADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -128,8 +127,6 @@
 			children = (
 				0D5924D31B55F7E400AF9E77 /* CATapGame.h */,
 				0D5924D41B55F7E400AF9E77 /* CATapGame.m */,
-				0D5A079D1B60537F00D75E6A /* CAColor.h */,
-				0D5A079E1B60537F00D75E6A /* CAColor.m */,
 				0D5A07C21B65BE8E00D75E6A /* CAUserSettings.h */,
 				0D5A07C31B65BE8E00D75E6A /* CAUserSettings.m */,
 			);
@@ -148,19 +145,16 @@
 		0D5A07E51B6EBE6100D75E6A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0D5A07ED1B6F0AC000D75E6A /* CAAlertController.h */,
+				0D5A07EE1B6F0AC000D75E6A /* CAAlertController.m */,
+				0D5A07EF1B6F0AC000D75E6A /* CAGameOverViewController.h */,
+				0D5A07F01B6F0AC000D75E6A /* CAGameOverViewController.m */,
+				0D5A07F11B6F0AC000D75E6A /* CAMainViewController.h */,
+				0D5A07F21B6F0AC000D75E6A /* CAMainViewController.m */,
 				0D5A07E61B6EBE8F00D75E6A /* CASettingsViewController.h */,
 				0D5A07E71B6EBE8F00D75E6A /* CASettingsViewController.m */,
 			);
 			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		0D5A07E91B6EF86700D75E6A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				0D5A07EA1B6EF8BE00D75E6A /* CAAlertController.h */,
-				0D5A07EB1B6EF8BE00D75E6A /* CAAlertController.m */,
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		0DC974631B4F0284008F5ADE = {
@@ -187,7 +181,6 @@
 		0DC9746E1B4F0284008F5ADE /* TapThatColour */ = {
 			isa = PBXGroup;
 			children = (
-				0D5A07E91B6EF86700D75E6A /* Views */,
 				0D5A07E51B6EBE6100D75E6A /* ViewControllers */,
 				0D5A07A21B6064CB00D75E6A /* Sounds */,
 				0D5924D21B55F7A000AF9E77 /* Model */,
@@ -196,10 +189,6 @@
 				0DC974971B4F0330008F5ADE /* Scenes */,
 				0DC974731B4F0284008F5ADE /* CAAppDelegate.h */,
 				0DC974741B4F0284008F5ADE /* CAAppDelegate.m */,
-				0DC974761B4F0284008F5ADE /* CAMainViewController.h */,
-				0DC974771B4F0284008F5ADE /* CAMainViewController.m */,
-				0D5A07AB1B60725500D75E6A /* CAGameOverViewController.h */,
-				0D5A07AC1B60725500D75E6A /* CAGameOverViewController.m */,
 				0DC974791B4F0284008F5ADE /* Main.storyboard */,
 				0DC9747E1B4F0284008F5ADE /* LaunchScreen.xib */,
 				0DC9747C1B4F0284008F5ADE /* Images.xcassets */,
@@ -246,6 +235,8 @@
 		0DC9749B1B4F0445008F5ADE /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				0D5A07F61B6F0B0600D75E6A /* CAColor.h */,
+				0D5A07F71B6F0B0600D75E6A /* CAColor.m */,
 				0DC9749C1B4F045D008F5ADE /* CAUtilities.h */,
 				0DC9749D1B4F045D008F5ADE /* CAUtilities.m */,
 				0D5A07CB1B683F7A00D75E6A /* CAGameCenterManager.h */,
@@ -381,23 +372,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D5A07AD1B60725500D75E6A /* CAGameOverViewController.m in Sources */,
 				0D5A07D51B69B34300D75E6A /* CAConstants.m in Sources */,
-				0DC974781B4F0284008F5ADE /* CAMainViewController.m in Sources */,
 				0D5A07CD1B683F7A00D75E6A /* CAGameCenterManager.m in Sources */,
 				0DC974751B4F0284008F5ADE /* CAAppDelegate.m in Sources */,
+				0D5A07F81B6F0B0600D75E6A /* CAColor.m in Sources */,
 				0DC9749A1B4F0370008F5ADE /* CAGameScene.m in Sources */,
-				0D5A079F1B60537F00D75E6A /* CAColor.m in Sources */,
 				0DC974A21B4F18CC008F5ADE /* CABackgroundNode.m in Sources */,
-				0D5A07EC1B6EF8BE00D75E6A /* CAAlertController.m in Sources */,
 				0D5924D51B55F7E400AF9E77 /* CATapGame.m in Sources */,
 				0D5A07E81B6EBE8F00D75E6A /* CASettingsViewController.m in Sources */,
 				0DC9749E1B4F045D008F5ADE /* CAUtilities.m in Sources */,
 				0DC974721B4F0284008F5ADE /* main.m in Sources */,
+				0D5A07F41B6F0AC000D75E6A /* CAGameOverViewController.m in Sources */,
+				0D5A07F51B6F0AC000D75E6A /* CAMainViewController.m in Sources */,
 				0D5A07E31B6D330400D75E6A /* CATexture.m in Sources */,
 				0D497AF81B5A9C7400266A9C /* CAButtonNode.m in Sources */,
 				0D5A07D81B6BB43A00D75E6A /* CAAudio.m in Sources */,
 				0D5A07C41B65BE8E00D75E6A /* CAUserSettings.m in Sources */,
+				0D5A07F31B6F0AC000D75E6A /* CAAlertController.m in Sources */,
 				0D5A07D21B6872E200D75E6A /* CAScoreboardNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,7 +397,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D5A07A01B60537F00D75E6A /* CAColor.m in Sources */,
 				0D5A07E41B6D330400D75E6A /* CATexture.m in Sources */,
 				0DC9748C1B4F0284008F5ADE /* ColorTapTests.m in Sources */,
 				0D5A07D91B6BB43A00D75E6A /* CAAudio.m in Sources */,

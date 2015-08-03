@@ -77,10 +77,8 @@
 }
 
 - (void)incAnimationSpeedBy:(CGFloat)aFloat {
-    if (![[CAUserSettings sharedSettings] kidsMode] && self.speed + aFloat < kMaxSpeed) {
-        NSLog(@"Increasing speed by: %f", aFloat);
+    if (![[CAUserSettings sharedSettings] kidsMode] && self.speed + aFloat < kMaxSpeed)
         self.speed += aFloat;
-    }
 }
 
 // called in the scene's update method
