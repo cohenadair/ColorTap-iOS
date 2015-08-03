@@ -51,11 +51,11 @@
     return [[NSUserDefaults standardUserDefaults] integerForKey:kKeyHighscore];
 }
 
-- (void)setGameDifficulty:(CADifficulty)aGameDifficulty {
-    [[NSUserDefaults standardUserDefaults] setInteger:aGameDifficulty forKey:kKeyDifficulty];
+- (void)setDifficultyIndex:(CADifficultyIndex)aDifficultyIndex {
+    [[NSUserDefaults standardUserDefaults] setInteger:aDifficultyIndex forKey:kKeyDifficulty];
 }
 
-- (NSInteger)gameDifficulty {
+- (NSInteger)difficultyIndex {
     return [[NSUserDefaults standardUserDefaults] integerForKey:kKeyDifficulty];
 }
 

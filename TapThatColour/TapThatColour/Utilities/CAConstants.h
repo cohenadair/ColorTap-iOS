@@ -13,8 +13,8 @@ extern int const APP_ID;
 
 // indexes of the settings scene segmented control
 typedef enum {
-    CADifficultyMedium = 0,
-    CADifficultyExpert = 1
-} CADifficulty;
+    CADifficultyIndexMedium = 0,
+    CADifficultyIndexExpert = 1
+} CADifficultyIndex;
 
 #endif

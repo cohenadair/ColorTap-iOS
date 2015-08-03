@@ -26,38 +26,39 @@
     if (self = [super init]) {
         [self setScore:aScore];
         [self setCurrentColor:[CAColor randomColor]];
+        [self initAllDifficulties];
     }
     
     return self;
 }
 
-#pragma mark - Getting and Setting
-
-- (CADifficulty)difficulty {
-    return (CADifficulty)[[CAUserSettings sharedSettings] gameDifficulty];
+- (void)initAllDifficulties {
+    [self setAllDifficulties:[NSMutableArray array]];
+    [self.allDifficulties addObject:[CAGameDifficulty withName:@"Regular" leaderboardId:@"tapthatcolour.highscore_regular" controlIndex:CADifficultyIndexMedium]];
+    [self.allDifficulties addObject:[CAGameDifficulty withName:@"Expert" leaderboardId:@"tapthatcolour.highscore_expert" controlIndex:CADifficultyIndexExpert]];
 }
 
-- (void)setDifficulty:(CADifficulty)aDifficulty {
-    _difficulty = aDifficulty;
-    [[CAUserSettings sharedSettings] setGameDifficulty:aDifficulty];
+#pragma mark - Getting and Setting
+
+- (CAGameDifficulty *)difficulty {
+    return [self difficultyAtIndex:[[CAUserSettings sharedSettings] difficultyIndex]];
+}
+
+- (void)setDifficultyForIndex:(CADifficultyIndex)aDifficultyIndex {
+    [self setDifficulty:[self difficultyAtIndex:aDifficultyIndex]];
+    [[CAUserSettings sharedSettings] setDifficultyIndex:aDifficultyIndex];
     [[CATexture sharedTexture] resetWithRadius:[CAUtilities buttonRadius]];
+}
+
+- (CAGameDifficulty *)difficultyAtIndex:(NSInteger)anIndex {
+    return (CAGameDifficulty *)[self.allDifficulties objectAtIndex:anIndex];
 }
 
 - (NSString *)difficultyAsString {
     if ([[CAUserSettings sharedSettings] kidsMode])
         return @"Difficulty: Kids Mode";
     
-    switch (self.difficulty) {
-        case CADifficultyMedium:
-            return @"Difficulty: Regular";
-        
-        case CADifficultyExpert:
-            return @"Difficulty: Expert";
-            
-        default:
-            NSLog(@"Invalid difficulty in difficultyAsString.");
-            break;
-    }
+    return [@"Difficulty: " stringByAppendingString:self.difficulty.name];
 }
 
 - (NSString *)scoreAsString {

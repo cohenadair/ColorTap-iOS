@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.difficultyControl setSelectedSegmentIndex:[self tapGame].difficulty];
+    [self.difficultyControl setSelectedSegmentIndex:[self tapGame].difficulty.controlIndex];
     [self.difficultyControl setEnabled:![[CAUserSettings sharedSettings] kidsMode]];
     [self.kidsModeSwitch setOn:[[CAUserSettings sharedSettings] kidsMode]];
     [self.soundSwitch setOn:![[CAUserSettings sharedSettings] muted]];
@@ -54,7 +54,7 @@
 #pragma mark - Events
 
 - (IBAction)changeDifficulty:(UISegmentedControl *)aSender {
-    [[self tapGame] setDifficulty:(CADifficulty)aSender.selectedSegmentIndex];
+    [[self tapGame] setDifficultyForIndex:(CADifficultyIndex)aSender.selectedSegmentIndex];
 }
 
 - (IBAction)changeKidsMode:(UISwitch *)aSender {

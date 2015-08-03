@@ -88,7 +88,8 @@
     if ([[CAUserSettings sharedSettings] kidsMode])
         buttonsPerRow -= 2;
     else
-        buttonsPerRow += [[CAUserSettings sharedSettings] gameDifficulty];
+        // an extra 1 dot per row per level of difficulty
+        buttonsPerRow += [[CAUserSettings sharedSettings] difficultyIndex];
     
     // "-1" to add some spacing between buttons
     return ([CAUtilities screenSize].width / (buttonsPerRow * 2)) - 1;

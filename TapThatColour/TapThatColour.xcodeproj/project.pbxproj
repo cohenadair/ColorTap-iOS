@@ -28,6 +28,8 @@
 		0D5A07F41B6F0AC000D75E6A /* CAGameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07F01B6F0AC000D75E6A /* CAGameOverViewController.m */; };
 		0D5A07F51B6F0AC000D75E6A /* CAMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07F21B6F0AC000D75E6A /* CAMainViewController.m */; };
 		0D5A07F81B6F0B0600D75E6A /* CAColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07F71B6F0B0600D75E6A /* CAColor.m */; };
+		0D888EA31B6FB03500322191 /* CAGameDifficulty.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D888EA21B6FB03500322191 /* CAGameDifficulty.m */; };
+		0D888EA41B6FB03500322191 /* CAGameDifficulty.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D888EA21B6FB03500322191 /* CAGameDifficulty.m */; };
 		0DC974721B4F0284008F5ADE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974711B4F0284008F5ADE /* main.m */; };
 		0DC974751B4F0284008F5ADE /* CAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC974741B4F0284008F5ADE /* CAAppDelegate.m */; };
 		0DC9747B1B4F0284008F5ADE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DC974791B4F0284008F5ADE /* Main.storyboard */; };
@@ -81,6 +83,8 @@
 		0D5A07F21B6F0AC000D75E6A /* CAMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAMainViewController.m; path = ViewControllers/CAMainViewController.m; sourceTree = "<group>"; };
 		0D5A07F61B6F0B0600D75E6A /* CAColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAColor.h; path = Utilities/CAColor.h; sourceTree = "<group>"; };
 		0D5A07F71B6F0B0600D75E6A /* CAColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAColor.m; path = Utilities/CAColor.m; sourceTree = "<group>"; };
+		0D888EA11B6FB03500322191 /* CAGameDifficulty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAGameDifficulty.h; path = Model/CAGameDifficulty.h; sourceTree = "<group>"; };
+		0D888EA21B6FB03500322191 /* CAGameDifficulty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAGameDifficulty.m; path = Model/CAGameDifficulty.m; sourceTree = "<group>"; };
 		0DC9746C1B4F0284008F5ADE /* TapThatColour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapThatColour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC974701B4F0284008F5ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DC974711B4F0284008F5ADE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 				0D5924D41B55F7E400AF9E77 /* CATapGame.m */,
 				0D5A07C21B65BE8E00D75E6A /* CAUserSettings.h */,
 				0D5A07C31B65BE8E00D75E6A /* CAUserSettings.m */,
+				0D888EA11B6FB03500322191 /* CAGameDifficulty.h */,
+				0D888EA21B6FB03500322191 /* CAGameDifficulty.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				0DC9749A1B4F0370008F5ADE /* CAGameScene.m in Sources */,
 				0DC974A21B4F18CC008F5ADE /* CABackgroundNode.m in Sources */,
 				0D5924D51B55F7E400AF9E77 /* CATapGame.m in Sources */,
+				0D888EA31B6FB03500322191 /* CAGameDifficulty.m in Sources */,
 				0D5A07E81B6EBE8F00D75E6A /* CASettingsViewController.m in Sources */,
 				0DC9749E1B4F045D008F5ADE /* CAUtilities.m in Sources */,
 				0DC974721B4F0284008F5ADE /* main.m in Sources */,
@@ -401,6 +408,7 @@
 				0DC9748C1B4F0284008F5ADE /* ColorTapTests.m in Sources */,
 				0D5A07D91B6BB43A00D75E6A /* CAAudio.m in Sources */,
 				0D5924D61B55F7E400AF9E77 /* CATapGame.m in Sources */,
+				0D888EA41B6FB03500322191 /* CAGameDifficulty.m in Sources */,
 				0D5A07C51B65BE8E00D75E6A /* CAUserSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

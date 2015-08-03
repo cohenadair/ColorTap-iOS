@@ -7,6 +7,8 @@
 //
 
 #import "CAGameCenterManager.h"
+#import "CATapGame.h"
+#import "CAAppDelegate.h"
 
 @interface CAGameCenterManager ()
 
@@ -16,6 +18,10 @@
 @end
 
 @implementation CAGameCenterManager
+
+- (CATapGame *)tapGame {
+    return [(CAAppDelegate *)[[UIApplication sharedApplication] delegate] tapGame];
+}
 
 + (id)sharedManager {
     static CAGameCenterManager *sharedManager = nil;
@@ -39,23 +45,9 @@
             
             if (authController != nil)
                 [aViewController presentViewController:authController animated:YES completion:nil];
-            else {
-                if ([GKLocalPlayer localPlayer].authenticated) {
-                    [weakSelf setIsEnabled:YES];
-                    [weakSelf loadLeaderboard];
-                } else
-                    [weakSelf setIsEnabled:NO];
-            }
+            else
+                weakSelf.isEnabled = [GKLocalPlayer localPlayer].authenticated;
         };
-}
-
-- (void)loadLeaderboard {
-    [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardId, NSError *error) {
-        if (error != nil)
-            NSLog(@"Error loading leaderboard: %@", [error localizedDescription]);
-        else
-            self.leaderboardId = leaderboardId;
-    }];
 }
 
 - (void)presentLeaderboardsInViewController:(UIViewController<GKGameCenterControllerDelegate> *)aViewController {
@@ -63,7 +55,6 @@
     
     gcViewController.gameCenterDelegate = aViewController;
     gcViewController.viewState = GKGameCenterViewControllerStateLeaderboards;
-    gcViewController.leaderboardIdentifier = self.leaderboardId;
     
     [aViewController presentViewController:gcViewController animated:YES completion:nil];
 }
@@ -72,7 +63,7 @@
     if (!self.isEnabled)
         return;
     
-    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:self.leaderboardId];
+    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:[self tapGame].difficulty.leaderboardId];
     score.value = aScore;
     
     [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
