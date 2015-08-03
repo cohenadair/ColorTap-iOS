@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.h
+//  CASettingsViewController.h
 //  TapThatColour
 //
 //  Created by Cohen Adair on 2015-08-02.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UITableViewController
+@interface CASettingsViewController : UITableViewController
 
 @end

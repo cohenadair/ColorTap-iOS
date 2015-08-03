@@ -40,10 +40,10 @@
 - (NSString *)difficultyAsString {
     switch (self.difficulty) {
         case CADifficultyMedium:
-            return @"Medium";
+            return @"Difficulty: Regular";
         
         case CADifficultyExpert:
-            return @"Expert";
+            return @"Difficulty: Expert";
             
         default:
             NSLog(@"Invalid difficulty in difficultyAsString.");

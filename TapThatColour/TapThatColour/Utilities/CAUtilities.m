@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "CAUtilities.h"
+#import "CAAlertController.h"
 
 @interface CAUtilities ()
 
@@ -79,6 +80,19 @@
 + (CGFloat)buttonRadius {
     NSInteger buttonsPerRow = [CAUtilities iPad] ? 5 : 4;
     return ([CAUtilities screenSize].width / (buttonsPerRow * 2)) - 1; // "-1" to add some spacing between buttons
+}
+
++ (void)showAlertWithMessage:(NSString *)aString view:(UIViewController *)aViewController {
+    UIAlertController *alert =
+        [UIAlertController alertControllerWithTitle:nil message:aString preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction =
+        [UIAlertAction actionWithTitle:@"Ok"
+                                 style:UIAlertActionStyleDefault
+                               handler:nil];
+    
+    [alert addAction:okAction];
+    [aViewController presentViewController:alert animated:YES completion:nil];
 }
 
 @end

@@ -33,10 +33,6 @@
 
 @implementation CAMainViewController
 
-- (CAUserSettings *)userSettings {
-    return [CAUserSettings sharedSettings];
-}
-
 #pragma mark - View
 
 - (void)viewDidLoad {
@@ -46,13 +42,14 @@
     
     [self initSpriteView];
     [self initToolbar];
-    
-    [self toggleSoundButton];
-    [self togglePlayPauseButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self toggleSoundButton];
+    [self togglePlayPauseButton];
+    
     [self showGameView];
 }
 
@@ -106,7 +103,7 @@
 }
 
 - (void)toggleSoundButton {
-    if ([self userSettings].muted)
+    if ([[CAUserSettings sharedSettings] muted])
         [self.soundButton setImage:[UIImage imageNamed:@"mute"]];
     else
         [self.soundButton setImage:[UIImage imageNamed:@"sound"]];
@@ -120,8 +117,7 @@
 }
 
 - (void)tapSoundButton {
-    CAUserSettings *userSettings = [self userSettings];
-    userSettings.muted = !userSettings.muted;
+    [[CAUserSettings sharedSettings] setMuted:![[CAUserSettings sharedSettings] muted]];
     [self toggleSoundButton];
 }
 

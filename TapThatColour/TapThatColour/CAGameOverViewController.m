@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *highscoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *difficultyLabel;
 
 @property (nonatomic) BOOL muted;
 
@@ -34,8 +35,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.scoreLabel setText:[[self tapGame] scoreAsString]];
-    [self initHighscoreLabel];
+    
     [CAUtilities makeNavigationBarTransparent:self.navigationController.navigationBar];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self initHighscoreLabel];
+    [self initDifficultyLabel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,6 +52,10 @@
 
 - (void)initHighscoreLabel {
     [self.highscoreLabel setText:[NSString stringWithFormat:@"Highscore: %ld", (long)[[CAUserSettings sharedSettings] highscore]]];
+}
+
+- (void)initDifficultyLabel {
+    [self.difficultyLabel setText:[[self tapGame] difficultyAsString]];
 }
 
 #pragma mark - Events

@@ -102,16 +102,16 @@
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Highscore: 100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZb-dq-ElQ">
-                                        <rect key="frame" x="60" y="204" width="200" height="40"/>
+                                        <rect key="frame" x="60" y="204" width="200" height="25"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.98058252427184467" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="60" y="224" width="200" height="40"/>
+                                            <rect key="frame" x="60" y="224" width="200" height="25"/>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                            <rect key="frame" x="100" y="276" width="300" height="40"/>
+                                            <rect key="frame" x="100" y="271" width="300" height="40"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="141" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5U-Sp-1SX">
@@ -128,75 +128,88 @@
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSG-Gd-ii2">
-                                        <rect key="frame" x="50" y="348" width="220" height="40"/>
+                                        <rect key="frame" x="50" y="352" width="220" height="35"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title="Rate" image="rate"/>
                                         <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="50" y="358" width="220" height="35"/>
+                                            <rect key="frame" x="50" y="368" width="220" height="35"/>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <rect key="frame" x="140" y="454" width="220" height="50"/>
+                                            <rect key="frame" x="140" y="469" width="220" height="50"/>
                                         </variation>
                                         <connections>
                                             <action selector="tapRateButton:" destination="4ay-jh-Q1K" eventType="touchUpInside" id="hSn-6l-qNZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Nv-SW-FBU">
-                                        <rect key="frame" x="50" y="395" width="220" height="40"/>
+                                        <rect key="frame" x="50" y="395" width="220" height="35"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title="Leaderboards" image="leaderboard"/>
                                         <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="50" y="401" width="220" height="35"/>
+                                            <rect key="frame" x="50" y="411" width="220" height="35"/>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <rect key="frame" x="140" y="512" width="220" height="50"/>
+                                            <rect key="frame" x="140" y="527" width="220" height="50"/>
                                         </variation>
                                         <connections>
                                             <action selector="tapLeaderboardsButton:" destination="4ay-jh-Q1K" eventType="touchUpInside" id="Ypw-rW-DQj"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sP-ge-f38">
-                                        <rect key="frame" x="50" y="252" width="220" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                        <state key="normal" title="Play Again" image="replay"/>
-                                        <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="50" y="272" width="220" height="35"/>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <rect key="frame" x="140" y="338" width="220" height="50"/>
-                                        </variation>
-                                        <connections>
-                                            <segue destination="eg4-Ff-s2v" kind="unwind" unwindAction="unwindToMain:" id="Q0m-ap-B96"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldd-t0-fTi">
-                                        <rect key="frame" x="50" y="300" width="220" height="40"/>
+                                        <rect key="frame" x="50" y="309" width="220" height="35"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title="Share" image="share"/>
                                         <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="50" y="315" width="220" height="35"/>
+                                            <rect key="frame" x="50" y="325" width="220" height="35"/>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <rect key="frame" x="140" y="396" width="220" height="50"/>
+                                            <rect key="frame" x="140" y="411" width="220" height="50"/>
                                         </variation>
                                         <connections>
                                             <action selector="tapShareButton:" destination="4ay-jh-Q1K" eventType="touchUpInside" id="UEV-hf-4l7"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Difficulty: Regular" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8JI-3K-Vss">
+                                        <rect key="frame" x="85" y="237" width="150" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="85" y="255" width="150" height="21"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <rect key="frame" x="163" y="321" width="175" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sP-ge-f38">
+                                        <rect key="frame" x="50" y="266" width="220" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="Play Again" image="replay"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="50" y="282" width="220" height="35"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <rect key="frame" x="140" y="353" width="220" height="50"/>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="eg4-Ff-s2v" kind="unwind" unwindAction="unwindToMain:" id="Q0m-ap-B96"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -234,11 +247,6 @@
                                 <exclude reference="bad-vN-cxX"/>
                             </mask>
                         </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="y7P-Sd-Mpy"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="ZLx-CT-YC9">
                         <barButtonItem key="rightBarButtonItem" image="settings" id="J06-8l-4nR">
@@ -249,6 +257,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="difficultyLabel" destination="8JI-3K-Vss" id="2N3-bi-SLZ"/>
                         <outlet property="highscoreLabel" destination="VZb-dq-ElQ" id="0iL-ra-FzT"/>
                         <outlet property="scoreLabel" destination="k5U-Sp-1SX" id="bCR-Z9-EGI"/>
                     </connections>
@@ -261,7 +270,7 @@
         <!--Settings-->
         <scene sceneID="Ty2-jS-ZqA">
             <objects>
-                <tableViewController id="kQe-ax-rK2" sceneMemberID="viewController">
+                <tableViewController id="kQe-ax-rK2" customClass="CASettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hJu-Ue-5F4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -288,6 +297,9 @@
                                                             <exclude reference="v0z-ae-k6n"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="changeDifficulty:" destination="kQe-ax-rK2" eventType="valueChanged" id="Ngg-NN-Ump"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -304,6 +316,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7EM-tR-ru7">
                                                     <rect key="frame" x="543" y="7" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="changeKidsMode:" destination="kQe-ax-rK2" eventType="valueChanged" id="gIh-jc-Dsz"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kids Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQv-gX-vnv">
                                                     <rect key="frame" x="8" y="12" width="83" height="21"/>
@@ -337,6 +352,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="STC-OS-uwk">
                                                     <rect key="frame" x="543" y="7" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="changeSound:" destination="kQe-ax-rK2" eventType="valueChanged" id="PoF-iD-ifj"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -374,6 +392,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="H3Q-UY-qfv"/>
+                    <connections>
+                        <outlet property="difficultyControl" destination="cVv-sd-TD7" id="lT9-2h-e9i"/>
+                        <outlet property="kidsModeSwitch" destination="7EM-tR-ru7" id="8O6-7u-kus"/>
+                        <outlet property="soundSwitch" destination="STC-OS-uwk" id="2rl-HX-yJw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="228-vc-fim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
