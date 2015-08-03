@@ -60,6 +60,10 @@
     // narrows the difficulty gap for different devices
     CGFloat velocity = distance / duration;
     self.speed += velocity * 0.0001;
+    
+    // increase starting speed for landscape
+    if ([CAUtilities orientationIsLandscape])
+        self.speed += 0.35;
 }
 
 - (void)stopAnimatingWithReverse:(BOOL)shouldReverse completion:(void (^)())aCompletionBlock {
@@ -77,8 +81,13 @@
 }
 
 - (void)incAnimationSpeedBy:(CGFloat)aFloat {
-    if (![[CAUserSettings sharedSettings] kidsMode] && self.speed + aFloat < kMaxSpeed)
+    if (![[CAUserSettings sharedSettings] kidsMode] && self.speed + aFloat < kMaxSpeed) {
         self.speed += aFloat;
+        
+        // increase speed faster or landscape games
+        if ([CAUtilities orientationIsLandscape])
+            self.speed += 0.025;
+    }
 }
 
 // called in the scene's update method
