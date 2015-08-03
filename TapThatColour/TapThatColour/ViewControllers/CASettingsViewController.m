@@ -11,6 +11,7 @@
 #import "CAAppDelegate.h"
 #import "CATapGame.h"
 #import "CAUserSettings.h"
+#import "CATexture.h"
 
 @interface CASettingsViewController ()
 
@@ -58,6 +59,7 @@
 
 - (IBAction)changeKidsMode:(UISwitch *)aSender {
     [[CAUserSettings sharedSettings] setKidsMode:aSender.on];
+    [[CATexture sharedTexture] resetWithRadius:[CAUtilities buttonRadiusForTapGame:[self tapGame]]];
     [self.difficultyControl setEnabled:!aSender.on];
 }
 

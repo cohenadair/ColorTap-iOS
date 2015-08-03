@@ -79,10 +79,12 @@
 }
 
 + (CGFloat)buttonRadiusForTapGame:(id)aTapGame {
-    NSInteger buttonsPerRow = ([CAUtilities iPad] ? 5 : 4) + [aTapGame difficulty];
+    NSInteger buttonsPerRow = ([CAUtilities iPad] ? 5 : 4);
     
     if ([[CAUserSettings sharedSettings] kidsMode])
-        buttonsPerRow--;
+        buttonsPerRow -= 2;
+    else
+        buttonsPerRow += [aTapGame difficulty];
     
     // "-1" to add some spacing between buttons
     return ([CAUtilities screenSize].width / (buttonsPerRow * 2)) - 1;
