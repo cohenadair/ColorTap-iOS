@@ -11,6 +11,7 @@
 #import "CAMainViewController.h"
 #import "CAGameOverViewController.h"
 #import "CAGameScene.h"
+#import "CAGameCenterManager.h"
 #import "CAUserSettings.h"
 #import "CATexture.h"
 
@@ -40,6 +41,7 @@
     
     [CAUtilities hideStatusBar];
     
+    [self initGameCenter];
     [self initSpriteView];
     [self initToolbar];
 }
@@ -56,6 +58,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)initGameCenter {
+    __weak typeof(self) weakSelf = self;
+    
+    [[CAGameCenterManager sharedManager] authenticateInViewController:self willPresentBlock:^{
+        [weakSelf pauseGame];
+    }];
 }
 
 #pragma mark - Sprite View
@@ -81,6 +91,12 @@
     }];
 
     [self.spriteView presentScene:self.gameScene];
+}
+
+- (void)pauseGame {
+    self.spriteView.paused = YES;
+    self.spriteView.userInteractionEnabled = NO;
+    [self togglePlayPauseButton];
 }
 
 #pragma mark - Toolbar
@@ -166,9 +182,7 @@
             weakSelf.gameScene.animationBegan && // no need to pause if the game hasn't started
             !weakSelf.gameScene.isGameOver) // no need to pause if the game is over
         {
-            self.spriteView.paused = YES;
-            self.spriteView.userInteractionEnabled = NO;
-            [self togglePlayPauseButton];
+            [self pauseGame];
         }
     }];
 }

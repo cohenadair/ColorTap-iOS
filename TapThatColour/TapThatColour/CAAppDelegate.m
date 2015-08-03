@@ -9,7 +9,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <iAd/iAd.h>
 #import "CAAppDelegate.h"
-#import "CAGameCenterManager.h"
 #import "CAMainViewController.h"
 #import "CATexture.h"
 
@@ -25,7 +24,6 @@
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
     
-    [[CAGameCenterManager sharedManager] authenticateInViewController:self.window.rootViewController];
     [UIViewController prepareInterstitialAds];
     [self setTapGame:[CATapGame withScore:0]];
     return YES;

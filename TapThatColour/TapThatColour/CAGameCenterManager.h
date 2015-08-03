@@ -15,7 +15,7 @@
 
 + (id)sharedManager;
 
-- (void)authenticateInViewController:(UIViewController *)aViewController;
+- (void)authenticateInViewController:(UIViewController *)aViewController willPresentBlock:(void (^)())aBlock;
 - (void)presentLeaderboardsInViewController:(UIViewController<GKGameCenterControllerDelegate> *)aViewController;
 - (void)reportScore:(NSInteger)aScore;
 

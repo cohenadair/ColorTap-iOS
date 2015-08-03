@@ -34,7 +34,7 @@
     return sharedManager;
 }
 
-- (void)authenticateInViewController:(UIViewController *)aViewController {
+- (void)authenticateInViewController:(UIViewController *)aViewController willPresentBlock:(void (^)())aBlock {
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
     __weak typeof(self) weakSelf = self;
     
@@ -43,9 +43,12 @@
             if (error != nil)
                 NSLog(@"Error authenticating player: %@", [error localizedDescription]);
             
-            if (authController != nil)
+            if (authController != nil) {
+                if (aBlock)
+                    aBlock();
+                
                 [aViewController presentViewController:authController animated:YES completion:nil];
-            else
+            } else
                 weakSelf.isEnabled = [GKLocalPlayer localPlayer].authenticated;
         };
 }
