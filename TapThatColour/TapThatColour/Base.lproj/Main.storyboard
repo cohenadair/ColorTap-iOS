@@ -260,6 +260,7 @@
                         <outlet property="difficultyLabel" destination="8JI-3K-Vss" id="2N3-bi-SLZ"/>
                         <outlet property="highscoreLabel" destination="VZb-dq-ElQ" id="0iL-ra-FzT"/>
                         <outlet property="scoreLabel" destination="k5U-Sp-1SX" id="bCR-Z9-EGI"/>
+                        <outlet property="shareButton" destination="ldd-t0-fTi" id="WMm-vG-pcX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGZ-6Z-b12" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -395,6 +396,7 @@
                     <connections>
                         <outlet property="difficultyControl" destination="cVv-sd-TD7" id="lT9-2h-e9i"/>
                         <outlet property="kidsModeSwitch" destination="7EM-tR-ru7" id="8O6-7u-kus"/>
+                        <outlet property="resetHighscoreLabel" destination="5Iu-Tq-AHq" id="6nE-xs-hY7"/>
                         <outlet property="soundSwitch" destination="STC-OS-uwk" id="2rl-HX-yJw"/>
                     </connections>
                 </tableViewController>

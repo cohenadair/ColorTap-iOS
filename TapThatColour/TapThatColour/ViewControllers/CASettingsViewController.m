@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *difficultyControl;
 @property (weak, nonatomic) IBOutlet UISwitch *kidsModeSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *soundSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *resetHighscoreLabel;
 
 @end
 
@@ -79,8 +80,11 @@
                                        [tappedCell setSelected:NO];
                                        [CAUtilities showAlertWithMessage:@"Highscore reset." view:weakSelf];
                                    }
-                                   cancelBlock:nil
-                                preferredStyle:UIAlertControllerStyleActionSheet];
+                                   cancelBlock:^ {
+                                       [tappedCell setSelected:NO];
+                                   }
+                                preferredStyle:UIAlertControllerStyleActionSheet
+                                iPadSourceView:self.resetHighscoreLabel];
     
     [self presentViewController:alert animated:YES completion:nil];
 }

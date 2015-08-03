@@ -23,6 +23,7 @@
                    actionButtonTitle:(NSString *)aButtonTitle
                          actionBlock:(void (^)())anActionBlock
                          cancelBlock:(void (^)())aCancelBlock
-                      preferredStyle:(UIAlertControllerStyle)aStyle;
+                      preferredStyle:(UIAlertControllerStyle)aStyle
+                      iPadSourceView:(UIView *)aSourceView;
 
 @end

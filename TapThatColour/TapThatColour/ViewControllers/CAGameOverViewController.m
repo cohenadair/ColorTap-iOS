@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *highscoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *difficultyLabel;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
 
 @property (nonatomic) BOOL muted;
 
@@ -61,8 +62,7 @@
 #pragma mark - Events
 
 - (IBAction)tapShareButton:(UIButton *)aSender {
-    NSArray *items = @[[NSString stringWithFormat:@"I just scored %ld on #TapThatColour! Check it out on the App Store!", (long)[[self tapGame] score]]];
-    [CAUtilities presentShareActivityForViewController:self items:items];
+    [self presentShareActivity];
 }
 
 - (IBAction)tapRateButton:(UIButton *)aSender {
@@ -82,6 +82,29 @@
 
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
     [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Sharing
+
+// presents the share activity above the share button, in the middle
+- (void)presentShareActivity {
+    
+    NSArray *items = @[[NSString stringWithFormat:@"I just scored %ld on #TapThatColour! Check it out on the App Store!", (long)[[self tapGame] score]]];
+    
+    UIActivityViewController *act = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
+    
+    // for iPads
+    if ([act respondsToSelector:@selector(popoverPresentationController)]) {
+        CGRect viewFrame = self.shareButton.frame;
+        CGRect oldFrame = act.popoverPresentationController.frameOfPresentedViewInContainerView;
+        
+        act.popoverPresentationController.sourceView = self.shareButton;
+        act.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionDown;
+        act.popoverPresentationController.sourceRect =
+        CGRectMake(viewFrame.size.width / 2, 0, oldFrame.size.width, oldFrame.size.height);
+    }
+    
+    [self presentViewController:act animated:YES completion:nil];
 }
 
 @end

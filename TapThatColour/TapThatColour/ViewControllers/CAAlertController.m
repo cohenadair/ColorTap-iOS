@@ -19,7 +19,8 @@
                     actionButtonTitle:(NSString *)aButtonTitle
                           actionBlock:(void (^)())anActionBlock
                           cancelBlock:(void (^)())aCancelBlock
-                      preferredStyle:(UIAlertControllerStyle)aStyle {
+                      preferredStyle:(UIAlertControllerStyle)aStyle
+                      iPadSourceView:(UIView *)aSourceView {
     
     if ((self = (CAAlertController *)[UIAlertController alertControllerWithTitle:aTitle message:aMessage preferredStyle:aStyle])) {
         UIAlertAction *action =
@@ -40,6 +41,18 @@
         
         [self addAction:action];
         [self addAction:cancelAction];
+    }
+    
+    // for iPads
+    if ([self respondsToSelector:@selector(popoverPresentationController)]) {
+        UIView *view = aSourceView;
+        CGRect viewFrame = view.frame;
+        CGRect oldFrame = self.popoverPresentationController.frameOfPresentedViewInContainerView;
+        
+        self.popoverPresentationController.sourceView = view;
+        self.popoverPresentationController.sourceRect =
+        CGRectMake(CGRectGetMaxX(viewFrame), CGRectGetMinY(viewFrame), oldFrame.size
+                   .width, oldFrame.size.height);
     }
     
     return self;
