@@ -55,7 +55,7 @@
 }
 
 - (void)onOrientationChange {
-    [[CATexture sharedTexture] resetWithRadius:[CAUtilities buttonRadiusForTapGame:self.tapGame]];
+    [[CATexture sharedTexture] resetWithRadius:[CAUtilities buttonRadius]];
 }
 
 @end

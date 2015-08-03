@@ -59,7 +59,7 @@
 
 - (IBAction)changeKidsMode:(UISwitch *)aSender {
     [[CAUserSettings sharedSettings] setKidsMode:aSender.on];
-    [[CATexture sharedTexture] resetWithRadius:[CAUtilities buttonRadiusForTapGame:[self tapGame]]];
+    [[CATexture sharedTexture] resetWithRadius:[CAUtilities buttonRadius]];
     [self.difficultyControl setEnabled:!aSender.on];
 }
 

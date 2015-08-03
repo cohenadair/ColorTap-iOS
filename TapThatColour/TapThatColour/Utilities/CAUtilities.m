@@ -9,7 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "CAUtilities.h"
 #import "CAAlertController.h"
-#import "CATapGame.h"
+#import "CAUserSettings.h"
 
 @interface CAUtilities ()
 
@@ -19,6 +19,10 @@
 
 + (BOOL)iPad {
     return [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad;
+}
+
++ (BOOL)orientationIsLandscape {
+    return UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation);
 }
 
 + (CGRect)screenBounds {
@@ -78,13 +82,13 @@
     [aViewController presentViewController:act animated:YES completion:nil];
 }
 
-+ (CGFloat)buttonRadiusForTapGame:(id)aTapGame {
++ (CGFloat)buttonRadius {
     NSInteger buttonsPerRow = ([CAUtilities iPad] ? 5 : 4);
     
     if ([[CAUserSettings sharedSettings] kidsMode])
         buttonsPerRow -= 2;
     else
-        buttonsPerRow += [aTapGame difficulty];
+        buttonsPerRow += [[CAUserSettings sharedSettings] gameDifficulty];
     
     // "-1" to add some spacing between buttons
     return ([CAUtilities screenSize].width / (buttonsPerRow * 2)) - 1;

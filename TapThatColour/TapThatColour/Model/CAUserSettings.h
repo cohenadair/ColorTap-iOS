@@ -21,8 +21,8 @@
 - (BOOL)kidsMode;
 - (void)setHighscore:(NSInteger)anInteger;
 - (NSInteger)highscore;
-- (void)setDifficulty:(CADifficulty)aDifficulty;
-- (NSInteger)difficulty;
+- (void)setGameDifficulty:(CADifficulty)aDifficulty;
+- (NSInteger)gameDifficulty;
 - (void)updateHighscore:(NSInteger)anInteger;
 
 @end

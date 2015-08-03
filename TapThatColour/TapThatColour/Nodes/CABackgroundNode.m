@@ -105,7 +105,7 @@
 // adds all the child button nodes
 - (void)addButtonNodes {
     CGSize screen = [CAUtilities screenSize];
-    CGFloat radius = [CAUtilities buttonRadiusForTapGame:[self tapGame]];
+    CGFloat radius = [CAUtilities buttonRadius];
     CGFloat diameter = (radius * 2);
     
     NSInteger numColumns = screen.width / diameter;

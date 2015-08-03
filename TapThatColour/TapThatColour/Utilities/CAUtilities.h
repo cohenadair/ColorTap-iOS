@@ -14,6 +14,7 @@
 @interface CAUtilities : NSObject
 
 + (BOOL)iPad;
++ (BOOL)orientationIsLandscape;
 + (CGRect)screenBounds;
 + (CGSize)screenSize;
 + (CGFloat)factorOfScreenHeight:(CGFloat)aFactor;
@@ -25,7 +26,7 @@
 + (CFTimeInterval)systemTime;
 + (void)executeBlockAfterMs:(NSInteger)milliseconds block:(void (^)())aBlock;
 + (void)presentShareActivityForViewController:(UIViewController *)aViewController items:(NSArray *)anArray;
-+ (CGFloat)buttonRadiusForTapGame:(id)aTapGame;
++ (CGFloat)buttonRadius;
 + (void)showAlertWithMessage:(NSString *)aString view:(UIViewController *)aViewController;
 
 @end

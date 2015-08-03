@@ -34,13 +34,13 @@
 #pragma mark - Getting and Setting
 
 - (CADifficulty)difficulty {
-    return (CADifficulty)[[CAUserSettings sharedSettings] difficulty];
+    return (CADifficulty)[[CAUserSettings sharedSettings] gameDifficulty];
 }
 
 - (void)setDifficulty:(CADifficulty)aDifficulty {
     _difficulty = aDifficulty;
-    [[CAUserSettings sharedSettings] setDifficulty:aDifficulty];
-    [[CATexture sharedTexture] resetWithRadius:[CAUtilities buttonRadiusForTapGame:self]];
+    [[CAUserSettings sharedSettings] setGameDifficulty:aDifficulty];
+    [[CATexture sharedTexture] resetWithRadius:[CAUtilities buttonRadius]];
 }
 
 - (NSString *)difficultyAsString {
