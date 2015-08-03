@@ -165,8 +165,11 @@
         if (weakSelf.didEnterBackground &&
             weakSelf.gameScene.animationBegan && // no need to pause if the game hasn't started
             !weakSelf.gameScene.isGameOver) // no need to pause if the game is over
-            
-            [weakSelf tapPlayPauseButton];
+        {
+            self.spriteView.paused = YES;
+            self.spriteView.userInteractionEnabled = NO;
+            [self togglePlayPauseButton];
+        }
     }];
 }
 

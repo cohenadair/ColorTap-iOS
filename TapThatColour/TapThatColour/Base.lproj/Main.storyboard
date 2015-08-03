@@ -139,7 +139,7 @@
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <rect key="frame" x="140" y="469" width="220" height="50"/>
+                                            <rect key="frame" x="140" y="484" width="220" height="50"/>
                                         </variation>
                                         <connections>
                                             <action selector="tapRateButton:" destination="4ay-jh-Q1K" eventType="touchUpInside" id="hSn-6l-qNZ"/>
@@ -157,7 +157,7 @@
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <rect key="frame" x="140" y="527" width="220" height="50"/>
+                                            <rect key="frame" x="140" y="542" width="220" height="50"/>
                                         </variation>
                                         <connections>
                                             <action selector="tapLeaderboardsButton:" destination="4ay-jh-Q1K" eventType="touchUpInside" id="Ypw-rW-DQj"/>
@@ -175,7 +175,7 @@
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <rect key="frame" x="140" y="411" width="220" height="50"/>
+                                            <rect key="frame" x="140" y="426" width="220" height="50"/>
                                         </variation>
                                         <connections>
                                             <action selector="tapShareButton:" destination="4ay-jh-Q1K" eventType="touchUpInside" id="UEV-hf-4l7"/>
@@ -191,7 +191,7 @@
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <rect key="frame" x="163" y="321" width="175" height="21"/>
+                                            <rect key="frame" x="163" y="319" width="175" height="40"/>
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sP-ge-f38">
@@ -206,7 +206,7 @@
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <rect key="frame" x="140" y="353" width="220" height="50"/>
+                                            <rect key="frame" x="140" y="368" width="220" height="50"/>
                                         </variation>
                                         <connections>
                                             <segue destination="eg4-Ff-s2v" kind="unwind" unwindAction="unwindToMain:" id="Q0m-ap-B96"/>
