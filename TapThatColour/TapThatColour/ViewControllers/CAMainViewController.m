@@ -64,7 +64,8 @@
     __weak typeof(self) weakSelf = self;
     
     [[CAGameCenterManager sharedManager] authenticateInViewController:self willPresentBlock:^{
-        [weakSelf pauseGame];
+        if (weakSelf.gameScene.animationBegan)
+            [weakSelf pauseGame];
     }];
 }
 
@@ -72,9 +73,9 @@
 
 - (void)initSpriteView {
     self.spriteView = (SKView *)self.view;
-    self.spriteView.showsDrawCount = YES;
-    self.spriteView.showsNodeCount = YES;
-    self.spriteView.showsFPS = YES;
+    //self.spriteView.showsDrawCount = YES;
+    //self.spriteView.showsNodeCount = YES;
+    //self.spriteView.showsFPS = YES;
     
     [[CATexture sharedTexture] setSpriteView:self.spriteView];
 }
