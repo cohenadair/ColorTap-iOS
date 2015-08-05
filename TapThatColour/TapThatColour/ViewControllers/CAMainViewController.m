@@ -53,6 +53,8 @@
     [self togglePlayPauseButton];
     
     [self showGameView];
+    
+    [UIViewController prepareInterstitialAds];
 }
 
 - (void)didReceiveMemoryWarning {

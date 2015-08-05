@@ -24,7 +24,6 @@
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
     
-    [UIViewController prepareInterstitialAds];
     [self setTapGame:[CATapGame withScore:0]];
     return YES;
 }
