@@ -25,6 +25,8 @@
                                                object:nil];
     
     [self setTapGame:[CATapGame withScore:0]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor orangeColor]];
+    
     return YES;
 }
 
