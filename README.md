@@ -3,6 +3,8 @@ TapThatColour is a vertical scrolling game designed to test the user's coordinat
 
 View it on the App Store [here](https://itunes.apple.com/na/app/tap-that-colour/id1019522139?mt=8).
 
+## Status
+This project has been discontinued. The current version can still be found on the App Store, however.
 
 ## License
 
