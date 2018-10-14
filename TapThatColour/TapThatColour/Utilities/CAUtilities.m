@@ -72,10 +72,10 @@
 }
 
 + (CGFloat)buttonRadius {
-    NSInteger buttonsPerRow = ([CAUtilities iPad] ? 5 : 4);
+    NSInteger buttonsPerRow = ([CAUtilities iPad] ? 4 : 3);
     
     if ([[CAUserSettings sharedSettings] kidsMode])
-        buttonsPerRow -= 2;
+        buttonsPerRow = 2;
     else
         // an extra 1 dot per row per level of difficulty
         buttonsPerRow += [[CAUserSettings sharedSettings] difficultyIndex];

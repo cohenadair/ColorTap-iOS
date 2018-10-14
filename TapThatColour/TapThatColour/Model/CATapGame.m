@@ -34,6 +34,7 @@
 
 - (void)initAllDifficulties {
     [self setAllDifficulties:[NSMutableArray array]];
+    [self.allDifficulties addObject:[CAGameDifficulty withName:@"Easy" leaderboardId:@"tapthatcolour.highscore_easy" controlIndex:CADifficultyIndexEasy]];
     [self.allDifficulties addObject:[CAGameDifficulty withName:@"Regular" leaderboardId:@"tapthatcolour.highscore_regular" controlIndex:CADifficultyIndexMedium]];
     [self.allDifficulties addObject:[CAGameDifficulty withName:@"Expert" leaderboardId:@"tapthatcolour.highscore_expert" controlIndex:CADifficultyIndexExpert]];
 }

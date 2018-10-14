@@ -37,6 +37,10 @@
     pos.x = [CAUtilities screenSize].width / 2;
     pos.y = [CAUtilities screenSize].height - radius - 20;
     
+    if (@available(iOS 11.0, *)) {
+        pos.y -= UIApplication.sharedApplication.keyWindow.safeAreaInsets.top;
+    }
+    
     // create a texture
     NSDictionary *dict = [[CATexture sharedTexture] newTextureWithRadius:radius color:[[self tapGame] currentColor]];
     
