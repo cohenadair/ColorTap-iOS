@@ -20,7 +20,6 @@
 		0D5A07D51B69B34300D75E6A /* CAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07D41B69B34300D75E6A /* CAConstants.m */; };
 		0D5A07D81B6BB43A00D75E6A /* CAAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07D71B6BB43A00D75E6A /* CAAudio.m */; };
 		0D5A07D91B6BB43A00D75E6A /* CAAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07D71B6BB43A00D75E6A /* CAAudio.m */; };
-		0D5A07DC1B6C0F6300D75E6A /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5A07DA1B6C0F4E00D75E6A /* iAd.framework */; };
 		0D5A07E31B6D330400D75E6A /* CATexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07E21B6D330400D75E6A /* CATexture.m */; };
 		0D5A07E41B6D330400D75E6A /* CATexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07E21B6D330400D75E6A /* CATexture.m */; };
 		0D5A07E81B6EBE8F00D75E6A /* CASettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A07E71B6EBE8F00D75E6A /* CASettingsViewController.m */; };
@@ -70,7 +69,6 @@
 		0D5A07D41B69B34300D75E6A /* CAConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAConstants.m; path = Utilities/CAConstants.m; sourceTree = "<group>"; };
 		0D5A07D61B6BB43A00D75E6A /* CAAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAAudio.h; path = Utilities/CAAudio.h; sourceTree = "<group>"; };
 		0D5A07D71B6BB43A00D75E6A /* CAAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAAudio.m; path = Utilities/CAAudio.m; sourceTree = "<group>"; };
-		0D5A07DA1B6C0F4E00D75E6A /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		0D5A07E11B6D330400D75E6A /* CATexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CATexture.h; path = Utilities/CATexture.h; sourceTree = "<group>"; };
 		0D5A07E21B6D330400D75E6A /* CATexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CATexture.m; path = Utilities/CATexture.m; sourceTree = "<group>"; };
 		0D5A07E61B6EBE8F00D75E6A /* CASettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CASettingsViewController.h; path = ViewControllers/CASettingsViewController.h; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D5A07DC1B6C0F6300D75E6A /* iAd.framework in Frameworks */,
 				0DC974961B4F02A1008F5ADE /* SpriteKit.framework in Frameworks */,
 				0D5A07CA1B68259B00D75E6A /* GameKit.framework in Frameworks */,
 			);
@@ -166,7 +163,6 @@
 		0DC974631B4F0284008F5ADE = {
 			isa = PBXGroup;
 			children = (
-				0D5A07DA1B6C0F4E00D75E6A /* iAd.framework */,
 				0D5A07C91B68259B00D75E6A /* GameKit.framework */,
 				0DC974951B4F02A1008F5ADE /* SpriteKit.framework */,
 				0DC9746E1B4F0284008F5ADE /* TapThatColour */,
@@ -337,6 +333,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -532,9 +529,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				INFOPLIST_FILE = TapThatColour/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cohenadair.colortap;
 				PRODUCT_NAME = TapThatColour;
 				PROVISIONING_PROFILE = "";
@@ -547,9 +546,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				INFOPLIST_FILE = TapThatColour/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cohenadair.colortap;
 				PRODUCT_NAME = TapThatColour;
 				PROVISIONING_PROFILE = "";

@@ -53,8 +53,6 @@
     [self togglePlayPauseButton];
     
     [self showGameView];
-    
-    [UIViewController prepareInterstitialAds];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -150,11 +148,6 @@
 
 - (IBAction)unwindToMain:(UIStoryboardSegue *)aSegue {
     [self setAutoStartGame:YES];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)aSegue sender:(id)aSender {
-    id dest = [[[aSegue destinationViewController] viewControllers] objectAtIndex:0];
-    [dest setInterstitialPresentationPolicy:ADInterstitialPresentationPolicyAutomatic];
 }
 
 - (void)segueToGameOver {
