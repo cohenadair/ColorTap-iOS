@@ -5,7 +5,7 @@ import 'package:mobile/color_tap_world.dart';
 import 'utils/colors.dart';
 
 class ColorTapGame extends FlameGame<ColorTapWorld> with SingleGameInstance {
-  ColorTapGame({ColorTapWorld? world}) : super(world: world);
+  ColorTapGame({super.world});
 
   @override
   Color backgroundColor() => colorGame;

@@ -77,7 +77,7 @@ class TargetBoard extends PositionComponent
         _targets.add(Target(
           Vector2(
             c * diameter + (c + 1) * xSpacing + diameter / 2,
-            r * diameter + (r + 1) * ySpacing,
+            r * diameter + (r + 1) * ySpacing + diameter / 2,
           ),
           diameter / 2,
           this,

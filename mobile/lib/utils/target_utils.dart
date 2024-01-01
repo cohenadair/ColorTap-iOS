@@ -2,14 +2,24 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 
-/// Spacing between targets.
+/// Horizontal spacing between targets.
 const targetSpacing = 4.0;
 const targetsPerRow = 4;
 
-/// Setting the board size to slightly larger than the game prevents any
+/// This value is multiplied by the game's height to determine how far to
+/// scroll back the game when a target is missed.
+const targetMissedOffsetFactor = 0.5;
+
+/// Setting the board size to something larger than the game prevents any
 /// "disappearing" effects around the edges of the board caused by devices that
 /// have safe areas.
-const targetBoardHeightFactor = 1.25;
+///
+/// The added [targetMissedOffsetFactor] is so when missed targets are scrolled
+/// back, there are always targets visible on the screen.
+const targetBoardHeightFactor = 1.25 + targetMissedOffsetFactor;
+
+double targetScrollBackDistance(double gameHeight) =>
+    gameHeight * targetMissedOffsetFactor;
 
 double targetDiameterForRect(Rect rect) =>
     ((rect.width - targetsPerRow * targetSpacing) / targetsPerRow)

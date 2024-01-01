@@ -1,10 +1,10 @@
-import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:mobile/color_tap_game.dart';
 import 'package:mobile/color_tap_world.dart';
 
+import '../managers/time_manager.dart';
 import '../target_color.dart';
 import 'target_board.dart';
 
@@ -12,9 +12,7 @@ class Target extends CircleComponent
     with
         HasGameRef<ColorTapGame>,
         HasWorldReference<ColorTapWorld>,
-        TapCallbacks,
-        Notifier,
-        CollisionCallbacks {
+        TapCallbacks {
   static const _scaleDownBy = 0.20;
   static const _scaleDownDuration = 0.15;
   static const _scaleUpBy = 1.5;
@@ -23,8 +21,8 @@ class Target extends CircleComponent
   static const _scaleResetDuration = 0.0;
 
   final TargetBoard _board;
-  final CircleHitbox _hitbox = CircleHitbox();
 
+  var _isPassedBottom = false;
   var _wasHit = false;
   var _color = TargetColor.random();
 
@@ -41,12 +39,11 @@ class Target extends CircleComponent
   @override
   Future<void> onLoad() {
     paint = _color.paint;
-    add(_hitbox);
     return super.onLoad();
   }
 
   @override
-  void onTapUp(TapUpEvent event) {
+  void onTapDown(TapDownEvent event) {
     if (world.scrollingPaused || _wasHit) {
       return;
     }
@@ -60,12 +57,17 @@ class Target extends CircleComponent
   }
 
   @override
-  void onCollisionEnd(PositionComponent other) {
-    super.onCollisionEnd(other);
+  void update(double dt) {
+    if (_isPassedBottom || absolutePosition.y - radius <= game.size.y) {
+      // Target is still on the screen, or passed the bottom, where it's no
+      // longer relevant.
+      return;
+    } else {
+      _isPassedBottom = true;
+    }
 
     // Allow targets to be missed during the grace period.
-    if (world.gracePeriod != null &&
-        DateTime.now().millisecondsSinceEpoch <= world.gracePeriod!) {
+    if (TimeManager.get.millisSinceEpoch <= (world.gracePeriod ?? -1)) {
       return;
     }
 
@@ -114,10 +116,7 @@ class Target extends CircleComponent
       ));
     }
 
-    // Must be cleared before _wasHit is reset. Depending on timing,
-    // onCollisionEnd may be called between when _wasHit is set and when
-    // the collisions are cleared.
-    activeCollisions.clear();
+    _isPassedBottom = false;
     _wasHit = false;
     _color = TargetColor.random();
     paint = _color.paint;
