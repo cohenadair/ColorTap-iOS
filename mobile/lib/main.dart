@@ -1,8 +1,10 @@
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/colour_tap_world.dart';
+
+import 'color_tap_game.dart';
+import 'color_tap_game_widget.dart';
+import 'color_tap_world.dart';
 
 void main() {
-  final myGame = FlameGame(world: ColourTapWorld());
-  runApp(GameWidget(game: myGame));
+  final myGame = ColorTapGame(world: ColorTapWorld());
+  runApp(ColorTapGameWidget(myGame));
 }
