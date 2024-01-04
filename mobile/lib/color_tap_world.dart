@@ -1,36 +1,45 @@
 import 'dart:async' as async;
-import 'dart:ui';
 
 import 'package:flame/components.dart';
-import 'package:flame/effects.dart';
 import 'package:mobile/components/scoreboard.dart';
 import 'package:mobile/components/target_board.dart';
+import 'package:mobile/effects/target_board_rewind_effect.dart';
 import 'package:mobile/utils/overlay_utils.dart';
 
 import 'components/target.dart';
 import 'managers/time_manager.dart';
 import 'target_color.dart';
-import 'utils/target_utils.dart';
 
 class ColorTapWorld extends World with HasGameRef, Notifier {
   static const _startSpeed = 3.5;
   static const _incSpeedFactor = 0.00005;
   static const _colorResetMod = 10;
-  static const _targetMissedDuration = 0.3;
   static const _gracePeriodMs = 2000;
 
   final _board1Key = ComponentKey.unique();
   final _board2Key = ComponentKey.unique();
 
-  var speed = _startSpeed;
-  var color = TargetColor.random();
-  var score = 0;
+  var _speed = _startSpeed;
+
+  double get speed => _speed;
+
+  var _color = TargetColor.random();
+
+  TargetColor get color => _color;
+
+  var _score = 0;
+
+  int get score => _score;
+
   var scrollingPaused = true;
 
   /// If set, a "grace period" is active, where users are allowed to miss
   /// targets. This is to prevent immediate loss after a color change due
   /// to the new colour already being at the bottom of the screen.
-  int? gracePeriod;
+  int? _gracePeriod;
+
+  int? get gracePeriod => _gracePeriod;
+
   async.Timer? _gracePeriodTimer;
 
   @override
@@ -60,12 +69,12 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
     if (isCorrect) {
       // The amount of speed added after each touch is dependent on the screen
       // size to narrow the difficulty gap between different devices.
-      speed += game.size.y * _incSpeedFactor;
-      score++;
+      _speed += game.size.y * _incSpeedFactor;
+      _score++;
 
-      if (score % _colorResetMod == 0) {
+      if (_score % _colorResetMod == 0) {
         // Ensure color always changes.
-        color = TargetColor.random(exclude: color);
+        _color = TargetColor.random(exclude: _color);
         _startGracePeriod();
       }
     } else {
@@ -78,42 +87,37 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
   void handleTargetMissed(Target target, TargetBoard board) {
     scrollingPaused = true;
 
-    board.add(_targetMissedEffect(() => target.pulse()));
-    _targetBoard(board.otherBoardKey).add(_targetMissedEffect());
+    board.add(TargetBoardRewindEffect(
+      game: game,
+      onComplete: () => target.pulse(),
+    ));
+    _targetBoard(board.otherBoardKey).add(TargetBoardRewindEffect(game: game));
   }
 
   void play() {
     _targetBoard(_board1Key).reset();
     _targetBoard(_board2Key).reset();
 
-    speed = _startSpeed;
-    color = TargetColor.random();
-    score = 0;
+    _speed = _startSpeed;
+    _color = TargetColor.random(exclude: _color);
+    _score = 0;
+    _gracePeriod = null;
     scrollingPaused = false;
-    gracePeriod = null;
     notifyListeners();
 
     game.overlays.removeAll([overlayMainMenuId, overlayGameOverId]);
-  }
-
-  MoveByEffect _targetMissedEffect([VoidCallback? onComplete]) {
-    return MoveByEffect(
-      Vector2(0, -targetScrollBackDistance(game.size.y)),
-      EffectController(duration: _targetMissedDuration),
-      onComplete: onComplete,
-    );
   }
 
   TargetBoard _targetBoard(ComponentKey key) =>
       game.findByKey(key) as TargetBoard;
 
   void _startGracePeriod() {
-    gracePeriod = TimeManager.get.millisSinceEpoch + _gracePeriodMs;
+    _gracePeriod = TimeManager.get.millisSinceEpoch + _gracePeriodMs;
 
     _gracePeriodTimer?.cancel();
     _gracePeriodTimer = async.Timer(
       const Duration(milliseconds: _gracePeriodMs),
-      () => gracePeriod = null,
+      () => _gracePeriod = null,
     );
   }
 }

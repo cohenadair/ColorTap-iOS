@@ -8,14 +8,16 @@ import 'dart:async' as _i14;
 import 'dart:ui' as _i5;
 
 import 'package:flame/cache.dart' as _i6;
-import 'package:flame/collisions.dart' as _i12;
+import 'package:flame/camera.dart' as _i22;
 import 'package:flame/components.dart' as _i3;
 import 'package:flame/game.dart' as _i4;
 import 'package:flame/src/components/core/component_tree_root.dart' as _i16;
+import 'package:flame/src/events/messages/tap_down_event.dart' as _i20;
 import 'package:flame/src/game/game_render_box.dart' as _i9;
 import 'package:flame/src/game/game_widget/gesture_detector_builder.dart'
     as _i7;
 import 'package:flame/src/game/overlay_manager.dart' as _i8;
+import 'package:flame/src/rendering/decorator.dart' as _i12;
 import 'package:flutter/gestures.dart' as _i15;
 import 'package:flutter/material.dart' as _i10;
 import 'package:flutter/rendering.dart' as _i17;
@@ -23,7 +25,9 @@ import 'package:mobile/color_tap_game.dart' as _i13;
 import 'package:mobile/color_tap_world.dart' as _i2;
 import 'package:mobile/components/target.dart' as _i18;
 import 'package:mobile/components/target_board.dart' as _i19;
+import 'package:mobile/managers/time_manager.dart' as _i21;
 import 'package:mobile/target_color.dart' as _i11;
+import 'package:mobile/wrappers/widgets_binding_wrapper.dart' as _i23;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -235,10 +239,121 @@ class _FakeFlameGame_17<W extends _i3.World> extends _i1.SmartFake
         );
 }
 
-class _FakeCollisionDetection_18<T extends _i12.Hitbox<T>,
-        B extends _i12.Broadphase<T>> extends _i1.SmartFake
-    implements _i12.CollisionDetection<T, B> {
-  _FakeCollisionDetection_18(
+class _FakePlatformDispatcher_18 extends _i1.SmartFake
+    implements _i5.PlatformDispatcher {
+  _FakePlatformDispatcher_18(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeDisplay_19 extends _i1.SmartFake implements _i5.Display {
+  _FakeDisplay_19(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeRect_20 extends _i1.SmartFake implements _i5.Rect {
+  _FakeRect_20(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeSize_21 extends _i1.SmartFake implements _i5.Size {
+  _FakeSize_21(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeViewPadding_22 extends _i1.SmartFake implements _i5.ViewPadding {
+  _FakeViewPadding_22(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeGestureSettings_23 extends _i1.SmartFake
+    implements _i5.GestureSettings {
+  _FakeGestureSettings_23(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeComponentKey_24 extends _i1.SmartFake implements _i3.ComponentKey {
+  _FakeComponentKey_24(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeTransform2D_25 extends _i1.SmartFake implements _i4.Transform2D {
+  _FakeTransform2D_25(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeDecorator_26 extends _i1.SmartFake implements _i12.Decorator {
+  _FakeDecorator_26(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeMatrix4_27 extends _i1.SmartFake implements _i4.Matrix4 {
+  _FakeMatrix4_27(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeNotifyingVector2_28 extends _i1.SmartFake
+    implements _i4.NotifyingVector2 {
+  _FakeNotifyingVector2_28(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeAnchor_29 extends _i1.SmartFake implements _i3.Anchor {
+  _FakeAnchor_29(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -1656,31 +1771,6 @@ class MockColorTapWorld extends _i1.Mock implements _i2.ColorTapWorld {
       ) as _i4.FlameGame<_i3.World>);
 
   @override
-  _i12.CollisionDetection<_i12.ShapeHitbox, _i12.Broadphase<_i12.ShapeHitbox>>
-      get collisionDetection => (super.noSuchMethod(
-            Invocation.getter(#collisionDetection),
-            returnValue: _FakeCollisionDetection_18<_i12.ShapeHitbox,
-                _i12.Broadphase<_i12.ShapeHitbox>>(
-              this,
-              Invocation.getter(#collisionDetection),
-            ),
-          ) as _i12.CollisionDetection<_i12.ShapeHitbox,
-              _i12.Broadphase<_i12.ShapeHitbox>>);
-
-  @override
-  set collisionDetection(
-          _i12.CollisionDetection<_i12.ShapeHitbox,
-                  _i12.Broadphase<_i12.ShapeHitbox>>?
-              cd) =>
-      super.noSuchMethod(
-        Invocation.setter(
-          #collisionDetection,
-          cd,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
   void onLoad() => super.noSuchMethod(
         Invocation.method(
           #onLoad,
@@ -2096,4 +2186,2166 @@ class MockColorTapWorld extends _i1.Mock implements _i2.ColorTapWorld {
         ),
         returnValueForMissingStub: null,
       );
+}
+
+/// A class which mocks [ComponentsNotifier].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockComponentsNotifier<T extends _i3.Component> extends _i1.Mock
+    implements _i3.ComponentsNotifier<T> {
+  MockComponentsNotifier() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  List<T> get components => (super.noSuchMethod(
+        Invocation.getter(#components),
+        returnValue: <T>[],
+      ) as List<T>);
+
+  @override
+  bool get hasListeners => (super.noSuchMethod(
+        Invocation.getter(#hasListeners),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool applicable(_i3.Component? component) => (super.noSuchMethod(
+        Invocation.method(
+          #applicable,
+          [component],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  void add(T? component) => super.noSuchMethod(
+        Invocation.method(
+          #add,
+          [component],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void remove(T? component) => super.noSuchMethod(
+        Invocation.method(
+          #remove,
+          [component],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void notify() => super.noSuchMethod(
+        Invocation.method(
+          #notify,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addListener(_i5.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #addListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeListener(_i5.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #removeListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void notifyListeners() => super.noSuchMethod(
+        Invocation.method(
+          #notifyListeners,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [FlutterView].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFlutterView extends _i1.Mock implements _i5.FlutterView {
+  MockFlutterView() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  int get viewId => (super.noSuchMethod(
+        Invocation.getter(#viewId),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  _i5.PlatformDispatcher get platformDispatcher => (super.noSuchMethod(
+        Invocation.getter(#platformDispatcher),
+        returnValue: _FakePlatformDispatcher_18(
+          this,
+          Invocation.getter(#platformDispatcher),
+        ),
+      ) as _i5.PlatformDispatcher);
+
+  @override
+  _i5.Display get display => (super.noSuchMethod(
+        Invocation.getter(#display),
+        returnValue: _FakeDisplay_19(
+          this,
+          Invocation.getter(#display),
+        ),
+      ) as _i5.Display);
+
+  @override
+  double get devicePixelRatio => (super.noSuchMethod(
+        Invocation.getter(#devicePixelRatio),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  _i5.Rect get physicalGeometry => (super.noSuchMethod(
+        Invocation.getter(#physicalGeometry),
+        returnValue: _FakeRect_20(
+          this,
+          Invocation.getter(#physicalGeometry),
+        ),
+      ) as _i5.Rect);
+
+  @override
+  _i5.Size get physicalSize => (super.noSuchMethod(
+        Invocation.getter(#physicalSize),
+        returnValue: _FakeSize_21(
+          this,
+          Invocation.getter(#physicalSize),
+        ),
+      ) as _i5.Size);
+
+  @override
+  _i5.ViewPadding get viewInsets => (super.noSuchMethod(
+        Invocation.getter(#viewInsets),
+        returnValue: _FakeViewPadding_22(
+          this,
+          Invocation.getter(#viewInsets),
+        ),
+      ) as _i5.ViewPadding);
+
+  @override
+  _i5.ViewPadding get viewPadding => (super.noSuchMethod(
+        Invocation.getter(#viewPadding),
+        returnValue: _FakeViewPadding_22(
+          this,
+          Invocation.getter(#viewPadding),
+        ),
+      ) as _i5.ViewPadding);
+
+  @override
+  _i5.ViewPadding get systemGestureInsets => (super.noSuchMethod(
+        Invocation.getter(#systemGestureInsets),
+        returnValue: _FakeViewPadding_22(
+          this,
+          Invocation.getter(#systemGestureInsets),
+        ),
+      ) as _i5.ViewPadding);
+
+  @override
+  _i5.ViewPadding get padding => (super.noSuchMethod(
+        Invocation.getter(#padding),
+        returnValue: _FakeViewPadding_22(
+          this,
+          Invocation.getter(#padding),
+        ),
+      ) as _i5.ViewPadding);
+
+  @override
+  _i5.GestureSettings get gestureSettings => (super.noSuchMethod(
+        Invocation.getter(#gestureSettings),
+        returnValue: _FakeGestureSettings_23(
+          this,
+          Invocation.getter(#gestureSettings),
+        ),
+      ) as _i5.GestureSettings);
+
+  @override
+  List<_i5.DisplayFeature> get displayFeatures => (super.noSuchMethod(
+        Invocation.getter(#displayFeatures),
+        returnValue: <_i5.DisplayFeature>[],
+      ) as List<_i5.DisplayFeature>);
+
+  @override
+  void render(_i5.Scene? scene) => super.noSuchMethod(
+        Invocation.method(
+          #render,
+          [scene],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void updateSemantics(_i5.SemanticsUpdate? update) => super.noSuchMethod(
+        Invocation.method(
+          #updateSemantics,
+          [update],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [TapDownEvent].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTapDownEvent extends _i1.Mock implements _i20.TapDownEvent {
+  MockTapDownEvent() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  int get pointerId => (super.noSuchMethod(
+        Invocation.getter(#pointerId),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  _i5.PointerDeviceKind get deviceKind => (super.noSuchMethod(
+        Invocation.getter(#deviceKind),
+        returnValue: _i5.PointerDeviceKind.touch,
+      ) as _i5.PointerDeviceKind);
+
+  @override
+  _i4.Vector2 get devicePosition => (super.noSuchMethod(
+        Invocation.getter(#devicePosition),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#devicePosition),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 get canvasPosition => (super.noSuchMethod(
+        Invocation.getter(#canvasPosition),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#canvasPosition),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 get localPosition => (super.noSuchMethod(
+        Invocation.getter(#localPosition),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#localPosition),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  List<_i4.Vector2> get renderingTrace => (super.noSuchMethod(
+        Invocation.getter(#renderingTrace),
+        returnValue: <_i4.Vector2>[],
+      ) as List<_i4.Vector2>);
+
+  @override
+  bool get handled => (super.noSuchMethod(
+        Invocation.getter(#handled),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  set handled(bool? _handled) => super.noSuchMethod(
+        Invocation.setter(
+          #handled,
+          _handled,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool get continuePropagation => (super.noSuchMethod(
+        Invocation.getter(#continuePropagation),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  set continuePropagation(bool? _continuePropagation) => super.noSuchMethod(
+        Invocation.setter(
+          #continuePropagation,
+          _continuePropagation,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  Iterable<_i3.Component> collectApplicableChildren(
+          {required _i3.Component? rootComponent}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #collectApplicableChildren,
+          [],
+          {#rootComponent: rootComponent},
+        ),
+        returnValue: <_i3.Component>[],
+      ) as Iterable<_i3.Component>);
+
+  @override
+  void deliverAtPoint<T extends _i3.Component>({
+    required _i3.Component? rootComponent,
+    required void Function(T)? eventHandler,
+    bool? deliverToAll = false,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #deliverAtPoint,
+          [],
+          {
+            #rootComponent: rootComponent,
+            #eventHandler: eventHandler,
+            #deliverToAll: deliverToAll,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void deliverToComponents<T extends _i3.Component>(
+    _i3.Component? rootComponent,
+    void Function(T)? eventHandler,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #deliverToComponents,
+          [
+            rootComponent,
+            eventHandler,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [TargetBoard].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTargetBoard extends _i1.Mock implements _i19.TargetBoard {
+  MockTargetBoard() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.ComponentKey get otherBoardKey => (super.noSuchMethod(
+        Invocation.getter(#otherBoardKey),
+        returnValue: _FakeComponentKey_24(
+          this,
+          Invocation.getter(#otherBoardKey),
+        ),
+      ) as _i3.ComponentKey);
+
+  @override
+  double get verticalStartFactor => (super.noSuchMethod(
+        Invocation.getter(#verticalStartFactor),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  _i4.Transform2D get transform => (super.noSuchMethod(
+        Invocation.getter(#transform),
+        returnValue: _FakeTransform2D_25(
+          this,
+          Invocation.getter(#transform),
+        ),
+      ) as _i4.Transform2D);
+
+  @override
+  double get nativeAngle => (super.noSuchMethod(
+        Invocation.getter(#nativeAngle),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  set nativeAngle(double? _nativeAngle) => super.noSuchMethod(
+        Invocation.setter(
+          #nativeAngle,
+          _nativeAngle,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i12.Decorator get decorator => (super.noSuchMethod(
+        Invocation.getter(#decorator),
+        returnValue: _FakeDecorator_26(
+          this,
+          Invocation.getter(#decorator),
+        ),
+      ) as _i12.Decorator);
+
+  @override
+  set decorator(_i12.Decorator? _decorator) => super.noSuchMethod(
+        Invocation.setter(
+          #decorator,
+          _decorator,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Matrix4 get transformMatrix => (super.noSuchMethod(
+        Invocation.getter(#transformMatrix),
+        returnValue: _FakeMatrix4_27(
+          this,
+          Invocation.getter(#transformMatrix),
+        ),
+      ) as _i4.Matrix4);
+
+  @override
+  _i4.NotifyingVector2 get position => (super.noSuchMethod(
+        Invocation.getter(#position),
+        returnValue: _FakeNotifyingVector2_28(
+          this,
+          Invocation.getter(#position),
+        ),
+      ) as _i4.NotifyingVector2);
+
+  @override
+  set position(_i4.Vector2? position) => super.noSuchMethod(
+        Invocation.setter(
+          #position,
+          position,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  double get x => (super.noSuchMethod(
+        Invocation.getter(#x),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  set x(double? x) => super.noSuchMethod(
+        Invocation.setter(
+          #x,
+          x,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  double get y => (super.noSuchMethod(
+        Invocation.getter(#y),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  set y(double? y) => super.noSuchMethod(
+        Invocation.setter(
+          #y,
+          y,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  double get angle => (super.noSuchMethod(
+        Invocation.getter(#angle),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  set angle(double? a) => super.noSuchMethod(
+        Invocation.setter(
+          #angle,
+          a,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.NotifyingVector2 get scale => (super.noSuchMethod(
+        Invocation.getter(#scale),
+        returnValue: _FakeNotifyingVector2_28(
+          this,
+          Invocation.getter(#scale),
+        ),
+      ) as _i4.NotifyingVector2);
+
+  @override
+  set scale(_i4.Vector2? scale) => super.noSuchMethod(
+        Invocation.setter(
+          #scale,
+          scale,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i3.Anchor get anchor => (super.noSuchMethod(
+        Invocation.getter(#anchor),
+        returnValue: _FakeAnchor_29(
+          this,
+          Invocation.getter(#anchor),
+        ),
+      ) as _i3.Anchor);
+
+  @override
+  set anchor(_i3.Anchor? anchor) => super.noSuchMethod(
+        Invocation.setter(
+          #anchor,
+          anchor,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.NotifyingVector2 get size => (super.noSuchMethod(
+        Invocation.getter(#size),
+        returnValue: _FakeNotifyingVector2_28(
+          this,
+          Invocation.getter(#size),
+        ),
+      ) as _i4.NotifyingVector2);
+
+  @override
+  set size(_i4.Vector2? size) => super.noSuchMethod(
+        Invocation.setter(
+          #size,
+          size,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  double get width => (super.noSuchMethod(
+        Invocation.getter(#width),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  set width(double? w) => super.noSuchMethod(
+        Invocation.setter(
+          #width,
+          w,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  double get height => (super.noSuchMethod(
+        Invocation.getter(#height),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  set height(double? h) => super.noSuchMethod(
+        Invocation.setter(
+          #height,
+          h,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Vector2 get scaledSize => (super.noSuchMethod(
+        Invocation.getter(#scaledSize),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#scaledSize),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 get absoluteScaledSize => (super.noSuchMethod(
+        Invocation.getter(#absoluteScaledSize),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#absoluteScaledSize),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  double get absoluteAngle => (super.noSuchMethod(
+        Invocation.getter(#absoluteAngle),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  _i4.Vector2 get absoluteScale => (super.noSuchMethod(
+        Invocation.getter(#absoluteScale),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#absoluteScale),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 get topLeftPosition => (super.noSuchMethod(
+        Invocation.getter(#topLeftPosition),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#topLeftPosition),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  set topLeftPosition(_i4.Vector2? point) => super.noSuchMethod(
+        Invocation.setter(
+          #topLeftPosition,
+          point,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Vector2 get center => (super.noSuchMethod(
+        Invocation.getter(#center),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#center),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  set center(_i4.Vector2? point) => super.noSuchMethod(
+        Invocation.setter(
+          #center,
+          point,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Vector2 get absolutePosition => (super.noSuchMethod(
+        Invocation.getter(#absolutePosition),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#absolutePosition),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 get absoluteTopLeftPosition => (super.noSuchMethod(
+        Invocation.getter(#absoluteTopLeftPosition),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#absoluteTopLeftPosition),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 get absoluteCenter => (super.noSuchMethod(
+        Invocation.getter(#absoluteCenter),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#absoluteCenter),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  bool get isFlippedHorizontally => (super.noSuchMethod(
+        Invocation.getter(#isFlippedHorizontally),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isFlippedVertically => (super.noSuchMethod(
+        Invocation.getter(#isFlippedVertically),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get debugMode => (super.noSuchMethod(
+        Invocation.getter(#debugMode),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  set debugMode(bool? _debugMode) => super.noSuchMethod(
+        Invocation.setter(
+          #debugMode,
+          _debugMode,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set debugCoordinatesPrecision(int? _debugCoordinatesPrecision) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #debugCoordinatesPrecision,
+          _debugCoordinatesPrecision,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Color get debugColor => (super.noSuchMethod(
+        Invocation.getter(#debugColor),
+        returnValue: _FakeColor_3(
+          this,
+          Invocation.getter(#debugColor),
+        ),
+      ) as _i5.Color);
+
+  @override
+  set debugColor(_i5.Color? _debugColor) => super.noSuchMethod(
+        Invocation.setter(
+          #debugColor,
+          _debugColor,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool get isLoading => (super.noSuchMethod(
+        Invocation.getter(#isLoading),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isLoaded => (super.noSuchMethod(
+        Invocation.getter(#isLoaded),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isMounting => (super.noSuchMethod(
+        Invocation.getter(#isMounting),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isMounted => (super.noSuchMethod(
+        Invocation.getter(#isMounted),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isRemoving => (super.noSuchMethod(
+        Invocation.getter(#isRemoving),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isRemoved => (super.noSuchMethod(
+        Invocation.getter(#isRemoved),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  _i14.Future<void> get loaded => (super.noSuchMethod(
+        Invocation.getter(#loaded),
+        returnValue: _i14.Future<void>.value(),
+      ) as _i14.Future<void>);
+
+  @override
+  _i14.Future<void> get mounted => (super.noSuchMethod(
+        Invocation.getter(#mounted),
+        returnValue: _i14.Future<void>.value(),
+      ) as _i14.Future<void>);
+
+  @override
+  _i14.Future<void> get removed => (super.noSuchMethod(
+        Invocation.getter(#removed),
+        returnValue: _i14.Future<void>.value(),
+      ) as _i14.Future<void>);
+
+  @override
+  set parent(_i3.Component? newParent) => super.noSuchMethod(
+        Invocation.setter(
+          #parent,
+          newParent,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i3.ComponentSet get children => (super.noSuchMethod(
+        Invocation.getter(#children),
+        returnValue: _FakeComponentSet_4(
+          this,
+          Invocation.getter(#children),
+        ),
+      ) as _i3.ComponentSet);
+
+  @override
+  bool get hasChildren => (super.noSuchMethod(
+        Invocation.getter(#hasChildren),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  int get priority => (super.noSuchMethod(
+        Invocation.getter(#priority),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  set priority(int? newPriority) => super.noSuchMethod(
+        Invocation.setter(
+          #priority,
+          newPriority,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Paint get debugPaint => (super.noSuchMethod(
+        Invocation.getter(#debugPaint),
+        returnValue: _FakePaint_5(
+          this,
+          Invocation.getter(#debugPaint),
+        ),
+      ) as _i5.Paint);
+
+  @override
+  _i4.TextPaint get debugTextPaint => (super.noSuchMethod(
+        Invocation.getter(#debugTextPaint),
+        returnValue: _FakeTextPaint_6(
+          this,
+          Invocation.getter(#debugTextPaint),
+        ),
+      ) as _i4.TextPaint);
+
+  @override
+  _i4.FlameGame<_i3.World> get game => (super.noSuchMethod(
+        Invocation.getter(#game),
+        returnValue: _FakeFlameGame_17<_i3.World>(
+          this,
+          Invocation.getter(#game),
+        ),
+      ) as _i4.FlameGame<_i3.World>);
+
+  @override
+  set game(_i4.FlameGame<_i3.World>? value) => super.noSuchMethod(
+        Invocation.setter(
+          #game,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.FlameGame<_i3.World> get gameRef => (super.noSuchMethod(
+        Invocation.getter(#gameRef),
+        returnValue: _FakeFlameGame_17<_i3.World>(
+          this,
+          Invocation.getter(#gameRef),
+        ),
+      ) as _i4.FlameGame<_i3.World>);
+
+  @override
+  _i2.ColorTapWorld get world => (super.noSuchMethod(
+        Invocation.getter(#world),
+        returnValue: _FakeColorTapWorld_0(
+          this,
+          Invocation.getter(#world),
+        ),
+      ) as _i2.ColorTapWorld);
+
+  @override
+  set world(_i2.ColorTapWorld? value) => super.noSuchMethod(
+        Invocation.setter(
+          #world,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void update(double? dt) => super.noSuchMethod(
+        Invocation.method(
+          #update,
+          [dt],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void reset() => super.noSuchMethod(
+        Invocation.method(
+          #reset,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  double distance(_i3.PositionComponent? other) => (super.noSuchMethod(
+        Invocation.method(
+          #distance,
+          [other],
+        ),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  bool containsLocalPoint(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #containsLocalPoint,
+          [point],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool containsPoint(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #containsPoint,
+          [point],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  _i4.Vector2 parentToLocal(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #parentToLocal,
+          [point],
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #parentToLocal,
+            [point],
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 localToParent(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #localToParent,
+          [point],
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #localToParent,
+            [point],
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 positionOf(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #positionOf,
+          [point],
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #positionOf,
+            [point],
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 positionOfAnchor(_i3.Anchor? anchor) => (super.noSuchMethod(
+        Invocation.method(
+          #positionOfAnchor,
+          [anchor],
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #positionOfAnchor,
+            [anchor],
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 absolutePositionOf(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #absolutePositionOf,
+          [point],
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #absolutePositionOf,
+            [point],
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 absolutePositionOfAnchor(_i3.Anchor? anchor) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #absolutePositionOfAnchor,
+          [anchor],
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #absolutePositionOfAnchor,
+            [anchor],
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 toLocal(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #toLocal,
+          [point],
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #toLocal,
+            [point],
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 absoluteToLocal(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #absoluteToLocal,
+          [point],
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #absoluteToLocal,
+            [point],
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  double angleTo(_i4.Vector2? target) => (super.noSuchMethod(
+        Invocation.method(
+          #angleTo,
+          [target],
+        ),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  void lookAt(_i4.Vector2? target) => super.noSuchMethod(
+        Invocation.method(
+          #lookAt,
+          [target],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void flipHorizontally() => super.noSuchMethod(
+        Invocation.method(
+          #flipHorizontally,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void flipVertically() => super.noSuchMethod(
+        Invocation.method(
+          #flipVertically,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void flipHorizontallyAroundCenter() => super.noSuchMethod(
+        Invocation.method(
+          #flipHorizontallyAroundCenter,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void flipVerticallyAroundCenter() => super.noSuchMethod(
+        Invocation.method(
+          #flipVerticallyAroundCenter,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void renderDebugMode(_i5.Canvas? canvas) => super.noSuchMethod(
+        Invocation.method(
+          #renderDebugMode,
+          [canvas],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void renderTree(_i5.Canvas? canvas) => super.noSuchMethod(
+        Invocation.method(
+          #renderTree,
+          [canvas],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Rect toRect() => (super.noSuchMethod(
+        Invocation.method(
+          #toRect,
+          [],
+        ),
+        returnValue: _FakeRect_20(
+          this,
+          Invocation.method(
+            #toRect,
+            [],
+          ),
+        ),
+      ) as _i5.Rect);
+
+  @override
+  _i5.Rect toAbsoluteRect() => (super.noSuchMethod(
+        Invocation.method(
+          #toAbsoluteRect,
+          [],
+        ),
+        returnValue: _FakeRect_20(
+          this,
+          Invocation.method(
+            #toAbsoluteRect,
+            [],
+          ),
+        ),
+      ) as _i5.Rect);
+
+  @override
+  void setByRect(_i5.Rect? rect) => super.noSuchMethod(
+        Invocation.method(
+          #setByRect,
+          [rect],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i3.ComponentSet createComponentSet() => (super.noSuchMethod(
+        Invocation.method(
+          #createComponentSet,
+          [],
+        ),
+        returnValue: _FakeComponentSet_4(
+          this,
+          Invocation.method(
+            #createComponentSet,
+            [],
+          ),
+        ),
+      ) as _i3.ComponentSet);
+
+  @override
+  T? findParent<T extends _i3.Component>({bool? includeSelf = false}) =>
+      (super.noSuchMethod(Invocation.method(
+        #findParent,
+        [],
+        {#includeSelf: includeSelf},
+      )) as T?);
+
+  @override
+  Iterable<_i3.Component> ancestors({bool? includeSelf = false}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #ancestors,
+          [],
+          {#includeSelf: includeSelf},
+        ),
+        returnValue: <_i3.Component>[],
+      ) as Iterable<_i3.Component>);
+
+  @override
+  Iterable<_i3.Component> descendants({
+    bool? includeSelf = false,
+    bool? reversed = false,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #descendants,
+          [],
+          {
+            #includeSelf: includeSelf,
+            #reversed: reversed,
+          },
+        ),
+        returnValue: <_i3.Component>[],
+      ) as Iterable<_i3.Component>);
+
+  @override
+  bool propagateToChildren<T extends _i3.Component>(
+    bool Function(T)? handler, {
+    bool? includeSelf = false,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #propagateToChildren,
+          [handler],
+          {#includeSelf: includeSelf},
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool contains(_i3.Component? c) => (super.noSuchMethod(
+        Invocation.method(
+          #contains,
+          [c],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  void onGameResize(_i4.Vector2? size) => super.noSuchMethod(
+        Invocation.method(
+          #onGameResize,
+          [size],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onMount() => super.noSuchMethod(
+        Invocation.method(
+          #onMount,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onRemove() => super.noSuchMethod(
+        Invocation.method(
+          #onRemove,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onParentResize(_i4.Vector2? maxSize) => super.noSuchMethod(
+        Invocation.method(
+          #onParentResize,
+          [maxSize],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void updateTree(double? dt) => super.noSuchMethod(
+        Invocation.method(
+          #updateTree,
+          [dt],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onChildrenChanged(
+    _i3.Component? child,
+    _i3.ChildrenChangeType? type,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onChildrenChanged,
+          [
+            child,
+            type,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void render(_i5.Canvas? canvas) => super.noSuchMethod(
+        Invocation.method(
+          #render,
+          [canvas],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i14.FutureOr<void> add(_i3.Component? component) =>
+      (super.noSuchMethod(Invocation.method(
+        #add,
+        [component],
+      )) as _i14.FutureOr<void>);
+
+  @override
+  _i14.FutureOr<void> addToParent(_i3.Component? parent) =>
+      (super.noSuchMethod(Invocation.method(
+        #addToParent,
+        [parent],
+      )) as _i14.FutureOr<void>);
+
+  @override
+  _i14.Future<void> addAll(Iterable<_i3.Component>? components) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addAll,
+          [components],
+        ),
+        returnValue: _i14.Future<void>.value(),
+        returnValueForMissingStub: _i14.Future<void>.value(),
+      ) as _i14.Future<void>);
+
+  @override
+  void remove(_i3.Component? component) => super.noSuchMethod(
+        Invocation.method(
+          #remove,
+          [component],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeFromParent() => super.noSuchMethod(
+        Invocation.method(
+          #removeFromParent,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeAll(Iterable<_i3.Component>? components) => super.noSuchMethod(
+        Invocation.method(
+          #removeAll,
+          [components],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeWhere(bool Function(_i3.Component)? test) => super.noSuchMethod(
+        Invocation.method(
+          #removeWhere,
+          [test],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  Iterable<_i3.Component> componentsAtPoint(
+    _i4.Vector2? point, [
+    List<_i4.Vector2>? nestedPoints,
+  ]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #componentsAtPoint,
+          [
+            point,
+            nestedPoints,
+          ],
+        ),
+        returnValue: <_i3.Component>[],
+      ) as Iterable<_i3.Component>);
+
+  @override
+  Iterable<_i3.Component> componentsAtLocation<T>(
+    T? locationContext,
+    List<T>? nestedContexts,
+    T? Function(
+      _i3.CoordinateTransform,
+      T,
+    )? transformContext,
+    bool Function(
+      _i3.Component,
+      T,
+    )? checkContains,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #componentsAtLocation,
+          [
+            locationContext,
+            nestedContexts,
+            transformContext,
+            checkContains,
+          ],
+        ),
+        returnValue: <_i3.Component>[],
+      ) as Iterable<_i3.Component>);
+
+  @override
+  _i16.LifecycleEventStatus handleLifecycleEventAdd(_i3.Component? parent) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #handleLifecycleEventAdd,
+          [parent],
+        ),
+        returnValue: _i16.LifecycleEventStatus.skip,
+      ) as _i16.LifecycleEventStatus);
+
+  @override
+  _i16.LifecycleEventStatus handleLifecycleEventRemove(_i3.Component? parent) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #handleLifecycleEventRemove,
+          [parent],
+        ),
+        returnValue: _i16.LifecycleEventStatus.skip,
+      ) as _i16.LifecycleEventStatus);
+
+  @override
+  _i16.LifecycleEventStatus handleLifecycleEventMove(
+          _i3.Component? newParent) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #handleLifecycleEventMove,
+          [newParent],
+        ),
+        returnValue: _i16.LifecycleEventStatus.skip,
+      ) as _i16.LifecycleEventStatus);
+
+  @override
+  void handleResize(_i4.Vector2? size) => super.noSuchMethod(
+        Invocation.method(
+          #handleResize,
+          [size],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setMounted() => super.noSuchMethod(
+        Invocation.method(
+          #setMounted,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [TimeManager].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTimeManager extends _i1.Mock implements _i21.TimeManager {
+  MockTimeManager() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  int get millisSinceEpoch => (super.noSuchMethod(
+        Invocation.getter(#millisSinceEpoch),
+        returnValue: 0,
+      ) as int);
+}
+
+/// A class which mocks [Viewport].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockViewport extends _i1.Mock implements _i22.Viewport {
+  MockViewport() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Transform2D get transform => (super.noSuchMethod(
+        Invocation.getter(#transform),
+        returnValue: _FakeTransform2D_25(
+          this,
+          Invocation.getter(#transform),
+        ),
+      ) as _i4.Transform2D);
+
+  @override
+  _i3.Anchor get anchor => (super.noSuchMethod(
+        Invocation.getter(#anchor),
+        returnValue: _FakeAnchor_29(
+          this,
+          Invocation.getter(#anchor),
+        ),
+      ) as _i3.Anchor);
+
+  @override
+  set anchor(_i3.Anchor? _anchor) => super.noSuchMethod(
+        Invocation.setter(
+          #anchor,
+          _anchor,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Vector2 get position => (super.noSuchMethod(
+        Invocation.getter(#position),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#position),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  set position(_i4.Vector2? value) => super.noSuchMethod(
+        Invocation.setter(
+          #position,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Vector2 get size => (super.noSuchMethod(
+        Invocation.getter(#size),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#size),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 get virtualSize => (super.noSuchMethod(
+        Invocation.getter(#virtualSize),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.getter(#virtualSize),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  set size(_i4.Vector2? value) => super.noSuchMethod(
+        Invocation.setter(
+          #size,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i3.CameraComponent get camera => (super.noSuchMethod(
+        Invocation.getter(#camera),
+        returnValue: _FakeCameraComponent_1(
+          this,
+          Invocation.getter(#camera),
+        ),
+      ) as _i3.CameraComponent);
+
+  @override
+  bool get debugMode => (super.noSuchMethod(
+        Invocation.getter(#debugMode),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  set debugMode(bool? _debugMode) => super.noSuchMethod(
+        Invocation.setter(
+          #debugMode,
+          _debugMode,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set debugCoordinatesPrecision(int? _debugCoordinatesPrecision) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #debugCoordinatesPrecision,
+          _debugCoordinatesPrecision,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Color get debugColor => (super.noSuchMethod(
+        Invocation.getter(#debugColor),
+        returnValue: _FakeColor_3(
+          this,
+          Invocation.getter(#debugColor),
+        ),
+      ) as _i5.Color);
+
+  @override
+  set debugColor(_i5.Color? _debugColor) => super.noSuchMethod(
+        Invocation.setter(
+          #debugColor,
+          _debugColor,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool get isLoading => (super.noSuchMethod(
+        Invocation.getter(#isLoading),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isLoaded => (super.noSuchMethod(
+        Invocation.getter(#isLoaded),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isMounting => (super.noSuchMethod(
+        Invocation.getter(#isMounting),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isMounted => (super.noSuchMethod(
+        Invocation.getter(#isMounted),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isRemoving => (super.noSuchMethod(
+        Invocation.getter(#isRemoving),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isRemoved => (super.noSuchMethod(
+        Invocation.getter(#isRemoved),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  _i14.Future<void> get loaded => (super.noSuchMethod(
+        Invocation.getter(#loaded),
+        returnValue: _i14.Future<void>.value(),
+      ) as _i14.Future<void>);
+
+  @override
+  _i14.Future<void> get mounted => (super.noSuchMethod(
+        Invocation.getter(#mounted),
+        returnValue: _i14.Future<void>.value(),
+      ) as _i14.Future<void>);
+
+  @override
+  _i14.Future<void> get removed => (super.noSuchMethod(
+        Invocation.getter(#removed),
+        returnValue: _i14.Future<void>.value(),
+      ) as _i14.Future<void>);
+
+  @override
+  set parent(_i3.Component? newParent) => super.noSuchMethod(
+        Invocation.setter(
+          #parent,
+          newParent,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i3.ComponentSet get children => (super.noSuchMethod(
+        Invocation.getter(#children),
+        returnValue: _FakeComponentSet_4(
+          this,
+          Invocation.getter(#children),
+        ),
+      ) as _i3.ComponentSet);
+
+  @override
+  bool get hasChildren => (super.noSuchMethod(
+        Invocation.getter(#hasChildren),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  int get priority => (super.noSuchMethod(
+        Invocation.getter(#priority),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  set priority(int? newPriority) => super.noSuchMethod(
+        Invocation.setter(
+          #priority,
+          newPriority,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Paint get debugPaint => (super.noSuchMethod(
+        Invocation.getter(#debugPaint),
+        returnValue: _FakePaint_5(
+          this,
+          Invocation.getter(#debugPaint),
+        ),
+      ) as _i5.Paint);
+
+  @override
+  _i4.TextPaint get debugTextPaint => (super.noSuchMethod(
+        Invocation.getter(#debugTextPaint),
+        returnValue: _FakeTextPaint_6(
+          this,
+          Invocation.getter(#debugTextPaint),
+        ),
+      ) as _i4.TextPaint);
+
+  @override
+  void clip(_i5.Canvas? canvas) => super.noSuchMethod(
+        Invocation.method(
+          #clip,
+          [canvas],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool containsLocalPoint(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #containsLocalPoint,
+          [point],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  void onViewportResize() => super.noSuchMethod(
+        Invocation.method(
+          #onViewportResize,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Vector2 globalToLocal(
+    _i4.Vector2? point, {
+    _i4.Vector2? output,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #globalToLocal,
+          [point],
+          {#output: output},
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #globalToLocal,
+            [point],
+            {#output: output},
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 localToGlobal(
+    _i4.Vector2? point, {
+    _i4.Vector2? output,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #localToGlobal,
+          [point],
+          {#output: output},
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #localToGlobal,
+            [point],
+            {#output: output},
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 parentToLocal(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #parentToLocal,
+          [point],
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #parentToLocal,
+            [point],
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  _i4.Vector2 localToParent(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #localToParent,
+          [point],
+        ),
+        returnValue: _FakeVector2_2(
+          this,
+          Invocation.method(
+            #localToParent,
+            [point],
+          ),
+        ),
+      ) as _i4.Vector2);
+
+  @override
+  void transformCanvas(_i5.Canvas? canvas) => super.noSuchMethod(
+        Invocation.method(
+          #transformCanvas,
+          [canvas],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i3.ComponentSet createComponentSet() => (super.noSuchMethod(
+        Invocation.method(
+          #createComponentSet,
+          [],
+        ),
+        returnValue: _FakeComponentSet_4(
+          this,
+          Invocation.method(
+            #createComponentSet,
+            [],
+          ),
+        ),
+      ) as _i3.ComponentSet);
+
+  @override
+  T? findParent<T extends _i3.Component>({bool? includeSelf = false}) =>
+      (super.noSuchMethod(Invocation.method(
+        #findParent,
+        [],
+        {#includeSelf: includeSelf},
+      )) as T?);
+
+  @override
+  Iterable<_i3.Component> ancestors({bool? includeSelf = false}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #ancestors,
+          [],
+          {#includeSelf: includeSelf},
+        ),
+        returnValue: <_i3.Component>[],
+      ) as Iterable<_i3.Component>);
+
+  @override
+  Iterable<_i3.Component> descendants({
+    bool? includeSelf = false,
+    bool? reversed = false,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #descendants,
+          [],
+          {
+            #includeSelf: includeSelf,
+            #reversed: reversed,
+          },
+        ),
+        returnValue: <_i3.Component>[],
+      ) as Iterable<_i3.Component>);
+
+  @override
+  bool propagateToChildren<T extends _i3.Component>(
+    bool Function(T)? handler, {
+    bool? includeSelf = false,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #propagateToChildren,
+          [handler],
+          {#includeSelf: includeSelf},
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool contains(_i3.Component? c) => (super.noSuchMethod(
+        Invocation.method(
+          #contains,
+          [c],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  void onGameResize(_i4.Vector2? size) => super.noSuchMethod(
+        Invocation.method(
+          #onGameResize,
+          [size],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onMount() => super.noSuchMethod(
+        Invocation.method(
+          #onMount,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onRemove() => super.noSuchMethod(
+        Invocation.method(
+          #onRemove,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onParentResize(_i4.Vector2? maxSize) => super.noSuchMethod(
+        Invocation.method(
+          #onParentResize,
+          [maxSize],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void update(double? dt) => super.noSuchMethod(
+        Invocation.method(
+          #update,
+          [dt],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void updateTree(double? dt) => super.noSuchMethod(
+        Invocation.method(
+          #updateTree,
+          [dt],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onChildrenChanged(
+    _i3.Component? child,
+    _i3.ChildrenChangeType? type,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onChildrenChanged,
+          [
+            child,
+            type,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void render(_i5.Canvas? canvas) => super.noSuchMethod(
+        Invocation.method(
+          #render,
+          [canvas],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void renderTree(_i5.Canvas? canvas) => super.noSuchMethod(
+        Invocation.method(
+          #renderTree,
+          [canvas],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i14.FutureOr<void> add(_i3.Component? component) =>
+      (super.noSuchMethod(Invocation.method(
+        #add,
+        [component],
+      )) as _i14.FutureOr<void>);
+
+  @override
+  _i14.FutureOr<void> addToParent(_i3.Component? parent) =>
+      (super.noSuchMethod(Invocation.method(
+        #addToParent,
+        [parent],
+      )) as _i14.FutureOr<void>);
+
+  @override
+  _i14.Future<void> addAll(Iterable<_i3.Component>? components) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addAll,
+          [components],
+        ),
+        returnValue: _i14.Future<void>.value(),
+        returnValueForMissingStub: _i14.Future<void>.value(),
+      ) as _i14.Future<void>);
+
+  @override
+  void remove(_i3.Component? component) => super.noSuchMethod(
+        Invocation.method(
+          #remove,
+          [component],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeFromParent() => super.noSuchMethod(
+        Invocation.method(
+          #removeFromParent,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeAll(Iterable<_i3.Component>? components) => super.noSuchMethod(
+        Invocation.method(
+          #removeAll,
+          [components],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeWhere(bool Function(_i3.Component)? test) => super.noSuchMethod(
+        Invocation.method(
+          #removeWhere,
+          [test],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool containsPoint(_i4.Vector2? point) => (super.noSuchMethod(
+        Invocation.method(
+          #containsPoint,
+          [point],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  Iterable<_i3.Component> componentsAtPoint(
+    _i4.Vector2? point, [
+    List<_i4.Vector2>? nestedPoints,
+  ]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #componentsAtPoint,
+          [
+            point,
+            nestedPoints,
+          ],
+        ),
+        returnValue: <_i3.Component>[],
+      ) as Iterable<_i3.Component>);
+
+  @override
+  Iterable<_i3.Component> componentsAtLocation<T>(
+    T? locationContext,
+    List<T>? nestedContexts,
+    T? Function(
+      _i3.CoordinateTransform,
+      T,
+    )? transformContext,
+    bool Function(
+      _i3.Component,
+      T,
+    )? checkContains,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #componentsAtLocation,
+          [
+            locationContext,
+            nestedContexts,
+            transformContext,
+            checkContains,
+          ],
+        ),
+        returnValue: <_i3.Component>[],
+      ) as Iterable<_i3.Component>);
+
+  @override
+  _i16.LifecycleEventStatus handleLifecycleEventAdd(_i3.Component? parent) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #handleLifecycleEventAdd,
+          [parent],
+        ),
+        returnValue: _i16.LifecycleEventStatus.skip,
+      ) as _i16.LifecycleEventStatus);
+
+  @override
+  _i16.LifecycleEventStatus handleLifecycleEventRemove(_i3.Component? parent) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #handleLifecycleEventRemove,
+          [parent],
+        ),
+        returnValue: _i16.LifecycleEventStatus.skip,
+      ) as _i16.LifecycleEventStatus);
+
+  @override
+  _i16.LifecycleEventStatus handleLifecycleEventMove(
+          _i3.Component? newParent) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #handleLifecycleEventMove,
+          [newParent],
+        ),
+        returnValue: _i16.LifecycleEventStatus.skip,
+      ) as _i16.LifecycleEventStatus);
+
+  @override
+  void handleResize(_i4.Vector2? size) => super.noSuchMethod(
+        Invocation.method(
+          #handleResize,
+          [size],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setMounted() => super.noSuchMethod(
+        Invocation.method(
+          #setMounted,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void renderDebugMode(_i5.Canvas? canvas) => super.noSuchMethod(
+        Invocation.method(
+          #renderDebugMode,
+          [canvas],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [WidgetsBindingWrapper].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockWidgetsBindingWrapper extends _i1.Mock
+    implements _i23.WidgetsBindingWrapper {
+  MockWidgetsBindingWrapper() {
+    _i1.throwOnMissingStub(this);
+  }
 }

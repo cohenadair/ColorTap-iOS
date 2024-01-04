@@ -5,10 +5,10 @@ class TimeManager {
 
   static TimeManager get get => _instance;
 
-  TimeManager._();
-
   @visibleForTesting
-  void set(TimeManager timeManager) => _instance = timeManager;
+  static void set(TimeManager timeManager) => _instance = timeManager;
+
+  TimeManager._();
 
   int get millisSinceEpoch => DateTime.now().millisecondsSinceEpoch;
 }

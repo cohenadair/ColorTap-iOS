@@ -99,12 +99,12 @@ class Target extends CircleComponent
       ]),
       onComplete: () {
         priority = 0;
-        _board.priority = 0;
+        _board.priority = priority;
         world.handleTargetHit(isCorrect: false);
       },
     ));
     priority = 1;
-    _board.priority = 1;
+    _board.priority = priority;
     world.scrollingPaused = true;
   }
 

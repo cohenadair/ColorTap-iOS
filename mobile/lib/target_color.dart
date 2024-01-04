@@ -16,7 +16,6 @@ class TargetColor {
       BasicPalette.purple,
       BasicPalette.magenta,
       BasicPalette.cyan,
-      BasicPalette.brown,
     ];
     if (exclude != null) {
       palettes.remove(exclude._paletteEntry);
