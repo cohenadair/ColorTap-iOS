@@ -6,7 +6,10 @@ class TimeManager {
   static TimeManager get get => _instance;
 
   @visibleForTesting
-  static void set(TimeManager timeManager) => _instance = timeManager;
+  static void set(TimeManager manager) => _instance = manager;
+
+  @visibleForTesting
+  static void suicide() => _instance = TimeManager._();
 
   TimeManager._();
 

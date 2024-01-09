@@ -1,14 +1,17 @@
 import 'dart:async' as async;
 
 import 'package:flame/components.dart';
-import 'package:mobile/components/scoreboard.dart';
-import 'package:mobile/components/target_board.dart';
-import 'package:mobile/effects/target_board_rewind_effect.dart';
-import 'package:mobile/utils/overlay_utils.dart';
+import 'package:flame/text.dart';
+import 'package:flutter/material.dart';
 
 import 'components/target.dart';
+import 'components/target_board.dart';
+import 'effects/target_board_rewind_effect.dart';
+import 'managers/lives_manager.dart';
 import 'managers/time_manager.dart';
 import 'target_color.dart';
+import 'utils/dimens.dart';
+import 'utils/overlay_utils.dart';
 
 class ColorTapWorld extends World with HasGameRef, Notifier {
   static const _startSpeed = 3.5;
@@ -44,14 +47,19 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
 
   @override
   void onLoad() {
-    game.overlays.add(overlayMainMenuId);
+    game.overlays.add(overlayIdScoreboard);
+    game.overlays.add(overlayIdMainMenu);
 
     add(FpsTextComponent(
       priority: 1,
-      position: Vector2(20, 80),
+      position: Vector2(paddingDefault, 150),
+      textRenderer: TextPaint(
+        style: const TextStyle(
+          color: Colors.green,
+          fontSize: 20,
+        ),
+      ),
     ));
-
-    add(Scoreboard());
 
     add(TargetBoard(
       verticalStartFactor: 2,
@@ -78,7 +86,8 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
         _startGracePeriod();
       }
     } else {
-      game.overlays.add(overlayGameOverId);
+      LivesManager.get.loseLife();
+      game.overlays.add(overlayIdGameOver);
     }
 
     notifyListeners();
@@ -105,7 +114,7 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
     scrollingPaused = false;
     notifyListeners();
 
-    game.overlays.removeAll([overlayMainMenuId, overlayGameOverId]);
+    game.overlays.removeAll([overlayIdMainMenu, overlayIdGameOver]);
   }
 
   TargetBoard _targetBoard(ComponentKey key) =>

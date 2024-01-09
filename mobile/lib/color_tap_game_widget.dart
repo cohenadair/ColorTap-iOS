@@ -7,18 +7,16 @@ import 'utils/overlay_utils.dart';
 class ColorTapGameWidget extends StatelessWidget {
   final ColorTapGame game;
 
-  const ColorTapGameWidget(
-    this.game, {
-    super.key,
-  });
+  const ColorTapGameWidget(this.game);
 
   @override
   Widget build(BuildContext context) {
     return GameWidget(
       game: game,
       overlayBuilderMap: const {
-        overlayMainMenuId: buildMainMenu,
-        overlayGameOverId: buildGameOver,
+        overlayIdMainMenu: buildMainMenu,
+        overlayIdGameOver: buildGameOver,
+        overlayIdScoreboard: buildScoreboard,
       },
     );
   }

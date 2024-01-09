@@ -8,11 +8,11 @@ import 'dart:async' as _i14;
 import 'dart:ui' as _i5;
 
 import 'package:flame/cache.dart' as _i6;
-import 'package:flame/camera.dart' as _i22;
+import 'package:flame/camera.dart' as _i25;
 import 'package:flame/components.dart' as _i3;
 import 'package:flame/game.dart' as _i4;
 import 'package:flame/src/components/core/component_tree_root.dart' as _i16;
-import 'package:flame/src/events/messages/tap_down_event.dart' as _i20;
+import 'package:flame/src/events/messages/tap_down_event.dart' as _i23;
 import 'package:flame/src/game/game_render_box.dart' as _i9;
 import 'package:flame/src/game/game_widget/gesture_detector_builder.dart'
     as _i7;
@@ -25,10 +25,12 @@ import 'package:mobile/color_tap_game.dart' as _i13;
 import 'package:mobile/color_tap_world.dart' as _i2;
 import 'package:mobile/components/target.dart' as _i18;
 import 'package:mobile/components/target_board.dart' as _i19;
-import 'package:mobile/managers/time_manager.dart' as _i21;
+import 'package:mobile/managers/lives_manager.dart' as _i20;
+import 'package:mobile/managers/preference_manager.dart' as _i21;
+import 'package:mobile/managers/time_manager.dart' as _i24;
 import 'package:mobile/target_color.dart' as _i11;
-import 'package:mobile/wrappers/widgets_binding_wrapper.dart' as _i23;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:shared_preferences/shared_preferences.dart' as _i22;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -1518,54 +1520,6 @@ class MockColorTapWorld extends _i1.Mock implements _i2.ColorTapWorld {
   }
 
   @override
-  double get speed => (super.noSuchMethod(
-        Invocation.getter(#speed),
-        returnValue: 0.0,
-      ) as double);
-
-  @override
-  set speed(double? _speed) => super.noSuchMethod(
-        Invocation.setter(
-          #speed,
-          _speed,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  _i11.TargetColor get color => (super.noSuchMethod(
-        Invocation.getter(#color),
-        returnValue: _FakeTargetColor_16(
-          this,
-          Invocation.getter(#color),
-        ),
-      ) as _i11.TargetColor);
-
-  @override
-  set color(_i11.TargetColor? _color) => super.noSuchMethod(
-        Invocation.setter(
-          #color,
-          _color,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  int get score => (super.noSuchMethod(
-        Invocation.getter(#score),
-        returnValue: 0,
-      ) as int);
-
-  @override
-  set score(int? _score) => super.noSuchMethod(
-        Invocation.setter(
-          #score,
-          _score,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
   bool get scrollingPaused => (super.noSuchMethod(
         Invocation.getter(#scrollingPaused),
         returnValue: false,
@@ -1581,13 +1535,25 @@ class MockColorTapWorld extends _i1.Mock implements _i2.ColorTapWorld {
       );
 
   @override
-  set gracePeriod(int? _gracePeriod) => super.noSuchMethod(
-        Invocation.setter(
-          #gracePeriod,
-          _gracePeriod,
+  double get speed => (super.noSuchMethod(
+        Invocation.getter(#speed),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  _i11.TargetColor get color => (super.noSuchMethod(
+        Invocation.getter(#color),
+        returnValue: _FakeTargetColor_16(
+          this,
+          Invocation.getter(#color),
         ),
-        returnValueForMissingStub: null,
-      );
+      ) as _i11.TargetColor);
+
+  @override
+  int get score => (super.noSuchMethod(
+        Invocation.getter(#score),
+        returnValue: 0,
+      ) as int);
 
   @override
   bool get debugMode => (super.noSuchMethod(
@@ -2408,10 +2374,279 @@ class MockFlutterView extends _i1.Mock implements _i5.FlutterView {
       );
 }
 
+/// A class which mocks [LivesManager].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLivesManager extends _i1.Mock implements _i20.LivesManager {
+  MockLivesManager() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i14.Stream<dynamic> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i14.Stream<dynamic>.empty(),
+      ) as _i14.Stream<dynamic>);
+
+  @override
+  int get lives => (super.noSuchMethod(
+        Invocation.getter(#lives),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  bool get canPlay => (super.noSuchMethod(
+        Invocation.getter(#canPlay),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  void loseLife() => super.noSuchMethod(
+        Invocation.method(
+          #loseLife,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void reset() => super.noSuchMethod(
+        Invocation.method(
+          #reset,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [PreferenceManager].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPreferenceManager extends _i1.Mock implements _i21.PreferenceManager {
+  MockPreferenceManager() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  int get lives => (super.noSuchMethod(
+        Invocation.getter(#lives),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  set lives(int? value) => super.noSuchMethod(
+        Invocation.setter(
+          #lives,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i14.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i14.Future<void>.value(),
+        returnValueForMissingStub: _i14.Future<void>.value(),
+      ) as _i14.Future<void>);
+
+  @override
+  void clearLives() => super.noSuchMethod(
+        Invocation.method(
+          #clearLives,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [SharedPreferences].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSharedPreferences extends _i1.Mock implements _i22.SharedPreferences {
+  MockSharedPreferences() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  Set<String> getKeys() => (super.noSuchMethod(
+        Invocation.method(
+          #getKeys,
+          [],
+        ),
+        returnValue: <String>{},
+      ) as Set<String>);
+
+  @override
+  Object? get(String? key) => (super.noSuchMethod(Invocation.method(
+        #get,
+        [key],
+      )) as Object?);
+
+  @override
+  bool? getBool(String? key) => (super.noSuchMethod(Invocation.method(
+        #getBool,
+        [key],
+      )) as bool?);
+
+  @override
+  int? getInt(String? key) => (super.noSuchMethod(Invocation.method(
+        #getInt,
+        [key],
+      )) as int?);
+
+  @override
+  double? getDouble(String? key) => (super.noSuchMethod(Invocation.method(
+        #getDouble,
+        [key],
+      )) as double?);
+
+  @override
+  String? getString(String? key) => (super.noSuchMethod(Invocation.method(
+        #getString,
+        [key],
+      )) as String?);
+
+  @override
+  bool containsKey(String? key) => (super.noSuchMethod(
+        Invocation.method(
+          #containsKey,
+          [key],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  List<String>? getStringList(String? key) =>
+      (super.noSuchMethod(Invocation.method(
+        #getStringList,
+        [key],
+      )) as List<String>?);
+
+  @override
+  _i14.Future<bool> setBool(
+    String? key,
+    bool? value,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setBool,
+          [
+            key,
+            value,
+          ],
+        ),
+        returnValue: _i14.Future<bool>.value(false),
+      ) as _i14.Future<bool>);
+
+  @override
+  _i14.Future<bool> setInt(
+    String? key,
+    int? value,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setInt,
+          [
+            key,
+            value,
+          ],
+        ),
+        returnValue: _i14.Future<bool>.value(false),
+      ) as _i14.Future<bool>);
+
+  @override
+  _i14.Future<bool> setDouble(
+    String? key,
+    double? value,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setDouble,
+          [
+            key,
+            value,
+          ],
+        ),
+        returnValue: _i14.Future<bool>.value(false),
+      ) as _i14.Future<bool>);
+
+  @override
+  _i14.Future<bool> setString(
+    String? key,
+    String? value,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setString,
+          [
+            key,
+            value,
+          ],
+        ),
+        returnValue: _i14.Future<bool>.value(false),
+      ) as _i14.Future<bool>);
+
+  @override
+  _i14.Future<bool> setStringList(
+    String? key,
+    List<String>? value,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setStringList,
+          [
+            key,
+            value,
+          ],
+        ),
+        returnValue: _i14.Future<bool>.value(false),
+      ) as _i14.Future<bool>);
+
+  @override
+  _i14.Future<bool> remove(String? key) => (super.noSuchMethod(
+        Invocation.method(
+          #remove,
+          [key],
+        ),
+        returnValue: _i14.Future<bool>.value(false),
+      ) as _i14.Future<bool>);
+
+  @override
+  _i14.Future<bool> commit() => (super.noSuchMethod(
+        Invocation.method(
+          #commit,
+          [],
+        ),
+        returnValue: _i14.Future<bool>.value(false),
+      ) as _i14.Future<bool>);
+
+  @override
+  _i14.Future<bool> clear() => (super.noSuchMethod(
+        Invocation.method(
+          #clear,
+          [],
+        ),
+        returnValue: _i14.Future<bool>.value(false),
+      ) as _i14.Future<bool>);
+
+  @override
+  _i14.Future<void> reload() => (super.noSuchMethod(
+        Invocation.method(
+          #reload,
+          [],
+        ),
+        returnValue: _i14.Future<void>.value(),
+        returnValueForMissingStub: _i14.Future<void>.value(),
+      ) as _i14.Future<void>);
+}
+
 /// A class which mocks [TapDownEvent].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTapDownEvent extends _i1.Mock implements _i20.TapDownEvent {
+class MockTapDownEvent extends _i1.Mock implements _i23.TapDownEvent {
   MockTapDownEvent() {
     _i1.throwOnMissingStub(this);
   }
@@ -3644,7 +3879,7 @@ class MockTargetBoard extends _i1.Mock implements _i19.TargetBoard {
 /// A class which mocks [TimeManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTimeManager extends _i1.Mock implements _i21.TimeManager {
+class MockTimeManager extends _i1.Mock implements _i24.TimeManager {
   MockTimeManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -3659,7 +3894,7 @@ class MockTimeManager extends _i1.Mock implements _i21.TimeManager {
 /// A class which mocks [Viewport].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockViewport extends _i1.Mock implements _i22.Viewport {
+class MockViewport extends _i1.Mock implements _i25.Viewport {
   MockViewport() {
     _i1.throwOnMissingStub(this);
   }
@@ -4338,14 +4573,4 @@ class MockViewport extends _i1.Mock implements _i22.Viewport {
         ),
         returnValueForMissingStub: null,
       );
-}
-
-/// A class which mocks [WidgetsBindingWrapper].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockWidgetsBindingWrapper extends _i1.Mock
-    implements _i23.WidgetsBindingWrapper {
-  MockWidgetsBindingWrapper() {
-    _i1.throwOnMissingStub(this);
-  }
 }

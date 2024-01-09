@@ -1,45 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/color_tap_game.dart';
+import 'package:mobile/managers/lives_manager.dart';
+import 'package:mobile/widgets/remaining_lives.dart';
 
 import '../utils/colors.dart';
 
-class Menu extends StatelessWidget {
-  static const _titleSize = 50.0;
-  static const _scoreSize = 100.0;
-
+class Menu extends StatefulWidget {
   final ColorTapGame game;
   final String title;
   final String playText;
-  final Color color;
   final bool hideScore;
 
   const Menu.main({
     required this.game,
-    super.key,
-  })  : title = "Main Menu",
+  })  : title = "Color Tap Coordination",
         playText = "Play",
-        color = colorGame,
         hideScore = true;
 
   const Menu.gameOver({
     required this.game,
-    super.key,
   })  : title = "Game Over",
         playText = "Play Again",
-        color = Colors.red,
         hideScore = false;
+
+  @override
+  State<Menu> createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> {
+  static const _titleSize = 50.0;
+  static const _scoreSize = 100.0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: color,
+      backgroundColor: colorGame,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Spacer(),
             _buildTitle(),
+            _buildLives(),
             _buildScore(),
+            const Spacer(),
             _buildPlayButton(),
+            _buildAddLivesButton(),
+            const Spacer(),
           ],
         ),
       ),
@@ -48,7 +55,8 @@ class Menu extends StatelessWidget {
 
   Widget _buildTitle() {
     return Text(
-      title,
+      widget.title,
+      textAlign: TextAlign.center,
       style: const TextStyle(
         fontSize: _titleSize,
         color: colorLightText,
@@ -56,13 +64,17 @@ class Menu extends StatelessWidget {
     );
   }
 
+  Widget _buildLives() {
+    return const RemainingLives();
+  }
+
   Widget _buildScore() {
-    if (hideScore) {
+    if (widget.hideScore) {
       return Container();
     }
 
     return Text(
-      game.world.score.toString(),
+      widget.game.world.score.toString(),
       style: const TextStyle(
         fontSize: _scoreSize,
         color: colorLightText,
@@ -72,8 +84,19 @@ class Menu extends StatelessWidget {
 
   Widget _buildPlayButton() {
     return FilledButton(
-      child: Text(playText),
-      onPressed: () => game.world.play(),
+      onPressed:
+          LivesManager.get.canPlay ? () => widget.game.world.play() : null,
+      child: Text(widget.playText),
+    );
+  }
+
+  Widget _buildAddLivesButton() {
+    return FilledButton(
+      onPressed: () {
+        LivesManager.get.reset();
+        setState(() {});
+      },
+      child: const Text("Replenish Lives"),
     );
   }
 }

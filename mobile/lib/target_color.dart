@@ -31,6 +31,8 @@ class TargetColor {
 
   Paint get paint => _paletteEntry.paint();
 
+  Color get color => _paletteEntry.color;
+
   @override
   bool operator ==(Object other) =>
       other is TargetColor && other._paletteEntry.color == _paletteEntry.color;

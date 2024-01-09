@@ -5,17 +5,26 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/color_tap_game.dart';
 import 'package:mobile/color_tap_game_widget.dart';
 import 'package:mobile/color_tap_world.dart';
-import 'package:mobile/components/scoreboard.dart';
 import 'package:mobile/components/target.dart';
 import 'package:mobile/components/target_board.dart';
 import 'package:mobile/effects/target_board_rewind_effect.dart';
 import 'package:mobile/utils/overlay_utils.dart';
+import 'package:mockito/mockito.dart';
+
+import 'test_utils/stubbed_managers.dart';
 
 void main() {
+  late StubbedManagers managers;
+
   late ColorTapGame game;
   late ColorTapWorld world;
 
   setUp(() {
+    managers = StubbedManagers();
+    when(managers.livesManager.loseLife()).thenAnswer((_) {});
+    when(managers.livesManager.lives).thenReturn(3);
+    when(managers.livesManager.canPlay).thenReturn(true);
+
     world = ColorTapWorld();
     game = ColorTapGame(world: world);
   });
@@ -24,9 +33,9 @@ void main() {
     await tester.pumpWidget(ColorTapGameWidget(game));
     await tester.pump();
 
-    expect(game.overlays.activeOverlays.contains(overlayMainMenuId), true);
+    expect(game.overlays.activeOverlays.contains(overlayIdMainMenu), true);
+    expect(game.overlays.activeOverlays.contains(overlayIdScoreboard), true);
     expect(world.children.whereType<FpsTextComponent>().length, 1);
-    expect(world.children.whereType<Scoreboard>().length, 1);
     expect(world.children.whereType<TargetBoard>().length, 2);
   });
 
@@ -77,8 +86,9 @@ void main() {
     expect(world.speed == startSpeed, true);
     expect(world.score == startScore, true);
     expect(world.color == startColor, true);
-    expect(game.overlays.activeOverlays.contains(overlayGameOverId), true);
+    expect(game.overlays.activeOverlays.contains(overlayIdGameOver), true);
     expect(notified, true);
+    verify(managers.livesManager.loseLife()).called(1);
 
     await tester.pump();
     expect(find.text("Game Over"), findsOneWidget);
@@ -127,6 +137,6 @@ void main() {
     expect(world.gracePeriod, isNull);
     expect(world.scrollingPaused, false);
     expect(notified, true);
-    expect(game.overlays.activeOverlays.isEmpty, true);
+    expect(game.overlays.activeOverlays.length, 1); // Scoreboard.
   });
 }
