@@ -2,13 +2,16 @@ name: mobile
 description: "A mobile tap arcade game that tests users' coordination skills."
 publish_to: "none"
 
-version: 1.0.0+1
+version: 1.0.3+2024020302
 
 environment:
   sdk: ">=3.2.3 <4.0.0"
 
 dependencies:
+  collection: ^1.18.0          # https://pub.dev/packages/collection (Dart)
   flame: ^1.13.1              # https://pub.dev/packages/flame (Flame Engine)
+  google_mobile_ads: ^4.0.0   # https://pub.dev/packages/google_mobile_ads (Google)
+  purchases_flutter: ^6.16.1  # https://pub.dev/packages/purchases_flutter (verified)
   shared_preferences: ^2.2.2  # https://pub.dev/packages/shared_preferences (Flutter)
   flutter:
     sdk: flutter
@@ -24,3 +27,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/sensitive.properties
