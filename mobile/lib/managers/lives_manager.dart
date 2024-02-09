@@ -16,6 +16,9 @@ class LivesManager {
 
   LivesManager._();
 
+  static const rewardedAdAmount = 10;
+  static const adErrorReward = 5;
+
   final _controller = StreamController.broadcast();
 
   Stream get stream => _controller.stream;
@@ -24,13 +27,21 @@ class LivesManager {
 
   bool get canPlay => lives > 0;
 
-  void loseLife() {
-    PreferenceManager.get.lives = lives - 1;
-    _controller.add(null);
+  void incLives(int by) {
+    PreferenceManager.get.lives = lives + by;
+    _notify();
   }
+
+  void loseLife() => incLives(-1);
 
   void reset() {
     PreferenceManager.get.clearLives();
-    _controller.add(null);
+    _notify();
   }
+
+  void rewardWatchedAd() => incLives(rewardedAdAmount);
+
+  void rewardAdError() => incLives(adErrorReward);
+
+  void _notify() => _controller.add(null);
 }

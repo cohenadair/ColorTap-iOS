@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/color_tap_game.dart';
 import 'package:mobile/managers/lives_manager.dart';
+import 'package:mobile/utils/dimens.dart';
+import 'package:mobile/utils/theme.dart';
+import 'package:mobile/widgets/get_lives.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
 
+import '../pages/store_page.dart';
 import '../utils/colors.dart';
+import '../utils/page_utils.dart';
 
-class Menu extends StatefulWidget {
+class Menu extends StatelessWidget {
+  static const _titleSize = 50.0;
+  static const _scoreSize = 100.0;
+
   final ColorTapGame game;
   final String title;
   final String playText;
@@ -24,30 +32,40 @@ class Menu extends StatefulWidget {
         hideScore = false;
 
   @override
-  State<Menu> createState() => _MenuState();
-}
-
-class _MenuState extends State<Menu> {
-  static const _titleSize = 50.0;
-  static const _scoreSize = 100.0;
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: colorGame,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Spacer(),
-            _buildTitle(),
-            _buildLives(),
-            _buildScore(),
-            const Spacer(),
-            _buildPlayButton(),
-            _buildAddLivesButton(),
-            const Spacer(),
-          ],
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: appTheme(context),
+      themeMode: ThemeMode.dark,
+      home: Scaffold(
+        body: LayoutBuilder(
+          builder: (context, constraints) => SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: IntrinsicHeight(
+                child: SafeArea(
+                  child: Padding(
+                    padding: insetsDefault,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Spacer(),
+                        _buildTitle(),
+                        _buildLives(),
+                        _buildScore(),
+                        _buildGetLives(context),
+                        const Spacer(),
+                        _buildPlayButton(),
+                        _buildStoreButton(context),
+                        _buildSettingsButton(),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -55,7 +73,7 @@ class _MenuState extends State<Menu> {
 
   Widget _buildTitle() {
     return Text(
-      widget.title,
+      title,
       textAlign: TextAlign.center,
       style: const TextStyle(
         fontSize: _titleSize,
@@ -69,12 +87,12 @@ class _MenuState extends State<Menu> {
   }
 
   Widget _buildScore() {
-    if (widget.hideScore) {
+    if (hideScore) {
       return Container();
     }
 
     return Text(
-      widget.game.world.score.toString(),
+      game.world.score.toString(),
       style: const TextStyle(
         fontSize: _scoreSize,
         color: colorLightText,
@@ -82,21 +100,53 @@ class _MenuState extends State<Menu> {
     );
   }
 
-  Widget _buildPlayButton() {
-    return FilledButton(
-      onPressed:
-          LivesManager.get.canPlay ? () => widget.game.world.play() : null,
-      child: Text(widget.playText),
+  Widget _buildGetLives(BuildContext context) {
+    return StreamBuilder(
+      stream: LivesManager.get.stream,
+      builder: (context, _) {
+        if (LivesManager.get.canPlay) {
+          return Container();
+        }
+
+        return Padding(
+          padding: insetsVerticalDefault,
+          child: Column(
+            children: [
+              Text(
+                "Uh oh! You are out of lives!",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const GetLives("BUY MORE"),
+            ],
+          ),
+        );
+      },
     );
   }
 
-  Widget _buildAddLivesButton() {
+  Widget _buildPlayButton() {
+    return StreamBuilder(
+      stream: LivesManager.get.stream,
+      builder: (context, _) => LivesManager.get.canPlay
+          ? FilledButton(
+              onPressed: game.world.play,
+              child: Text(playText),
+            )
+          : const SizedBox(),
+    );
+  }
+
+  Widget _buildStoreButton(BuildContext context) {
     return FilledButton(
-      onPressed: () {
-        LivesManager.get.reset();
-        setState(() {});
-      },
-      child: const Text("Replenish Lives"),
+      onPressed: () => present(context, StorePage()),
+      child: const Text("Store"),
+    );
+  }
+
+  Widget _buildSettingsButton() {
+    return const FilledButton(
+      onPressed: null,
+      child: Text("Settings"),
     );
   }
 }
