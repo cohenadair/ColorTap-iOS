@@ -45,4 +45,14 @@ void main() {
     LivesManager.get.reset();
     verify(preferenceManager.clearLives()).called(1);
   });
+
+  test("incLives", () {
+    LivesManager.get.stream
+        .listen(expectAsync1((value) => expect(value, null)));
+
+    when(preferenceManager.lives).thenReturn(3);
+    LivesManager.get.incLives(5);
+
+    verify(preferenceManager.lives = 8).called(1);
+  });
 }

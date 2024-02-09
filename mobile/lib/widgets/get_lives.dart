@@ -172,10 +172,7 @@ class _GetLivesState extends State<GetLives> {
 
   Widget _buildFillingLoading({bool isVisible = false}) {
     return Positioned.fill(
-      child: Visibility(
-        visible: isVisible,
-        child: const Center(child: Loading()),
-      ),
+      child: Center(child: Loading(isVisible: isVisible)),
     );
   }
 }

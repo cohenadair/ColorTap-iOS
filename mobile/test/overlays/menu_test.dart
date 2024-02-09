@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/overlays/menu.dart';
+import 'package:mobile/widgets/get_lives.dart';
+import 'package:mobile/wrappers/purchases_wrapper.dart';
 import 'package:mockito/mockito.dart';
 
 import '../mocks/mocks.mocks.dart';
@@ -11,6 +13,7 @@ void main() {
   late MockColorTapGame game;
   late MockColorTapWorld world;
   late MockLivesManager livesManager;
+  late MockPurchasesWrapper purchasesWrapper;
 
   setUp(() {
     world = MockColorTapWorld();
@@ -18,6 +21,11 @@ void main() {
 
     game = MockColorTapGame();
     when(game.world).thenReturn(world);
+
+    purchasesWrapper = MockPurchasesWrapper();
+    when(purchasesWrapper.getOfferings())
+        .thenAnswer((_) => Future.value(MockOfferings()));
+    PurchasesWrapper.set(purchasesWrapper);
 
     livesManager = MockLivesManager();
     LivesManager.set(livesManager);
@@ -28,13 +36,14 @@ void main() {
 
   testWidgets("Score is hidden", (tester) async {
     await pumpContext(tester, (context) => Menu.main(game: game));
-    expect(find.byType(Text), findsNWidgets(4));
+    verifyNever(world.score);
   });
 
   testWidgets("Score is shown", (tester) async {
-    when(world.score).thenReturn(10);
+    when(world.score).thenReturn(77);
     await pumpContext(tester, (context) => Menu.gameOver(game: game));
-    expect(find.byType(Text), findsNWidgets(5));
+    expect(find.text("77"), findsOneWidget);
+    verify(world.score).called(1);
   });
 
   testWidgets("Play button starts the game", (tester) async {
@@ -43,31 +52,50 @@ void main() {
     verify(world.play()).called(1);
   });
 
-  testWidgets("Play button is disabled if out of lives", (tester) async {
+  testWidgets("Play button is hidden if out of lives", (tester) async {
     when(livesManager.canPlay).thenReturn(false);
     await pumpContext(tester, (context) => Menu.main(game: game));
-
-    var play = tester
-        .firstWidget<FilledButton>(find.widgetWithText(FilledButton, "Play"));
-    expect(play.onPressed, null);
+    expect(find.text("Play"), findsNothing);
   });
 
   testWidgets("Play button is enabled", (tester) async {
     when(livesManager.canPlay).thenReturn(true);
     await pumpContext(tester, (context) => Menu.main(game: game));
-
-    var play = tester
-        .firstWidget<FilledButton>(find.widgetWithText(FilledButton, "Play"));
-    expect(play.onPressed, isNotNull);
+    expect(find.text("Play"), findsOneWidget);
   });
 
-  testWidgets("Add lives button resets lives", (tester) async {
+  testWidgets("GetLives is hidden when lives > 0", (tester) async {
+    when(livesManager.canPlay).thenReturn(true);
     await pumpContext(tester, (context) => Menu.main(game: game));
+    expect(find.byType(GetLives), findsNothing);
+  });
 
-    when(livesManager.lives).thenReturn(10);
-    await tapAndSettle(tester, find.text("Replenish Lives"));
+  testWidgets("GetLives is shown when lives == 0", (tester) async {
+    when(livesManager.canPlay).thenReturn(false);
+    await pumpContext(tester, (context) => Menu.main(game: game));
+    expect(find.byType(GetLives), findsOneWidget);
+  });
 
-    verify(livesManager.reset()).called(1);
-    expect(find.text("10"), findsOneWidget);
+  testWidgets("Play button is hidden when lives == 0", (tester) async {
+    when(livesManager.canPlay).thenReturn(false);
+    await pumpContext(tester, (context) => Menu.main(game: game));
+    expect(find.text("Play"), findsNothing);
+  });
+
+  testWidgets("Play button is shown when lives > 0", (tester) async {
+    when(livesManager.canPlay).thenReturn(true);
+    await pumpContext(tester, (context) => Menu.main(game: game));
+    expect(find.text("Play"), findsOneWidget);
+  });
+
+  testWidgets("Store button opens store page", (tester) async {
+    var offerings = MockOfferings();
+    when(offerings.getOffering(any)).thenReturn(null);
+    when(purchasesWrapper.getOfferings())
+        .thenAnswer((_) => Future.value(offerings));
+
+    await pumpContext(tester, (context) => Menu.main(game: game));
+    await tapAndSettle(tester, find.text("Store"));
+    expect(find.text("BUY LIVES"), findsOneWidget);
   });
 }
