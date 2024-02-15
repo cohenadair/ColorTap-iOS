@@ -5,7 +5,7 @@ View it on the App Store [here](https://itunes.apple.com/na/app/tap-that-colour/
 
 ## License
 
-The source code to Tap That Colour is available under the Apache 2.0 License. See the [LICENSE](/LICENSE) file for more information.
+The source code to Colour Tap is available under the Apache 2.0 License. See the [LICENSE](/LICENSE) file for more information.
 
 Although allowed by the licensing terms, please do not submit your own version of Colour Tap to the App Store or Google Play.
 
