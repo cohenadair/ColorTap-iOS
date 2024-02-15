@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/color_tap_game.dart';
 import 'package:mobile/managers/lives_manager.dart';
+import 'package:mobile/pages/settings_page.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/utils/theme.dart';
 import 'package:mobile/widgets/get_lives.dart';
@@ -57,7 +58,7 @@ class Menu extends StatelessWidget {
                         const Spacer(),
                         _buildPlayButton(),
                         _buildStoreButton(context),
-                        _buildSettingsButton(),
+                        _buildSettingsButton(context),
                         const Spacer(),
                       ],
                     ),
@@ -143,10 +144,10 @@ class Menu extends StatelessWidget {
     );
   }
 
-  Widget _buildSettingsButton() {
-    return const FilledButton(
-      onPressed: null,
-      child: Text("Settings"),
+  Widget _buildSettingsButton(BuildContext context) {
+    return FilledButton(
+      onPressed: () => present(context, SettingsPage()),
+      child: const Text("Settings"),
     );
   }
 }

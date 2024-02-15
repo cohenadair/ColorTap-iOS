@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/overlays/menu.dart';
+import 'package:mobile/pages/settings_page.dart';
 import 'package:mobile/widgets/get_lives.dart';
 import 'package:mobile/wrappers/purchases_wrapper.dart';
 import 'package:mockito/mockito.dart';
@@ -97,5 +98,11 @@ void main() {
     await pumpContext(tester, (context) => Menu.main(game: game));
     await tapAndSettle(tester, find.text("Store"));
     expect(find.text("BUY LIVES"), findsOneWidget);
+  });
+
+  testWidgets("Settings button opens settings page", (tester) async {
+    await pumpContext(tester, (context) => Menu.main(game: game));
+    await tapAndSettle(tester, find.text("Settings"));
+    expect(find.byType(SettingsPage), findsOneWidget);
   });
 }

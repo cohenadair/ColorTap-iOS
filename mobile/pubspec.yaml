@@ -13,6 +13,7 @@ dependencies:
   google_mobile_ads: ^4.0.0   # https://pub.dev/packages/google_mobile_ads (Google)
   purchases_flutter: ^6.16.1  # https://pub.dev/packages/purchases_flutter (verified)
   shared_preferences: ^2.2.2  # https://pub.dev/packages/shared_preferences (Flutter)
+  url_launcher: ^6.2.4        # https://pub.dev/packages/url_launcher (Flutter)
   flutter:
     sdk: flutter
 

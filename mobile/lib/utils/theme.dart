@@ -3,6 +3,8 @@ import 'package:mobile/utils/dimens.dart';
 
 import 'colors.dart';
 
+const fontSizePrimary = 16.0;
+
 const themeTextDefault = TextStyle(color: colorLightText);
 const themeTextLight = TextStyle(color: colorDarkText);
 
@@ -22,6 +24,11 @@ ThemeData appTheme(BuildContext context) {
     ),
     dialogTheme: const DialogTheme(
       contentTextStyle: themeTextLight,
+    ),
+    listTileTheme: ListTileThemeData(
+      titleTextStyle: themeTextDefault.copyWith(
+        fontSize: fontSizePrimary,
+      ),
     ),
   );
 }

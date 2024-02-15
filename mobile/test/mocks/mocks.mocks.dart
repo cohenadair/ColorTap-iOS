@@ -8,7 +8,7 @@ import 'dart:async' as _i19;
 import 'dart:ui' as _i5;
 
 import 'package:flame/cache.dart' as _i6;
-import 'package:flame/camera.dart' as _i41;
+import 'package:flame/camera.dart' as _i42;
 import 'package:flame/components.dart' as _i3;
 import 'package:flame/game.dart' as _i4;
 import 'package:flame/src/components/core/component_tree_root.dart' as _i21;
@@ -38,6 +38,7 @@ import 'package:mobile/wrappers/internet_address_wrapper.dart' as _i27;
 import 'package:mobile/wrappers/platform_wrapper.dart' as _i30;
 import 'package:mobile/wrappers/purchases_wrapper.dart' as _i34;
 import 'package:mobile/wrappers/rewarded_ad_wrapper.dart' as _i37;
+import 'package:mobile/wrappers/url_launcher_wrapper.dart' as _i41;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i26;
 import 'package:purchases_flutter/models/entitlement_infos_wrapper.dart'
@@ -4723,10 +4724,29 @@ class MockTimeManager extends _i1.Mock implements _i40.TimeManager {
       ) as int);
 }
 
+/// A class which mocks [UrlLauncherWrapper].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUrlLauncherWrapper extends _i1.Mock
+    implements _i41.UrlLauncherWrapper {
+  MockUrlLauncherWrapper() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i19.Future<bool> launch(String? url) => (super.noSuchMethod(
+        Invocation.method(
+          #launch,
+          [url],
+        ),
+        returnValue: _i19.Future<bool>.value(false),
+      ) as _i19.Future<bool>);
+}
+
 /// A class which mocks [Viewport].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockViewport extends _i1.Mock implements _i41.Viewport {
+class MockViewport extends _i1.Mock implements _i42.Viewport {
   MockViewport() {
     _i1.throwOnMissingStub(this);
   }
