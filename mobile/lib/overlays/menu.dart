@@ -54,7 +54,6 @@ class Menu extends StatelessWidget {
                         _buildGetLives(context),
                         const Spacer(),
                         _buildPlayButton(context),
-                        _buildStoreButton(context),
                         _buildSettingsButton(context),
                         const Spacer(),
                       ],
@@ -131,13 +130,6 @@ class Menu extends StatelessWidget {
               child: Text(_data.playText(context)),
             )
           : const SizedBox(),
-    );
-  }
-
-  Widget _buildStoreButton(BuildContext context) {
-    return FilledButton(
-      onPressed: () => present(context, StorePage()),
-      child: Text(Strings.of(context).storeTitle),
     );
   }
 

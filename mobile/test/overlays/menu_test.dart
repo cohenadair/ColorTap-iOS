@@ -88,17 +88,6 @@ void main() {
     expect(find.text("Play"), findsOneWidget);
   });
 
-  testWidgets("Store button opens store page", (tester) async {
-    var offerings = MockOfferings();
-    when(offerings.getOffering(any)).thenReturn(null);
-    when(purchasesWrapper.getOfferings())
-        .thenAnswer((_) => Future.value(offerings));
-
-    await pumpContext(tester, (context) => Menu.main(game));
-    await tapAndSettle(tester, find.text("Store"));
-    expect(find.text("Buy Lives"), findsOneWidget);
-  });
-
   testWidgets("Settings button opens settings page", (tester) async {
     await pumpContext(tester, (context) => Menu.main(game));
     await tapAndSettle(tester, find.text("Settings"));
