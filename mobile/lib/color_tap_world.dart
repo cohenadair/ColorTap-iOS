@@ -14,10 +14,10 @@ import 'utils/dimens.dart';
 import 'utils/overlay_utils.dart';
 
 class ColorTapWorld extends World with HasGameRef, Notifier {
-  static const _startSpeed = 3.5;
+  static const _startSpeed = 4.0;
   static const _incSpeedFactor = 0.00005;
   static const _colorResetMod = 10;
-  static const _gracePeriodMs = 2000;
+  static const _gracePeriodMs = 1500;
 
   final _board1Key = ComponentKey.unique();
   final _board2Key = ComponentKey.unique();
