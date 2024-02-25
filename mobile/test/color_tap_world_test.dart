@@ -131,7 +131,7 @@ void main() {
 
     expect(world.children.whereType<TargetBoard>().first.position.y, -3500);
     expect(world.children.whereType<TargetBoard>().last.position.y, -1750);
-    expect(world.speed, 3.5);
+    expect(world.speed, 4.0);
     expect(world.color != startColor, true);
     expect(world.score, 0);
     expect(world.gracePeriod, isNull);
