@@ -1,3 +1,4 @@
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mobile/managers/preference_manager.dart';
@@ -10,6 +11,12 @@ import 'managers/purchases_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Init game settings.
+  await Flame.device.fullScreen();
+  await Flame.device.setPortrait();
+
+  // Init singletons.
   await MobileAds.instance.initialize();
   await PreferenceManager.get.init();
   await PropertiesManager.get.init();
