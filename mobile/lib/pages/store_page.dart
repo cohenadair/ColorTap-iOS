@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/widgets/get_lives.dart';
 
@@ -7,15 +8,15 @@ class StorePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Store"),
+        title: Text(Strings.of(context).storeTitle),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
             padding: insetsDefault,
             child: Column(
               children: [
-                GetLives("BUY LIVES"),
+                GetLives(Strings.of(context).storeBuyLives),
               ],
             ),
           ),

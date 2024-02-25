@@ -8,10 +8,10 @@ const overlayIdGameOver = "game_over";
 const overlayIdScoreboard = "scoreboard";
 
 Widget buildMainMenu(BuildContext context, ColorTapGame game) =>
-    Menu.main(game: game);
+    Menu.main(game);
 
 Widget buildGameOver(BuildContext context, ColorTapGame game) =>
-    Menu.gameOver(game: game);
+    Menu.gameOver(game);
 
 Widget buildScoreboard(BuildContext context, ColorTapGame game) =>
-    Scoreboard(game: game);
+    Scoreboard(game);

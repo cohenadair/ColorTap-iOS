@@ -11,7 +11,7 @@ import '../utils/dimens.dart';
 class Scoreboard extends StatefulWidget {
   final ColorTapGame game;
 
-  const Scoreboard({required this.game});
+  const Scoreboard(this.game);
 
   @override
   State<Scoreboard> createState() => _ScoreboardState();

@@ -8,7 +8,7 @@ environment:
   sdk: ">=3.2.3 <4.0.0"
 
 dependencies:
-  collection: ^1.18.0          # https://pub.dev/packages/collection (Dart)
+  collection: ^1.18.0         # https://pub.dev/packages/collection (Dart)
   flame: ^1.13.1              # https://pub.dev/packages/flame (Flame Engine)
   google_mobile_ads: ^4.0.0   # https://pub.dev/packages/google_mobile_ads (Google)
   purchases_flutter: ^6.16.1  # https://pub.dev/packages/purchases_flutter (verified)
@@ -16,6 +16,9 @@ dependencies:
   url_launcher: ^6.2.4        # https://pub.dev/packages/url_launcher (Flutter)
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   build_runner: ^2.4.7        # https://pub.dev/packages/build_runner (Dart)
@@ -28,6 +31,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/sensitive.properties

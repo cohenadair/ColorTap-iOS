@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/strings.dart';
 
 const int snackBarDurationDefault = 5;
 
@@ -18,11 +19,11 @@ void showErrorDialog(
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: const Text("Error"),
+      title: Text(Strings.of(context).error),
       content: Text(errorMessage),
       actions: <Widget>[
         TextButton(
-          child: const Text("OK"),
+          child: Text(Strings.of(context).ok),
           onPressed: () {
             Navigator.of(context).pop();
             onDismissed?.call();

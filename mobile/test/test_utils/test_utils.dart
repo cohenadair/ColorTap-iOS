@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class Testable extends StatelessWidget {
@@ -12,6 +13,9 @@ class Testable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: Strings.localizationsDelegates,
+      supportedLocales: Strings.supportedLocales,
+      locale: const Locale("en", "CA"),
       home: Builder(builder: builder),
     );
   }

@@ -342,7 +342,7 @@ void main() {
     verifyNever(livesManager.rewardWatchedAd());
 
     // Dismiss error dialog.
-    await tester.tap(find.text("OK"));
+    await tester.tap(find.text("Ok"));
     await tester.pump();
     verify(livesManager.rewardAdError()).called(1);
   });

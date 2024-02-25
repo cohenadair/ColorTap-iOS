@@ -1,0 +1,42 @@
+{
+  "error": "Error",
+  "ok": "Ok",
+  "or": "Or",
+
+  "menuMainTitle": "Color Tap Coordination",
+  "menuMainPlay": "Play",
+  "menuGameOverTitle": "Game Over",
+  "menuGameOverPlayAgain": "Play Again",
+  "menuOutOfLives": "Uh oh! You are out of lives!",
+  "menuBuyMoreLives": "Buy More",
+
+  "storeTitle": "Store",
+  "storeBuyLives": "Buy Lives",
+
+  "settingsTitle": "Settings",
+  "settingsPrivacyTitle": "Privacy Policy",
+
+  "getLivesRefundableMessage": "Life purchases are non-refundable and do not sync across devices. Purchased lives will be lost if the app is uninstalled.",
+  "getLivesQuantityMessage": "lives for",
+  "getLivesWatchAd": "Watch Short Ad",
+
+  "getLivesAdRewardMessage": "Watching a short ad will earn you {rewardedAdAmount} lives.",
+  "@getLivesAdRewardMessage": {
+    "placeholders": {
+      "rewardedAdAmount": {
+        "type": "int"
+      }
+    }
+  },
+
+  "getLivesNoNetworkMessage": "Network is disconnected. Please connect to the internet and try again.",
+
+  "getLivesAdErrorMessage": "There was an error loading the ad. Here's {adErrorReward} lives for the inconvenience.",
+  "@getLivesAdErrorMessage": {
+    "placeholders": {
+      "adErrorReward": {
+        "type": "int"
+      }
+    }
+  }
+}

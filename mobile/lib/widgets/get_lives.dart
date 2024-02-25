@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/managers/purchases_manager.dart';
@@ -47,7 +48,7 @@ class _GetLivesState extends State<GetLives> {
       children: [
         _buildSeparator(widget.title),
         _buildBuyOptions(),
-        _buildSeparator("OR"),
+        _buildSeparator(Strings.of(context).or),
         _AdOption(),
       ],
     );
@@ -86,8 +87,8 @@ class _GetLivesState extends State<GetLives> {
                       _buildBuyOption(snapshot.data, LivesTier.three),
                     ].whereNotNull().toList(),
                   ),
-                  const Text(
-                    "Life purchases are non-refundable and do not sync across devices. Purchased lives will be lost if the app is uninstalled.",
+                  Text(
+                    Strings.of(context).getLivesRefundableMessage,
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -145,7 +146,7 @@ class _GetLivesState extends State<GetLives> {
                     (tier?.numberOfLives ?? 0).toString(),
                     style: Theme.of(context).textTheme.titleLarge?.makeBold(),
                   ),
-                  const Text("lives for"),
+                  Text(Strings.of(context).getLivesQuantityMessage),
                   Text(package?.storeProduct.priceString ?? ""),
                 ],
               ),
@@ -191,11 +192,13 @@ class _AdOptionState extends State<_AdOption> {
       children: [
         FilledButton.icon(
           icon: _isLoading ? const Loading() : const SizedBox(),
-          label: const Text("Watch Short Ad"),
+          label: Text(Strings.of(context).getLivesWatchAd),
           onPressed: _loadAd,
         ),
-        const Text(
-            "Watching a short ad will earn you ${LivesManager.rewardedAdAmount} lives."),
+        Text(
+          Strings.of(context)
+              .getLivesAdRewardMessage(LivesManager.rewardedAdAmount),
+        ),
       ],
     );
   }
@@ -208,8 +211,8 @@ class _AdOptionState extends State<_AdOption> {
     if (!await InternetAddressWrapper.get.isConnected) {
       safeUseContext(
         this,
-        () => showErrorSnackBar(context,
-            "Network is disconnected. Please connect to the internet and try again."),
+        () => showErrorSnackBar(
+            context, Strings.of(context).getLivesNoNetworkMessage),
       );
       return;
     }
@@ -231,7 +234,8 @@ class _AdOptionState extends State<_AdOption> {
           setState(() => _isLoading = false);
           showErrorDialog(
             context,
-            "There was an error loading the ad. Here's ${LivesManager.adErrorReward} lives for the inconvenience.",
+            Strings.of(context)
+                .getLivesAdErrorMessage(LivesManager.adErrorReward),
             onDismissed: () => LivesManager.get.rewardAdError(),
           );
         },

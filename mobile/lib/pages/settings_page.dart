@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:mobile/wrappers/url_launcher_wrapper.dart';
 
 import '../utils/dimens.dart';
@@ -11,13 +12,13 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Settings"),
+        title: Text(Strings.of(context).settingsTitle),
       ),
       body: SafeArea(
         child: ListView(
           children: [
             ListTile(
-              title: const Text("Privacy Policy"),
+              title: Text(Strings.of(context).settingsPrivacyTitle),
               contentPadding: insetsHorizontalDefault,
               trailing: Icon(
                 Icons.open_in_new,

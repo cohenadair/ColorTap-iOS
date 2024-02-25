@@ -36,7 +36,7 @@ void main() {
     var notifier = ComponentsNotifier<ColorTapWorld>([]);
     when(game.componentsNotifier<ColorTapWorld>()).thenReturn(notifier);
 
-    await pumpContext(tester, (context) => Scoreboard(game: game));
+    await pumpContext(tester, (context) => Scoreboard(game));
     verify(game.componentsNotifier<ColorTapWorld>()).called(1);
     expect(find.text("10"), findsOneWidget);
 
@@ -54,7 +54,7 @@ void main() {
     await pumpContext(
       tester,
       (_) => DisposableTester(
-        child: Scoreboard(game: game),
+        child: Scoreboard(game),
       ),
     );
     verify(notifier.addListener(any)).called(1);
@@ -68,14 +68,14 @@ void main() {
 
   testWidgets("Play button is shown", (tester) async {
     when(world.scrollingPaused).thenReturn(true);
-    await pumpContext(tester, (context) => Scoreboard(game: game));
+    await pumpContext(tester, (context) => Scoreboard(game));
     expect(find.byIcon(Icons.play_arrow), findsOneWidget);
     expect(find.byIcon(Icons.pause), findsNothing);
   });
 
   testWidgets("Pause button is shown", (tester) async {
     when(world.scrollingPaused).thenReturn(false);
-    await pumpContext(tester, (context) => Scoreboard(game: game));
+    await pumpContext(tester, (context) => Scoreboard(game));
     expect(find.byIcon(Icons.play_arrow), findsNothing);
     expect(find.byIcon(Icons.pause), findsOneWidget);
   });
@@ -85,7 +85,7 @@ void main() {
     tester.view.physicalSize = game.size.toSize();
 
     when(world.scrollingPaused).thenReturn(true);
-    await pumpContext(tester, (context) => Scoreboard(game: game));
+    await pumpContext(tester, (context) => Scoreboard(game));
 
     await tester.tap(find.byIcon(Icons.play_arrow));
     verify(world.scrollingPaused = false).called(1);

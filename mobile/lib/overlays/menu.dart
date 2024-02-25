@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:mobile/color_tap_game.dart';
 import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/pages/settings_page.dart';
@@ -16,21 +17,11 @@ class Menu extends StatelessWidget {
   static const _scoreSize = 100.0;
 
   final ColorTapGame game;
-  final String title;
-  final String playText;
-  final bool hideScore;
+  final _MenuData _data;
 
-  const Menu.main({
-    required this.game,
-  })  : title = "Color Tap Coordination",
-        playText = "Play",
-        hideScore = true;
+  Menu.main(this.game) : _data = _MainMenuData();
 
-  const Menu.gameOver({
-    required this.game,
-  })  : title = "Game Over",
-        playText = "Play Again",
-        hideScore = false;
+  Menu.gameOver(this.game) : _data = _GameOverMenuData();
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +29,12 @@ class Menu extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: appTheme(context),
       themeMode: ThemeMode.dark,
+      localizationsDelegates: Strings.localizationsDelegates,
+      supportedLocales: Strings.supportedLocales,
+      // Unless the system locale exactly matches supportedLocales, default to
+      // US English.
+      localeResolutionCallback: (locale, locales) =>
+          locales.contains(locale) ? locale : const Locale("en"),
       home: Scaffold(
         body: LayoutBuilder(
           builder: (context, constraints) => SingleChildScrollView(
@@ -51,12 +48,12 @@ class Menu extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Spacer(),
-                        _buildTitle(),
+                        _buildTitle(context),
                         _buildLives(),
                         _buildScore(),
                         _buildGetLives(context),
                         const Spacer(),
-                        _buildPlayButton(),
+                        _buildPlayButton(context),
                         _buildStoreButton(context),
                         _buildSettingsButton(context),
                         const Spacer(),
@@ -72,9 +69,9 @@ class Menu extends StatelessWidget {
     );
   }
 
-  Widget _buildTitle() {
+  Widget _buildTitle(BuildContext context) {
     return Text(
-      title,
+      _data.title(context),
       textAlign: TextAlign.center,
       style: const TextStyle(
         fontSize: _titleSize,
@@ -88,7 +85,7 @@ class Menu extends StatelessWidget {
   }
 
   Widget _buildScore() {
-    if (hideScore) {
+    if (_data.hideScore) {
       return Container();
     }
 
@@ -114,10 +111,10 @@ class Menu extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "Uh oh! You are out of lives!",
+                Strings.of(context).menuOutOfLives,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              const GetLives("BUY MORE"),
+              GetLives(Strings.of(context).menuBuyMoreLives),
             ],
           ),
         );
@@ -125,13 +122,13 @@ class Menu extends StatelessWidget {
     );
   }
 
-  Widget _buildPlayButton() {
+  Widget _buildPlayButton(BuildContext context) {
     return StreamBuilder(
       stream: LivesManager.get.stream,
       builder: (context, _) => LivesManager.get.canPlay
           ? FilledButton(
               onPressed: game.world.play,
-              child: Text(playText),
+              child: Text(_data.playText(context)),
             )
           : const SizedBox(),
     );
@@ -140,14 +137,45 @@ class Menu extends StatelessWidget {
   Widget _buildStoreButton(BuildContext context) {
     return FilledButton(
       onPressed: () => present(context, StorePage()),
-      child: const Text("Store"),
+      child: Text(Strings.of(context).storeTitle),
     );
   }
 
   Widget _buildSettingsButton(BuildContext context) {
     return FilledButton(
       onPressed: () => present(context, SettingsPage()),
-      child: const Text("Settings"),
+      child: Text(Strings.of(context).settingsTitle),
     );
   }
+}
+
+abstract class _MenuData {
+  bool get hideScore;
+
+  String playText(BuildContext context);
+
+  String title(BuildContext context);
+}
+
+class _MainMenuData implements _MenuData {
+  @override
+  bool get hideScore => true;
+
+  @override
+  String playText(BuildContext context) => Strings.of(context).menuMainPlay;
+
+  @override
+  String title(BuildContext context) => Strings.of(context).menuMainTitle;
+}
+
+class _GameOverMenuData implements _MenuData {
+  @override
+  bool get hideScore => false;
+
+  @override
+  String playText(BuildContext context) =>
+      Strings.of(context).menuGameOverPlayAgain;
+
+  @override
+  String title(BuildContext context) => Strings.of(context).menuGameOverTitle;
 }

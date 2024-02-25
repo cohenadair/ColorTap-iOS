@@ -26,7 +26,7 @@ void main() {
   });
 
   testWidgets("showErrorDialog", (tester) async {
-    var context = await pumpContext(tester, (_) => Menu.main(game: game));
+    var context = await pumpContext(tester, (_) => Menu.main(game));
     var wasCalled = false;
 
     showErrorDialog(
@@ -38,7 +38,7 @@ void main() {
 
     expect(find.text("Test error message"), findsOneWidget);
 
-    await tapAndSettle(tester, find.text("OK"));
+    await tapAndSettle(tester, find.text("Ok"));
     expect(find.text("Test error message"), findsNothing);
     expect(wasCalled, isTrue);
   });
