@@ -1,22 +1,34 @@
+import 'dart:async';
+
 import 'package:flame/components.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/components/target.dart';
 import 'package:mobile/components/target_board.dart';
+import 'package:mobile/difficulty.dart';
 import 'package:mobile/utils/target_utils.dart';
 import 'package:mockito/mockito.dart';
 
 import '../mocks/mocks.mocks.dart';
+import '../test_utils/stubbed_managers.dart';
 
 main() {
+  late StubbedManagers managers;
   late MockColorTapGame game;
   late MockColorTapWorld world;
 
-  setUp(() {
+  const width = 400.0;
+  const height = 1000.0;
+
+  setUp(() async {
+    managers = StubbedManagers();
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
+
     world = MockColorTapWorld();
 
     game = MockColorTapGame();
     when(game.world).thenReturn(world);
-    when(game.size).thenReturn(Vector2(400, 1000));
+    when(game.size).thenReturn(Vector2(width, height));
     when(game.hasLayout).thenReturn(true);
   });
 
@@ -30,7 +42,14 @@ main() {
     return board;
   }
 
-  test("onLoad", () {
+  void stubScreenSize(WidgetTester tester) {
+    tester.view.devicePixelRatio = 1.0;
+    tester.view.physicalSize = const Size(100, 100);
+  }
+
+  testWidgets("onLoad", (tester) async {
+    stubScreenSize(tester);
+
     var board = buildBoard();
     board.onLoad();
 
@@ -39,7 +58,8 @@ main() {
     expect(board.children.whereType<Target>().length, 72);
   });
 
-  test("Update is no-op when paused", () {
+  testWidgets("Update is no-op when paused", (tester) async {
+    stubScreenSize(tester);
     when(world.scrollingPaused).thenReturn(true);
 
     var board = buildBoard();
@@ -49,7 +69,8 @@ main() {
     expect(board.position, expectedPos);
   });
 
-  test("Update resets to top position", () {
+  testWidgets("Update resets to top position", (tester) async {
+    stubScreenSize(tester);
     when(world.scrollingPaused).thenReturn(false);
 
     var otherBoard = TargetBoard(
@@ -67,7 +88,8 @@ main() {
     expect(board.position.y, -2746);
   });
 
-  test("Update scrolls down", () {
+  testWidgets("Update scrolls down", (tester) async {
+    stubScreenSize(tester);
     when(world.scrollingPaused).thenReturn(false);
     when(world.speed).thenReturn(2.0);
 
@@ -85,18 +107,53 @@ main() {
     expect(board.position.y, startY + 6);
   });
 
-  test("Reset", () {
+  testWidgets("Reset", (tester) async {
+    stubScreenSize(tester);
     when(world.scrollingPaused).thenReturn(false);
     when(world.speed).thenReturn(2.0);
 
     var board = buildBoard();
     board.onLoad();
     var startY = board.position.y;
+    var startChildren = board.children.length;
 
     board.update(0);
     expect(board.position.y, startY + 2);
 
-    board.reset();
+    board.resetForNewGame();
     expect(board.position.y, startY);
+    expect(board.children.length, startChildren);
+  });
+
+  testWidgets("Board is reset when difficulty changes", (tester) async {
+    stubScreenSize(tester);
+    when(world.scrollingPaused).thenReturn(false);
+    when(world.speed).thenReturn(2.0);
+
+    var controller = StreamController.broadcast();
+    when(managers.preferenceManager.stream)
+        .thenAnswer((_) => controller.stream);
+
+    var board = buildBoard();
+    board.onLoad();
+    var startY = board.position.y;
+    var startChildren = board.children.length;
+
+    // Verify listener was added.
+    expect(controller.hasListener, isTrue);
+
+    // Move the board a little.
+    board.update(0);
+    expect(board.position.y, startY + 2);
+
+    // Verify reset.
+    controller.add(null);
+    await tester.pump(const Duration(seconds: 1)); // Streams are async.
+    expect(board.position.y, startY);
+    expect(board.children.length, startChildren);
+
+    // Verify stream sub is cancelled.
+    board.onRemove();
+    expect(controller.hasListener, isFalse);
   });
 }

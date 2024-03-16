@@ -1,8 +1,11 @@
 import 'dart:async' as async;
+import 'dart:math';
 
 import 'package:flame/components.dart';
 import 'package:flame/text.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/difficulty.dart';
+import 'package:mobile/managers/preference_manager.dart';
 
 import 'components/target.dart';
 import 'components/target_board.dart';
@@ -14,39 +17,36 @@ import 'utils/dimens.dart';
 import 'utils/overlay_utils.dart';
 
 class ColorTapWorld extends World with HasGameRef, Notifier {
-  static const _startSpeed = 4.0;
-  static const _incSpeedFactor = 0.00005;
-  static const _colorResetMod = 10;
-  static const _gracePeriodMs = 1500;
-
   final _board1Key = ComponentKey.unique();
   final _board2Key = ComponentKey.unique();
 
-  var _speed = _startSpeed;
-
-  double get speed => _speed;
-
-  var _color = TargetColor.random();
-
-  TargetColor get color => _color;
+  late double _speed;
+  late int _colorResetMod;
+  late TargetColor _color;
 
   var _score = 0;
-
-  int get score => _score;
-
   var scrollingPaused = true;
 
   /// If set, a "grace period" is active, where users are allowed to miss
   /// targets. This is to prevent immediate loss after a color change due
   /// to the new colour already being at the bottom of the screen.
   int? _gracePeriod;
+  async.Timer? _gracePeriodTimer;
+
+  double get speed => _speed;
+
+  TargetColor get color => _color;
+
+  int get score => _score;
 
   int? get gracePeriod => _gracePeriod;
 
-  async.Timer? _gracePeriodTimer;
+  Difficulty get _difficulty => PreferenceManager.get.difficulty;
 
   @override
   void onLoad() {
+    _resetForNewGame();
+
     game.overlays.add(overlayIdScoreboard);
     game.overlays.add(overlayIdMainMenu);
 
@@ -77,13 +77,15 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
     if (isCorrect) {
       // The amount of speed added after each touch is dependent on the screen
       // size to narrow the difficulty gap between different devices.
-      _speed += game.size.y * _incSpeedFactor;
+      _speed += game.size.y * _difficulty.incSpeedBy;
       _score++;
 
-      if (_score % _colorResetMod == 0) {
+      if (PreferenceManager.get.colorIndex == null &&
+          _score % _colorResetMod == 0) {
         // Ensure color always changes.
         _color = TargetColor.random(exclude: _color);
         _startGracePeriod();
+        _updateColorResetMod();
       }
     } else {
       LivesManager.get.loseLife();
@@ -104,14 +106,10 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
   }
 
   void play() {
-    _targetBoard(_board1Key).reset();
-    _targetBoard(_board2Key).reset();
+    _targetBoard(_board1Key).resetForNewGame();
+    _targetBoard(_board2Key).resetForNewGame();
 
-    _speed = _startSpeed;
-    _color = TargetColor.random(exclude: _color);
-    _score = 0;
-    _gracePeriod = null;
-    scrollingPaused = false;
+    _resetForNewGame();
     notifyListeners();
 
     game.overlays.removeAll([overlayIdMainMenu, overlayIdGameOver]);
@@ -121,12 +119,28 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
       game.findByKey(key) as TargetBoard;
 
   void _startGracePeriod() {
-    _gracePeriod = TimeManager.get.millisSinceEpoch + _gracePeriodMs;
+    _gracePeriod =
+        TimeManager.get.millisSinceEpoch + _difficulty.colorChangeGracePeriodMs;
 
     _gracePeriodTimer?.cancel();
     _gracePeriodTimer = async.Timer(
-      const Duration(milliseconds: _gracePeriodMs),
+      Duration(milliseconds: _difficulty.colorChangeGracePeriodMs),
       () => _gracePeriod = null,
     );
+  }
+
+  void _updateColorResetMod() {
+    var min = _difficulty.colorChangeFrequencyRange.$1;
+    var max = _difficulty.colorChangeFrequencyRange.$2;
+    _colorResetMod = min == max ? min : min + Random().nextInt(max - min);
+  }
+
+  void _resetForNewGame() {
+    _speed = _difficulty.startSpeed;
+    _color = TargetColor.fromPreferences();
+    _score = 0;
+    _gracePeriod = null;
+    scrollingPaused = false;
+    _updateColorResetMod();
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/color_tap_game.dart';
-import 'package:mobile/utils/target_utils.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
 
 import '../color_tap_world.dart';
@@ -24,8 +23,8 @@ class _ScoreboardState extends State<Scoreboard> {
   static const _shadowBlur = 5.0;
   static const _shadowOffset = Offset(0, _shadowBlur);
   static const _iconSize = 30.0;
+  static const _targetSize = 115.0;
 
-  late double _targetSize;
   late double _targetPositionOffset;
   late ComponentsNotifier<ColorTapWorld> _worldNotifier;
 
@@ -38,9 +37,7 @@ class _ScoreboardState extends State<Scoreboard> {
   void initState() {
     super.initState();
 
-    _targetSize = targetRadiusForSize(_game.size) * 2;
     _targetPositionOffset = _targetSize * _scorePositionOffsetFactor;
-
     _worldNotifier = _game.componentsNotifier<ColorTapWorld>()
       ..addListener(_onWorldUpdated);
   }

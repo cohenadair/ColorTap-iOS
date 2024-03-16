@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/utils/colors.dart';
 
 import '../managers/lives_manager.dart';
@@ -28,15 +29,24 @@ class RemainingLives extends StatelessWidget {
           highlightColor: Colors.transparent,
         ),
         StreamBuilder(
-          stream: LivesManager.get.stream,
+          stream: PreferenceManager.get.stream,
           builder: (_, __) {
-            return Text(
-              LivesManager.get.lives.toString(),
-              style: const TextStyle(
-                fontSize: _livesFontSize,
-                fontWeight: fontWeightBold,
-                color: colorLightText,
-              ),
+            return StreamBuilder(
+              stream: LivesManager.get.stream,
+              builder: (_, __) {
+                if (PreferenceManager.get.difficulty.hasUnlimitedLives) {
+                  return const Icon(Icons.all_inclusive, color: colorLightText);
+                }
+
+                return Text(
+                  LivesManager.get.lives.toString(),
+                  style: const TextStyle(
+                    fontSize: _livesFontSize,
+                    fontWeight: fontWeightBold,
+                    color: colorLightText,
+                  ),
+                );
+              },
             );
           },
         ),

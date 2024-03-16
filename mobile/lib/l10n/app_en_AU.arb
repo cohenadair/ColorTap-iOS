@@ -1,3 +1,6 @@
 {
-  "menuMainTitle": "Colour Tap Coordination"
+  "menuMainTitle": "Colour Tap Coordination",
+
+  "settingsChooseColorTitle": "Colour",
+  "settingsChooseColorMessage": "Selecting a colour ensures the target colour never changes in the game. This option is only available in the Kids difficulty."
 }

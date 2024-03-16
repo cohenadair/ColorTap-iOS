@@ -10,6 +10,10 @@ const insetsSmall = EdgeInsets.all(paddingSmall);
 const insetsHorizontalDefault =
     EdgeInsets.symmetric(horizontal: paddingDefault);
 
+const insetsHorizontalSmall = EdgeInsets.symmetric(horizontal: paddingSmall);
+
+const insetsRightSmall = EdgeInsets.only(right: paddingSmall);
+
 const insetsVerticalDefault = EdgeInsets.symmetric(vertical: paddingDefault);
 
 const insetsBottomDefault = EdgeInsets.only(bottom: paddingDefault);
@@ -19,3 +23,5 @@ const insetsTopDefault = EdgeInsets.only(top: paddingDefault);
 const fontWeightBold = FontWeight.w500;
 
 const animDurationDefault = Duration(milliseconds: 250);
+
+const opacityDisabled = 0.25;

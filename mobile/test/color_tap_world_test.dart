@@ -7,6 +7,7 @@ import 'package:mobile/color_tap_game_widget.dart';
 import 'package:mobile/color_tap_world.dart';
 import 'package:mobile/components/target.dart';
 import 'package:mobile/components/target_board.dart';
+import 'package:mobile/difficulty.dart';
 import 'package:mobile/effects/target_board_rewind_effect.dart';
 import 'package:mobile/utils/overlay_utils.dart';
 import 'package:mockito/mockito.dart';
@@ -24,6 +25,9 @@ void main() {
     when(managers.livesManager.loseLife()).thenAnswer((_) {});
     when(managers.livesManager.lives).thenReturn(3);
     when(managers.livesManager.canPlay).thenReturn(true);
+
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
+    when(managers.preferenceManager.colorIndex).thenReturn(null);
 
     world = ColorTapWorld();
     game = ColorTapGame(world: world);
@@ -69,6 +73,21 @@ void main() {
 
     // Time out grace period.
     await tester.pump(const Duration(milliseconds: 2000));
+    expect(world.gracePeriod, isNull);
+  });
+
+  testWidgets("Correct hit with Kids color set", (tester) async {
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.kids);
+    when(managers.preferenceManager.colorIndex).thenReturn(1);
+
+    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pump();
+
+    var startColor = world.color;
+    for (var i = 1; i <= 10; i++) {
+      world.handleTargetHit(isCorrect: true);
+    }
+    expect(world.color == startColor, true);
     expect(world.gracePeriod, isNull);
   });
 
@@ -122,11 +141,12 @@ void main() {
     tester.view.devicePixelRatio = 1.0;
     tester.view.physicalSize = const Size(600, 1000);
 
-    var startColor = world.color;
     var notified = false;
     game.componentsNotifier<ColorTapWorld>().addListener(() => notified = true);
 
     await tester.pumpWidget(ColorTapGameWidget(game));
+    var startColor = world.color;
+
     world.play();
 
     expect(world.children.whereType<TargetBoard>().first.position.y, -3500);

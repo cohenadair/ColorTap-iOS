@@ -32,6 +32,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 @GenerateMocks([Offering])
 @GenerateMocks([Offerings])
 @GenerateMocks([Package])
+@GenerateMocks([PlatformDispatcher])
 @GenerateMocks([PlatformException])
 @GenerateMocks([PlatformWrapper])
 @GenerateMocks([PreferenceManager])

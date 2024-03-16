@@ -11,6 +11,19 @@ void showErrorSnackBar(BuildContext context, String errorMessage) {
   ));
 }
 
+void showInfoDialog(BuildContext context, String title, String message) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(title),
+      content: Text(message),
+      actions: <Widget>[
+        _buildOkButton(context),
+      ],
+    ),
+  );
+}
+
 void showErrorDialog(
   BuildContext context,
   String errorMessage, {
@@ -22,14 +35,21 @@ void showErrorDialog(
       title: Text(Strings.of(context).error),
       content: Text(errorMessage),
       actions: <Widget>[
-        TextButton(
-          child: Text(Strings.of(context).ok),
-          onPressed: () {
-            Navigator.of(context).pop();
-            onDismissed?.call();
-          },
-        ),
+        _buildOkButton(context, onDismissed: onDismissed),
       ],
     ),
+  );
+}
+
+Widget _buildOkButton(
+  BuildContext context, {
+  VoidCallback? onDismissed,
+}) {
+  return TextButton(
+    child: Text(Strings.of(context).ok),
+    onPressed: () {
+      Navigator.of(context).pop();
+      onDismissed?.call();
+    },
   );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mobile/difficulty.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,5 +30,36 @@ void main() {
     await stubValues({"lives": 1});
     PreferenceManager.get.lives = 15;
     expect(PreferenceManager.get.lives, 15);
+  });
+
+  test("difficulty returns saved value", () async {
+    await stubValues({"difficulty": Difficulty.hard.index});
+    expect(PreferenceManager.get.difficulty, Difficulty.hard);
+  });
+
+  test("difficulty default value", () async {
+    await stubValues({});
+    expect(PreferenceManager.get.difficulty, Difficulty.normal);
+  });
+
+  test("difficulty is set", () async {
+    await stubValues({});
+    PreferenceManager.get.difficulty = Difficulty.expert;
+    expect(PreferenceManager.get.difficulty, Difficulty.expert);
+  });
+
+  test("colorIndex returns saved value", () async {
+    await stubValues({"color_index": 1});
+    expect(PreferenceManager.get.colorIndex, 1);
+  });
+
+  test("colorIndex is set", () async {
+    await stubValues({});
+
+    PreferenceManager.get.colorIndex = 1;
+    expect(PreferenceManager.get.colorIndex, 1);
+
+    PreferenceManager.get.colorIndex = null;
+    expect(PreferenceManager.get.colorIndex, null);
   });
 }

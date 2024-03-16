@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/color_tap_game.dart';
 import 'package:mobile/color_tap_game_widget.dart';
 import 'package:mobile/color_tap_world.dart';
+import 'package:mobile/difficulty.dart';
 import 'package:mockito/mockito.dart';
 
 import 'test_utils/stubbed_managers.dart';
@@ -15,6 +16,9 @@ void main() {
     managers = StubbedManagers();
     when(managers.livesManager.lives).thenReturn(3);
     when(managers.livesManager.canPlay).thenReturn(true);
+
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
+    when(managers.preferenceManager.colorIndex).thenReturn(null);
   });
 
   testWidgets("onLoad", (tester) async {

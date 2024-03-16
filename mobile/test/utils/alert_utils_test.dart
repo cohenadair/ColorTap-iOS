@@ -1,16 +1,18 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mobile/difficulty.dart';
 import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/overlays/menu.dart';
 import 'package:mobile/utils/alert_utils.dart';
 import 'package:mockito/mockito.dart';
 
 import '../mocks/mocks.mocks.dart';
+import '../test_utils/stubbed_managers.dart';
 import '../test_utils/test_utils.dart';
 
 void main() {
+  late StubbedManagers managers;
   late MockColorTapGame game;
   late MockColorTapWorld world;
-  late MockLivesManager livesManager;
 
   setUp(() {
     world = MockColorTapWorld();
@@ -18,11 +20,11 @@ void main() {
     game = MockColorTapGame();
     when(game.world).thenReturn(world);
 
-    livesManager = MockLivesManager();
-    LivesManager.set(livesManager);
-    when(livesManager.canPlay).thenReturn(true);
-    when(livesManager.lives).thenReturn(3);
-    when(livesManager.stream).thenAnswer((_) => const Stream.empty());
+    managers = StubbedManagers();
+    when(managers.livesManager.canPlay).thenReturn(true);
+    when(managers.livesManager.lives).thenReturn(3);
+
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
   });
 
   testWidgets("showErrorDialog", (tester) async {

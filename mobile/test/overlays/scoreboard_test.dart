@@ -2,6 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/color_tap_world.dart';
+import 'package:mobile/difficulty.dart';
 import 'package:mobile/overlays/scoreboard.dart';
 import 'package:mobile/target_color.dart';
 import 'package:mockito/mockito.dart';
@@ -18,6 +19,7 @@ void main() {
   setUp(() {
     managers = StubbedManagers();
     when(managers.livesManager.lives).thenReturn(15);
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
 
     world = MockColorTapWorld();
     when(world.score).thenReturn(10);

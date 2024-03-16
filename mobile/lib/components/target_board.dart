@@ -4,10 +4,12 @@ import 'package:flame/components.dart';
 import 'package:mobile/color_tap_world.dart';
 import 'package:mobile/utils/target_utils.dart';
 
+import '../managers/preference_manager.dart';
 import 'target.dart';
 
 class TargetBoard extends PositionComponent
     with HasGameRef, HasWorldReference<ColorTapWorld> {
+  late final StreamSubscription _preferenceManagerSub;
   final ComponentKey otherBoardKey;
   final double verticalStartFactor;
 
@@ -21,10 +23,18 @@ class TargetBoard extends PositionComponent
 
   @override
   FutureOr<void> onLoad() {
+    _preferenceManagerSub =
+        PreferenceManager.get.stream.listen((_) => _resetForNewDifficulty());
+
     size = targetBoardSize(game.size);
-    _resetPos();
-    _addTargets();
+    _resetForNewDifficulty();
     return super.onLoad();
+  }
+
+  @override
+  void onRemove() {
+    super.onRemove();
+    _preferenceManagerSub.cancel();
   }
 
   @override
@@ -46,9 +56,14 @@ class TargetBoard extends PositionComponent
     }
   }
 
-  void reset() {
+  void resetForNewGame() {
     _resetPos();
     _resetTargets();
+  }
+
+  void _resetForNewDifficulty() {
+    _resetPos();
+    _clearAndAddTargets();
   }
 
   void _resetPos() {
@@ -61,7 +76,10 @@ class TargetBoard extends PositionComponent
     }
   }
 
-  void _addTargets() {
+  void _clearAndAddTargets() {
+    removeAll(_targets);
+    _targets.clear();
+
     var bounds = size.toRect();
     var diameter = targetDiameterForRect(bounds);
 

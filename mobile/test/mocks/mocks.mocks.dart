@@ -5,14 +5,16 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i19;
+import 'dart:isolate' as _i30;
+import 'dart:typed_data' as _i29;
 import 'dart:ui' as _i5;
 
 import 'package:flame/cache.dart' as _i6;
-import 'package:flame/camera.dart' as _i42;
+import 'package:flame/camera.dart' as _i45;
 import 'package:flame/components.dart' as _i3;
 import 'package:flame/game.dart' as _i4;
 import 'package:flame/src/components/core/component_tree_root.dart' as _i21;
-import 'package:flame/src/events/messages/tap_down_event.dart' as _i39;
+import 'package:flame/src/events/messages/tap_down_event.dart' as _i42;
 import 'package:flame/src/game/game_render_box.dart' as _i9;
 import 'package:flame/src/game/game_widget/gesture_detector_builder.dart'
     as _i7;
@@ -21,24 +23,25 @@ import 'package:flame/src/rendering/decorator.dart' as _i17;
 import 'package:flutter/gestures.dart' as _i20;
 import 'package:flutter/material.dart' as _i10;
 import 'package:flutter/rendering.dart' as _i22;
-import 'package:flutter/services.dart' as _i29;
-import 'package:google_mobile_ads/google_mobile_ads.dart' as _i36;
+import 'package:flutter/services.dart' as _i31;
+import 'package:google_mobile_ads/google_mobile_ads.dart' as _i39;
 import 'package:google_mobile_ads/src/ad_listeners.dart' as _i16;
 import 'package:mobile/color_tap_game.dart' as _i18;
 import 'package:mobile/color_tap_world.dart' as _i2;
 import 'package:mobile/components/target.dart' as _i23;
 import 'package:mobile/components/target_board.dart' as _i24;
+import 'package:mobile/difficulty.dart' as _i34;
 import 'package:mobile/managers/lives_manager.dart' as _i28;
-import 'package:mobile/managers/preference_manager.dart' as _i31;
-import 'package:mobile/managers/properties_manager.dart' as _i32;
-import 'package:mobile/managers/purchases_manager.dart' as _i33;
-import 'package:mobile/managers/time_manager.dart' as _i40;
+import 'package:mobile/managers/preference_manager.dart' as _i33;
+import 'package:mobile/managers/properties_manager.dart' as _i35;
+import 'package:mobile/managers/purchases_manager.dart' as _i36;
+import 'package:mobile/managers/time_manager.dart' as _i43;
 import 'package:mobile/target_color.dart' as _i11;
 import 'package:mobile/wrappers/internet_address_wrapper.dart' as _i27;
-import 'package:mobile/wrappers/platform_wrapper.dart' as _i30;
-import 'package:mobile/wrappers/purchases_wrapper.dart' as _i34;
-import 'package:mobile/wrappers/rewarded_ad_wrapper.dart' as _i37;
-import 'package:mobile/wrappers/url_launcher_wrapper.dart' as _i41;
+import 'package:mobile/wrappers/platform_wrapper.dart' as _i32;
+import 'package:mobile/wrappers/purchases_wrapper.dart' as _i37;
+import 'package:mobile/wrappers/rewarded_ad_wrapper.dart' as _i40;
+import 'package:mobile/wrappers/url_launcher_wrapper.dart' as _i44;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i26;
 import 'package:purchases_flutter/models/entitlement_infos_wrapper.dart'
@@ -47,8 +50,8 @@ import 'package:purchases_flutter/models/offering_wrapper.dart' as _i14;
 import 'package:purchases_flutter/models/package_wrapper.dart' as _i15;
 import 'package:purchases_flutter/models/store_transaction.dart' as _i25;
 import 'package:purchases_flutter/object_wrappers.dart' as _i13;
-import 'package:purchases_flutter/purchases_flutter.dart' as _i35;
-import 'package:shared_preferences/shared_preferences.dart' as _i38;
+import 'package:purchases_flutter/purchases_flutter.dart' as _i38;
+import 'package:shared_preferences/shared_preferences.dart' as _i41;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -386,8 +389,9 @@ class _Fake$PackageCopyWith_29<$Res> extends _i1.SmartFake
         );
 }
 
-class _FakeOfferings_30 extends _i1.SmartFake implements _i13.Offerings {
-  _FakeOfferings_30(
+class _FakeAccessibilityFeatures_30 extends _i1.SmartFake
+    implements _i5.AccessibilityFeatures {
+  _FakeAccessibilityFeatures_30(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -396,8 +400,8 @@ class _FakeOfferings_30 extends _i1.SmartFake implements _i13.Offerings {
         );
 }
 
-class _FakeCustomerInfo_31 extends _i1.SmartFake implements _i13.CustomerInfo {
-  _FakeCustomerInfo_31(
+class _FakeLocale_31 extends _i1.SmartFake implements _i5.Locale {
+  _FakeLocale_31(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -406,9 +410,39 @@ class _FakeCustomerInfo_31 extends _i1.SmartFake implements _i13.CustomerInfo {
         );
 }
 
-class _FakeRewardedAdLoadCallback_32 extends _i1.SmartFake
+class _FakeFrameData_32 extends _i1.SmartFake implements _i5.FrameData {
+  _FakeFrameData_32(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeOfferings_33 extends _i1.SmartFake implements _i13.Offerings {
+  _FakeOfferings_33(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeCustomerInfo_34 extends _i1.SmartFake implements _i13.CustomerInfo {
+  _FakeCustomerInfo_34(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeRewardedAdLoadCallback_35 extends _i1.SmartFake
     implements _i16.RewardedAdLoadCallback {
-  _FakeRewardedAdLoadCallback_32(
+  _FakeRewardedAdLoadCallback_35(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -417,9 +451,9 @@ class _FakeRewardedAdLoadCallback_32 extends _i1.SmartFake
         );
 }
 
-class _Fake$StoreProductCopyWith_33<$Res> extends _i1.SmartFake
+class _Fake$StoreProductCopyWith_36<$Res> extends _i1.SmartFake
     implements _i13.$StoreProductCopyWith<$Res> {
-  _Fake$StoreProductCopyWith_33(
+  _Fake$StoreProductCopyWith_36(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -428,8 +462,8 @@ class _Fake$StoreProductCopyWith_33<$Res> extends _i1.SmartFake
         );
 }
 
-class _FakeComponentKey_34 extends _i1.SmartFake implements _i3.ComponentKey {
-  _FakeComponentKey_34(
+class _FakeComponentKey_37 extends _i1.SmartFake implements _i3.ComponentKey {
+  _FakeComponentKey_37(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -438,8 +472,8 @@ class _FakeComponentKey_34 extends _i1.SmartFake implements _i3.ComponentKey {
         );
 }
 
-class _FakeTransform2D_35 extends _i1.SmartFake implements _i4.Transform2D {
-  _FakeTransform2D_35(
+class _FakeTransform2D_38 extends _i1.SmartFake implements _i4.Transform2D {
+  _FakeTransform2D_38(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -448,8 +482,8 @@ class _FakeTransform2D_35 extends _i1.SmartFake implements _i4.Transform2D {
         );
 }
 
-class _FakeDecorator_36 extends _i1.SmartFake implements _i17.Decorator {
-  _FakeDecorator_36(
+class _FakeDecorator_39 extends _i1.SmartFake implements _i17.Decorator {
+  _FakeDecorator_39(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -458,8 +492,8 @@ class _FakeDecorator_36 extends _i1.SmartFake implements _i17.Decorator {
         );
 }
 
-class _FakeMatrix4_37 extends _i1.SmartFake implements _i4.Matrix4 {
-  _FakeMatrix4_37(
+class _FakeMatrix4_40 extends _i1.SmartFake implements _i4.Matrix4 {
+  _FakeMatrix4_40(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -468,9 +502,9 @@ class _FakeMatrix4_37 extends _i1.SmartFake implements _i4.Matrix4 {
         );
 }
 
-class _FakeNotifyingVector2_38 extends _i1.SmartFake
+class _FakeNotifyingVector2_41 extends _i1.SmartFake
     implements _i4.NotifyingVector2 {
-  _FakeNotifyingVector2_38(
+  _FakeNotifyingVector2_41(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -479,8 +513,8 @@ class _FakeNotifyingVector2_38 extends _i1.SmartFake
         );
 }
 
-class _FakeAnchor_39 extends _i1.SmartFake implements _i3.Anchor {
-  _FakeAnchor_39(
+class _FakeAnchor_42 extends _i1.SmartFake implements _i3.Anchor {
+  _FakeAnchor_42(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -2846,10 +2880,391 @@ class MockPackage extends _i1.Mock implements _i15.Package {
       ) as Map<String, dynamic>);
 }
 
+/// A class which mocks [PlatformDispatcher].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPlatformDispatcher extends _i1.Mock
+    implements _i5.PlatformDispatcher {
+  MockPlatformDispatcher() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  set onPlatformConfigurationChanged(_i5.VoidCallback? callback) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #onPlatformConfigurationChanged,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  Iterable<_i5.Display> get displays => (super.noSuchMethod(
+        Invocation.getter(#displays),
+        returnValue: <_i5.Display>[],
+      ) as Iterable<_i5.Display>);
+
+  @override
+  Iterable<_i5.FlutterView> get views => (super.noSuchMethod(
+        Invocation.getter(#views),
+        returnValue: <_i5.FlutterView>[],
+      ) as Iterable<_i5.FlutterView>);
+
+  @override
+  set onMetricsChanged(_i5.VoidCallback? callback) => super.noSuchMethod(
+        Invocation.setter(
+          #onMetricsChanged,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set onBeginFrame(_i5.FrameCallback? callback) => super.noSuchMethod(
+        Invocation.setter(
+          #onBeginFrame,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set onDrawFrame(_i5.VoidCallback? callback) => super.noSuchMethod(
+        Invocation.setter(
+          #onDrawFrame,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set onPointerDataPacket(_i5.PointerDataPacketCallback? callback) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #onPointerDataPacket,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set onKeyData(_i5.KeyDataCallback? callback) => super.noSuchMethod(
+        Invocation.setter(
+          #onKeyData,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set onReportTimings(_i5.TimingsCallback? callback) => super.noSuchMethod(
+        Invocation.setter(
+          #onReportTimings,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set onPlatformMessage(_i5.PlatformMessageCallback? callback) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #onPlatformMessage,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.AccessibilityFeatures get accessibilityFeatures => (super.noSuchMethod(
+        Invocation.getter(#accessibilityFeatures),
+        returnValue: _FakeAccessibilityFeatures_30(
+          this,
+          Invocation.getter(#accessibilityFeatures),
+        ),
+      ) as _i5.AccessibilityFeatures);
+
+  @override
+  set onAccessibilityFeaturesChanged(_i5.VoidCallback? callback) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #onAccessibilityFeaturesChanged,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Locale get locale => (super.noSuchMethod(
+        Invocation.getter(#locale),
+        returnValue: _FakeLocale_31(
+          this,
+          Invocation.getter(#locale),
+        ),
+      ) as _i5.Locale);
+
+  @override
+  List<_i5.Locale> get locales => (super.noSuchMethod(
+        Invocation.getter(#locales),
+        returnValue: <_i5.Locale>[],
+      ) as List<_i5.Locale>);
+
+  @override
+  set onLocaleChanged(_i5.VoidCallback? callback) => super.noSuchMethod(
+        Invocation.setter(
+          #onLocaleChanged,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  String get initialLifecycleState => (super.noSuchMethod(
+        Invocation.getter(#initialLifecycleState),
+        returnValue: _i26.dummyValue<String>(
+          this,
+          Invocation.getter(#initialLifecycleState),
+        ),
+      ) as String);
+
+  @override
+  bool get alwaysUse24HourFormat => (super.noSuchMethod(
+        Invocation.getter(#alwaysUse24HourFormat),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  double get textScaleFactor => (super.noSuchMethod(
+        Invocation.getter(#textScaleFactor),
+        returnValue: 0.0,
+      ) as double);
+
+  @override
+  set onTextScaleFactorChanged(_i5.VoidCallback? callback) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #onTextScaleFactorChanged,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool get nativeSpellCheckServiceDefined => (super.noSuchMethod(
+        Invocation.getter(#nativeSpellCheckServiceDefined),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get brieflyShowPassword => (super.noSuchMethod(
+        Invocation.getter(#brieflyShowPassword),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  _i5.Brightness get platformBrightness => (super.noSuchMethod(
+        Invocation.getter(#platformBrightness),
+        returnValue: _i5.Brightness.dark,
+      ) as _i5.Brightness);
+
+  @override
+  set onPlatformBrightnessChanged(_i5.VoidCallback? callback) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #onPlatformBrightnessChanged,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set onSystemFontFamilyChanged(_i5.VoidCallback? callback) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #onSystemFontFamilyChanged,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool get semanticsEnabled => (super.noSuchMethod(
+        Invocation.getter(#semanticsEnabled),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  set onSemanticsEnabledChanged(_i5.VoidCallback? callback) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #onSemanticsEnabledChanged,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set onSemanticsActionEvent(_i5.SemanticsActionEventCallback? callback) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #onSemanticsActionEvent,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.FrameData get frameData => (super.noSuchMethod(
+        Invocation.getter(#frameData),
+        returnValue: _FakeFrameData_32(
+          this,
+          Invocation.getter(#frameData),
+        ),
+      ) as _i5.FrameData);
+
+  @override
+  set onFrameDataChanged(_i5.VoidCallback? callback) => super.noSuchMethod(
+        Invocation.setter(
+          #onFrameDataChanged,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set onError(_i5.ErrorCallback? callback) => super.noSuchMethod(
+        Invocation.setter(
+          #onError,
+          callback,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  String get defaultRouteName => (super.noSuchMethod(
+        Invocation.getter(#defaultRouteName),
+        returnValue: _i26.dummyValue<String>(
+          this,
+          Invocation.getter(#defaultRouteName),
+        ),
+      ) as String);
+
+  @override
+  _i5.FlutterView? view({required int? id}) =>
+      (super.noSuchMethod(Invocation.method(
+        #view,
+        [],
+        {#id: id},
+      )) as _i5.FlutterView?);
+
+  @override
+  void sendPlatformMessage(
+    String? name,
+    _i29.ByteData? data,
+    _i5.PlatformMessageResponseCallback? callback,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #sendPlatformMessage,
+          [
+            name,
+            data,
+            callback,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void sendPortPlatformMessage(
+    String? name,
+    _i29.ByteData? data,
+    int? identifier,
+    _i30.SendPort? port,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #sendPortPlatformMessage,
+          [
+            name,
+            data,
+            identifier,
+            port,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void registerBackgroundIsolate(_i5.RootIsolateToken? token) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #registerBackgroundIsolate,
+          [token],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setIsolateDebugName(String? name) => super.noSuchMethod(
+        Invocation.method(
+          #setIsolateDebugName,
+          [name],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void requestDartPerformanceMode(_i5.DartPerformanceMode? mode) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #requestDartPerformanceMode,
+          [mode],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void scheduleFrame() => super.noSuchMethod(
+        Invocation.method(
+          #scheduleFrame,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void updateSemantics(_i5.SemanticsUpdate? update) => super.noSuchMethod(
+        Invocation.method(
+          #updateSemantics,
+          [update],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Locale? computePlatformResolvedLocale(
+          List<_i5.Locale>? supportedLocales) =>
+      (super.noSuchMethod(Invocation.method(
+        #computePlatformResolvedLocale,
+        [supportedLocales],
+      )) as _i5.Locale?);
+
+  @override
+  double scaleFontSize(double? unscaledFontSize) => (super.noSuchMethod(
+        Invocation.method(
+          #scaleFontSize,
+          [unscaledFontSize],
+        ),
+        returnValue: 0.0,
+      ) as double);
+}
+
 /// A class which mocks [PlatformException].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPlatformException extends _i1.Mock implements _i29.PlatformException {
+class MockPlatformException extends _i1.Mock implements _i31.PlatformException {
   MockPlatformException() {
     _i1.throwOnMissingStub(this);
   }
@@ -2867,7 +3282,7 @@ class MockPlatformException extends _i1.Mock implements _i29.PlatformException {
 /// A class which mocks [PlatformWrapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPlatformWrapper extends _i1.Mock implements _i30.PlatformWrapper {
+class MockPlatformWrapper extends _i1.Mock implements _i32.PlatformWrapper {
   MockPlatformWrapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -2888,10 +3303,16 @@ class MockPlatformWrapper extends _i1.Mock implements _i30.PlatformWrapper {
 /// A class which mocks [PreferenceManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPreferenceManager extends _i1.Mock implements _i31.PreferenceManager {
+class MockPreferenceManager extends _i1.Mock implements _i33.PreferenceManager {
   MockPreferenceManager() {
     _i1.throwOnMissingStub(this);
   }
+
+  @override
+  _i19.Stream<dynamic> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i19.Stream<dynamic>.empty(),
+      ) as _i19.Stream<dynamic>);
 
   @override
   int get lives => (super.noSuchMethod(
@@ -2903,6 +3324,30 @@ class MockPreferenceManager extends _i1.Mock implements _i31.PreferenceManager {
   set lives(int? value) => super.noSuchMethod(
         Invocation.setter(
           #lives,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i34.Difficulty get difficulty => (super.noSuchMethod(
+        Invocation.getter(#difficulty),
+        returnValue: _i34.Difficulty.kids,
+      ) as _i34.Difficulty);
+
+  @override
+  set difficulty(_i34.Difficulty? value) => super.noSuchMethod(
+        Invocation.setter(
+          #difficulty,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set colorIndex(int? value) => super.noSuchMethod(
+        Invocation.setter(
+          #colorIndex,
           value,
         ),
         returnValueForMissingStub: null,
@@ -2931,7 +3376,7 @@ class MockPreferenceManager extends _i1.Mock implements _i31.PreferenceManager {
 /// A class which mocks [PropertiesManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPropertiesManager extends _i1.Mock implements _i32.PropertiesManager {
+class MockPropertiesManager extends _i1.Mock implements _i35.PropertiesManager {
   MockPropertiesManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -2986,7 +3431,7 @@ class MockPropertiesManager extends _i1.Mock implements _i32.PropertiesManager {
 /// A class which mocks [PurchasesManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPurchasesManager extends _i1.Mock implements _i33.PurchasesManager {
+class MockPurchasesManager extends _i1.Mock implements _i36.PurchasesManager {
   MockPurchasesManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -3015,7 +3460,7 @@ class MockPurchasesManager extends _i1.Mock implements _i33.PurchasesManager {
 /// A class which mocks [PurchasesWrapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPurchasesWrapper extends _i1.Mock implements _i34.PurchasesWrapper {
+class MockPurchasesWrapper extends _i1.Mock implements _i37.PurchasesWrapper {
   MockPurchasesWrapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -3032,7 +3477,7 @@ class MockPurchasesWrapper extends _i1.Mock implements _i34.PurchasesWrapper {
       ) as _i19.Future<void>);
 
   @override
-  _i19.Future<void> setLogLevel(_i35.LogLevel? logLevel) => (super.noSuchMethod(
+  _i19.Future<void> setLogLevel(_i38.LogLevel? logLevel) => (super.noSuchMethod(
         Invocation.method(
           #setLogLevel,
           [logLevel],
@@ -3047,7 +3492,7 @@ class MockPurchasesWrapper extends _i1.Mock implements _i34.PurchasesWrapper {
           #getOfferings,
           [],
         ),
-        returnValue: _i19.Future<_i13.Offerings>.value(_FakeOfferings_30(
+        returnValue: _i19.Future<_i13.Offerings>.value(_FakeOfferings_33(
           this,
           Invocation.method(
             #getOfferings,
@@ -3063,7 +3508,7 @@ class MockPurchasesWrapper extends _i1.Mock implements _i34.PurchasesWrapper {
           #purchasePackage,
           [package],
         ),
-        returnValue: _i19.Future<_i13.CustomerInfo>.value(_FakeCustomerInfo_31(
+        returnValue: _i19.Future<_i13.CustomerInfo>.value(_FakeCustomerInfo_34(
           this,
           Invocation.method(
             #purchasePackage,
@@ -3076,7 +3521,7 @@ class MockPurchasesWrapper extends _i1.Mock implements _i34.PurchasesWrapper {
 /// A class which mocks [RewardedAd].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRewardedAd extends _i1.Mock implements _i36.RewardedAd {
+class MockRewardedAd extends _i1.Mock implements _i39.RewardedAd {
   MockRewardedAd() {
     _i1.throwOnMissingStub(this);
   }
@@ -3084,7 +3529,7 @@ class MockRewardedAd extends _i1.Mock implements _i36.RewardedAd {
   @override
   _i16.RewardedAdLoadCallback get rewardedAdLoadCallback => (super.noSuchMethod(
         Invocation.getter(#rewardedAdLoadCallback),
-        returnValue: _FakeRewardedAdLoadCallback_32(
+        returnValue: _FakeRewardedAdLoadCallback_35(
           this,
           Invocation.getter(#rewardedAdLoadCallback),
         ),
@@ -3092,7 +3537,7 @@ class MockRewardedAd extends _i1.Mock implements _i36.RewardedAd {
 
   @override
   set fullScreenContentCallback(
-          _i16.FullScreenContentCallback<_i36.RewardedAd>?
+          _i16.FullScreenContentCallback<_i39.RewardedAd>?
               _fullScreenContentCallback) =>
       super.noSuchMethod(
         Invocation.setter(
@@ -3132,7 +3577,7 @@ class MockRewardedAd extends _i1.Mock implements _i36.RewardedAd {
       ) as String);
 
   @override
-  set responseInfo(_i36.ResponseInfo? _responseInfo) => super.noSuchMethod(
+  set responseInfo(_i39.ResponseInfo? _responseInfo) => super.noSuchMethod(
         Invocation.setter(
           #responseInfo,
           _responseInfo,
@@ -3155,7 +3600,7 @@ class MockRewardedAd extends _i1.Mock implements _i36.RewardedAd {
 
   @override
   _i19.Future<void> setServerSideOptions(
-          _i36.ServerSideVerificationOptions? options) =>
+          _i39.ServerSideVerificationOptions? options) =>
       (super.noSuchMethod(
         Invocation.method(
           #setServerSideOptions,
@@ -3190,7 +3635,7 @@ class MockRewardedAd extends _i1.Mock implements _i36.RewardedAd {
 /// A class which mocks [RewardedAdWrapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRewardedAdWrapper extends _i1.Mock implements _i37.RewardedAdWrapper {
+class MockRewardedAdWrapper extends _i1.Mock implements _i40.RewardedAdWrapper {
   MockRewardedAdWrapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -3198,7 +3643,7 @@ class MockRewardedAdWrapper extends _i1.Mock implements _i37.RewardedAdWrapper {
   @override
   _i19.Future<void> load({
     required String? adUnitId,
-    required _i36.AdRequest? request,
+    required _i39.AdRequest? request,
     required _i16.RewardedAdLoadCallback? rewardedAdLoadCallback,
   }) =>
       (super.noSuchMethod(
@@ -3219,7 +3664,7 @@ class MockRewardedAdWrapper extends _i1.Mock implements _i37.RewardedAdWrapper {
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i38.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i41.SharedPreferences {
   MockSharedPreferences() {
     _i1.throwOnMissingStub(this);
   }
@@ -3460,7 +3905,7 @@ class MockStoreProduct extends _i1.Mock implements _i13.StoreProduct {
   _i13.$StoreProductCopyWith<_i13.StoreProduct> get copyWith =>
       (super.noSuchMethod(
         Invocation.getter(#copyWith),
-        returnValue: _Fake$StoreProductCopyWith_33<_i13.StoreProduct>(
+        returnValue: _Fake$StoreProductCopyWith_36<_i13.StoreProduct>(
           this,
           Invocation.getter(#copyWith),
         ),
@@ -3479,7 +3924,7 @@ class MockStoreProduct extends _i1.Mock implements _i13.StoreProduct {
 /// A class which mocks [TapDownEvent].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTapDownEvent extends _i1.Mock implements _i39.TapDownEvent {
+class MockTapDownEvent extends _i1.Mock implements _i42.TapDownEvent {
   MockTapDownEvent() {
     _i1.throwOnMissingStub(this);
   }
@@ -3618,7 +4063,7 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
   @override
   _i3.ComponentKey get otherBoardKey => (super.noSuchMethod(
         Invocation.getter(#otherBoardKey),
-        returnValue: _FakeComponentKey_34(
+        returnValue: _FakeComponentKey_37(
           this,
           Invocation.getter(#otherBoardKey),
         ),
@@ -3633,7 +4078,7 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
   @override
   _i4.Transform2D get transform => (super.noSuchMethod(
         Invocation.getter(#transform),
-        returnValue: _FakeTransform2D_35(
+        returnValue: _FakeTransform2D_38(
           this,
           Invocation.getter(#transform),
         ),
@@ -3657,7 +4102,7 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
   @override
   _i17.Decorator get decorator => (super.noSuchMethod(
         Invocation.getter(#decorator),
-        returnValue: _FakeDecorator_36(
+        returnValue: _FakeDecorator_39(
           this,
           Invocation.getter(#decorator),
         ),
@@ -3675,7 +4120,7 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
   @override
   _i4.Matrix4 get transformMatrix => (super.noSuchMethod(
         Invocation.getter(#transformMatrix),
-        returnValue: _FakeMatrix4_37(
+        returnValue: _FakeMatrix4_40(
           this,
           Invocation.getter(#transformMatrix),
         ),
@@ -3684,7 +4129,7 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
   @override
   _i4.NotifyingVector2 get position => (super.noSuchMethod(
         Invocation.getter(#position),
-        returnValue: _FakeNotifyingVector2_38(
+        returnValue: _FakeNotifyingVector2_41(
           this,
           Invocation.getter(#position),
         ),
@@ -3747,7 +4192,7 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
   @override
   _i4.NotifyingVector2 get scale => (super.noSuchMethod(
         Invocation.getter(#scale),
-        returnValue: _FakeNotifyingVector2_38(
+        returnValue: _FakeNotifyingVector2_41(
           this,
           Invocation.getter(#scale),
         ),
@@ -3765,7 +4210,7 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
   @override
   _i3.Anchor get anchor => (super.noSuchMethod(
         Invocation.getter(#anchor),
-        returnValue: _FakeAnchor_39(
+        returnValue: _FakeAnchor_42(
           this,
           Invocation.getter(#anchor),
         ),
@@ -3783,7 +4228,7 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
   @override
   _i4.NotifyingVector2 get size => (super.noSuchMethod(
         Invocation.getter(#size),
-        returnValue: _FakeNotifyingVector2_38(
+        returnValue: _FakeNotifyingVector2_41(
           this,
           Invocation.getter(#size),
         ),
@@ -4136,6 +4581,15 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
       );
 
   @override
+  void onRemove() => super.noSuchMethod(
+        Invocation.method(
+          #onRemove,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   void update(double? dt) => super.noSuchMethod(
         Invocation.method(
           #update,
@@ -4145,9 +4599,9 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
       );
 
   @override
-  void reset() => super.noSuchMethod(
+  void resetForNewGame() => super.noSuchMethod(
         Invocation.method(
-          #reset,
+          #resetForNewGame,
           [],
         ),
         returnValueForMissingStub: null,
@@ -4505,15 +4959,6 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
       );
 
   @override
-  void onRemove() => super.noSuchMethod(
-        Invocation.method(
-          #onRemove,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
   void onParentResize(_i4.Vector2? maxSize) => super.noSuchMethod(
         Invocation.method(
           #onParentResize,
@@ -4712,7 +5157,7 @@ class MockTargetBoard extends _i1.Mock implements _i24.TargetBoard {
 /// A class which mocks [TimeManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTimeManager extends _i1.Mock implements _i40.TimeManager {
+class MockTimeManager extends _i1.Mock implements _i43.TimeManager {
   MockTimeManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -4728,7 +5173,7 @@ class MockTimeManager extends _i1.Mock implements _i40.TimeManager {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockUrlLauncherWrapper extends _i1.Mock
-    implements _i41.UrlLauncherWrapper {
+    implements _i44.UrlLauncherWrapper {
   MockUrlLauncherWrapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -4746,7 +5191,7 @@ class MockUrlLauncherWrapper extends _i1.Mock
 /// A class which mocks [Viewport].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockViewport extends _i1.Mock implements _i42.Viewport {
+class MockViewport extends _i1.Mock implements _i45.Viewport {
   MockViewport() {
     _i1.throwOnMissingStub(this);
   }
@@ -4754,7 +5199,7 @@ class MockViewport extends _i1.Mock implements _i42.Viewport {
   @override
   _i4.Transform2D get transform => (super.noSuchMethod(
         Invocation.getter(#transform),
-        returnValue: _FakeTransform2D_35(
+        returnValue: _FakeTransform2D_38(
           this,
           Invocation.getter(#transform),
         ),
@@ -4763,7 +5208,7 @@ class MockViewport extends _i1.Mock implements _i42.Viewport {
   @override
   _i3.Anchor get anchor => (super.noSuchMethod(
         Invocation.getter(#anchor),
-        returnValue: _FakeAnchor_39(
+        returnValue: _FakeAnchor_42(
           this,
           Invocation.getter(#anchor),
         ),

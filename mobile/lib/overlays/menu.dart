@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:mobile/color_tap_game.dart';
 import 'package:mobile/managers/lives_manager.dart';
+import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/pages/settings_page.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/utils/theme.dart';
 import 'package:mobile/widgets/get_lives.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
 
-import '../pages/store_page.dart';
 import '../utils/colors.dart';
 import '../utils/page_utils.dart';
 
@@ -56,6 +56,7 @@ class Menu extends StatelessWidget {
                         _buildPlayButton(context),
                         _buildSettingsButton(context),
                         const Spacer(),
+                        _buildDifficulty(),
                       ],
                     ),
                   ),
@@ -137,6 +138,19 @@ class Menu extends StatelessWidget {
     return FilledButton(
       onPressed: () => present(context, SettingsPage()),
       child: Text(Strings.of(context).settingsTitle),
+    );
+  }
+
+  Widget _buildDifficulty() {
+    return StreamBuilder(
+      stream: PreferenceManager.get.stream,
+      builder: (context, _) {
+        return Text(
+          Strings.of(context).menuDifficulty(
+              PreferenceManager.get.difficulty.displayName(context)),
+          style: themeTextDefault,
+        );
+      },
     );
   }
 }
