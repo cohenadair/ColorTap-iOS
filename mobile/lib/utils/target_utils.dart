@@ -30,5 +30,10 @@ double targetDiameterForRect(Rect rect) {
 double targetRadiusForSize(Vector2 size) =>
     targetDiameterForRect(targetBoardSize(size).toRect()) / 2;
 
-Vector2 targetBoardSize(Vector2 gameSize) =>
-    Vector2(gameSize.x, gameSize.y * targetBoardHeightFactor);
+Vector2 targetBoardSize(Vector2 gameSize) {
+  var targetSize = targetDiameterForRect(gameSize.toRect());
+  // Rounding removes all fractional spacing between targets.
+  var numOfRows = (gameSize.y * targetBoardHeightFactor / targetSize).round();
+  return Vector2(
+      gameSize.x, targetSize * numOfRows + numOfRows * targetSpacing);
+}

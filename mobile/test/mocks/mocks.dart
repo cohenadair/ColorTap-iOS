@@ -22,6 +22,7 @@ import 'package:mockito/annotations.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@GenerateMocks([Canvas])
 @GenerateMocks([ColorTapGame])
 @GenerateMocks([ColorTapWorld])
 @GenerateMocks([], customMocks: [MockSpec<ComponentsNotifier>()])

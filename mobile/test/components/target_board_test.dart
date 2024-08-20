@@ -25,6 +25,7 @@ main() {
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
 
     world = MockColorTapWorld();
+    when(world.speed).thenReturn(1.0);
 
     game = MockColorTapGame();
     when(game.world).thenReturn(world);
@@ -32,10 +33,15 @@ main() {
     when(game.hasLayout).thenReturn(true);
   });
 
-  TargetBoard buildBoard() {
+  TargetBoard buildBoard({
+    Color? backgroundColor,
+    bool isUpdater = true,
+  }) {
     var board = TargetBoard(
       otherBoardKey: ComponentKey.unique(),
       verticalStartFactor: 1,
+      backgroundColor: backgroundColor,
+      isUpdater: isUpdater,
     );
     board.game = game;
     board.world = world;
@@ -54,7 +60,7 @@ main() {
     board.onLoad();
 
     // Height * targetBoardHeightFactor.
-    expect(board.position.y, -1750);
+    expect(board.position.y, -1800);
     expect(board.children.whereType<Target>().length, 72);
   });
 
@@ -69,6 +75,17 @@ main() {
     expect(board.position, expectedPos);
   });
 
+  testWidgets("Update is no-op when isUpdater is false", (tester) async {
+    stubScreenSize(tester);
+    when(world.scrollingPaused).thenReturn(false);
+
+    var board = buildBoard(isUpdater: false);
+    var expectedPos = board.position;
+
+    board.update(0);
+    expect(board.position, expectedPos);
+  });
+
   testWidgets("Update resets to top position", (tester) async {
     stubScreenSize(tester);
     when(world.scrollingPaused).thenReturn(false);
@@ -76,6 +93,7 @@ main() {
     var otherBoard = TargetBoard(
       otherBoardKey: ComponentKey.unique(),
       verticalStartFactor: 0,
+      isUpdater: true,
     );
     otherBoard.position = Vector2(0, -1000);
     when(game.findByKey(any)).thenReturn(otherBoard);
@@ -85,13 +103,14 @@ main() {
 
     board.position = Vector2(board.x, targetBoardSize(game.size).y);
     board.update(0);
-    expect(board.position.y, -2746);
+    expect(board.position.y, -2799);
   });
 
   testWidgets("Update scrolls down", (tester) async {
     stubScreenSize(tester);
     when(world.scrollingPaused).thenReturn(false);
     when(world.speed).thenReturn(2.0);
+    when(game.findByKey(any)).thenReturn(buildBoard());
 
     var board = buildBoard();
     board.onLoad();
@@ -111,6 +130,7 @@ main() {
     stubScreenSize(tester);
     when(world.scrollingPaused).thenReturn(false);
     when(world.speed).thenReturn(2.0);
+    when(game.findByKey(any)).thenReturn(buildBoard());
 
     var board = buildBoard();
     board.onLoad();
@@ -129,6 +149,7 @@ main() {
     stubScreenSize(tester);
     when(world.scrollingPaused).thenReturn(false);
     when(world.speed).thenReturn(2.0);
+    when(game.findByKey(any)).thenReturn(buildBoard());
 
     var controller = StreamController.broadcast();
     when(managers.preferenceManager.stream)
@@ -155,5 +176,25 @@ main() {
     // Verify stream sub is cancelled.
     board.onRemove();
     expect(controller.hasListener, isFalse);
+  });
+
+  testWidgets("Renders background", (tester) async {
+    stubScreenSize(tester);
+    when(world.scrollingPaused).thenReturn(false);
+    when(world.speed).thenReturn(2.0);
+    when(game.findByKey(any)).thenReturn(buildBoard());
+
+    var mockCanvas = MockCanvas();
+    var board = buildBoard(
+      backgroundColor: Colors.red,
+    );
+    board.render(mockCanvas);
+
+    var result = verify(mockCanvas.drawRect(any, captureAny));
+    result.called(1);
+    expect(
+      (result.captured.first as Paint).color,
+      (Paint()..color = Colors.red).color,
+    );
   });
 }

@@ -65,11 +65,13 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
       verticalStartFactor: 2,
       otherBoardKey: _board2Key,
       key: _board1Key,
+      isUpdater: true,
     ));
     add(TargetBoard(
       verticalStartFactor: 1,
       otherBoardKey: _board1Key,
       key: _board2Key,
+      isUpdater: false,
     ));
   }
 

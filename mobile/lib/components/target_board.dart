@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flutter/material.dart';
 import 'package:mobile/color_tap_world.dart';
 import 'package:mobile/utils/target_utils.dart';
 
@@ -12,12 +14,27 @@ class TargetBoard extends PositionComponent
   late final StreamSubscription _preferenceManagerSub;
   final ComponentKey otherBoardKey;
   final double verticalStartFactor;
+  final Color? backgroundColor;
+
+  /// When false, the `update()` method exits early, otherwise this and the
+  /// board associated with [otherBoardKey] are both updated.
+  ///
+  /// Only one [TargetBoard] should do the updating. This is to ensure each
+  /// board's position is in sync with the other, otherwise gaps between boards
+  /// appear when their position is reset while animating.
+  ///
+  /// TODO: There may be a better way to do this (for example, a coordinating
+  ///   component that includes both boards as children).
+  final bool isUpdater;
 
   final _targets = <Target>[];
+  TargetBoard? _otherBoard;
 
   TargetBoard({
     required this.otherBoardKey,
     required this.verticalStartFactor,
+    required this.isUpdater,
+    this.backgroundColor,
     super.key,
   });
 
@@ -39,20 +56,32 @@ class TargetBoard extends PositionComponent
 
   @override
   void update(double dt) {
-    if (world.scrollingPaused) {
+    if (world.scrollingPaused || !isUpdater) {
       return;
     }
 
-    // Move the board down the screen; reset to the top if scrolled passed the
-    // bottom.
-    if (position.y >= size.y) {
-      // Add _targetSpacing here to account for the spacing above the bottom
-      // board and below the top board.
-      var otherBoard = game.findByKey(otherBoardKey) as TargetBoard;
-      position.y = otherBoard.position.y - size.y + targetSpacing;
-      _resetTargets();
-    } else {
-      position.y += world.speed;
+    _otherBoard ??= game.findByKey(otherBoardKey) as TargetBoard;
+    if (_otherBoard == null) {
+      return;
+    }
+
+    // Update both boards' position. This must be done before moving a board to
+    // the top of the game so the new position is exactly correct.
+    position.y += world.speed;
+    _otherBoard!.position.y += world.speed;
+
+    // Reset boards.
+    _moveToTopIfNeeded(_otherBoard);
+    _otherBoard?._moveToTopIfNeeded(this);
+  }
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+
+    if (backgroundColor != null) {
+      canvas.drawRect(Rect.fromLTWH(0, 0, width, height),
+          Paint()..color = backgroundColor!);
     }
   }
 
@@ -87,7 +116,7 @@ class TargetBoard extends PositionComponent
     var numRows = (bounds.height / diameter).floorToDouble();
 
     // Account for the spacing between targets.
-    var ySpacing = (bounds.height - numRows * diameter) / (numRows + 1);
+    var ySpacing = (bounds.height - numRows * diameter) / numRows;
     var xSpacing = (bounds.width - numColumns * diameter) / (numColumns + 1);
 
     for (var r = 0; r < numRows; r++) {
@@ -104,5 +133,14 @@ class TargetBoard extends PositionComponent
     }
 
     addAll(_targets);
+  }
+
+  void _moveToTopIfNeeded(TargetBoard? otherBoard) {
+    if (position.y < size.y || otherBoard == null) {
+      return;
+    }
+
+    position.y = otherBoard.position.y - size.y;
+    _resetTargets();
   }
 }

@@ -34,6 +34,6 @@ void main() {
   });
 
   test("targetBoardSize returns the correct size", () {
-    expect(targetBoardSize(Vector2(100, 1000)), Vector2(100, 1750));
+    expect(targetBoardSize(Vector2(100, 1000)), Vector2(100, 2075));
   });
 }
