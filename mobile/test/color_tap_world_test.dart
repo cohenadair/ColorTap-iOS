@@ -113,6 +113,16 @@ void main() {
     expect(find.text("Game Over"), findsOneWidget);
   });
 
+  testWidgets("Incorrect hit doesn't lose life for kids mode", (tester) async {
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.kids);
+
+    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pump();
+    world.handleTargetHit(isCorrect: false);
+
+    verifyNever(managers.livesManager.loseLife());
+  });
+
   testWidgets("Target missed ends game", (tester) async {
     await tester.pumpWidget(ColorTapGameWidget(game));
     await tester.pump();

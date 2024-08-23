@@ -90,7 +90,10 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
         _updateColorResetMod();
       }
     } else {
-      LivesManager.get.loseLife();
+      // Kids mode has infinite lives.
+      if (_difficulty != Difficulty.kids) {
+        LivesManager.get.loseLife();
+      }
       game.overlays.add(overlayIdGameOver);
     }
 
