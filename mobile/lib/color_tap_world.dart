@@ -45,6 +45,7 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
 
   @override
   void onLoad() {
+    scrollingPaused = true;
     _resetForNewGame();
 
     game.overlays.add(overlayIdScoreboard);
@@ -114,6 +115,7 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
     _targetBoard(_board1Key).resetForNewGame();
     _targetBoard(_board2Key).resetForNewGame();
 
+    scrollingPaused = false;
     _resetForNewGame();
     notifyListeners();
 
@@ -145,7 +147,6 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
     _color = TargetColor.fromPreferences();
     _score = 0;
     _gracePeriod = null;
-    scrollingPaused = false;
     _updateColorResetMod();
   }
 }
