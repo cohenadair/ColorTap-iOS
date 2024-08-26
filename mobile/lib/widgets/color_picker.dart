@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/difficulty.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/target_color.dart';
 import 'package:mobile/utils/dimens.dart';
@@ -25,7 +26,7 @@ class ColorPicker extends StatelessWidget {
           child: Wrap(
             runSpacing: _colorSpacing,
             spacing: _colorSpacing,
-            children: TargetColor.all().map((e) {
+            children: Difficulty.kids.colors().map((e) {
               return _buildColor(
                 e,
                 isSelected: e == selectedColor,

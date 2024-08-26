@@ -3,28 +3,32 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/strings.dart';
 
+import 'target_color.dart';
+
 /// The various difficulties of the game.
 ///
 /// Note that the difficulty indexes are stored in preferences and should not
 /// be changed.
 enum Difficulty {
   kids(
-    minTargetsPerRow: 2,
+    minTargetsPerRow: 3,
     canChooseColor: true,
     hasUnlimitedLives: true,
     startSpeed: 3.0,
     incSpeedBy: 0,
-    colorChangeGracePeriodMs: 2500,
+    colorChangeGracePeriodMs: -1,
     colorChangeFrequencyRange: (1000000, 1000000), // Never change.
+    colors: TargetColor.kids,
   ),
   easy(
-    minTargetsPerRow: 3,
+    minTargetsPerRow: 4,
     canChooseColor: false,
     hasUnlimitedLives: false,
-    startSpeed: 3.75,
+    startSpeed: 3.5,
     incSpeedBy: 0,
-    colorChangeGracePeriodMs: 2000,
+    colorChangeGracePeriodMs: 2500,
     colorChangeFrequencyRange: (10, 10),
+    colors: TargetColor.all,
   ),
   normal(
     minTargetsPerRow: 4,
@@ -34,6 +38,7 @@ enum Difficulty {
     incSpeedBy: 0.00005,
     colorChangeGracePeriodMs: 1500,
     colorChangeFrequencyRange: (10, 10),
+    colors: TargetColor.all,
   ),
   hard(
     minTargetsPerRow: 5,
@@ -43,6 +48,7 @@ enum Difficulty {
     incSpeedBy: 0.0001,
     colorChangeGracePeriodMs: 1000,
     colorChangeFrequencyRange: (10, 10),
+    colors: TargetColor.all,
   ),
   expert(
     minTargetsPerRow: 5,
@@ -52,6 +58,7 @@ enum Difficulty {
     incSpeedBy: 0.00015,
     colorChangeGracePeriodMs: 1000,
     colorChangeFrequencyRange: (7, 15), // Arbitrary numbers.
+    colors: TargetColor.all,
   );
 
   /// If the screen's width is >= this value, the number of targets per row is
@@ -85,6 +92,9 @@ enum Difficulty {
   /// successful taps.
   final (int, int) colorChangeFrequencyRange;
 
+  /// The list of colors supported by the difficulty.
+  final List<TargetColor> Function() colors;
+
   const Difficulty({
     required this.minTargetsPerRow,
     required this.canChooseColor,
@@ -93,6 +103,7 @@ enum Difficulty {
     required this.incSpeedBy,
     required this.colorChangeGracePeriodMs,
     required this.colorChangeFrequencyRange,
+    required this.colors,
   });
 
   /// Returns the number of targets per row for this difficulty. For larger

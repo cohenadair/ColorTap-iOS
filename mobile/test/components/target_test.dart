@@ -3,6 +3,8 @@ import 'package:flame/effects.dart';
 import 'package:flame/palette.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/components/target.dart';
+import 'package:mobile/difficulty.dart';
+import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/managers/time_manager.dart';
 import 'package:mobile/target_color.dart';
 import 'package:mockito/mockito.dart';
@@ -14,6 +16,7 @@ main() {
   late MockColorTapGame game;
   late MockColorTapWorld world;
   late MockTimeManager timeManager;
+  late MockPreferenceManager preferenceManager;
 
   setUp(() {
     board = MockTargetBoard();
@@ -27,6 +30,10 @@ main() {
     timeManager = MockTimeManager();
     when(timeManager.millisSinceEpoch).thenReturn(0);
     TimeManager.set(timeManager);
+
+    preferenceManager = MockPreferenceManager();
+    when(preferenceManager.difficulty).thenReturn(Difficulty.normal);
+    PreferenceManager.set(preferenceManager);
   });
 
   Target buildTarget() {

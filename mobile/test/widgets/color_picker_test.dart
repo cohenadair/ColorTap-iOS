@@ -51,13 +51,13 @@ void main() {
   });
 
   testWidgets("Picker shows selected color", (tester) async {
-    when(preferenceManager.colorIndex).thenReturn(1); // Orange.
+    when(preferenceManager.colorIndex).thenReturn(2); // Yellow.
     await pumpContext(tester, (_) => ColorPicker());
 
     var opacityWidgets = tester
         .widgetList<AnimatedOpacity>(find.byType(AnimatedOpacity))
         .toList();
-    expect(opacityWidgets.length, 9);
+    expect(opacityWidgets.length, 5);
     expect(opacityWidgets[2].opacity, 1.0); // Check icon for "orange" .
   });
 
@@ -69,7 +69,7 @@ void main() {
     var opacityWidgets = tester
         .widgetList<AnimatedOpacity>(find.byType(AnimatedOpacity))
         .toList();
-    expect(opacityWidgets.length, 9);
+    expect(opacityWidgets.length, 5);
 
     // No check icons are visible.
     for (var widget in opacityWidgets.sublist(1)) {
@@ -79,7 +79,7 @@ void main() {
 
   testWidgets("All expected colors are shown", (tester) async {
     await pumpContext(tester, (_) => ColorPicker());
-    expect(findCircles(), findsNWidgets(TargetColor.all().length));
+    expect(findCircles(), findsNWidgets(TargetColor.kids().length));
   });
 
   testWidgets("Picking a color updates preferences", (tester) async {

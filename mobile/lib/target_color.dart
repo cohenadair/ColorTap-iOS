@@ -23,10 +23,15 @@ class TargetColor {
   static PaletteEntry _randomPaletteEntry({
     TargetColor? exclude,
   }) {
-    var palettes = List.of(_palettes);
+    var palettes = PreferenceManager.get.difficulty
+        .colors()
+        .map((e) => e._paletteEntry)
+        .toList();
+
     if (exclude != null) {
       palettes.remove(exclude._paletteEntry);
     }
+
     return palettes[Random().nextInt(palettes.length)];
   }
 
@@ -38,6 +43,13 @@ class TargetColor {
   static List<TargetColor> all() => _palettes
       .mapIndexed((index, _) => TargetColor.from(index: index))
       .toList();
+
+  static List<TargetColor> kids() => [
+        TargetColor.from(index: 0),
+        TargetColor.from(index: 2),
+        TargetColor.from(index: 3),
+        TargetColor.from(index: 4),
+      ];
 
   final PaletteEntry _paletteEntry;
 
