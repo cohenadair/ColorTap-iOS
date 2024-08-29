@@ -1,38 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/utils/dimens.dart';
 
 import 'colors.dart';
 
-const fontSizePrimary = 16.0;
-
-const themeTextDefault = TextStyle(color: colorLightText);
-const themeTextLight = TextStyle(color: colorDarkText);
+const _fontSizePrimary = 16.0;
+const _fontSizeTitle = 22.0;
 
 ThemeData appTheme(BuildContext context) {
   return ThemeData(
     scaffoldBackgroundColor: colorGame,
-    appBarTheme: const AppBarTheme(
+    canvasColor: colorGame,
+    appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(
+        color: Theme.of(context).primaryColor,
+      ),
       backgroundColor: colorGame,
       foregroundColor: colorLightText,
     ),
-    textTheme: const TextTheme(
-      bodyMedium: themeTextDefault,
-      titleLarge: themeTextDefault,
-    ),
+    textTheme: themeTextGlobal(),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: Theme.of(context).primaryColor,
     ),
-    dialogTheme: const DialogTheme(
-      contentTextStyle: themeTextLight,
+    dialogTheme: DialogTheme(
+      backgroundColor: colorGame,
+      titleTextStyle: themeTextGlobal().titleLarge?.copyWith(
+        color: colorLightText,
+      ),
     ),
     listTileTheme: ListTileThemeData(
-      titleTextStyle: themeTextDefault.copyWith(
-        fontSize: fontSizePrimary,
+      titleTextStyle: styleTextPrimary(),
+      iconColor: Theme.of(context).primaryColor,
+    ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        textStyle: styleTextPrimary(),
+        padding: const EdgeInsets.symmetric(
+          vertical: paddingDefault,
+          horizontal: paddingXLarge,
+        ),
+      ),
+    ),
+    iconTheme: IconThemeData(
+      color: Theme.of(context).primaryColor,
+    ),
+  );
+}
+
+TextTheme themeTextGlobal() {
+  return GoogleFonts.quicksandTextTheme(
+    TextTheme(
+      bodyMedium: styleTextPrimary(),
+      titleLarge: styleTextDefault().copyWith(
+        fontSize: _fontSizeTitle,
       ),
     ),
   );
 }
 
-extension TextStyles on TextStyle {
-  TextStyle makeBold() => copyWith(fontWeight: fontWeightBold);
+TextStyle styleTextDefault() {
+  return GoogleFonts.quicksand().copyWith(
+    color: colorLightText,
+  );
+}
+
+TextStyle styleTextLight() {
+  return GoogleFonts.quicksand().copyWith(
+    color: colorDarkText,
+  );
+}
+
+TextStyle styleTextPrimary() {
+  return GoogleFonts.quicksand().copyWith(
+    color: colorLightText,
+    fontSize: _fontSizePrimary,
+  );
+}
+
+TextStyle styleTextPrimaryLight() {
+  return GoogleFonts.quicksand().copyWith(
+    color: colorDarkText,
+    fontSize: _fontSizePrimary,
+  );
 }

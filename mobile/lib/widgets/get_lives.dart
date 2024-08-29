@@ -7,7 +7,6 @@ import 'package:mobile/managers/purchases_manager.dart';
 import 'package:mobile/utils/context_utils.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/utils/alert_utils.dart';
-import 'package:mobile/utils/theme.dart';
 import 'package:mobile/wrappers/internet_address_wrapper.dart';
 import 'package:mobile/wrappers/purchases_wrapper.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -131,28 +130,29 @@ class _GetLivesState extends State<GetLives> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(_buyOptionCornerRadius),
         ),
+        padding: insetsDefault,
       ),
       onPressed: () => _purchaseLives(tier, package),
-      child: Padding(
-        padding: insetsVerticalDefault,
-        child: Stack(
-          children: [
-            _buildFillingLoading(isVisible: isLoading),
-            AnimatedVisibility(
-              isVisible: !isLoading,
-              child: Column(
-                children: [
-                  Text(
-                    (tier?.numberOfLives ?? 0).toString(),
-                    style: Theme.of(context).textTheme.titleLarge?.makeBold(),
-                  ),
-                  Text(Strings.of(context).getLivesQuantityMessage),
-                  Text(package?.storeProduct.priceString ?? ""),
-                ],
-              ),
+      child: Stack(
+        children: [
+          _buildFillingLoading(isVisible: isLoading),
+          AnimatedVisibility(
+            isVisible: !isLoading,
+            child: Column(
+              children: [
+                Text(
+                  (tier?.numberOfLives ?? 0).toString(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontWeight: fontWeightBold),
+                ),
+                Text(Strings.of(context).getLivesQuantityMessage),
+                Text(package?.storeProduct.priceString ?? ""),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -191,13 +191,20 @@ class _AdOptionState extends State<_AdOption> {
     return Column(
       children: [
         FilledButton.icon(
-          icon: _isLoading ? const Loading() : const SizedBox(),
+          icon: _isLoading
+              ? const Padding(
+                  padding: insetsRightSmall,
+                  child: Loading(),
+                )
+              : const SizedBox(),
           label: Text(Strings.of(context).getLivesWatchAd),
           onPressed: _loadAd,
         ),
+        const SizedBox(height: paddingSmall),
         Text(
           Strings.of(context)
               .getLivesAdRewardMessage(LivesManager.rewardedAdAmount),
+          textAlign: TextAlign.center,
         ),
       ],
     );

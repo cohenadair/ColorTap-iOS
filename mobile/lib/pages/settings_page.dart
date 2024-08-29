@@ -10,7 +10,9 @@ import 'package:mobile/wrappers/url_launcher_wrapper.dart';
 import '../utils/dimens.dart';
 
 class SettingsPage extends StatelessWidget {
-  static const urlPrivacyPolicy =
+  static const _urlFontLicense =
+      "https://cohenadair.github.io/colour-tap/font-license.txt";
+  static const _urlPrivacyPolicy =
       "https://cohenadair.github.io/colour-tap/privacy.html";
 
   @override
@@ -24,6 +26,8 @@ class SettingsPage extends StatelessWidget {
           children: [
             _buildDifficulty(context),
             _buildColorSelection(context),
+            const Divider(color: Colors.white10),
+            _buildLicenses(context),
             _buildPrivacy(context),
           ],
         ),
@@ -43,14 +47,14 @@ class SettingsPage extends StatelessWidget {
             items: Difficulty.values.map((e) {
               return DropdownMenuItem<Difficulty>(
                 value: e,
-                child: _buildDifficultyItem(context, e, isSelected: false),
+                child: _buildDifficultyItem(context, e),
               );
             }).toList(),
             selectedItemBuilder: (context) => Difficulty.values.map((e) {
               return Padding(
                 padding: insetsHorizontalSmall,
                 child: Center(
-                  child: _buildDifficultyItem(context, e, isSelected: true),
+                  child: _buildDifficultyItem(context, e),
                 ),
               );
             }).toList(),
@@ -66,14 +70,10 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildDifficultyItem(
-    BuildContext context,
-    Difficulty difficulty, {
-    required bool isSelected,
-  }) {
+  Widget _buildDifficultyItem(BuildContext context, Difficulty difficulty) {
     return Text(
       difficulty.displayName(context),
-      style: isSelected ? themeTextDefault : themeTextLight,
+      style: styleTextPrimary(),
       textAlign: TextAlign.center,
     );
   }
@@ -85,10 +85,7 @@ class SettingsPage extends StatelessWidget {
         children: [
           Text(Strings.of(context).settingsChooseColorTitle),
           IconButton(
-            icon: Icon(
-              Icons.info_outline,
-              color: Theme.of(context).primaryColor,
-            ),
+            icon: const Icon(Icons.info_outline),
             onPressed: () => showInfoDialog(
               context,
               Strings.of(context).settingsChooseColorTitle,
@@ -102,15 +99,21 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
+  Widget _buildLicenses(BuildContext context) {
+    return ListTile(
+      title: Text(Strings.of(context).settingsFontLicenseTitle),
+      contentPadding: insetsHorizontalDefault,
+      trailing: const Icon(Icons.open_in_new),
+      onTap: () => UrlLauncherWrapper.get.launch(_urlFontLicense),
+    );
+  }
+
   Widget _buildPrivacy(BuildContext context) {
     return ListTile(
       title: Text(Strings.of(context).settingsPrivacyTitle),
       contentPadding: insetsHorizontalDefault,
-      trailing: Icon(
-        Icons.open_in_new,
-        color: Theme.of(context).primaryColor,
-      ),
-      onTap: () => UrlLauncherWrapper.get.launch(urlPrivacyPolicy),
+      trailing: const Icon(Icons.open_in_new),
+      onTap: () => UrlLauncherWrapper.get.launch(_urlPrivacyPolicy),
     );
   }
 }

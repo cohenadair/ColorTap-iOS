@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/color_tap_game.dart';
+import 'package:mobile/utils/theme.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
 
 import '../color_tap_world.dart';
@@ -50,12 +51,15 @@ class _ScoreboardState extends State<Scoreboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        _buildBackground(),
-        _buildTarget(),
-      ],
+    return Theme(
+      data: appTheme(context),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          _buildBackground(),
+          _buildTarget(),
+        ],
+      ),
     );
   }
 
@@ -99,15 +103,11 @@ class _ScoreboardState extends State<Scoreboard> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: _game.world.color.color,
-          border: Border.all(
-            color: colorLightText,
-            width: _scoreBorderWidth,
-          ),
         ),
         child: Center(
           child: Text(
             _game.world.score.toString(),
-            style: const TextStyle(
+            style: styleTextDefault().copyWith(
               fontSize: _scoreFontSize,
               fontWeight: fontWeightBold,
               color: Colors.black,
@@ -125,7 +125,6 @@ class _ScoreboardState extends State<Scoreboard> {
         icon: _game.world.scrollingPaused
             ? const Icon(Icons.play_arrow)
             : const Icon(Icons.pause),
-        color: colorLightText,
         iconSize: _iconSize,
         onPressed: () {
           _game.world.scrollingPaused = !_game.world.scrollingPaused;

@@ -19,6 +19,18 @@ void main() {
     when(managers.preferenceManager.colorIndex).thenReturn(null);
   });
 
+  testWidgets("Font license link opens license", (tester) async {
+    await pumpContext(tester, (_) => SettingsPage());
+    await tapAndSettle(tester, find.text("Font License"));
+
+    var result = verify(managers.urlLauncherWrapper.launch(captureAny));
+    result.called(1);
+    expect(
+      (result.captured.first as String).contains("font-license.txt"),
+      isTrue,
+    );
+  });
+
   testWidgets("Privacy link opens privacy policy", (tester) async {
     await pumpContext(tester, (_) => SettingsPage());
     await tapAndSettle(tester, find.text("Privacy Policy"));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+const paddingXLarge = 32.0;
 const paddingDefault = 16.0;
 const paddingSmall = 8.0;
 
@@ -16,11 +17,13 @@ const insetsRightSmall = EdgeInsets.only(right: paddingSmall);
 
 const insetsVerticalDefault = EdgeInsets.symmetric(vertical: paddingDefault);
 
+const insetsVerticalSmall = EdgeInsets.symmetric(vertical: paddingSmall);
+
 const insetsBottomDefault = EdgeInsets.only(bottom: paddingDefault);
 
 const insetsTopDefault = EdgeInsets.only(top: paddingDefault);
 
-const fontWeightBold = FontWeight.w500;
+const fontWeightBold = FontWeight.w700;
 
 const animDurationDefault = Duration(milliseconds: 250);
 

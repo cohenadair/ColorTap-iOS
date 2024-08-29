@@ -4,6 +4,7 @@ import 'package:mobile/utils/colors.dart';
 
 import '../managers/lives_manager.dart';
 import '../utils/dimens.dart';
+import '../utils/theme.dart';
 
 class RemainingLives extends StatelessWidget {
   static const _defaultIconSize = 30.0;
@@ -40,10 +41,9 @@ class RemainingLives extends StatelessWidget {
 
                 return Text(
                   LivesManager.get.lives.toString(),
-                  style: const TextStyle(
+                  style: styleTextDefault().copyWith(
                     fontSize: _livesFontSize,
                     fontWeight: fontWeightBold,
-                    color: colorLightText,
                   ),
                 );
               },

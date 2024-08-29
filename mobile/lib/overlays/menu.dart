@@ -54,6 +54,7 @@ class Menu extends StatelessWidget {
                         _buildGetLives(context),
                         const Spacer(),
                         _buildPlayButton(context),
+                        const SizedBox(height: paddingSmall),
                         _buildSettingsButton(context),
                         const Spacer(),
                         _buildDifficulty(),
@@ -135,9 +136,12 @@ class Menu extends StatelessWidget {
   }
 
   Widget _buildSettingsButton(BuildContext context) {
-    return FilledButton(
-      onPressed: () => present(context, SettingsPage()),
-      child: Text(Strings.of(context).settingsTitle),
+    return Padding(
+      padding: insetsVerticalSmall,
+      child: FilledButton(
+        onPressed: () => present(context, SettingsPage()),
+        child: Text(Strings.of(context).settingsTitle),
+      ),
     );
   }
 
@@ -148,7 +152,7 @@ class Menu extends StatelessWidget {
         return Text(
           Strings.of(context).menuDifficulty(
               PreferenceManager.get.difficulty.displayName(context)),
-          style: themeTextDefault,
+          style: styleTextPrimary(),
         );
       },
     );

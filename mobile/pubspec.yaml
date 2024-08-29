@@ -10,6 +10,7 @@ environment:
 dependencies:
   collection: ^1.18.0         # https://pub.dev/packages/collection (Dart)
   flame: ^1.13.1              # https://pub.dev/packages/flame (Flame Engine)
+  google_fonts: ^6.2.1        # https://pub.dev/packages/google_fonts (verified)
   google_mobile_ads: ^4.0.0   # https://pub.dev/packages/google_mobile_ads (Google)
   purchases_flutter: ^6.16.1  # https://pub.dev/packages/purchases_flutter (verified)
   shared_preferences: ^2.2.2  # https://pub.dev/packages/shared_preferences (Flutter)
@@ -35,3 +36,4 @@ flutter:
 
   assets:
     - assets/sensitive.properties
+    - assets/fonts/
