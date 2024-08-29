@@ -7,10 +7,11 @@ import 'target_color.dart';
 
 /// The various difficulties of the game.
 ///
-/// Note that the difficulty indexes are stored in preferences and should not
+/// Note that the difficulty indexes are stored in preferences and should *not*
 /// be changed.
 enum Difficulty {
   kids(
+    highScoreKey: "high_score_kids",
     minTargetsPerRow: 3,
     canChooseColor: true,
     hasUnlimitedLives: true,
@@ -21,6 +22,7 @@ enum Difficulty {
     colors: TargetColor.kids,
   ),
   easy(
+    highScoreKey: "high_score_easy",
     minTargetsPerRow: 4,
     canChooseColor: false,
     hasUnlimitedLives: false,
@@ -31,6 +33,7 @@ enum Difficulty {
     colors: TargetColor.all,
   ),
   normal(
+    highScoreKey: "high_score_normal",
     minTargetsPerRow: 4,
     canChooseColor: false,
     hasUnlimitedLives: false,
@@ -41,6 +44,7 @@ enum Difficulty {
     colors: TargetColor.all,
   ),
   hard(
+    highScoreKey: "high_score_hard",
     minTargetsPerRow: 5,
     canChooseColor: false,
     hasUnlimitedLives: false,
@@ -51,6 +55,7 @@ enum Difficulty {
     colors: TargetColor.all,
   ),
   expert(
+    highScoreKey: "high_score_expert",
     minTargetsPerRow: 5,
     canChooseColor: false,
     hasUnlimitedLives: false,
@@ -65,6 +70,10 @@ enum Difficulty {
   /// increased by [_incTargetsPerRowBy].
   final int _incTargetsPerRowThreshold = 600;
   final int _incTargetsPerRowBy = 1;
+
+  /// The key used to save the current high score in [PreferenceManager]. This
+  /// value shouldn't ever change for any single [Difficulty].
+  final String highScoreKey;
 
   /// The minimum targets per row. This value may be added to depending on the
   /// type of device (tablet/iPad/phone) being used.
@@ -96,6 +105,7 @@ enum Difficulty {
   final List<TargetColor> Function() colors;
 
   const Difficulty({
+    required this.highScoreKey,
     required this.minTargetsPerRow,
     required this.canChooseColor,
     required this.hasUnlimitedLives,

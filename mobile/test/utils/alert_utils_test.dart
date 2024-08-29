@@ -25,6 +25,7 @@ void main() {
     when(managers.livesManager.lives).thenReturn(3);
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
+    when(managers.preferenceManager.currentHighScore).thenReturn(null);
   });
 
   testWidgets("showErrorDialog", (tester) async {

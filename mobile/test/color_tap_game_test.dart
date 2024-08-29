@@ -19,6 +19,7 @@ void main() {
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
     when(managers.preferenceManager.colorIndex).thenReturn(null);
+    when(managers.preferenceManager.currentHighScore).thenReturn(null);
   });
 
   testWidgets("onLoad", (tester) async {

@@ -23,6 +23,7 @@ void main() {
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
     when(managers.preferenceManager.colorIndex).thenReturn(null);
+    when(managers.preferenceManager.currentHighScore).thenReturn(null);
 
     when(managers.purchasesWrapper.getOfferings())
         .thenAnswer((_) => Future.value(MockOfferings()));
@@ -98,6 +99,20 @@ void main() {
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.hard);
     await pumpContext(tester, (context) => Menu.main(game));
     expect(find.text("Difficulty: Hard"), findsOneWidget);
+  });
+
+  testWidgets("High score text shows none", (tester) async {
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.hard);
+    when(managers.preferenceManager.currentHighScore).thenReturn(null);
+    await pumpContext(tester, (context) => Menu.main(game));
+    expect(find.text("High Score: None"), findsOneWidget);
+  });
+
+  testWidgets("High score text shows value", (tester) async {
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.hard);
+    when(managers.preferenceManager.currentHighScore).thenReturn(50);
+    await pumpContext(tester, (context) => Menu.main(game));
+    expect(find.text("High Score: 50"), findsOneWidget);
   });
 
   testWidgets("Text updates when difficulty changes", (tester) async {

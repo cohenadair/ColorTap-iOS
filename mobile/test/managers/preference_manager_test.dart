@@ -62,4 +62,34 @@ void main() {
     PreferenceManager.get.colorIndex = null;
     expect(PreferenceManager.get.colorIndex, null);
   });
+
+  test("High score is set from nothing", () async {
+    await stubValues({"difficulty": 1});
+    expect(PreferenceManager.get.currentHighScore, isNull);
+
+    PreferenceManager.get.updateCurrentHighScore(50);
+    expect(PreferenceManager.get.currentHighScore, 50);
+  });
+
+  test("High score overrides old value", () async {
+    await stubValues({
+      "difficulty": 1,
+      Difficulty.easy.highScoreKey: 50,
+    });
+    expect(PreferenceManager.get.currentHighScore, 50);
+
+    PreferenceManager.get.updateCurrentHighScore(75);
+    expect(PreferenceManager.get.currentHighScore, 75);
+  });
+
+  test("Setting high score that is too low", () async {
+    await stubValues({
+      "difficulty": 1,
+      Difficulty.easy.highScoreKey: 50,
+    });
+    expect(PreferenceManager.get.currentHighScore, 50);
+
+    PreferenceManager.get.updateCurrentHighScore(40);
+    expect(PreferenceManager.get.currentHighScore, 50);
+  });
 }

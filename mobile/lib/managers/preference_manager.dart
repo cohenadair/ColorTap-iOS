@@ -53,6 +53,14 @@ class PreferenceManager {
     }
   }
 
+  void updateCurrentHighScore(int score) {
+    if (score > (currentHighScore ?? 0)) {
+      _setInt(difficulty.highScoreKey, score);
+    }
+  }
+
+  int? get currentHighScore => _prefs.getInt(difficulty.highScoreKey);
+
   void _setInt(String key, int value) {
     _prefs.setInt(key, value);
     _notify();

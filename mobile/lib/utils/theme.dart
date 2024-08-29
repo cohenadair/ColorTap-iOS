@@ -24,9 +24,8 @@ ThemeData appTheme(BuildContext context) {
     ),
     dialogTheme: DialogTheme(
       backgroundColor: colorGame,
-      titleTextStyle: themeTextGlobal().titleLarge?.copyWith(
-        color: colorLightText,
-      ),
+      titleTextStyle:
+          themeTextGlobal().titleLarge?.copyWith(color: colorLightText),
     ),
     listTileTheme: ListTileThemeData(
       titleTextStyle: styleTextPrimary(),

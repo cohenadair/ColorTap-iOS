@@ -3973,6 +3973,15 @@ class MockPreferenceManager extends _i1.Mock implements _i33.PreferenceManager {
         ),
         returnValueForMissingStub: null,
       );
+
+  @override
+  void updateCurrentHighScore(int? score) => super.noSuchMethod(
+        Invocation.method(
+          #updateCurrentHighScore,
+          [score],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [PropertiesManager].

@@ -149,10 +149,20 @@ class Menu extends StatelessWidget {
     return StreamBuilder(
       stream: PreferenceManager.get.stream,
       builder: (context, _) {
-        return Text(
-          Strings.of(context).menuDifficulty(
-              PreferenceManager.get.difficulty.displayName(context)),
-          style: styleTextPrimary(),
+        return Column(
+          children: [
+            Text(
+              Strings.of(context).menuDifficulty(
+                  PreferenceManager.get.difficulty.displayName(context)),
+              style: styleTextPrimary(),
+            ),
+            Text(
+              Strings.of(context).menuHighScore(
+                  PreferenceManager.get.currentHighScore?.toString() ??
+                      Strings.of(context).menuHighScoreNone),
+              style: styleTextPrimary(),
+            ),
+          ],
         );
       },
     );

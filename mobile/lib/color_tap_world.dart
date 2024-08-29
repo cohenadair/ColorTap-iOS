@@ -96,6 +96,7 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
         LivesManager.get.loseLife();
       }
       game.overlays.add(overlayIdGameOver);
+      PreferenceManager.get.updateCurrentHighScore(score);
     }
 
     notifyListeners();

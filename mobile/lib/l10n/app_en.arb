@@ -19,6 +19,16 @@
     }
   },
 
+  "menuHighScore": "High Score: {highScore}",
+  "@menuHighScore": {
+    "placeholders": {
+      "highScore": {
+        "type": "String"
+      }
+    }
+  },
+  "menuHighScoreNone": "None",
+
   "storeTitle": "Store",
   "storeBuyLives": "Buy Lives",
 
