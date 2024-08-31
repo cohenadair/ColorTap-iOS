@@ -4,17 +4,11 @@ import 'package:mobile/utils/colors.dart';
 
 import '../managers/lives_manager.dart';
 import '../utils/dimens.dart';
-import '../utils/theme.dart';
 
 class RemainingLives extends StatelessWidget {
-  static const _defaultIconSize = 30.0;
-  static const _livesFontSize = 20.0;
+  static const _iconSize = 30.0;
 
-  final double iconSize;
-
-  const RemainingLives({
-    this.iconSize = _defaultIconSize,
-  });
+  const RemainingLives();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +18,7 @@ class RemainingLives extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.favorite),
           color: Colors.red,
-          iconSize: iconSize,
+          iconSize: _iconSize,
           onPressed: () {},
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
@@ -41,8 +35,7 @@ class RemainingLives extends StatelessWidget {
 
                 return Text(
                   LivesManager.get.lives.toString(),
-                  style: styleTextDefault().copyWith(
-                    fontSize: _livesFontSize,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: fontWeightBold,
                   ),
                 );

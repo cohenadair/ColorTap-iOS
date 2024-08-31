@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/strings.dart';
+import 'package:mobile/utils/colors.dart';
 
 const int snackBarDurationDefault = 5;
 
 void showErrorSnackBar(BuildContext context, String errorMessage) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text(errorMessage),
+    content: Text(errorMessage, style: const TextStyle(color: colorLightText)),
     duration: const Duration(seconds: snackBarDurationDefault),
     backgroundColor: Colors.red,
   ));
 }
 
-void showInfoDialog(BuildContext context, String title, String message) {
+void showInfoDialog(
+  BuildContext context,
+  String title,
+  String message, {
+  VoidCallback? onDismissed,
+}) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
       title: Text(title),
       content: Text(message),
       actions: <Widget>[
-        _buildOkButton(context),
+        _buildOkButton(context, onDismissed: onDismissed),
       ],
     ),
   );

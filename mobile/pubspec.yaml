@@ -9,10 +9,14 @@ environment:
 
 dependencies:
   collection: ^1.18.0         # https://pub.dev/packages/collection (Dart)
+  device_info_plus: ^10.1.2   # https://pub.dev/packages/device_info_plus (verified)
   flame: ^1.13.1              # https://pub.dev/packages/flame (Flame Engine)
   google_fonts: ^6.2.1        # https://pub.dev/packages/google_fonts (verified)
   google_mobile_ads: ^4.0.0   # https://pub.dev/packages/google_mobile_ads (Google)
+  http: ^1.2.2                # https://pub.dev/packages/http (Dart)
+  package_info_plus: ^8.0.2   # https://pub.dev/packages/package_info_plus (verified)
   purchases_flutter: ^6.16.1  # https://pub.dev/packages/purchases_flutter (verified)
+  quiver: ^3.2.2              # https://pub.dev/packages/quiver
   shared_preferences: ^2.2.2  # https://pub.dev/packages/shared_preferences (Flutter)
   url_launcher: ^6.2.4        # https://pub.dev/packages/url_launcher (Flutter)
   flutter:
@@ -36,4 +40,5 @@ flutter:
 
   assets:
     - assets/sensitive.properties
+    - assets/feedback_template
     - assets/fonts/

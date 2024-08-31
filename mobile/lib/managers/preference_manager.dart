@@ -21,6 +21,8 @@ class PreferenceManager {
   static const _keyLives = "lives";
   static const _keyDifficulty = "difficulty";
   static const _keyColorIndex = "color_index";
+  static const _keyUserName = "user_name";
+  static const _keyUserEmail = "user_email";
 
   late final SharedPreferences _prefs;
 
@@ -61,8 +63,25 @@ class PreferenceManager {
 
   int? get currentHighScore => _prefs.getInt(difficulty.highScoreKey);
 
+  set userName(String? value) {
+    _setString(_keyUserName, value ?? "");
+  }
+
+  String? get userName => _prefs.getString(_keyUserName);
+
+  set userEmail(String? value) {
+    _setString(_keyUserEmail, value ?? "");
+  }
+
+  String? get userEmail => _prefs.getString(_keyUserEmail);
+
   void _setInt(String key, int value) {
     _prefs.setInt(key, value);
+    _notify();
+  }
+
+  void _setString(String key, String value) {
+    _prefs.setString(key, value);
     _notify();
   }
 

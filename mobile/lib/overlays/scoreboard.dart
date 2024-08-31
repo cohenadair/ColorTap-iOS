@@ -20,7 +20,6 @@ class Scoreboard extends StatefulWidget {
 class _ScoreboardState extends State<Scoreboard> {
   static const _scoreFontSize = 40.0;
   static const _scorePositionOffsetFactor = 0.6;
-  static const _scoreBorderWidth = 2.0;
   static const _shadowBlur = 5.0;
   static const _shadowOffset = Offset(0, _shadowBlur);
   static const _iconSize = 30.0;
@@ -88,7 +87,7 @@ class _ScoreboardState extends State<Scoreboard> {
   Widget _buildLives() {
     return const Align(
       alignment: Alignment.bottomLeft,
-      child: RemainingLives(iconSize: _iconSize),
+      child: RemainingLives(),
     );
   }
 
@@ -107,10 +106,9 @@ class _ScoreboardState extends State<Scoreboard> {
         child: Center(
           child: Text(
             _game.world.score.toString(),
-            style: styleTextDefault().copyWith(
+            style: const TextStyle(
               fontSize: _scoreFontSize,
-              fontWeight: fontWeightBold,
-              color: Colors.black,
+              color: colorDarkText,
             ),
           ),
         ),

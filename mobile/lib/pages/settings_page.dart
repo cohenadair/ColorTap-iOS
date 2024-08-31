@@ -73,7 +73,6 @@ class SettingsPage extends StatelessWidget {
   Widget _buildDifficultyItem(BuildContext context, Difficulty difficulty) {
     return Text(
       difficulty.displayName(context),
-      style: styleTextPrimary(),
       textAlign: TextAlign.center,
     );
   }

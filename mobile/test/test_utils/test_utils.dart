@@ -61,3 +61,17 @@ Future<void> tapAndSettle(WidgetTester tester, Finder finder) async {
   await tester.tap(finder);
   await tester.pumpAndSettle();
 }
+
+/// Different from [Finder.widgetWithText] in that it works for widgets with
+/// generic arguments.
+T findFirstWithText<T>(WidgetTester tester, String text) =>
+    tester.firstWidget(find.ancestor(
+      of: find.text(text),
+      matching: find.byWidgetPredicate((widget) => widget is T),
+    )) as T;
+
+Future<void> enterTextFieldAndSettle(
+    WidgetTester tester, String textFieldTitle, String text) async {
+  await tester.enterText(find.widgetWithText(TextField, textFieldTitle), text);
+  await tester.pumpAndSettle();
+}

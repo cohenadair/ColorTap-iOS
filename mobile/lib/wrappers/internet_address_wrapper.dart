@@ -14,7 +14,8 @@ class InternetAddressWrapper {
 
   Future<bool> get isConnected async {
     try {
-      return (await InternetAddress.lookup("example.com")).isNotEmpty;
+      return (await InternetAddress.lookup("example.com")).isNotEmpty ||
+          (await InternetAddress.lookup("google.com")).isNotEmpty;
     } catch (_) {
       return false;
     }

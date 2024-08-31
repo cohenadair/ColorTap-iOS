@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
@@ -13,7 +14,10 @@ import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/managers/properties_manager.dart';
 import 'package:mobile/managers/purchases_manager.dart';
 import 'package:mobile/managers/time_manager.dart';
+import 'package:mobile/wrappers/device_info_wrapper.dart';
+import 'package:mobile/wrappers/http_wrapper.dart';
 import 'package:mobile/wrappers/internet_address_wrapper.dart';
+import 'package:mobile/wrappers/package_info_wrapper.dart';
 import 'package:mobile/wrappers/platform_wrapper.dart';
 import 'package:mobile/wrappers/purchases_wrapper.dart';
 import 'package:mobile/wrappers/rewarded_ad_wrapper.dart';
@@ -22,17 +26,22 @@ import 'package:mockito/annotations.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@GenerateMocks([AndroidBuildVersion])
+@GenerateMocks([AndroidDeviceInfo])
 @GenerateMocks([Canvas])
 @GenerateMocks([ColorTapGame])
 @GenerateMocks([ColorTapWorld])
 @GenerateMocks([], customMocks: [MockSpec<ComponentsNotifier>()])
 @GenerateMocks([CustomerInfo])
+@GenerateMocks([DeviceInfoWrapper])
 @GenerateMocks([FlutterView])
+@GenerateMocks([HttpWrapper])
 @GenerateMocks([InternetAddressWrapper])
 @GenerateMocks([LivesManager])
 @GenerateMocks([Offering])
 @GenerateMocks([Offerings])
 @GenerateMocks([Package])
+@GenerateMocks([PackageInfoWrapper])
 @GenerateMocks([PlatformDispatcher])
 @GenerateMocks([PlatformException])
 @GenerateMocks([PlatformWrapper])

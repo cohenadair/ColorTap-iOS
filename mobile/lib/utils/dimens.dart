@@ -23,7 +23,7 @@ const insetsBottomDefault = EdgeInsets.only(bottom: paddingDefault);
 
 const insetsTopDefault = EdgeInsets.only(top: paddingDefault);
 
-const fontWeightBold = FontWeight.w700;
+const fontWeightBold = FontWeight.w600;
 
 const animDurationDefault = Duration(milliseconds: 250);
 

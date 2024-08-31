@@ -14,5 +14,7 @@ class PlatformWrapper {
 
   bool get isAndroid => Platform.isAndroid;
 
+  bool get isIOS => Platform.isIOS;
+
   bool get isDebug => kDebugMode;
 }

@@ -4,54 +4,61 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i20;
-import 'dart:isolate' as _i30;
-import 'dart:typed_data' as _i18;
-import 'dart:ui' as _i2;
+import 'dart:async' as _i24;
+import 'dart:convert' as _i33;
+import 'dart:isolate' as _i37;
+import 'dart:typed_data' as _i22;
+import 'dart:ui' as _i3;
 
-import 'package:flame/cache.dart' as _i6;
-import 'package:flame/camera.dart' as _i45;
-import 'package:flame/components.dart' as _i4;
-import 'package:flame/game.dart' as _i5;
-import 'package:flame/src/components/core/component_tree_root.dart' as _i22;
-import 'package:flame/src/events/messages/tap_down_event.dart' as _i42;
-import 'package:flame/src/game/game_render_box.dart' as _i9;
+import 'package:device_info_plus/device_info_plus.dart' as _i2;
+import 'package:flame/cache.dart' as _i7;
+import 'package:flame/camera.dart' as _i52;
+import 'package:flame/components.dart' as _i5;
+import 'package:flame/game.dart' as _i6;
+import 'package:flame/src/components/core/component_tree_root.dart' as _i26;
+import 'package:flame/src/events/messages/tap_down_event.dart' as _i49;
+import 'package:flame/src/game/game_render_box.dart' as _i10;
 import 'package:flame/src/game/game_widget/gesture_detector_builder.dart'
-    as _i7;
-import 'package:flame/src/game/overlay_manager.dart' as _i8;
-import 'package:flame/src/rendering/decorator.dart' as _i17;
-import 'package:flutter/gestures.dart' as _i21;
-import 'package:flutter/material.dart' as _i10;
-import 'package:flutter/rendering.dart' as _i23;
-import 'package:flutter/services.dart' as _i31;
-import 'package:google_mobile_ads/google_mobile_ads.dart' as _i39;
-import 'package:google_mobile_ads/src/ad_listeners.dart' as _i16;
-import 'package:mobile/color_tap_game.dart' as _i19;
-import 'package:mobile/color_tap_world.dart' as _i3;
-import 'package:mobile/components/target.dart' as _i24;
-import 'package:mobile/components/target_board.dart' as _i25;
-import 'package:mobile/difficulty.dart' as _i34;
-import 'package:mobile/managers/lives_manager.dart' as _i29;
-import 'package:mobile/managers/preference_manager.dart' as _i33;
-import 'package:mobile/managers/properties_manager.dart' as _i35;
-import 'package:mobile/managers/purchases_manager.dart' as _i36;
-import 'package:mobile/managers/time_manager.dart' as _i43;
-import 'package:mobile/target_color.dart' as _i11;
-import 'package:mobile/wrappers/internet_address_wrapper.dart' as _i28;
-import 'package:mobile/wrappers/platform_wrapper.dart' as _i32;
-import 'package:mobile/wrappers/purchases_wrapper.dart' as _i37;
-import 'package:mobile/wrappers/rewarded_ad_wrapper.dart' as _i40;
-import 'package:mobile/wrappers/url_launcher_wrapper.dart' as _i44;
+    as _i8;
+import 'package:flame/src/game/overlay_manager.dart' as _i9;
+import 'package:flame/src/rendering/decorator.dart' as _i20;
+import 'package:flutter/gestures.dart' as _i25;
+import 'package:flutter/material.dart' as _i11;
+import 'package:flutter/rendering.dart' as _i27;
+import 'package:flutter/services.dart' as _i38;
+import 'package:google_mobile_ads/google_mobile_ads.dart' as _i46;
+import 'package:google_mobile_ads/src/ad_listeners.dart' as _i19;
+import 'package:http/http.dart' as _i15;
+import 'package:mobile/color_tap_game.dart' as _i23;
+import 'package:mobile/color_tap_world.dart' as _i4;
+import 'package:mobile/components/target.dart' as _i28;
+import 'package:mobile/components/target_board.dart' as _i29;
+import 'package:mobile/difficulty.dart' as _i41;
+import 'package:mobile/managers/lives_manager.dart' as _i35;
+import 'package:mobile/managers/preference_manager.dart' as _i40;
+import 'package:mobile/managers/properties_manager.dart' as _i42;
+import 'package:mobile/managers/purchases_manager.dart' as _i43;
+import 'package:mobile/managers/time_manager.dart' as _i50;
+import 'package:mobile/target_color.dart' as _i12;
+import 'package:mobile/wrappers/device_info_wrapper.dart' as _i31;
+import 'package:mobile/wrappers/http_wrapper.dart' as _i32;
+import 'package:mobile/wrappers/internet_address_wrapper.dart' as _i34;
+import 'package:mobile/wrappers/package_info_wrapper.dart' as _i36;
+import 'package:mobile/wrappers/platform_wrapper.dart' as _i39;
+import 'package:mobile/wrappers/purchases_wrapper.dart' as _i44;
+import 'package:mobile/wrappers/rewarded_ad_wrapper.dart' as _i47;
+import 'package:mobile/wrappers/url_launcher_wrapper.dart' as _i51;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i27;
+import 'package:mockito/src/dummies.dart' as _i21;
+import 'package:package_info_plus/package_info_plus.dart' as _i18;
 import 'package:purchases_flutter/models/entitlement_infos_wrapper.dart'
-    as _i12;
-import 'package:purchases_flutter/models/offering_wrapper.dart' as _i14;
-import 'package:purchases_flutter/models/package_wrapper.dart' as _i15;
-import 'package:purchases_flutter/models/store_transaction.dart' as _i26;
-import 'package:purchases_flutter/object_wrappers.dart' as _i13;
-import 'package:purchases_flutter/purchases_flutter.dart' as _i38;
-import 'package:shared_preferences/shared_preferences.dart' as _i41;
+    as _i13;
+import 'package:purchases_flutter/models/offering_wrapper.dart' as _i16;
+import 'package:purchases_flutter/models/package_wrapper.dart' as _i17;
+import 'package:purchases_flutter/models/store_transaction.dart' as _i30;
+import 'package:purchases_flutter/object_wrappers.dart' as _i14;
+import 'package:purchases_flutter/purchases_flutter.dart' as _i45;
+import 'package:shared_preferences/shared_preferences.dart' as _i48;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -66,8 +73,9 @@ import 'package:shared_preferences/shared_preferences.dart' as _i41;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeRect_0 extends _i1.SmartFake implements _i2.Rect {
-  _FakeRect_0(
+class _FakeAndroidBuildVersion_0 extends _i1.SmartFake
+    implements _i2.AndroidBuildVersion {
+  _FakeAndroidBuildVersion_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -76,8 +84,8 @@ class _FakeRect_0 extends _i1.SmartFake implements _i2.Rect {
         );
 }
 
-class _FakeColorTapWorld_1 extends _i1.SmartFake implements _i3.ColorTapWorld {
-  _FakeColorTapWorld_1(
+class _FakeRect_1 extends _i1.SmartFake implements _i3.Rect {
+  _FakeRect_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -86,9 +94,8 @@ class _FakeColorTapWorld_1 extends _i1.SmartFake implements _i3.ColorTapWorld {
         );
 }
 
-class _FakeCameraComponent_2 extends _i1.SmartFake
-    implements _i4.CameraComponent {
-  _FakeCameraComponent_2(
+class _FakeColorTapWorld_2 extends _i1.SmartFake implements _i4.ColorTapWorld {
+  _FakeColorTapWorld_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -97,8 +104,9 @@ class _FakeCameraComponent_2 extends _i1.SmartFake
         );
 }
 
-class _FakeVector2_3 extends _i1.SmartFake implements _i5.Vector2 {
-  _FakeVector2_3(
+class _FakeCameraComponent_3 extends _i1.SmartFake
+    implements _i5.CameraComponent {
+  _FakeCameraComponent_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -107,8 +115,8 @@ class _FakeVector2_3 extends _i1.SmartFake implements _i5.Vector2 {
         );
 }
 
-class _FakeColor_4 extends _i1.SmartFake implements _i2.Color {
-  _FakeColor_4(
+class _FakeVector2_4 extends _i1.SmartFake implements _i6.Vector2 {
+  _FakeVector2_4(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -117,8 +125,8 @@ class _FakeColor_4 extends _i1.SmartFake implements _i2.Color {
         );
 }
 
-class _FakeComponentSet_5 extends _i1.SmartFake implements _i4.ComponentSet {
-  _FakeComponentSet_5(
+class _FakeColor_5 extends _i1.SmartFake implements _i3.Color {
+  _FakeColor_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -127,8 +135,8 @@ class _FakeComponentSet_5 extends _i1.SmartFake implements _i4.ComponentSet {
         );
 }
 
-class _FakePaint_6 extends _i1.SmartFake implements _i2.Paint {
-  _FakePaint_6(
+class _FakeComponentSet_6 extends _i1.SmartFake implements _i5.ComponentSet {
+  _FakeComponentSet_6(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -137,8 +145,8 @@ class _FakePaint_6 extends _i1.SmartFake implements _i2.Paint {
         );
 }
 
-class _FakeTextPaint_7 extends _i1.SmartFake implements _i5.TextPaint {
-  _FakeTextPaint_7(
+class _FakePaint_7 extends _i1.SmartFake implements _i3.Paint {
+  _FakePaint_7(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -147,8 +155,8 @@ class _FakeTextPaint_7 extends _i1.SmartFake implements _i5.TextPaint {
         );
 }
 
-class _FakeImages_8 extends _i1.SmartFake implements _i6.Images {
-  _FakeImages_8(
+class _FakeTextPaint_8 extends _i1.SmartFake implements _i6.TextPaint {
+  _FakeTextPaint_8(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -157,8 +165,8 @@ class _FakeImages_8 extends _i1.SmartFake implements _i6.Images {
         );
 }
 
-class _FakeAssetsCache_9 extends _i1.SmartFake implements _i6.AssetsCache {
-  _FakeAssetsCache_9(
+class _FakeImages_9 extends _i1.SmartFake implements _i7.Images {
+  _FakeImages_9(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -167,9 +175,8 @@ class _FakeAssetsCache_9 extends _i1.SmartFake implements _i6.AssetsCache {
         );
 }
 
-class _FakeGestureDetectorBuilder_10 extends _i1.SmartFake
-    implements _i7.GestureDetectorBuilder {
-  _FakeGestureDetectorBuilder_10(
+class _FakeAssetsCache_10 extends _i1.SmartFake implements _i7.AssetsCache {
+  _FakeAssetsCache_10(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -178,9 +185,9 @@ class _FakeGestureDetectorBuilder_10 extends _i1.SmartFake
         );
 }
 
-class _FakeOverlayManager_11 extends _i1.SmartFake
-    implements _i8.OverlayManager {
-  _FakeOverlayManager_11(
+class _FakeGestureDetectorBuilder_11 extends _i1.SmartFake
+    implements _i8.GestureDetectorBuilder {
+  _FakeGestureDetectorBuilder_11(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -189,8 +196,20 @@ class _FakeOverlayManager_11 extends _i1.SmartFake
         );
 }
 
-class _FakeGameRenderBox_12 extends _i1.SmartFake implements _i9.GameRenderBox {
-  _FakeGameRenderBox_12(
+class _FakeOverlayManager_12 extends _i1.SmartFake
+    implements _i9.OverlayManager {
+  _FakeOverlayManager_12(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeGameRenderBox_13 extends _i1.SmartFake
+    implements _i10.GameRenderBox {
+  _FakeGameRenderBox_13(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -200,12 +219,12 @@ class _FakeGameRenderBox_12 extends _i1.SmartFake implements _i9.GameRenderBox {
 
   @override
   String toString(
-          {_i10.DiagnosticLevel? minLevel = _i10.DiagnosticLevel.info}) =>
+          {_i11.DiagnosticLevel? minLevel = _i11.DiagnosticLevel.info}) =>
       super.toString();
 }
 
-class _FakeMouseCursor_13 extends _i1.SmartFake implements _i10.MouseCursor {
-  _FakeMouseCursor_13(
+class _FakeMouseCursor_14 extends _i1.SmartFake implements _i11.MouseCursor {
+  _FakeMouseCursor_14(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -215,13 +234,13 @@ class _FakeMouseCursor_13 extends _i1.SmartFake implements _i10.MouseCursor {
 
   @override
   String toString(
-          {_i10.DiagnosticLevel? minLevel = _i10.DiagnosticLevel.info}) =>
+          {_i11.DiagnosticLevel? minLevel = _i11.DiagnosticLevel.info}) =>
       super.toString();
 }
 
-class _FakeComponentsNotifier_14<T1 extends _i4.Component> extends _i1.SmartFake
-    implements _i4.ComponentsNotifier<T1> {
-  _FakeComponentsNotifier_14(
+class _FakeComponentsNotifier_15<T1 extends _i5.Component> extends _i1.SmartFake
+    implements _i5.ComponentsNotifier<T1> {
+  _FakeComponentsNotifier_15(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -230,8 +249,8 @@ class _FakeComponentsNotifier_14<T1 extends _i4.Component> extends _i1.SmartFake
         );
 }
 
-class _FakeSprite_15 extends _i1.SmartFake implements _i4.Sprite {
-  _FakeSprite_15(
+class _FakeSprite_16 extends _i1.SmartFake implements _i5.Sprite {
+  _FakeSprite_16(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -240,9 +259,9 @@ class _FakeSprite_15 extends _i1.SmartFake implements _i4.Sprite {
         );
 }
 
-class _FakeSpriteAnimation_16 extends _i1.SmartFake
-    implements _i4.SpriteAnimation {
-  _FakeSpriteAnimation_16(
+class _FakeSpriteAnimation_17 extends _i1.SmartFake
+    implements _i5.SpriteAnimation {
+  _FakeSpriteAnimation_17(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -251,8 +270,8 @@ class _FakeSpriteAnimation_16 extends _i1.SmartFake
         );
 }
 
-class _FakeTargetColor_17 extends _i1.SmartFake implements _i11.TargetColor {
-  _FakeTargetColor_17(
+class _FakeTargetColor_18 extends _i1.SmartFake implements _i12.TargetColor {
+  _FakeTargetColor_18(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -261,9 +280,9 @@ class _FakeTargetColor_17 extends _i1.SmartFake implements _i11.TargetColor {
         );
 }
 
-class _FakeFlameGame_18<W extends _i4.World> extends _i1.SmartFake
-    implements _i5.FlameGame<W> {
-  _FakeFlameGame_18(
+class _FakeFlameGame_19<W extends _i5.World> extends _i1.SmartFake
+    implements _i6.FlameGame<W> {
+  _FakeFlameGame_19(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -272,9 +291,9 @@ class _FakeFlameGame_18<W extends _i4.World> extends _i1.SmartFake
         );
 }
 
-class _FakeEntitlementInfos_19 extends _i1.SmartFake
-    implements _i12.EntitlementInfos {
-  _FakeEntitlementInfos_19(
+class _FakeEntitlementInfos_20 extends _i1.SmartFake
+    implements _i13.EntitlementInfos {
+  _FakeEntitlementInfos_20(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -283,9 +302,9 @@ class _FakeEntitlementInfos_19 extends _i1.SmartFake
         );
 }
 
-class _Fake$CustomerInfoCopyWith_20<$Res> extends _i1.SmartFake
-    implements _i13.$CustomerInfoCopyWith<$Res> {
-  _Fake$CustomerInfoCopyWith_20(
+class _Fake$CustomerInfoCopyWith_21<$Res> extends _i1.SmartFake
+    implements _i14.$CustomerInfoCopyWith<$Res> {
+  _Fake$CustomerInfoCopyWith_21(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -294,9 +313,9 @@ class _Fake$CustomerInfoCopyWith_20<$Res> extends _i1.SmartFake
         );
 }
 
-class _FakePlatformDispatcher_21 extends _i1.SmartFake
-    implements _i2.PlatformDispatcher {
-  _FakePlatformDispatcher_21(
+class _FakeAndroidDeviceInfo_22 extends _i1.SmartFake
+    implements _i2.AndroidDeviceInfo {
+  _FakeAndroidDeviceInfo_22(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -305,8 +324,8 @@ class _FakePlatformDispatcher_21 extends _i1.SmartFake
         );
 }
 
-class _FakeDisplay_22 extends _i1.SmartFake implements _i2.Display {
-  _FakeDisplay_22(
+class _FakeIosDeviceInfo_23 extends _i1.SmartFake implements _i2.IosDeviceInfo {
+  _FakeIosDeviceInfo_23(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -315,9 +334,9 @@ class _FakeDisplay_22 extends _i1.SmartFake implements _i2.Display {
         );
 }
 
-class _FakeViewConstraints_23 extends _i1.SmartFake
-    implements _i2.ViewConstraints {
-  _FakeViewConstraints_23(
+class _FakePlatformDispatcher_24 extends _i1.SmartFake
+    implements _i3.PlatformDispatcher {
+  _FakePlatformDispatcher_24(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -326,8 +345,8 @@ class _FakeViewConstraints_23 extends _i1.SmartFake
         );
 }
 
-class _FakeSize_24 extends _i1.SmartFake implements _i2.Size {
-  _FakeSize_24(
+class _FakeDisplay_25 extends _i1.SmartFake implements _i3.Display {
+  _FakeDisplay_25(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -336,8 +355,9 @@ class _FakeSize_24 extends _i1.SmartFake implements _i2.Size {
         );
 }
 
-class _FakeViewPadding_25 extends _i1.SmartFake implements _i2.ViewPadding {
-  _FakeViewPadding_25(
+class _FakeViewConstraints_26 extends _i1.SmartFake
+    implements _i3.ViewConstraints {
+  _FakeViewConstraints_26(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -346,9 +366,8 @@ class _FakeViewPadding_25 extends _i1.SmartFake implements _i2.ViewPadding {
         );
 }
 
-class _FakeGestureSettings_26 extends _i1.SmartFake
-    implements _i2.GestureSettings {
-  _FakeGestureSettings_26(
+class _FakeSize_27 extends _i1.SmartFake implements _i3.Size {
+  _FakeSize_27(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -357,9 +376,8 @@ class _FakeGestureSettings_26 extends _i1.SmartFake
         );
 }
 
-class _Fake$OfferingCopyWith_27<$Res> extends _i1.SmartFake
-    implements _i14.$OfferingCopyWith<$Res> {
-  _Fake$OfferingCopyWith_27(
+class _FakeViewPadding_28 extends _i1.SmartFake implements _i3.ViewPadding {
+  _FakeViewPadding_28(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -368,9 +386,9 @@ class _Fake$OfferingCopyWith_27<$Res> extends _i1.SmartFake
         );
 }
 
-class _Fake$OfferingsCopyWith_28<$Res> extends _i1.SmartFake
-    implements _i13.$OfferingsCopyWith<$Res> {
-  _Fake$OfferingsCopyWith_28(
+class _FakeGestureSettings_29 extends _i1.SmartFake
+    implements _i3.GestureSettings {
+  _FakeGestureSettings_29(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -379,8 +397,8 @@ class _Fake$OfferingsCopyWith_28<$Res> extends _i1.SmartFake
         );
 }
 
-class _FakeStoreProduct_29 extends _i1.SmartFake implements _i13.StoreProduct {
-  _FakeStoreProduct_29(
+class _FakeResponse_30 extends _i1.SmartFake implements _i15.Response {
+  _FakeResponse_30(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -389,9 +407,9 @@ class _FakeStoreProduct_29 extends _i1.SmartFake implements _i13.StoreProduct {
         );
 }
 
-class _Fake$PackageCopyWith_30<$Res> extends _i1.SmartFake
-    implements _i15.$PackageCopyWith<$Res> {
-  _Fake$PackageCopyWith_30(
+class _Fake$OfferingCopyWith_31<$Res> extends _i1.SmartFake
+    implements _i16.$OfferingCopyWith<$Res> {
+  _Fake$OfferingCopyWith_31(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -400,9 +418,9 @@ class _Fake$PackageCopyWith_30<$Res> extends _i1.SmartFake
         );
 }
 
-class _FakeAccessibilityFeatures_31 extends _i1.SmartFake
-    implements _i2.AccessibilityFeatures {
-  _FakeAccessibilityFeatures_31(
+class _Fake$OfferingsCopyWith_32<$Res> extends _i1.SmartFake
+    implements _i14.$OfferingsCopyWith<$Res> {
+  _Fake$OfferingsCopyWith_32(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -411,8 +429,8 @@ class _FakeAccessibilityFeatures_31 extends _i1.SmartFake
         );
 }
 
-class _FakeLocale_32 extends _i1.SmartFake implements _i2.Locale {
-  _FakeLocale_32(
+class _FakeStoreProduct_33 extends _i1.SmartFake implements _i14.StoreProduct {
+  _FakeStoreProduct_33(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -421,8 +439,9 @@ class _FakeLocale_32 extends _i1.SmartFake implements _i2.Locale {
         );
 }
 
-class _FakeFrameData_33 extends _i1.SmartFake implements _i2.FrameData {
-  _FakeFrameData_33(
+class _Fake$PackageCopyWith_34<$Res> extends _i1.SmartFake
+    implements _i17.$PackageCopyWith<$Res> {
+  _Fake$PackageCopyWith_34(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -431,8 +450,8 @@ class _FakeFrameData_33 extends _i1.SmartFake implements _i2.FrameData {
         );
 }
 
-class _FakeOfferings_34 extends _i1.SmartFake implements _i13.Offerings {
-  _FakeOfferings_34(
+class _FakePackageInfo_35 extends _i1.SmartFake implements _i18.PackageInfo {
+  _FakePackageInfo_35(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -441,8 +460,9 @@ class _FakeOfferings_34 extends _i1.SmartFake implements _i13.Offerings {
         );
 }
 
-class _FakeCustomerInfo_35 extends _i1.SmartFake implements _i13.CustomerInfo {
-  _FakeCustomerInfo_35(
+class _FakeAccessibilityFeatures_36 extends _i1.SmartFake
+    implements _i3.AccessibilityFeatures {
+  _FakeAccessibilityFeatures_36(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -451,9 +471,8 @@ class _FakeCustomerInfo_35 extends _i1.SmartFake implements _i13.CustomerInfo {
         );
 }
 
-class _FakeRewardedAdLoadCallback_36 extends _i1.SmartFake
-    implements _i16.RewardedAdLoadCallback {
-  _FakeRewardedAdLoadCallback_36(
+class _FakeLocale_37 extends _i1.SmartFake implements _i3.Locale {
+  _FakeLocale_37(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -462,9 +481,8 @@ class _FakeRewardedAdLoadCallback_36 extends _i1.SmartFake
         );
 }
 
-class _Fake$StoreProductCopyWith_37<$Res> extends _i1.SmartFake
-    implements _i13.$StoreProductCopyWith<$Res> {
-  _Fake$StoreProductCopyWith_37(
+class _FakeFrameData_38 extends _i1.SmartFake implements _i3.FrameData {
+  _FakeFrameData_38(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -473,8 +491,8 @@ class _Fake$StoreProductCopyWith_37<$Res> extends _i1.SmartFake
         );
 }
 
-class _FakeComponentKey_38 extends _i1.SmartFake implements _i4.ComponentKey {
-  _FakeComponentKey_38(
+class _FakeOfferings_39 extends _i1.SmartFake implements _i14.Offerings {
+  _FakeOfferings_39(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -483,8 +501,8 @@ class _FakeComponentKey_38 extends _i1.SmartFake implements _i4.ComponentKey {
         );
 }
 
-class _FakeTransform2D_39 extends _i1.SmartFake implements _i5.Transform2D {
-  _FakeTransform2D_39(
+class _FakeCustomerInfo_40 extends _i1.SmartFake implements _i14.CustomerInfo {
+  _FakeCustomerInfo_40(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -493,8 +511,9 @@ class _FakeTransform2D_39 extends _i1.SmartFake implements _i5.Transform2D {
         );
 }
 
-class _FakeDecorator_40 extends _i1.SmartFake implements _i17.Decorator {
-  _FakeDecorator_40(
+class _FakeRewardedAdLoadCallback_41 extends _i1.SmartFake
+    implements _i19.RewardedAdLoadCallback {
+  _FakeRewardedAdLoadCallback_41(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -503,8 +522,9 @@ class _FakeDecorator_40 extends _i1.SmartFake implements _i17.Decorator {
         );
 }
 
-class _FakeMatrix4_41 extends _i1.SmartFake implements _i5.Matrix4 {
-  _FakeMatrix4_41(
+class _Fake$StoreProductCopyWith_42<$Res> extends _i1.SmartFake
+    implements _i14.$StoreProductCopyWith<$Res> {
+  _Fake$StoreProductCopyWith_42(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -513,9 +533,8 @@ class _FakeMatrix4_41 extends _i1.SmartFake implements _i5.Matrix4 {
         );
 }
 
-class _FakeNotifyingVector2_42 extends _i1.SmartFake
-    implements _i5.NotifyingVector2 {
-  _FakeNotifyingVector2_42(
+class _FakeComponentKey_43 extends _i1.SmartFake implements _i5.ComponentKey {
+  _FakeComponentKey_43(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -524,20 +543,317 @@ class _FakeNotifyingVector2_42 extends _i1.SmartFake
         );
 }
 
-class _FakeAnchor_43 extends _i1.SmartFake implements _i4.Anchor {
-  _FakeAnchor_43(
+class _FakeTransform2D_44 extends _i1.SmartFake implements _i6.Transform2D {
+  _FakeTransform2D_44(
     Object parent,
     Invocation parentInvocation,
   ) : super(
           parent,
           parentInvocation,
         );
+}
+
+class _FakeDecorator_45 extends _i1.SmartFake implements _i20.Decorator {
+  _FakeDecorator_45(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeMatrix4_46 extends _i1.SmartFake implements _i6.Matrix4 {
+  _FakeMatrix4_46(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeNotifyingVector2_47 extends _i1.SmartFake
+    implements _i6.NotifyingVector2 {
+  _FakeNotifyingVector2_47(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeAnchor_48 extends _i1.SmartFake implements _i5.Anchor {
+  _FakeAnchor_48(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+/// A class which mocks [AndroidBuildVersion].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAndroidBuildVersion extends _i1.Mock
+    implements _i2.AndroidBuildVersion {
+  MockAndroidBuildVersion() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  String get codename => (super.noSuchMethod(
+        Invocation.getter(#codename),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#codename),
+        ),
+      ) as String);
+
+  @override
+  String get incremental => (super.noSuchMethod(
+        Invocation.getter(#incremental),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#incremental),
+        ),
+      ) as String);
+
+  @override
+  String get release => (super.noSuchMethod(
+        Invocation.getter(#release),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#release),
+        ),
+      ) as String);
+
+  @override
+  int get sdkInt => (super.noSuchMethod(
+        Invocation.getter(#sdkInt),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  Map<String, dynamic> toMap() => (super.noSuchMethod(
+        Invocation.method(
+          #toMap,
+          [],
+        ),
+        returnValue: <String, dynamic>{},
+      ) as Map<String, dynamic>);
+}
+
+/// A class which mocks [AndroidDeviceInfo].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAndroidDeviceInfo extends _i1.Mock implements _i2.AndroidDeviceInfo {
+  MockAndroidDeviceInfo() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.AndroidBuildVersion get version => (super.noSuchMethod(
+        Invocation.getter(#version),
+        returnValue: _FakeAndroidBuildVersion_0(
+          this,
+          Invocation.getter(#version),
+        ),
+      ) as _i2.AndroidBuildVersion);
+
+  @override
+  String get board => (super.noSuchMethod(
+        Invocation.getter(#board),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#board),
+        ),
+      ) as String);
+
+  @override
+  String get bootloader => (super.noSuchMethod(
+        Invocation.getter(#bootloader),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#bootloader),
+        ),
+      ) as String);
+
+  @override
+  String get brand => (super.noSuchMethod(
+        Invocation.getter(#brand),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#brand),
+        ),
+      ) as String);
+
+  @override
+  String get device => (super.noSuchMethod(
+        Invocation.getter(#device),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#device),
+        ),
+      ) as String);
+
+  @override
+  String get display => (super.noSuchMethod(
+        Invocation.getter(#display),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#display),
+        ),
+      ) as String);
+
+  @override
+  String get fingerprint => (super.noSuchMethod(
+        Invocation.getter(#fingerprint),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#fingerprint),
+        ),
+      ) as String);
+
+  @override
+  String get hardware => (super.noSuchMethod(
+        Invocation.getter(#hardware),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#hardware),
+        ),
+      ) as String);
+
+  @override
+  String get host => (super.noSuchMethod(
+        Invocation.getter(#host),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#host),
+        ),
+      ) as String);
+
+  @override
+  String get id => (super.noSuchMethod(
+        Invocation.getter(#id),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#id),
+        ),
+      ) as String);
+
+  @override
+  String get manufacturer => (super.noSuchMethod(
+        Invocation.getter(#manufacturer),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#manufacturer),
+        ),
+      ) as String);
+
+  @override
+  String get model => (super.noSuchMethod(
+        Invocation.getter(#model),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#model),
+        ),
+      ) as String);
+
+  @override
+  String get product => (super.noSuchMethod(
+        Invocation.getter(#product),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#product),
+        ),
+      ) as String);
+
+  @override
+  List<String> get supported32BitAbis => (super.noSuchMethod(
+        Invocation.getter(#supported32BitAbis),
+        returnValue: <String>[],
+      ) as List<String>);
+
+  @override
+  List<String> get supported64BitAbis => (super.noSuchMethod(
+        Invocation.getter(#supported64BitAbis),
+        returnValue: <String>[],
+      ) as List<String>);
+
+  @override
+  List<String> get supportedAbis => (super.noSuchMethod(
+        Invocation.getter(#supportedAbis),
+        returnValue: <String>[],
+      ) as List<String>);
+
+  @override
+  String get tags => (super.noSuchMethod(
+        Invocation.getter(#tags),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#tags),
+        ),
+      ) as String);
+
+  @override
+  String get type => (super.noSuchMethod(
+        Invocation.getter(#type),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#type),
+        ),
+      ) as String);
+
+  @override
+  bool get isPhysicalDevice => (super.noSuchMethod(
+        Invocation.getter(#isPhysicalDevice),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  List<String> get systemFeatures => (super.noSuchMethod(
+        Invocation.getter(#systemFeatures),
+        returnValue: <String>[],
+      ) as List<String>);
+
+  @override
+  String get serialNumber => (super.noSuchMethod(
+        Invocation.getter(#serialNumber),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#serialNumber),
+        ),
+      ) as String);
+
+  @override
+  bool get isLowRamDevice => (super.noSuchMethod(
+        Invocation.getter(#isLowRamDevice),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  Map<String, dynamic> get data => (super.noSuchMethod(
+        Invocation.getter(#data),
+        returnValue: <String, dynamic>{},
+      ) as Map<String, dynamic>);
+
+  @override
+  Map<String, dynamic> toMap() => (super.noSuchMethod(
+        Invocation.method(
+          #toMap,
+          [],
+        ),
+        returnValue: <String, dynamic>{},
+      ) as Map<String, dynamic>);
 }
 
 /// A class which mocks [Canvas].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCanvas extends _i1.Mock implements _i2.Canvas {
+class MockCanvas extends _i1.Mock implements _i3.Canvas {
   MockCanvas() {
     _i1.throwOnMissingStub(this);
   }
@@ -553,8 +869,8 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void saveLayer(
-    _i2.Rect? bounds,
-    _i2.Paint? paint,
+    _i3.Rect? bounds,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -652,7 +968,7 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
       );
 
   @override
-  void transform(_i18.Float64List? matrix4) => super.noSuchMethod(
+  void transform(_i22.Float64List? matrix4) => super.noSuchMethod(
         Invocation.method(
           #transform,
           [matrix4],
@@ -661,18 +977,18 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
       );
 
   @override
-  _i18.Float64List getTransform() => (super.noSuchMethod(
+  _i22.Float64List getTransform() => (super.noSuchMethod(
         Invocation.method(
           #getTransform,
           [],
         ),
-        returnValue: _i18.Float64List(0),
-      ) as _i18.Float64List);
+        returnValue: _i22.Float64List(0),
+      ) as _i22.Float64List);
 
   @override
   void clipRect(
-    _i2.Rect? rect, {
-    _i2.ClipOp? clipOp = _i2.ClipOp.intersect,
+    _i3.Rect? rect, {
+    _i3.ClipOp? clipOp = _i3.ClipOp.intersect,
     bool? doAntiAlias = true,
   }) =>
       super.noSuchMethod(
@@ -689,7 +1005,7 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void clipRRect(
-    _i2.RRect? rrect, {
+    _i3.RRect? rrect, {
     bool? doAntiAlias = true,
   }) =>
       super.noSuchMethod(
@@ -703,7 +1019,7 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void clipPath(
-    _i2.Path? path, {
+    _i3.Path? path, {
     bool? doAntiAlias = true,
   }) =>
       super.noSuchMethod(
@@ -716,39 +1032,39 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
       );
 
   @override
-  _i2.Rect getLocalClipBounds() => (super.noSuchMethod(
+  _i3.Rect getLocalClipBounds() => (super.noSuchMethod(
         Invocation.method(
           #getLocalClipBounds,
           [],
         ),
-        returnValue: _FakeRect_0(
+        returnValue: _FakeRect_1(
           this,
           Invocation.method(
             #getLocalClipBounds,
             [],
           ),
         ),
-      ) as _i2.Rect);
+      ) as _i3.Rect);
 
   @override
-  _i2.Rect getDestinationClipBounds() => (super.noSuchMethod(
+  _i3.Rect getDestinationClipBounds() => (super.noSuchMethod(
         Invocation.method(
           #getDestinationClipBounds,
           [],
         ),
-        returnValue: _FakeRect_0(
+        returnValue: _FakeRect_1(
           this,
           Invocation.method(
             #getDestinationClipBounds,
             [],
           ),
         ),
-      ) as _i2.Rect);
+      ) as _i3.Rect);
 
   @override
   void drawColor(
-    _i2.Color? color,
-    _i2.BlendMode? blendMode,
+    _i3.Color? color,
+    _i3.BlendMode? blendMode,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -763,9 +1079,9 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawLine(
-    _i2.Offset? p1,
-    _i2.Offset? p2,
-    _i2.Paint? paint,
+    _i3.Offset? p1,
+    _i3.Offset? p2,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -780,7 +1096,7 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
       );
 
   @override
-  void drawPaint(_i2.Paint? paint) => super.noSuchMethod(
+  void drawPaint(_i3.Paint? paint) => super.noSuchMethod(
         Invocation.method(
           #drawPaint,
           [paint],
@@ -790,8 +1106,8 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawRect(
-    _i2.Rect? rect,
-    _i2.Paint? paint,
+    _i3.Rect? rect,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -806,8 +1122,8 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawRRect(
-    _i2.RRect? rrect,
-    _i2.Paint? paint,
+    _i3.RRect? rrect,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -822,9 +1138,9 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawDRRect(
-    _i2.RRect? outer,
-    _i2.RRect? inner,
-    _i2.Paint? paint,
+    _i3.RRect? outer,
+    _i3.RRect? inner,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -840,8 +1156,8 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawOval(
-    _i2.Rect? rect,
-    _i2.Paint? paint,
+    _i3.Rect? rect,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -856,9 +1172,9 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawCircle(
-    _i2.Offset? c,
+    _i3.Offset? c,
     double? radius,
-    _i2.Paint? paint,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -874,11 +1190,11 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawArc(
-    _i2.Rect? rect,
+    _i3.Rect? rect,
     double? startAngle,
     double? sweepAngle,
     bool? useCenter,
-    _i2.Paint? paint,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -896,8 +1212,8 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawPath(
-    _i2.Path? path,
-    _i2.Paint? paint,
+    _i3.Path? path,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -912,9 +1228,9 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawImage(
-    _i2.Image? image,
-    _i2.Offset? offset,
-    _i2.Paint? paint,
+    _i3.Image? image,
+    _i3.Offset? offset,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -930,10 +1246,10 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawImageRect(
-    _i2.Image? image,
-    _i2.Rect? src,
-    _i2.Rect? dst,
-    _i2.Paint? paint,
+    _i3.Image? image,
+    _i3.Rect? src,
+    _i3.Rect? dst,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -950,10 +1266,10 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawImageNine(
-    _i2.Image? image,
-    _i2.Rect? center,
-    _i2.Rect? dst,
-    _i2.Paint? paint,
+    _i3.Image? image,
+    _i3.Rect? center,
+    _i3.Rect? dst,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -969,7 +1285,7 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
       );
 
   @override
-  void drawPicture(_i2.Picture? picture) => super.noSuchMethod(
+  void drawPicture(_i3.Picture? picture) => super.noSuchMethod(
         Invocation.method(
           #drawPicture,
           [picture],
@@ -979,8 +1295,8 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawParagraph(
-    _i2.Paragraph? paragraph,
-    _i2.Offset? offset,
+    _i3.Paragraph? paragraph,
+    _i3.Offset? offset,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -995,9 +1311,9 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawPoints(
-    _i2.PointMode? pointMode,
-    List<_i2.Offset>? points,
-    _i2.Paint? paint,
+    _i3.PointMode? pointMode,
+    List<_i3.Offset>? points,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1013,9 +1329,9 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawRawPoints(
-    _i2.PointMode? pointMode,
-    _i18.Float32List? points,
-    _i2.Paint? paint,
+    _i3.PointMode? pointMode,
+    _i22.Float32List? points,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1031,9 +1347,9 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawVertices(
-    _i2.Vertices? vertices,
-    _i2.BlendMode? blendMode,
-    _i2.Paint? paint,
+    _i3.Vertices? vertices,
+    _i3.BlendMode? blendMode,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1049,13 +1365,13 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawAtlas(
-    _i2.Image? atlas,
-    List<_i2.RSTransform>? transforms,
-    List<_i2.Rect>? rects,
-    List<_i2.Color>? colors,
-    _i2.BlendMode? blendMode,
-    _i2.Rect? cullRect,
-    _i2.Paint? paint,
+    _i3.Image? atlas,
+    List<_i3.RSTransform>? transforms,
+    List<_i3.Rect>? rects,
+    List<_i3.Color>? colors,
+    _i3.BlendMode? blendMode,
+    _i3.Rect? cullRect,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1075,13 +1391,13 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawRawAtlas(
-    _i2.Image? atlas,
-    _i18.Float32List? rstTransforms,
-    _i18.Float32List? rects,
-    _i18.Int32List? colors,
-    _i2.BlendMode? blendMode,
-    _i2.Rect? cullRect,
-    _i2.Paint? paint,
+    _i3.Image? atlas,
+    _i22.Float32List? rstTransforms,
+    _i22.Float32List? rects,
+    _i22.Int32List? colors,
+    _i3.BlendMode? blendMode,
+    _i3.Rect? cullRect,
+    _i3.Paint? paint,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1101,8 +1417,8 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 
   @override
   void drawShadow(
-    _i2.Path? path,
-    _i2.Color? color,
+    _i3.Path? path,
+    _i3.Color? color,
     double? elevation,
     bool? transparentOccluder,
   ) =>
@@ -1123,17 +1439,17 @@ class MockCanvas extends _i1.Mock implements _i2.Canvas {
 /// A class which mocks [ColorTapGame].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
+class MockColorTapGame extends _i1.Mock implements _i23.ColorTapGame {
   MockColorTapGame() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i4.ComponentsNotifier<_i4.Component>> get notifiers =>
+  List<_i5.ComponentsNotifier<_i5.Component>> get notifiers =>
       (super.noSuchMethod(
         Invocation.getter(#notifiers),
-        returnValue: <_i4.ComponentsNotifier<_i4.Component>>[],
-      ) as List<_i4.ComponentsNotifier<_i4.Component>>);
+        returnValue: <_i5.ComponentsNotifier<_i5.Component>>[],
+      ) as List<_i5.ComponentsNotifier<_i5.Component>>);
 
   @override
   bool get pauseWhenBackgrounded => (super.noSuchMethod(
@@ -1151,16 +1467,16 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i3.ColorTapWorld get world => (super.noSuchMethod(
+  _i4.ColorTapWorld get world => (super.noSuchMethod(
         Invocation.getter(#world),
-        returnValue: _FakeColorTapWorld_1(
+        returnValue: _FakeColorTapWorld_2(
           this,
           Invocation.getter(#world),
         ),
-      ) as _i3.ColorTapWorld);
+      ) as _i4.ColorTapWorld);
 
   @override
-  set world(_i3.ColorTapWorld? newWorld) => super.noSuchMethod(
+  set world(_i4.ColorTapWorld? newWorld) => super.noSuchMethod(
         Invocation.setter(
           #world,
           newWorld,
@@ -1169,16 +1485,16 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i4.CameraComponent get camera => (super.noSuchMethod(
+  _i5.CameraComponent get camera => (super.noSuchMethod(
         Invocation.getter(#camera),
-        returnValue: _FakeCameraComponent_2(
+        returnValue: _FakeCameraComponent_3(
           this,
           Invocation.getter(#camera),
         ),
-      ) as _i4.CameraComponent);
+      ) as _i5.CameraComponent);
 
   @override
-  set camera(_i4.CameraComponent? newCameraComponent) => super.noSuchMethod(
+  set camera(_i5.CameraComponent? newCameraComponent) => super.noSuchMethod(
         Invocation.setter(
           #camera,
           newCameraComponent,
@@ -1187,13 +1503,13 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i5.Vector2 get size => (super.noSuchMethod(
+  _i6.Vector2 get size => (super.noSuchMethod(
         Invocation.getter(#size),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#size),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
   bool get hasLifecycleEvents => (super.noSuchMethod(
@@ -1227,16 +1543,16 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i2.Color get debugColor => (super.noSuchMethod(
+  _i3.Color get debugColor => (super.noSuchMethod(
         Invocation.getter(#debugColor),
-        returnValue: _FakeColor_4(
+        returnValue: _FakeColor_5(
           this,
           Invocation.getter(#debugColor),
         ),
-      ) as _i2.Color);
+      ) as _i3.Color);
 
   @override
-  set debugColor(_i2.Color? _debugColor) => super.noSuchMethod(
+  set debugColor(_i3.Color? _debugColor) => super.noSuchMethod(
         Invocation.setter(
           #debugColor,
           _debugColor,
@@ -1281,25 +1597,25 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       ) as bool);
 
   @override
-  _i20.Future<void> get loaded => (super.noSuchMethod(
+  _i24.Future<void> get loaded => (super.noSuchMethod(
         Invocation.getter(#loaded),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> get mounted => (super.noSuchMethod(
+  _i24.Future<void> get mounted => (super.noSuchMethod(
         Invocation.getter(#mounted),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> get removed => (super.noSuchMethod(
+  _i24.Future<void> get removed => (super.noSuchMethod(
         Invocation.getter(#removed),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  set parent(_i4.Component? newParent) => super.noSuchMethod(
+  set parent(_i5.Component? newParent) => super.noSuchMethod(
         Invocation.setter(
           #parent,
           newParent,
@@ -1308,13 +1624,13 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i4.ComponentSet get children => (super.noSuchMethod(
+  _i5.ComponentSet get children => (super.noSuchMethod(
         Invocation.getter(#children),
-        returnValue: _FakeComponentSet_5(
+        returnValue: _FakeComponentSet_6(
           this,
           Invocation.getter(#children),
         ),
-      ) as _i4.ComponentSet);
+      ) as _i5.ComponentSet);
 
   @override
   bool get hasChildren => (super.noSuchMethod(
@@ -1338,34 +1654,34 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i2.Paint get debugPaint => (super.noSuchMethod(
+  _i3.Paint get debugPaint => (super.noSuchMethod(
         Invocation.getter(#debugPaint),
-        returnValue: _FakePaint_6(
+        returnValue: _FakePaint_7(
           this,
           Invocation.getter(#debugPaint),
         ),
-      ) as _i2.Paint);
+      ) as _i3.Paint);
 
   @override
-  _i5.TextPaint get debugTextPaint => (super.noSuchMethod(
+  _i6.TextPaint get debugTextPaint => (super.noSuchMethod(
         Invocation.getter(#debugTextPaint),
-        returnValue: _FakeTextPaint_7(
+        returnValue: _FakeTextPaint_8(
           this,
           Invocation.getter(#debugTextPaint),
         ),
-      ) as _i5.TextPaint);
+      ) as _i6.TextPaint);
 
   @override
-  _i6.Images get images => (super.noSuchMethod(
+  _i7.Images get images => (super.noSuchMethod(
         Invocation.getter(#images),
-        returnValue: _FakeImages_8(
+        returnValue: _FakeImages_9(
           this,
           Invocation.getter(#images),
         ),
-      ) as _i6.Images);
+      ) as _i7.Images);
 
   @override
-  set images(_i6.Images? _images) => super.noSuchMethod(
+  set images(_i7.Images? _images) => super.noSuchMethod(
         Invocation.setter(
           #images,
           _images,
@@ -1374,16 +1690,16 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i6.AssetsCache get assets => (super.noSuchMethod(
+  _i7.AssetsCache get assets => (super.noSuchMethod(
         Invocation.getter(#assets),
-        returnValue: _FakeAssetsCache_9(
+        returnValue: _FakeAssetsCache_10(
           this,
           Invocation.getter(#assets),
         ),
-      ) as _i6.AssetsCache);
+      ) as _i7.AssetsCache);
 
   @override
-  set assets(_i6.AssetsCache? _assets) => super.noSuchMethod(
+  set assets(_i7.AssetsCache? _assets) => super.noSuchMethod(
         Invocation.setter(
           #assets,
           _assets,
@@ -1392,31 +1708,31 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i7.GestureDetectorBuilder get gestureDetectors => (super.noSuchMethod(
+  _i8.GestureDetectorBuilder get gestureDetectors => (super.noSuchMethod(
         Invocation.getter(#gestureDetectors),
-        returnValue: _FakeGestureDetectorBuilder_10(
+        returnValue: _FakeGestureDetectorBuilder_11(
           this,
           Invocation.getter(#gestureDetectors),
         ),
-      ) as _i7.GestureDetectorBuilder);
+      ) as _i8.GestureDetectorBuilder);
 
   @override
-  _i8.OverlayManager get overlays => (super.noSuchMethod(
+  _i9.OverlayManager get overlays => (super.noSuchMethod(
         Invocation.getter(#overlays),
-        returnValue: _FakeOverlayManager_11(
+        returnValue: _FakeOverlayManager_12(
           this,
           Invocation.getter(#overlays),
         ),
-      ) as _i8.OverlayManager);
+      ) as _i9.OverlayManager);
 
   @override
-  List<_i2.VoidCallback> get gameStateListeners => (super.noSuchMethod(
+  List<_i3.VoidCallback> get gameStateListeners => (super.noSuchMethod(
         Invocation.getter(#gameStateListeners),
-        returnValue: <_i2.VoidCallback>[],
-      ) as List<_i2.VoidCallback>);
+        returnValue: <_i3.VoidCallback>[],
+      ) as List<_i3.VoidCallback>);
 
   @override
-  set mouseDetector(void Function(_i21.PointerHoverEvent)? newMouseDetector) =>
+  set mouseDetector(void Function(_i25.PointerHoverEvent)? newMouseDetector) =>
       super.noSuchMethod(
         Invocation.setter(
           #mouseDetector,
@@ -1426,13 +1742,13 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i9.GameRenderBox get renderBox => (super.noSuchMethod(
+  _i10.GameRenderBox get renderBox => (super.noSuchMethod(
         Invocation.getter(#renderBox),
-        returnValue: _FakeGameRenderBox_12(
+        returnValue: _FakeGameRenderBox_13(
           this,
           Invocation.getter(#renderBox),
         ),
-      ) as _i9.GameRenderBox);
+      ) as _i10.GameRenderBox);
 
   @override
   bool get isAttached => (super.noSuchMethod(
@@ -1441,13 +1757,13 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       ) as bool);
 
   @override
-  _i5.Vector2 get canvasSize => (super.noSuchMethod(
+  _i6.Vector2 get canvasSize => (super.noSuchMethod(
         Invocation.getter(#canvasSize),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#canvasSize),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
   bool get hasLayout => (super.noSuchMethod(
@@ -1471,16 +1787,16 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i10.MouseCursor get mouseCursor => (super.noSuchMethod(
+  _i11.MouseCursor get mouseCursor => (super.noSuchMethod(
         Invocation.getter(#mouseCursor),
-        returnValue: _FakeMouseCursor_13(
+        returnValue: _FakeMouseCursor_14(
           this,
           Invocation.getter(#mouseCursor),
         ),
-      ) as _i10.MouseCursor);
+      ) as _i11.MouseCursor);
 
   @override
-  set mouseCursor(_i10.MouseCursor? value) => super.noSuchMethod(
+  set mouseCursor(_i11.MouseCursor? value) => super.noSuchMethod(
         Invocation.setter(
           #mouseCursor,
           value,
@@ -1489,19 +1805,19 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i2.Color backgroundColor() => (super.noSuchMethod(
+  _i3.Color backgroundColor() => (super.noSuchMethod(
         Invocation.method(
           #backgroundColor,
           [],
         ),
-        returnValue: _FakeColor_4(
+        returnValue: _FakeColor_5(
           this,
           Invocation.method(
             #backgroundColor,
             [],
           ),
         ),
-      ) as _i2.Color);
+      ) as _i3.Color);
 
   @override
   void onLoad() => super.noSuchMethod(
@@ -1522,7 +1838,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void render(_i2.Canvas? canvas) => super.noSuchMethod(
+  void render(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #render,
           [canvas],
@@ -1531,7 +1847,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void renderTree(_i2.Canvas? canvas) => super.noSuchMethod(
+  void renderTree(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #renderTree,
           [canvas],
@@ -1558,7 +1874,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void onGameResize(_i5.Vector2? size) => super.noSuchMethod(
+  void onGameResize(_i6.Vector2? size) => super.noSuchMethod(
         Invocation.method(
           #onGameResize,
           [size],
@@ -1567,17 +1883,17 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i20.Future<void> ready() => (super.noSuchMethod(
+  _i24.Future<void> ready() => (super.noSuchMethod(
         Invocation.method(
           #ready,
           [],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  bool containsLocalPoint(_i5.Vector2? point) => (super.noSuchMethod(
+  bool containsLocalPoint(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #containsLocalPoint,
           [point],
@@ -1595,25 +1911,25 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       ) as double);
 
   @override
-  _i4.ComponentsNotifier<T> componentsNotifier<T extends _i4.Component>() =>
+  _i5.ComponentsNotifier<T> componentsNotifier<T extends _i5.Component>() =>
       (super.noSuchMethod(
         Invocation.method(
           #componentsNotifier,
           [],
         ),
-        returnValue: _FakeComponentsNotifier_14<T>(
+        returnValue: _FakeComponentsNotifier_15<T>(
           this,
           Invocation.method(
             #componentsNotifier,
             [],
           ),
         ),
-      ) as _i4.ComponentsNotifier<T>);
+      ) as _i5.ComponentsNotifier<T>);
 
   @override
   void propagateToApplicableNotifiers(
-    _i4.Component? component,
-    void Function(_i4.ComponentsNotifier<_i4.Component>)? callback,
+    _i5.Component? component,
+    void Function(_i5.ComponentsNotifier<_i5.Component>)? callback,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1627,7 +1943,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void lifecycleStateChange(_i2.AppLifecycleState? state) => super.noSuchMethod(
+  void lifecycleStateChange(_i3.AppLifecycleState? state) => super.noSuchMethod(
         Invocation.method(
           #lifecycleStateChange,
           [state],
@@ -1655,8 +1971,8 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
 
   @override
   void enqueueAdd(
-    _i4.Component? child,
-    _i4.Component? parent,
+    _i5.Component? child,
+    _i5.Component? parent,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1671,8 +1987,8 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
 
   @override
   void dequeueAdd(
-    _i4.Component? child,
-    _i4.Component? parent,
+    _i5.Component? child,
+    _i5.Component? parent,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1687,8 +2003,8 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
 
   @override
   void enqueueRemove(
-    _i4.Component? child,
-    _i4.Component? parent,
+    _i5.Component? child,
+    _i5.Component? parent,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1702,7 +2018,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void dequeueRemove(_i4.Component? child) => super.noSuchMethod(
+  void dequeueRemove(_i5.Component? child) => super.noSuchMethod(
         Invocation.method(
           #dequeueRemove,
           [child],
@@ -1712,8 +2028,8 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
 
   @override
   void enqueueMove(
-    _i4.Component? child,
-    _i4.Component? newParent,
+    _i5.Component? child,
+    _i5.Component? newParent,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1727,7 +2043,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void enqueueRebalance(_i4.Component? parent) => super.noSuchMethod(
+  void enqueueRebalance(_i5.Component? parent) => super.noSuchMethod(
         Invocation.method(
           #enqueueRebalance,
           [parent],
@@ -1754,7 +2070,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void handleResize(_i5.Vector2? size) => super.noSuchMethod(
+  void handleResize(_i6.Vector2? size) => super.noSuchMethod(
         Invocation.method(
           #handleResize,
           [size],
@@ -1764,8 +2080,8 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
 
   @override
   void registerKey(
-    _i4.ComponentKey? key,
-    _i4.Component? component,
+    _i5.ComponentKey? key,
+    _i5.Component? component,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1779,7 +2095,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void unregisterKey(_i4.ComponentKey? key) => super.noSuchMethod(
+  void unregisterKey(_i5.ComponentKey? key) => super.noSuchMethod(
         Invocation.method(
           #unregisterKey,
           [key],
@@ -1788,36 +2104,36 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  T? findByKey<T extends _i4.Component>(_i4.ComponentKey? key) =>
+  T? findByKey<T extends _i5.Component>(_i5.ComponentKey? key) =>
       (super.noSuchMethod(Invocation.method(
         #findByKey,
         [key],
       )) as T?);
 
   @override
-  T? findByKeyName<T extends _i4.Component>(String? name) =>
+  T? findByKeyName<T extends _i5.Component>(String? name) =>
       (super.noSuchMethod(Invocation.method(
         #findByKeyName,
         [name],
       )) as T?);
 
   @override
-  _i4.ComponentSet createComponentSet() => (super.noSuchMethod(
+  _i5.ComponentSet createComponentSet() => (super.noSuchMethod(
         Invocation.method(
           #createComponentSet,
           [],
         ),
-        returnValue: _FakeComponentSet_5(
+        returnValue: _FakeComponentSet_6(
           this,
           Invocation.method(
             #createComponentSet,
             [],
           ),
         ),
-      ) as _i4.ComponentSet);
+      ) as _i5.ComponentSet);
 
   @override
-  T? findParent<T extends _i4.Component>({bool? includeSelf = false}) =>
+  T? findParent<T extends _i5.Component>({bool? includeSelf = false}) =>
       (super.noSuchMethod(Invocation.method(
         #findParent,
         [],
@@ -1825,18 +2141,18 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       )) as T?);
 
   @override
-  Iterable<_i4.Component> ancestors({bool? includeSelf = false}) =>
+  Iterable<_i5.Component> ancestors({bool? includeSelf = false}) =>
       (super.noSuchMethod(
         Invocation.method(
           #ancestors,
           [],
           {#includeSelf: includeSelf},
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  Iterable<_i4.Component> descendants({
+  Iterable<_i5.Component> descendants({
     bool? includeSelf = false,
     bool? reversed = false,
   }) =>
@@ -1849,11 +2165,11 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
             #reversed: reversed,
           },
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  bool propagateToChildren<T extends _i4.Component>(
+  bool propagateToChildren<T extends _i5.Component>(
     bool Function(T)? handler, {
     bool? includeSelf = false,
   }) =>
@@ -1867,7 +2183,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       ) as bool);
 
   @override
-  bool contains(_i4.Component? c) => (super.noSuchMethod(
+  bool contains(_i5.Component? c) => (super.noSuchMethod(
         Invocation.method(
           #contains,
           [c],
@@ -1894,7 +2210,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void onParentResize(_i5.Vector2? maxSize) => super.noSuchMethod(
+  void onParentResize(_i6.Vector2? maxSize) => super.noSuchMethod(
         Invocation.method(
           #onParentResize,
           [maxSize],
@@ -1904,8 +2220,8 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
 
   @override
   void onChildrenChanged(
-    _i4.Component? child,
-    _i4.ChildrenChangeType? type,
+    _i5.Component? child,
+    _i5.ChildrenChangeType? type,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -1919,32 +2235,32 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i20.FutureOr<void> add(_i4.Component? component) =>
+  _i24.FutureOr<void> add(_i5.Component? component) =>
       (super.noSuchMethod(Invocation.method(
         #add,
         [component],
-      )) as _i20.FutureOr<void>);
+      )) as _i24.FutureOr<void>);
 
   @override
-  _i20.FutureOr<void> addToParent(_i4.Component? parent) =>
+  _i24.FutureOr<void> addToParent(_i5.Component? parent) =>
       (super.noSuchMethod(Invocation.method(
         #addToParent,
         [parent],
-      )) as _i20.FutureOr<void>);
+      )) as _i24.FutureOr<void>);
 
   @override
-  _i20.Future<void> addAll(Iterable<_i4.Component>? components) =>
+  _i24.Future<void> addAll(Iterable<_i5.Component>? components) =>
       (super.noSuchMethod(
         Invocation.method(
           #addAll,
           [components],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  void remove(_i4.Component? component) => super.noSuchMethod(
+  void remove(_i5.Component? component) => super.noSuchMethod(
         Invocation.method(
           #remove,
           [component],
@@ -1962,7 +2278,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void removeAll(Iterable<_i4.Component>? components) => super.noSuchMethod(
+  void removeAll(Iterable<_i5.Component>? components) => super.noSuchMethod(
         Invocation.method(
           #removeAll,
           [components],
@@ -1971,7 +2287,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void removeWhere(bool Function(_i4.Component)? test) => super.noSuchMethod(
+  void removeWhere(bool Function(_i5.Component)? test) => super.noSuchMethod(
         Invocation.method(
           #removeWhere,
           [test],
@@ -1980,7 +2296,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  bool containsPoint(_i5.Vector2? point) => (super.noSuchMethod(
+  bool containsPoint(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #containsPoint,
           [point],
@@ -1989,9 +2305,9 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       ) as bool);
 
   @override
-  Iterable<_i4.Component> componentsAtPoint(
-    _i5.Vector2? point, [
-    List<_i5.Vector2>? nestedPoints,
+  Iterable<_i5.Component> componentsAtPoint(
+    _i6.Vector2? point, [
+    List<_i6.Vector2>? nestedPoints,
   ]) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -2001,19 +2317,19 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
             nestedPoints,
           ],
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  Iterable<_i4.Component> componentsAtLocation<T>(
+  Iterable<_i5.Component> componentsAtLocation<T>(
     T? locationContext,
     List<T>? nestedContexts,
     T? Function(
-      _i4.CoordinateTransform,
+      _i5.CoordinateTransform,
       T,
     )? transformContext,
     bool Function(
-      _i4.Component,
+      _i5.Component,
       T,
     )? checkContains,
   ) =>
@@ -2027,39 +2343,39 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
             checkContains,
           ],
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventAdd(_i4.Component? parent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventAdd(_i5.Component? parent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventAdd,
           [parent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventRemove(_i4.Component? parent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventRemove(_i5.Component? parent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventRemove,
           [parent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventMove(
-          _i4.Component? newParent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventMove(
+          _i5.Component? newParent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventMove,
           [newParent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
   void setMounted() => super.noSuchMethod(
@@ -2071,7 +2387,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void renderDebugMode(_i2.Canvas? canvas) => super.noSuchMethod(
+  void renderDebugMode(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #renderDebugMode,
           [canvas],
@@ -2090,8 +2406,8 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
 
   @override
   void attach(
-    _i23.PipelineOwner? owner,
-    _i9.GameRenderBox? gameRenderBox,
+    _i27.PipelineOwner? owner,
+    _i10.GameRenderBox? gameRenderBox,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -2141,42 +2457,42 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  _i5.Vector2 convertGlobalToLocalCoordinate(_i5.Vector2? point) =>
+  _i6.Vector2 convertGlobalToLocalCoordinate(_i6.Vector2? point) =>
       (super.noSuchMethod(
         Invocation.method(
           #convertGlobalToLocalCoordinate,
           [point],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #convertGlobalToLocalCoordinate,
             [point],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 convertLocalToGlobalCoordinate(_i5.Vector2? point) =>
+  _i6.Vector2 convertLocalToGlobalCoordinate(_i6.Vector2? point) =>
       (super.noSuchMethod(
         Invocation.method(
           #convertLocalToGlobalCoordinate,
           [point],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #convertLocalToGlobalCoordinate,
             [point],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i20.Future<_i4.Sprite> loadSprite(
+  _i24.Future<_i5.Sprite> loadSprite(
     String? path, {
-    _i5.Vector2? srcSize,
-    _i5.Vector2? srcPosition,
+    _i6.Vector2? srcSize,
+    _i6.Vector2? srcPosition,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -2187,7 +2503,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
             #srcPosition: srcPosition,
           },
         ),
-        returnValue: _i20.Future<_i4.Sprite>.value(_FakeSprite_15(
+        returnValue: _i24.Future<_i5.Sprite>.value(_FakeSprite_16(
           this,
           Invocation.method(
             #loadSprite,
@@ -2198,12 +2514,12 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
             },
           ),
         )),
-      ) as _i20.Future<_i4.Sprite>);
+      ) as _i24.Future<_i5.Sprite>);
 
   @override
-  _i20.Future<_i4.SpriteAnimation> loadSpriteAnimation(
+  _i24.Future<_i5.SpriteAnimation> loadSpriteAnimation(
     String? path,
-    _i4.SpriteAnimationData? data,
+    _i5.SpriteAnimationData? data,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -2214,7 +2530,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
           ],
         ),
         returnValue:
-            _i20.Future<_i4.SpriteAnimation>.value(_FakeSpriteAnimation_16(
+            _i24.Future<_i5.SpriteAnimation>.value(_FakeSpriteAnimation_17(
           this,
           Invocation.method(
             #loadSpriteAnimation,
@@ -2224,7 +2540,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
             ],
           ),
         )),
-      ) as _i20.Future<_i4.SpriteAnimation>);
+      ) as _i24.Future<_i5.SpriteAnimation>);
 
   @override
   void stepEngine({double? stepTime = 0.016666666666666666}) =>
@@ -2238,7 +2554,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void addGameStateListener(_i2.VoidCallback? callback) => super.noSuchMethod(
+  void addGameStateListener(_i3.VoidCallback? callback) => super.noSuchMethod(
         Invocation.method(
           #addGameStateListener,
           [callback],
@@ -2247,7 +2563,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
       );
 
   @override
-  void removeGameStateListener(_i2.VoidCallback? callback) =>
+  void removeGameStateListener(_i3.VoidCallback? callback) =>
       super.noSuchMethod(
         Invocation.method(
           #removeGameStateListener,
@@ -2270,7 +2586,7 @@ class MockColorTapGame extends _i1.Mock implements _i19.ColorTapGame {
 /// A class which mocks [ColorTapWorld].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
+class MockColorTapWorld extends _i1.Mock implements _i4.ColorTapWorld {
   MockColorTapWorld() {
     _i1.throwOnMissingStub(this);
   }
@@ -2297,13 +2613,13 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       ) as double);
 
   @override
-  _i11.TargetColor get color => (super.noSuchMethod(
+  _i12.TargetColor get color => (super.noSuchMethod(
         Invocation.getter(#color),
-        returnValue: _FakeTargetColor_17(
+        returnValue: _FakeTargetColor_18(
           this,
           Invocation.getter(#color),
         ),
-      ) as _i11.TargetColor);
+      ) as _i12.TargetColor);
 
   @override
   int get score => (super.noSuchMethod(
@@ -2337,16 +2653,16 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  _i2.Color get debugColor => (super.noSuchMethod(
+  _i3.Color get debugColor => (super.noSuchMethod(
         Invocation.getter(#debugColor),
-        returnValue: _FakeColor_4(
+        returnValue: _FakeColor_5(
           this,
           Invocation.getter(#debugColor),
         ),
-      ) as _i2.Color);
+      ) as _i3.Color);
 
   @override
-  set debugColor(_i2.Color? _debugColor) => super.noSuchMethod(
+  set debugColor(_i3.Color? _debugColor) => super.noSuchMethod(
         Invocation.setter(
           #debugColor,
           _debugColor,
@@ -2391,25 +2707,25 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       ) as bool);
 
   @override
-  _i20.Future<void> get loaded => (super.noSuchMethod(
+  _i24.Future<void> get loaded => (super.noSuchMethod(
         Invocation.getter(#loaded),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> get mounted => (super.noSuchMethod(
+  _i24.Future<void> get mounted => (super.noSuchMethod(
         Invocation.getter(#mounted),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> get removed => (super.noSuchMethod(
+  _i24.Future<void> get removed => (super.noSuchMethod(
         Invocation.getter(#removed),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  set parent(_i4.Component? newParent) => super.noSuchMethod(
+  set parent(_i5.Component? newParent) => super.noSuchMethod(
         Invocation.setter(
           #parent,
           newParent,
@@ -2418,13 +2734,13 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  _i4.ComponentSet get children => (super.noSuchMethod(
+  _i5.ComponentSet get children => (super.noSuchMethod(
         Invocation.getter(#children),
-        returnValue: _FakeComponentSet_5(
+        returnValue: _FakeComponentSet_6(
           this,
           Invocation.getter(#children),
         ),
-      ) as _i4.ComponentSet);
+      ) as _i5.ComponentSet);
 
   @override
   bool get hasChildren => (super.noSuchMethod(
@@ -2448,34 +2764,34 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  _i2.Paint get debugPaint => (super.noSuchMethod(
+  _i3.Paint get debugPaint => (super.noSuchMethod(
         Invocation.getter(#debugPaint),
-        returnValue: _FakePaint_6(
+        returnValue: _FakePaint_7(
           this,
           Invocation.getter(#debugPaint),
         ),
-      ) as _i2.Paint);
+      ) as _i3.Paint);
 
   @override
-  _i5.TextPaint get debugTextPaint => (super.noSuchMethod(
+  _i6.TextPaint get debugTextPaint => (super.noSuchMethod(
         Invocation.getter(#debugTextPaint),
-        returnValue: _FakeTextPaint_7(
+        returnValue: _FakeTextPaint_8(
           this,
           Invocation.getter(#debugTextPaint),
         ),
-      ) as _i5.TextPaint);
+      ) as _i6.TextPaint);
 
   @override
-  _i5.FlameGame<_i4.World> get game => (super.noSuchMethod(
+  _i6.FlameGame<_i5.World> get game => (super.noSuchMethod(
         Invocation.getter(#game),
-        returnValue: _FakeFlameGame_18<_i4.World>(
+        returnValue: _FakeFlameGame_19<_i5.World>(
           this,
           Invocation.getter(#game),
         ),
-      ) as _i5.FlameGame<_i4.World>);
+      ) as _i6.FlameGame<_i5.World>);
 
   @override
-  set game(_i5.FlameGame<_i4.World>? value) => super.noSuchMethod(
+  set game(_i6.FlameGame<_i5.World>? value) => super.noSuchMethod(
         Invocation.setter(
           #game,
           value,
@@ -2484,13 +2800,13 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  _i5.FlameGame<_i4.World> get gameRef => (super.noSuchMethod(
+  _i6.FlameGame<_i5.World> get gameRef => (super.noSuchMethod(
         Invocation.getter(#gameRef),
-        returnValue: _FakeFlameGame_18<_i4.World>(
+        returnValue: _FakeFlameGame_19<_i5.World>(
           this,
           Invocation.getter(#gameRef),
         ),
-      ) as _i5.FlameGame<_i4.World>);
+      ) as _i6.FlameGame<_i5.World>);
 
   @override
   void onLoad() => super.noSuchMethod(
@@ -2513,8 +2829,8 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
 
   @override
   void handleTargetMissed(
-    _i24.Target? target,
-    _i25.TargetBoard? board,
+    _i28.Target? target,
+    _i29.TargetBoard? board,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -2537,7 +2853,7 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  void renderTree(_i2.Canvas? canvas) => super.noSuchMethod(
+  void renderTree(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #renderTree,
           [canvas],
@@ -2546,7 +2862,7 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  void renderFromCamera(_i2.Canvas? canvas) => super.noSuchMethod(
+  void renderFromCamera(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #renderFromCamera,
           [canvas],
@@ -2555,7 +2871,7 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  bool containsLocalPoint(_i5.Vector2? point) => (super.noSuchMethod(
+  bool containsLocalPoint(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #containsLocalPoint,
           [point],
@@ -2564,36 +2880,36 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       ) as bool);
 
   @override
-  _i5.Vector2? localToParent(_i5.Vector2? point) =>
+  _i6.Vector2? localToParent(_i6.Vector2? point) =>
       (super.noSuchMethod(Invocation.method(
         #localToParent,
         [point],
-      )) as _i5.Vector2?);
+      )) as _i6.Vector2?);
 
   @override
-  _i5.Vector2? parentToLocal(_i5.Vector2? point) =>
+  _i6.Vector2? parentToLocal(_i6.Vector2? point) =>
       (super.noSuchMethod(Invocation.method(
         #parentToLocal,
         [point],
-      )) as _i5.Vector2?);
+      )) as _i6.Vector2?);
 
   @override
-  _i4.ComponentSet createComponentSet() => (super.noSuchMethod(
+  _i5.ComponentSet createComponentSet() => (super.noSuchMethod(
         Invocation.method(
           #createComponentSet,
           [],
         ),
-        returnValue: _FakeComponentSet_5(
+        returnValue: _FakeComponentSet_6(
           this,
           Invocation.method(
             #createComponentSet,
             [],
           ),
         ),
-      ) as _i4.ComponentSet);
+      ) as _i5.ComponentSet);
 
   @override
-  T? findParent<T extends _i4.Component>({bool? includeSelf = false}) =>
+  T? findParent<T extends _i5.Component>({bool? includeSelf = false}) =>
       (super.noSuchMethod(Invocation.method(
         #findParent,
         [],
@@ -2601,18 +2917,18 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       )) as T?);
 
   @override
-  Iterable<_i4.Component> ancestors({bool? includeSelf = false}) =>
+  Iterable<_i5.Component> ancestors({bool? includeSelf = false}) =>
       (super.noSuchMethod(
         Invocation.method(
           #ancestors,
           [],
           {#includeSelf: includeSelf},
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  Iterable<_i4.Component> descendants({
+  Iterable<_i5.Component> descendants({
     bool? includeSelf = false,
     bool? reversed = false,
   }) =>
@@ -2625,11 +2941,11 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
             #reversed: reversed,
           },
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  bool propagateToChildren<T extends _i4.Component>(
+  bool propagateToChildren<T extends _i5.Component>(
     bool Function(T)? handler, {
     bool? includeSelf = false,
   }) =>
@@ -2643,7 +2959,7 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       ) as bool);
 
   @override
-  bool contains(_i4.Component? c) => (super.noSuchMethod(
+  bool contains(_i5.Component? c) => (super.noSuchMethod(
         Invocation.method(
           #contains,
           [c],
@@ -2652,7 +2968,7 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       ) as bool);
 
   @override
-  void onGameResize(_i5.Vector2? size) => super.noSuchMethod(
+  void onGameResize(_i6.Vector2? size) => super.noSuchMethod(
         Invocation.method(
           #onGameResize,
           [size],
@@ -2679,7 +2995,7 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  void onParentResize(_i5.Vector2? maxSize) => super.noSuchMethod(
+  void onParentResize(_i6.Vector2? maxSize) => super.noSuchMethod(
         Invocation.method(
           #onParentResize,
           [maxSize],
@@ -2707,8 +3023,8 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
 
   @override
   void onChildrenChanged(
-    _i4.Component? child,
-    _i4.ChildrenChangeType? type,
+    _i5.Component? child,
+    _i5.ChildrenChangeType? type,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -2722,7 +3038,7 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  void render(_i2.Canvas? canvas) => super.noSuchMethod(
+  void render(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #render,
           [canvas],
@@ -2731,32 +3047,32 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  _i20.FutureOr<void> add(_i4.Component? component) =>
+  _i24.FutureOr<void> add(_i5.Component? component) =>
       (super.noSuchMethod(Invocation.method(
         #add,
         [component],
-      )) as _i20.FutureOr<void>);
+      )) as _i24.FutureOr<void>);
 
   @override
-  _i20.FutureOr<void> addToParent(_i4.Component? parent) =>
+  _i24.FutureOr<void> addToParent(_i5.Component? parent) =>
       (super.noSuchMethod(Invocation.method(
         #addToParent,
         [parent],
-      )) as _i20.FutureOr<void>);
+      )) as _i24.FutureOr<void>);
 
   @override
-  _i20.Future<void> addAll(Iterable<_i4.Component>? components) =>
+  _i24.Future<void> addAll(Iterable<_i5.Component>? components) =>
       (super.noSuchMethod(
         Invocation.method(
           #addAll,
           [components],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  void remove(_i4.Component? component) => super.noSuchMethod(
+  void remove(_i5.Component? component) => super.noSuchMethod(
         Invocation.method(
           #remove,
           [component],
@@ -2774,7 +3090,7 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  void removeAll(Iterable<_i4.Component>? components) => super.noSuchMethod(
+  void removeAll(Iterable<_i5.Component>? components) => super.noSuchMethod(
         Invocation.method(
           #removeAll,
           [components],
@@ -2783,7 +3099,7 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  void removeWhere(bool Function(_i4.Component)? test) => super.noSuchMethod(
+  void removeWhere(bool Function(_i5.Component)? test) => super.noSuchMethod(
         Invocation.method(
           #removeWhere,
           [test],
@@ -2792,7 +3108,7 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  bool containsPoint(_i5.Vector2? point) => (super.noSuchMethod(
+  bool containsPoint(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #containsPoint,
           [point],
@@ -2801,9 +3117,9 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       ) as bool);
 
   @override
-  Iterable<_i4.Component> componentsAtPoint(
-    _i5.Vector2? point, [
-    List<_i5.Vector2>? nestedPoints,
+  Iterable<_i5.Component> componentsAtPoint(
+    _i6.Vector2? point, [
+    List<_i6.Vector2>? nestedPoints,
   ]) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -2813,19 +3129,19 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
             nestedPoints,
           ],
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  Iterable<_i4.Component> componentsAtLocation<T>(
+  Iterable<_i5.Component> componentsAtLocation<T>(
     T? locationContext,
     List<T>? nestedContexts,
     T? Function(
-      _i4.CoordinateTransform,
+      _i5.CoordinateTransform,
       T,
     )? transformContext,
     bool Function(
-      _i4.Component,
+      _i5.Component,
       T,
     )? checkContains,
   ) =>
@@ -2839,42 +3155,42 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
             checkContains,
           ],
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventAdd(_i4.Component? parent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventAdd(_i5.Component? parent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventAdd,
           [parent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventRemove(_i4.Component? parent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventRemove(_i5.Component? parent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventRemove,
           [parent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventMove(
-          _i4.Component? newParent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventMove(
+          _i5.Component? newParent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventMove,
           [newParent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
-  void handleResize(_i5.Vector2? size) => super.noSuchMethod(
+  void handleResize(_i6.Vector2? size) => super.noSuchMethod(
         Invocation.method(
           #handleResize,
           [size],
@@ -2892,7 +3208,7 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
       );
 
   @override
-  void renderDebugMode(_i2.Canvas? canvas) => super.noSuchMethod(
+  void renderDebugMode(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #renderDebugMode,
           [canvas],
@@ -2913,8 +3229,8 @@ class MockColorTapWorld extends _i1.Mock implements _i3.ColorTapWorld {
 /// A class which mocks [ComponentsNotifier].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockComponentsNotifier<T extends _i4.Component> extends _i1.Mock
-    implements _i4.ComponentsNotifier<T> {
+class MockComponentsNotifier<T extends _i5.Component> extends _i1.Mock
+    implements _i5.ComponentsNotifier<T> {
   MockComponentsNotifier() {
     _i1.throwOnMissingStub(this);
   }
@@ -2932,7 +3248,7 @@ class MockComponentsNotifier<T extends _i4.Component> extends _i1.Mock
       ) as bool);
 
   @override
-  bool applicable(_i4.Component? component) => (super.noSuchMethod(
+  bool applicable(_i5.Component? component) => (super.noSuchMethod(
         Invocation.method(
           #applicable,
           [component],
@@ -2968,7 +3284,7 @@ class MockComponentsNotifier<T extends _i4.Component> extends _i1.Mock
       );
 
   @override
-  void addListener(_i2.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i3.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -2977,7 +3293,7 @@ class MockComponentsNotifier<T extends _i4.Component> extends _i1.Mock
       );
 
   @override
-  void removeListener(_i2.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i3.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -3007,19 +3323,19 @@ class MockComponentsNotifier<T extends _i4.Component> extends _i1.Mock
 /// A class which mocks [CustomerInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCustomerInfo extends _i1.Mock implements _i13.CustomerInfo {
+class MockCustomerInfo extends _i1.Mock implements _i14.CustomerInfo {
   MockCustomerInfo() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i12.EntitlementInfos get entitlements => (super.noSuchMethod(
+  _i13.EntitlementInfos get entitlements => (super.noSuchMethod(
         Invocation.getter(#entitlements),
-        returnValue: _FakeEntitlementInfos_19(
+        returnValue: _FakeEntitlementInfos_20(
           this,
           Invocation.getter(#entitlements),
         ),
-      ) as _i12.EntitlementInfos);
+      ) as _i13.EntitlementInfos);
 
   @override
   Map<String, String> get allPurchaseDates => (super.noSuchMethod(
@@ -3040,16 +3356,16 @@ class MockCustomerInfo extends _i1.Mock implements _i13.CustomerInfo {
       ) as List<String>);
 
   @override
-  List<_i26.StoreTransaction> get nonSubscriptionTransactions =>
+  List<_i30.StoreTransaction> get nonSubscriptionTransactions =>
       (super.noSuchMethod(
         Invocation.getter(#nonSubscriptionTransactions),
-        returnValue: <_i26.StoreTransaction>[],
-      ) as List<_i26.StoreTransaction>);
+        returnValue: <_i30.StoreTransaction>[],
+      ) as List<_i30.StoreTransaction>);
 
   @override
   String get firstSeen => (super.noSuchMethod(
         Invocation.getter(#firstSeen),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#firstSeen),
         ),
@@ -3058,7 +3374,7 @@ class MockCustomerInfo extends _i1.Mock implements _i13.CustomerInfo {
   @override
   String get originalAppUserId => (super.noSuchMethod(
         Invocation.getter(#originalAppUserId),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#originalAppUserId),
         ),
@@ -3073,21 +3389,21 @@ class MockCustomerInfo extends _i1.Mock implements _i13.CustomerInfo {
   @override
   String get requestDate => (super.noSuchMethod(
         Invocation.getter(#requestDate),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#requestDate),
         ),
       ) as String);
 
   @override
-  _i13.$CustomerInfoCopyWith<_i13.CustomerInfo> get copyWith =>
+  _i14.$CustomerInfoCopyWith<_i14.CustomerInfo> get copyWith =>
       (super.noSuchMethod(
         Invocation.getter(#copyWith),
-        returnValue: _Fake$CustomerInfoCopyWith_20<_i13.CustomerInfo>(
+        returnValue: _Fake$CustomerInfoCopyWith_21<_i14.CustomerInfo>(
           this,
           Invocation.getter(#copyWith),
         ),
-      ) as _i13.$CustomerInfoCopyWith<_i13.CustomerInfo>);
+      ) as _i14.$CustomerInfoCopyWith<_i14.CustomerInfo>);
 
   @override
   Map<String, dynamic> toJson() => (super.noSuchMethod(
@@ -3099,10 +3415,38 @@ class MockCustomerInfo extends _i1.Mock implements _i13.CustomerInfo {
       ) as Map<String, dynamic>);
 }
 
+/// A class which mocks [DeviceInfoWrapper].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDeviceInfoWrapper extends _i1.Mock implements _i31.DeviceInfoWrapper {
+  MockDeviceInfoWrapper() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i24.Future<_i2.AndroidDeviceInfo> get androidInfo => (super.noSuchMethod(
+        Invocation.getter(#androidInfo),
+        returnValue:
+            _i24.Future<_i2.AndroidDeviceInfo>.value(_FakeAndroidDeviceInfo_22(
+          this,
+          Invocation.getter(#androidInfo),
+        )),
+      ) as _i24.Future<_i2.AndroidDeviceInfo>);
+
+  @override
+  _i24.Future<_i2.IosDeviceInfo> get iosInfo => (super.noSuchMethod(
+        Invocation.getter(#iosInfo),
+        returnValue: _i24.Future<_i2.IosDeviceInfo>.value(_FakeIosDeviceInfo_23(
+          this,
+          Invocation.getter(#iosInfo),
+        )),
+      ) as _i24.Future<_i2.IosDeviceInfo>);
+}
+
 /// A class which mocks [FlutterView].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFlutterView extends _i1.Mock implements _i2.FlutterView {
+class MockFlutterView extends _i1.Mock implements _i3.FlutterView {
   MockFlutterView() {
     _i1.throwOnMissingStub(this);
   }
@@ -3114,22 +3458,22 @@ class MockFlutterView extends _i1.Mock implements _i2.FlutterView {
       ) as int);
 
   @override
-  _i2.PlatformDispatcher get platformDispatcher => (super.noSuchMethod(
+  _i3.PlatformDispatcher get platformDispatcher => (super.noSuchMethod(
         Invocation.getter(#platformDispatcher),
-        returnValue: _FakePlatformDispatcher_21(
+        returnValue: _FakePlatformDispatcher_24(
           this,
           Invocation.getter(#platformDispatcher),
         ),
-      ) as _i2.PlatformDispatcher);
+      ) as _i3.PlatformDispatcher);
 
   @override
-  _i2.Display get display => (super.noSuchMethod(
+  _i3.Display get display => (super.noSuchMethod(
         Invocation.getter(#display),
-        returnValue: _FakeDisplay_22(
+        returnValue: _FakeDisplay_25(
           this,
           Invocation.getter(#display),
         ),
-      ) as _i2.Display);
+      ) as _i3.Display);
 
   @override
   double get devicePixelRatio => (super.noSuchMethod(
@@ -3138,78 +3482,78 @@ class MockFlutterView extends _i1.Mock implements _i2.FlutterView {
       ) as double);
 
   @override
-  _i2.ViewConstraints get physicalConstraints => (super.noSuchMethod(
+  _i3.ViewConstraints get physicalConstraints => (super.noSuchMethod(
         Invocation.getter(#physicalConstraints),
-        returnValue: _FakeViewConstraints_23(
+        returnValue: _FakeViewConstraints_26(
           this,
           Invocation.getter(#physicalConstraints),
         ),
-      ) as _i2.ViewConstraints);
+      ) as _i3.ViewConstraints);
 
   @override
-  _i2.Size get physicalSize => (super.noSuchMethod(
+  _i3.Size get physicalSize => (super.noSuchMethod(
         Invocation.getter(#physicalSize),
-        returnValue: _FakeSize_24(
+        returnValue: _FakeSize_27(
           this,
           Invocation.getter(#physicalSize),
         ),
-      ) as _i2.Size);
+      ) as _i3.Size);
 
   @override
-  _i2.ViewPadding get viewInsets => (super.noSuchMethod(
+  _i3.ViewPadding get viewInsets => (super.noSuchMethod(
         Invocation.getter(#viewInsets),
-        returnValue: _FakeViewPadding_25(
+        returnValue: _FakeViewPadding_28(
           this,
           Invocation.getter(#viewInsets),
         ),
-      ) as _i2.ViewPadding);
+      ) as _i3.ViewPadding);
 
   @override
-  _i2.ViewPadding get viewPadding => (super.noSuchMethod(
+  _i3.ViewPadding get viewPadding => (super.noSuchMethod(
         Invocation.getter(#viewPadding),
-        returnValue: _FakeViewPadding_25(
+        returnValue: _FakeViewPadding_28(
           this,
           Invocation.getter(#viewPadding),
         ),
-      ) as _i2.ViewPadding);
+      ) as _i3.ViewPadding);
 
   @override
-  _i2.ViewPadding get systemGestureInsets => (super.noSuchMethod(
+  _i3.ViewPadding get systemGestureInsets => (super.noSuchMethod(
         Invocation.getter(#systemGestureInsets),
-        returnValue: _FakeViewPadding_25(
+        returnValue: _FakeViewPadding_28(
           this,
           Invocation.getter(#systemGestureInsets),
         ),
-      ) as _i2.ViewPadding);
+      ) as _i3.ViewPadding);
 
   @override
-  _i2.ViewPadding get padding => (super.noSuchMethod(
+  _i3.ViewPadding get padding => (super.noSuchMethod(
         Invocation.getter(#padding),
-        returnValue: _FakeViewPadding_25(
+        returnValue: _FakeViewPadding_28(
           this,
           Invocation.getter(#padding),
         ),
-      ) as _i2.ViewPadding);
+      ) as _i3.ViewPadding);
 
   @override
-  _i2.GestureSettings get gestureSettings => (super.noSuchMethod(
+  _i3.GestureSettings get gestureSettings => (super.noSuchMethod(
         Invocation.getter(#gestureSettings),
-        returnValue: _FakeGestureSettings_26(
+        returnValue: _FakeGestureSettings_29(
           this,
           Invocation.getter(#gestureSettings),
         ),
-      ) as _i2.GestureSettings);
+      ) as _i3.GestureSettings);
 
   @override
-  List<_i2.DisplayFeature> get displayFeatures => (super.noSuchMethod(
+  List<_i3.DisplayFeature> get displayFeatures => (super.noSuchMethod(
         Invocation.getter(#displayFeatures),
-        returnValue: <_i2.DisplayFeature>[],
-      ) as List<_i2.DisplayFeature>);
+        returnValue: <_i3.DisplayFeature>[],
+      ) as List<_i3.DisplayFeature>);
 
   @override
   void render(
-    _i2.Scene? scene, {
-    _i2.Size? size,
+    _i3.Scene? scene, {
+    _i3.Size? size,
   }) =>
       super.noSuchMethod(
         Invocation.method(
@@ -3221,7 +3565,7 @@ class MockFlutterView extends _i1.Mock implements _i2.FlutterView {
       );
 
   @override
-  void updateSemantics(_i2.SemanticsUpdate? update) => super.noSuchMethod(
+  void updateSemantics(_i3.SemanticsUpdate? update) => super.noSuchMethod(
         Invocation.method(
           #updateSemantics,
           [update],
@@ -3230,35 +3574,75 @@ class MockFlutterView extends _i1.Mock implements _i2.FlutterView {
       );
 }
 
+/// A class which mocks [HttpWrapper].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockHttpWrapper extends _i1.Mock implements _i32.HttpWrapper {
+  MockHttpWrapper() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i24.Future<_i15.Response> post(
+    Uri? url, {
+    Map<String, String>? headers,
+    Object? body,
+    _i33.Encoding? encoding,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #post,
+          [url],
+          {
+            #headers: headers,
+            #body: body,
+            #encoding: encoding,
+          },
+        ),
+        returnValue: _i24.Future<_i15.Response>.value(_FakeResponse_30(
+          this,
+          Invocation.method(
+            #post,
+            [url],
+            {
+              #headers: headers,
+              #body: body,
+              #encoding: encoding,
+            },
+          ),
+        )),
+      ) as _i24.Future<_i15.Response>);
+}
+
 /// A class which mocks [InternetAddressWrapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockInternetAddressWrapper extends _i1.Mock
-    implements _i28.InternetAddressWrapper {
+    implements _i34.InternetAddressWrapper {
   MockInternetAddressWrapper() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i20.Future<bool> get isConnected => (super.noSuchMethod(
+  _i24.Future<bool> get isConnected => (super.noSuchMethod(
         Invocation.getter(#isConnected),
-        returnValue: _i20.Future<bool>.value(false),
-      ) as _i20.Future<bool>);
+        returnValue: _i24.Future<bool>.value(false),
+      ) as _i24.Future<bool>);
 }
 
 /// A class which mocks [LivesManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLivesManager extends _i1.Mock implements _i29.LivesManager {
+class MockLivesManager extends _i1.Mock implements _i35.LivesManager {
   MockLivesManager() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i20.Stream<dynamic> get stream => (super.noSuchMethod(
+  _i24.Stream<dynamic> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i20.Stream<dynamic>.empty(),
-      ) as _i20.Stream<dynamic>);
+        returnValue: _i24.Stream<dynamic>.empty(),
+      ) as _i24.Stream<dynamic>);
 
   @override
   int get lives => (super.noSuchMethod(
@@ -3321,7 +3705,7 @@ class MockLivesManager extends _i1.Mock implements _i29.LivesManager {
 /// A class which mocks [Offering].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOffering extends _i1.Mock implements _i14.Offering {
+class MockOffering extends _i1.Mock implements _i16.Offering {
   MockOffering() {
     _i1.throwOnMissingStub(this);
   }
@@ -3329,7 +3713,7 @@ class MockOffering extends _i1.Mock implements _i14.Offering {
   @override
   String get identifier => (super.noSuchMethod(
         Invocation.getter(#identifier),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#identifier),
         ),
@@ -3338,7 +3722,7 @@ class MockOffering extends _i1.Mock implements _i14.Offering {
   @override
   String get serverDescription => (super.noSuchMethod(
         Invocation.getter(#serverDescription),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#serverDescription),
         ),
@@ -3351,26 +3735,26 @@ class MockOffering extends _i1.Mock implements _i14.Offering {
       ) as Map<String, Object>);
 
   @override
-  List<_i15.Package> get availablePackages => (super.noSuchMethod(
+  List<_i17.Package> get availablePackages => (super.noSuchMethod(
         Invocation.getter(#availablePackages),
-        returnValue: <_i15.Package>[],
-      ) as List<_i15.Package>);
+        returnValue: <_i17.Package>[],
+      ) as List<_i17.Package>);
 
   @override
-  _i14.$OfferingCopyWith<_i14.Offering> get copyWith => (super.noSuchMethod(
+  _i16.$OfferingCopyWith<_i16.Offering> get copyWith => (super.noSuchMethod(
         Invocation.getter(#copyWith),
-        returnValue: _Fake$OfferingCopyWith_27<_i14.Offering>(
+        returnValue: _Fake$OfferingCopyWith_31<_i16.Offering>(
           this,
           Invocation.getter(#copyWith),
         ),
-      ) as _i14.$OfferingCopyWith<_i14.Offering>);
+      ) as _i16.$OfferingCopyWith<_i16.Offering>);
 
   @override
-  _i15.Package? getPackage(String? identifier) =>
+  _i17.Package? getPackage(String? identifier) =>
       (super.noSuchMethod(Invocation.method(
         #getPackage,
         [identifier],
-      )) as _i15.Package?);
+      )) as _i17.Package?);
 
   @override
   Map<String, dynamic> toJson() => (super.noSuchMethod(
@@ -3385,32 +3769,32 @@ class MockOffering extends _i1.Mock implements _i14.Offering {
 /// A class which mocks [Offerings].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOfferings extends _i1.Mock implements _i13.Offerings {
+class MockOfferings extends _i1.Mock implements _i14.Offerings {
   MockOfferings() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  Map<String, _i14.Offering> get all => (super.noSuchMethod(
+  Map<String, _i16.Offering> get all => (super.noSuchMethod(
         Invocation.getter(#all),
-        returnValue: <String, _i14.Offering>{},
-      ) as Map<String, _i14.Offering>);
+        returnValue: <String, _i16.Offering>{},
+      ) as Map<String, _i16.Offering>);
 
   @override
-  _i13.$OfferingsCopyWith<_i13.Offerings> get copyWith => (super.noSuchMethod(
+  _i14.$OfferingsCopyWith<_i14.Offerings> get copyWith => (super.noSuchMethod(
         Invocation.getter(#copyWith),
-        returnValue: _Fake$OfferingsCopyWith_28<_i13.Offerings>(
+        returnValue: _Fake$OfferingsCopyWith_32<_i14.Offerings>(
           this,
           Invocation.getter(#copyWith),
         ),
-      ) as _i13.$OfferingsCopyWith<_i13.Offerings>);
+      ) as _i14.$OfferingsCopyWith<_i14.Offerings>);
 
   @override
-  _i14.Offering? getOffering(String? identifier) =>
+  _i16.Offering? getOffering(String? identifier) =>
       (super.noSuchMethod(Invocation.method(
         #getOffering,
         [identifier],
-      )) as _i14.Offering?);
+      )) as _i16.Offering?);
 
   @override
   Map<String, dynamic> toJson() => (super.noSuchMethod(
@@ -3425,7 +3809,7 @@ class MockOfferings extends _i1.Mock implements _i13.Offerings {
 /// A class which mocks [Package].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPackage extends _i1.Mock implements _i15.Package {
+class MockPackage extends _i1.Mock implements _i17.Package {
   MockPackage() {
     _i1.throwOnMissingStub(this);
   }
@@ -3433,44 +3817,44 @@ class MockPackage extends _i1.Mock implements _i15.Package {
   @override
   String get identifier => (super.noSuchMethod(
         Invocation.getter(#identifier),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#identifier),
         ),
       ) as String);
 
   @override
-  _i15.PackageType get packageType => (super.noSuchMethod(
+  _i17.PackageType get packageType => (super.noSuchMethod(
         Invocation.getter(#packageType),
-        returnValue: _i15.PackageType.unknown,
-      ) as _i15.PackageType);
+        returnValue: _i17.PackageType.unknown,
+      ) as _i17.PackageType);
 
   @override
-  _i13.StoreProduct get storeProduct => (super.noSuchMethod(
+  _i14.StoreProduct get storeProduct => (super.noSuchMethod(
         Invocation.getter(#storeProduct),
-        returnValue: _FakeStoreProduct_29(
+        returnValue: _FakeStoreProduct_33(
           this,
           Invocation.getter(#storeProduct),
         ),
-      ) as _i13.StoreProduct);
+      ) as _i14.StoreProduct);
 
   @override
   String get offeringIdentifier => (super.noSuchMethod(
         Invocation.getter(#offeringIdentifier),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#offeringIdentifier),
         ),
       ) as String);
 
   @override
-  _i15.$PackageCopyWith<_i15.Package> get copyWith => (super.noSuchMethod(
+  _i17.$PackageCopyWith<_i17.Package> get copyWith => (super.noSuchMethod(
         Invocation.getter(#copyWith),
-        returnValue: _Fake$PackageCopyWith_30<_i15.Package>(
+        returnValue: _Fake$PackageCopyWith_34<_i17.Package>(
           this,
           Invocation.getter(#copyWith),
         ),
-      ) as _i15.$PackageCopyWith<_i15.Package>);
+      ) as _i17.$PackageCopyWith<_i17.Package>);
 
   @override
   Map<String, dynamic> toJson() => (super.noSuchMethod(
@@ -3482,17 +3866,42 @@ class MockPackage extends _i1.Mock implements _i15.Package {
       ) as Map<String, dynamic>);
 }
 
+/// A class which mocks [PackageInfoWrapper].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPackageInfoWrapper extends _i1.Mock
+    implements _i36.PackageInfoWrapper {
+  MockPackageInfoWrapper() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i24.Future<_i18.PackageInfo> fromPlatform() => (super.noSuchMethod(
+        Invocation.method(
+          #fromPlatform,
+          [],
+        ),
+        returnValue: _i24.Future<_i18.PackageInfo>.value(_FakePackageInfo_35(
+          this,
+          Invocation.method(
+            #fromPlatform,
+            [],
+          ),
+        )),
+      ) as _i24.Future<_i18.PackageInfo>);
+}
+
 /// A class which mocks [PlatformDispatcher].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockPlatformDispatcher extends _i1.Mock
-    implements _i2.PlatformDispatcher {
+    implements _i3.PlatformDispatcher {
   MockPlatformDispatcher() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  set onPlatformConfigurationChanged(_i2.VoidCallback? callback) =>
+  set onPlatformConfigurationChanged(_i3.VoidCallback? callback) =>
       super.noSuchMethod(
         Invocation.setter(
           #onPlatformConfigurationChanged,
@@ -3502,19 +3911,19 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  Iterable<_i2.Display> get displays => (super.noSuchMethod(
+  Iterable<_i3.Display> get displays => (super.noSuchMethod(
         Invocation.getter(#displays),
-        returnValue: <_i2.Display>[],
-      ) as Iterable<_i2.Display>);
+        returnValue: <_i3.Display>[],
+      ) as Iterable<_i3.Display>);
 
   @override
-  Iterable<_i2.FlutterView> get views => (super.noSuchMethod(
+  Iterable<_i3.FlutterView> get views => (super.noSuchMethod(
         Invocation.getter(#views),
-        returnValue: <_i2.FlutterView>[],
-      ) as Iterable<_i2.FlutterView>);
+        returnValue: <_i3.FlutterView>[],
+      ) as Iterable<_i3.FlutterView>);
 
   @override
-  set onMetricsChanged(_i2.VoidCallback? callback) => super.noSuchMethod(
+  set onMetricsChanged(_i3.VoidCallback? callback) => super.noSuchMethod(
         Invocation.setter(
           #onMetricsChanged,
           callback,
@@ -3523,7 +3932,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  set onBeginFrame(_i2.FrameCallback? callback) => super.noSuchMethod(
+  set onBeginFrame(_i3.FrameCallback? callback) => super.noSuchMethod(
         Invocation.setter(
           #onBeginFrame,
           callback,
@@ -3532,7 +3941,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  set onDrawFrame(_i2.VoidCallback? callback) => super.noSuchMethod(
+  set onDrawFrame(_i3.VoidCallback? callback) => super.noSuchMethod(
         Invocation.setter(
           #onDrawFrame,
           callback,
@@ -3541,7 +3950,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  set onPointerDataPacket(_i2.PointerDataPacketCallback? callback) =>
+  set onPointerDataPacket(_i3.PointerDataPacketCallback? callback) =>
       super.noSuchMethod(
         Invocation.setter(
           #onPointerDataPacket,
@@ -3551,7 +3960,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  set onKeyData(_i2.KeyDataCallback? callback) => super.noSuchMethod(
+  set onKeyData(_i3.KeyDataCallback? callback) => super.noSuchMethod(
         Invocation.setter(
           #onKeyData,
           callback,
@@ -3560,7 +3969,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  set onReportTimings(_i2.TimingsCallback? callback) => super.noSuchMethod(
+  set onReportTimings(_i3.TimingsCallback? callback) => super.noSuchMethod(
         Invocation.setter(
           #onReportTimings,
           callback,
@@ -3569,7 +3978,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  set onPlatformMessage(_i2.PlatformMessageCallback? callback) =>
+  set onPlatformMessage(_i3.PlatformMessageCallback? callback) =>
       super.noSuchMethod(
         Invocation.setter(
           #onPlatformMessage,
@@ -3579,16 +3988,16 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  _i2.AccessibilityFeatures get accessibilityFeatures => (super.noSuchMethod(
+  _i3.AccessibilityFeatures get accessibilityFeatures => (super.noSuchMethod(
         Invocation.getter(#accessibilityFeatures),
-        returnValue: _FakeAccessibilityFeatures_31(
+        returnValue: _FakeAccessibilityFeatures_36(
           this,
           Invocation.getter(#accessibilityFeatures),
         ),
-      ) as _i2.AccessibilityFeatures);
+      ) as _i3.AccessibilityFeatures);
 
   @override
-  set onAccessibilityFeaturesChanged(_i2.VoidCallback? callback) =>
+  set onAccessibilityFeaturesChanged(_i3.VoidCallback? callback) =>
       super.noSuchMethod(
         Invocation.setter(
           #onAccessibilityFeaturesChanged,
@@ -3598,22 +4007,22 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  _i2.Locale get locale => (super.noSuchMethod(
+  _i3.Locale get locale => (super.noSuchMethod(
         Invocation.getter(#locale),
-        returnValue: _FakeLocale_32(
+        returnValue: _FakeLocale_37(
           this,
           Invocation.getter(#locale),
         ),
-      ) as _i2.Locale);
+      ) as _i3.Locale);
 
   @override
-  List<_i2.Locale> get locales => (super.noSuchMethod(
+  List<_i3.Locale> get locales => (super.noSuchMethod(
         Invocation.getter(#locales),
-        returnValue: <_i2.Locale>[],
-      ) as List<_i2.Locale>);
+        returnValue: <_i3.Locale>[],
+      ) as List<_i3.Locale>);
 
   @override
-  set onLocaleChanged(_i2.VoidCallback? callback) => super.noSuchMethod(
+  set onLocaleChanged(_i3.VoidCallback? callback) => super.noSuchMethod(
         Invocation.setter(
           #onLocaleChanged,
           callback,
@@ -3624,7 +4033,7 @@ class MockPlatformDispatcher extends _i1.Mock
   @override
   String get initialLifecycleState => (super.noSuchMethod(
         Invocation.getter(#initialLifecycleState),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#initialLifecycleState),
         ),
@@ -3643,7 +4052,7 @@ class MockPlatformDispatcher extends _i1.Mock
       ) as double);
 
   @override
-  set onTextScaleFactorChanged(_i2.VoidCallback? callback) =>
+  set onTextScaleFactorChanged(_i3.VoidCallback? callback) =>
       super.noSuchMethod(
         Invocation.setter(
           #onTextScaleFactorChanged,
@@ -3665,13 +4074,13 @@ class MockPlatformDispatcher extends _i1.Mock
       ) as bool);
 
   @override
-  _i2.Brightness get platformBrightness => (super.noSuchMethod(
+  _i3.Brightness get platformBrightness => (super.noSuchMethod(
         Invocation.getter(#platformBrightness),
-        returnValue: _i2.Brightness.dark,
-      ) as _i2.Brightness);
+        returnValue: _i3.Brightness.dark,
+      ) as _i3.Brightness);
 
   @override
-  set onPlatformBrightnessChanged(_i2.VoidCallback? callback) =>
+  set onPlatformBrightnessChanged(_i3.VoidCallback? callback) =>
       super.noSuchMethod(
         Invocation.setter(
           #onPlatformBrightnessChanged,
@@ -3681,7 +4090,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  set onSystemFontFamilyChanged(_i2.VoidCallback? callback) =>
+  set onSystemFontFamilyChanged(_i3.VoidCallback? callback) =>
       super.noSuchMethod(
         Invocation.setter(
           #onSystemFontFamilyChanged,
@@ -3697,7 +4106,7 @@ class MockPlatformDispatcher extends _i1.Mock
       ) as bool);
 
   @override
-  set onSemanticsEnabledChanged(_i2.VoidCallback? callback) =>
+  set onSemanticsEnabledChanged(_i3.VoidCallback? callback) =>
       super.noSuchMethod(
         Invocation.setter(
           #onSemanticsEnabledChanged,
@@ -3707,7 +4116,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  set onSemanticsActionEvent(_i2.SemanticsActionEventCallback? callback) =>
+  set onSemanticsActionEvent(_i3.SemanticsActionEventCallback? callback) =>
       super.noSuchMethod(
         Invocation.setter(
           #onSemanticsActionEvent,
@@ -3717,16 +4126,16 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  _i2.FrameData get frameData => (super.noSuchMethod(
+  _i3.FrameData get frameData => (super.noSuchMethod(
         Invocation.getter(#frameData),
-        returnValue: _FakeFrameData_33(
+        returnValue: _FakeFrameData_38(
           this,
           Invocation.getter(#frameData),
         ),
-      ) as _i2.FrameData);
+      ) as _i3.FrameData);
 
   @override
-  set onFrameDataChanged(_i2.VoidCallback? callback) => super.noSuchMethod(
+  set onFrameDataChanged(_i3.VoidCallback? callback) => super.noSuchMethod(
         Invocation.setter(
           #onFrameDataChanged,
           callback,
@@ -3735,7 +4144,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  set onError(_i2.ErrorCallback? callback) => super.noSuchMethod(
+  set onError(_i3.ErrorCallback? callback) => super.noSuchMethod(
         Invocation.setter(
           #onError,
           callback,
@@ -3746,25 +4155,25 @@ class MockPlatformDispatcher extends _i1.Mock
   @override
   String get defaultRouteName => (super.noSuchMethod(
         Invocation.getter(#defaultRouteName),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#defaultRouteName),
         ),
       ) as String);
 
   @override
-  _i2.FlutterView? view({required int? id}) =>
+  _i3.FlutterView? view({required int? id}) =>
       (super.noSuchMethod(Invocation.method(
         #view,
         [],
         {#id: id},
-      )) as _i2.FlutterView?);
+      )) as _i3.FlutterView?);
 
   @override
   void sendPlatformMessage(
     String? name,
-    _i18.ByteData? data,
-    _i2.PlatformMessageResponseCallback? callback,
+    _i22.ByteData? data,
+    _i3.PlatformMessageResponseCallback? callback,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -3781,9 +4190,9 @@ class MockPlatformDispatcher extends _i1.Mock
   @override
   void sendPortPlatformMessage(
     String? name,
-    _i18.ByteData? data,
+    _i22.ByteData? data,
     int? identifier,
-    _i30.SendPort? port,
+    _i37.SendPort? port,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -3799,7 +4208,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  void registerBackgroundIsolate(_i2.RootIsolateToken? token) =>
+  void registerBackgroundIsolate(_i3.RootIsolateToken? token) =>
       super.noSuchMethod(
         Invocation.method(
           #registerBackgroundIsolate,
@@ -3818,7 +4227,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  void requestDartPerformanceMode(_i2.DartPerformanceMode? mode) =>
+  void requestDartPerformanceMode(_i3.DartPerformanceMode? mode) =>
       super.noSuchMethod(
         Invocation.method(
           #requestDartPerformanceMode,
@@ -3837,7 +4246,7 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  void updateSemantics(_i2.SemanticsUpdate? update) => super.noSuchMethod(
+  void updateSemantics(_i3.SemanticsUpdate? update) => super.noSuchMethod(
         Invocation.method(
           #updateSemantics,
           [update],
@@ -3846,12 +4255,12 @@ class MockPlatformDispatcher extends _i1.Mock
       );
 
   @override
-  _i2.Locale? computePlatformResolvedLocale(
-          List<_i2.Locale>? supportedLocales) =>
+  _i3.Locale? computePlatformResolvedLocale(
+          List<_i3.Locale>? supportedLocales) =>
       (super.noSuchMethod(Invocation.method(
         #computePlatformResolvedLocale,
         [supportedLocales],
-      )) as _i2.Locale?);
+      )) as _i3.Locale?);
 
   @override
   double scaleFontSize(double? unscaledFontSize) => (super.noSuchMethod(
@@ -3866,7 +4275,7 @@ class MockPlatformDispatcher extends _i1.Mock
 /// A class which mocks [PlatformException].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPlatformException extends _i1.Mock implements _i31.PlatformException {
+class MockPlatformException extends _i1.Mock implements _i38.PlatformException {
   MockPlatformException() {
     _i1.throwOnMissingStub(this);
   }
@@ -3874,7 +4283,7 @@ class MockPlatformException extends _i1.Mock implements _i31.PlatformException {
   @override
   String get code => (super.noSuchMethod(
         Invocation.getter(#code),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#code),
         ),
@@ -3884,7 +4293,7 @@ class MockPlatformException extends _i1.Mock implements _i31.PlatformException {
 /// A class which mocks [PlatformWrapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPlatformWrapper extends _i1.Mock implements _i32.PlatformWrapper {
+class MockPlatformWrapper extends _i1.Mock implements _i39.PlatformWrapper {
   MockPlatformWrapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -3892,6 +4301,12 @@ class MockPlatformWrapper extends _i1.Mock implements _i32.PlatformWrapper {
   @override
   bool get isAndroid => (super.noSuchMethod(
         Invocation.getter(#isAndroid),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isIOS => (super.noSuchMethod(
+        Invocation.getter(#isIOS),
         returnValue: false,
       ) as bool);
 
@@ -3905,16 +4320,16 @@ class MockPlatformWrapper extends _i1.Mock implements _i32.PlatformWrapper {
 /// A class which mocks [PreferenceManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPreferenceManager extends _i1.Mock implements _i33.PreferenceManager {
+class MockPreferenceManager extends _i1.Mock implements _i40.PreferenceManager {
   MockPreferenceManager() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i20.Stream<dynamic> get stream => (super.noSuchMethod(
+  _i24.Stream<dynamic> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i20.Stream<dynamic>.empty(),
-      ) as _i20.Stream<dynamic>);
+        returnValue: _i24.Stream<dynamic>.empty(),
+      ) as _i24.Stream<dynamic>);
 
   @override
   int get lives => (super.noSuchMethod(
@@ -3932,13 +4347,13 @@ class MockPreferenceManager extends _i1.Mock implements _i33.PreferenceManager {
       );
 
   @override
-  _i34.Difficulty get difficulty => (super.noSuchMethod(
+  _i41.Difficulty get difficulty => (super.noSuchMethod(
         Invocation.getter(#difficulty),
-        returnValue: _i34.Difficulty.kids,
-      ) as _i34.Difficulty);
+        returnValue: _i41.Difficulty.kids,
+      ) as _i41.Difficulty);
 
   @override
-  set difficulty(_i34.Difficulty? value) => super.noSuchMethod(
+  set difficulty(_i41.Difficulty? value) => super.noSuchMethod(
         Invocation.setter(
           #difficulty,
           value,
@@ -3956,14 +4371,32 @@ class MockPreferenceManager extends _i1.Mock implements _i33.PreferenceManager {
       );
 
   @override
-  _i20.Future<void> init() => (super.noSuchMethod(
+  set userName(String? value) => super.noSuchMethod(
+        Invocation.setter(
+          #userName,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set userEmail(String? value) => super.noSuchMethod(
+        Invocation.setter(
+          #userEmail,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i24.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
           #init,
           [],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
   void clearLives() => super.noSuchMethod(
@@ -3987,7 +4420,7 @@ class MockPreferenceManager extends _i1.Mock implements _i33.PreferenceManager {
 /// A class which mocks [PropertiesManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPropertiesManager extends _i1.Mock implements _i35.PropertiesManager {
+class MockPropertiesManager extends _i1.Mock implements _i42.PropertiesManager {
   MockPropertiesManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -3995,7 +4428,7 @@ class MockPropertiesManager extends _i1.Mock implements _i35.PropertiesManager {
   @override
   String get adUnitIdApple => (super.noSuchMethod(
         Invocation.getter(#adUnitIdApple),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#adUnitIdApple),
         ),
@@ -4004,7 +4437,7 @@ class MockPropertiesManager extends _i1.Mock implements _i35.PropertiesManager {
   @override
   String get adUnitIdAndroid => (super.noSuchMethod(
         Invocation.getter(#adUnitIdAndroid),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#adUnitIdAndroid),
         ),
@@ -4013,7 +4446,7 @@ class MockPropertiesManager extends _i1.Mock implements _i35.PropertiesManager {
   @override
   String get revenueCatKeyApple => (super.noSuchMethod(
         Invocation.getter(#revenueCatKeyApple),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#revenueCatKeyApple),
         ),
@@ -4022,133 +4455,169 @@ class MockPropertiesManager extends _i1.Mock implements _i35.PropertiesManager {
   @override
   String get revenueCatKeyAndroid => (super.noSuchMethod(
         Invocation.getter(#revenueCatKeyAndroid),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#revenueCatKeyAndroid),
         ),
       ) as String);
 
   @override
-  _i20.Future<void> init() => (super.noSuchMethod(
+  String get supportEmail => (super.noSuchMethod(
+        Invocation.getter(#supportEmail),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#supportEmail),
+        ),
+      ) as String);
+
+  @override
+  String get sendGridApiKey => (super.noSuchMethod(
+        Invocation.getter(#sendGridApiKey),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#sendGridApiKey),
+        ),
+      ) as String);
+
+  @override
+  String get clientSenderEmail => (super.noSuchMethod(
+        Invocation.getter(#clientSenderEmail),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#clientSenderEmail),
+        ),
+      ) as String);
+
+  @override
+  String get feedbackTemplate => (super.noSuchMethod(
+        Invocation.getter(#feedbackTemplate),
+        returnValue: _i21.dummyValue<String>(
+          this,
+          Invocation.getter(#feedbackTemplate),
+        ),
+      ) as String);
+
+  @override
+  _i24.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
           #init,
           [],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 }
 
 /// A class which mocks [PurchasesManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPurchasesManager extends _i1.Mock implements _i36.PurchasesManager {
+class MockPurchasesManager extends _i1.Mock implements _i43.PurchasesManager {
   MockPurchasesManager() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i20.Future<void> init() => (super.noSuchMethod(
+  _i24.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
           #init,
           [],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<_i13.CustomerInfo?> purchase(_i15.Package? package) =>
+  _i24.Future<_i14.CustomerInfo?> purchase(_i17.Package? package) =>
       (super.noSuchMethod(
         Invocation.method(
           #purchase,
           [package],
         ),
-        returnValue: _i20.Future<_i13.CustomerInfo?>.value(),
-      ) as _i20.Future<_i13.CustomerInfo?>);
+        returnValue: _i24.Future<_i14.CustomerInfo?>.value(),
+      ) as _i24.Future<_i14.CustomerInfo?>);
 }
 
 /// A class which mocks [PurchasesWrapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPurchasesWrapper extends _i1.Mock implements _i37.PurchasesWrapper {
+class MockPurchasesWrapper extends _i1.Mock implements _i44.PurchasesWrapper {
   MockPurchasesWrapper() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i20.Future<void> configure(_i13.PurchasesConfiguration? config) =>
+  _i24.Future<void> configure(_i14.PurchasesConfiguration? config) =>
       (super.noSuchMethod(
         Invocation.method(
           #configure,
           [config],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> setLogLevel(_i38.LogLevel? logLevel) => (super.noSuchMethod(
+  _i24.Future<void> setLogLevel(_i45.LogLevel? logLevel) => (super.noSuchMethod(
         Invocation.method(
           #setLogLevel,
           [logLevel],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<_i13.Offerings> getOfferings() => (super.noSuchMethod(
+  _i24.Future<_i14.Offerings> getOfferings() => (super.noSuchMethod(
         Invocation.method(
           #getOfferings,
           [],
         ),
-        returnValue: _i20.Future<_i13.Offerings>.value(_FakeOfferings_34(
+        returnValue: _i24.Future<_i14.Offerings>.value(_FakeOfferings_39(
           this,
           Invocation.method(
             #getOfferings,
             [],
           ),
         )),
-      ) as _i20.Future<_i13.Offerings>);
+      ) as _i24.Future<_i14.Offerings>);
 
   @override
-  _i20.Future<_i13.CustomerInfo> purchasePackage(_i15.Package? package) =>
+  _i24.Future<_i14.CustomerInfo> purchasePackage(_i17.Package? package) =>
       (super.noSuchMethod(
         Invocation.method(
           #purchasePackage,
           [package],
         ),
-        returnValue: _i20.Future<_i13.CustomerInfo>.value(_FakeCustomerInfo_35(
+        returnValue: _i24.Future<_i14.CustomerInfo>.value(_FakeCustomerInfo_40(
           this,
           Invocation.method(
             #purchasePackage,
             [package],
           ),
         )),
-      ) as _i20.Future<_i13.CustomerInfo>);
+      ) as _i24.Future<_i14.CustomerInfo>);
 }
 
 /// A class which mocks [RewardedAd].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRewardedAd extends _i1.Mock implements _i39.RewardedAd {
+class MockRewardedAd extends _i1.Mock implements _i46.RewardedAd {
   MockRewardedAd() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i16.RewardedAdLoadCallback get rewardedAdLoadCallback => (super.noSuchMethod(
+  _i19.RewardedAdLoadCallback get rewardedAdLoadCallback => (super.noSuchMethod(
         Invocation.getter(#rewardedAdLoadCallback),
-        returnValue: _FakeRewardedAdLoadCallback_36(
+        returnValue: _FakeRewardedAdLoadCallback_41(
           this,
           Invocation.getter(#rewardedAdLoadCallback),
         ),
-      ) as _i16.RewardedAdLoadCallback);
+      ) as _i19.RewardedAdLoadCallback);
 
   @override
   set fullScreenContentCallback(
-          _i16.FullScreenContentCallback<_i39.RewardedAd>?
+          _i19.FullScreenContentCallback<_i46.RewardedAd>?
               _fullScreenContentCallback) =>
       super.noSuchMethod(
         Invocation.setter(
@@ -4160,7 +4629,7 @@ class MockRewardedAd extends _i1.Mock implements _i39.RewardedAd {
 
   @override
   set onUserEarnedRewardCallback(
-          _i16.OnUserEarnedRewardCallback? _onUserEarnedRewardCallback) =>
+          _i19.OnUserEarnedRewardCallback? _onUserEarnedRewardCallback) =>
       super.noSuchMethod(
         Invocation.setter(
           #onUserEarnedRewardCallback,
@@ -4170,7 +4639,7 @@ class MockRewardedAd extends _i1.Mock implements _i39.RewardedAd {
       );
 
   @override
-  set onPaidEvent(_i16.OnPaidEventCallback? _onPaidEvent) => super.noSuchMethod(
+  set onPaidEvent(_i19.OnPaidEventCallback? _onPaidEvent) => super.noSuchMethod(
         Invocation.setter(
           #onPaidEvent,
           _onPaidEvent,
@@ -4181,14 +4650,14 @@ class MockRewardedAd extends _i1.Mock implements _i39.RewardedAd {
   @override
   String get adUnitId => (super.noSuchMethod(
         Invocation.getter(#adUnitId),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#adUnitId),
         ),
       ) as String);
 
   @override
-  set responseInfo(_i39.ResponseInfo? _responseInfo) => super.noSuchMethod(
+  set responseInfo(_i46.ResponseInfo? _responseInfo) => super.noSuchMethod(
         Invocation.setter(
           #responseInfo,
           _responseInfo,
@@ -4197,65 +4666,65 @@ class MockRewardedAd extends _i1.Mock implements _i39.RewardedAd {
       );
 
   @override
-  _i20.Future<void> show(
-          {required _i16.OnUserEarnedRewardCallback? onUserEarnedReward}) =>
+  _i24.Future<void> show(
+          {required _i19.OnUserEarnedRewardCallback? onUserEarnedReward}) =>
       (super.noSuchMethod(
         Invocation.method(
           #show,
           [],
           {#onUserEarnedReward: onUserEarnedReward},
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> setServerSideOptions(
-          _i39.ServerSideVerificationOptions? options) =>
+  _i24.Future<void> setServerSideOptions(
+          _i46.ServerSideVerificationOptions? options) =>
       (super.noSuchMethod(
         Invocation.method(
           #setServerSideOptions,
           [options],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> setImmersiveMode(bool? immersiveModeEnabled) =>
+  _i24.Future<void> setImmersiveMode(bool? immersiveModeEnabled) =>
       (super.noSuchMethod(
         Invocation.method(
           #setImmersiveMode,
           [immersiveModeEnabled],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> dispose() => (super.noSuchMethod(
+  _i24.Future<void> dispose() => (super.noSuchMethod(
         Invocation.method(
           #dispose,
           [],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 }
 
 /// A class which mocks [RewardedAdWrapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRewardedAdWrapper extends _i1.Mock implements _i40.RewardedAdWrapper {
+class MockRewardedAdWrapper extends _i1.Mock implements _i47.RewardedAdWrapper {
   MockRewardedAdWrapper() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i20.Future<void> load({
+  _i24.Future<void> load({
     required String? adUnitId,
-    required _i39.AdRequest? request,
-    required _i16.RewardedAdLoadCallback? rewardedAdLoadCallback,
+    required _i46.AdRequest? request,
+    required _i19.RewardedAdLoadCallback? rewardedAdLoadCallback,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -4267,15 +4736,15 @@ class MockRewardedAdWrapper extends _i1.Mock implements _i40.RewardedAdWrapper {
             #rewardedAdLoadCallback: rewardedAdLoadCallback,
           },
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 }
 
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i41.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i48.SharedPreferences {
   MockSharedPreferences() {
     _i1.throwOnMissingStub(this);
   }
@@ -4336,7 +4805,7 @@ class MockSharedPreferences extends _i1.Mock implements _i41.SharedPreferences {
       )) as List<String>?);
 
   @override
-  _i20.Future<bool> setBool(
+  _i24.Future<bool> setBool(
     String? key,
     bool? value,
   ) =>
@@ -4348,11 +4817,11 @@ class MockSharedPreferences extends _i1.Mock implements _i41.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i20.Future<bool>.value(false),
-      ) as _i20.Future<bool>);
+        returnValue: _i24.Future<bool>.value(false),
+      ) as _i24.Future<bool>);
 
   @override
-  _i20.Future<bool> setInt(
+  _i24.Future<bool> setInt(
     String? key,
     int? value,
   ) =>
@@ -4364,11 +4833,11 @@ class MockSharedPreferences extends _i1.Mock implements _i41.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i20.Future<bool>.value(false),
-      ) as _i20.Future<bool>);
+        returnValue: _i24.Future<bool>.value(false),
+      ) as _i24.Future<bool>);
 
   @override
-  _i20.Future<bool> setDouble(
+  _i24.Future<bool> setDouble(
     String? key,
     double? value,
   ) =>
@@ -4380,11 +4849,11 @@ class MockSharedPreferences extends _i1.Mock implements _i41.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i20.Future<bool>.value(false),
-      ) as _i20.Future<bool>);
+        returnValue: _i24.Future<bool>.value(false),
+      ) as _i24.Future<bool>);
 
   @override
-  _i20.Future<bool> setString(
+  _i24.Future<bool> setString(
     String? key,
     String? value,
   ) =>
@@ -4396,11 +4865,11 @@ class MockSharedPreferences extends _i1.Mock implements _i41.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i20.Future<bool>.value(false),
-      ) as _i20.Future<bool>);
+        returnValue: _i24.Future<bool>.value(false),
+      ) as _i24.Future<bool>);
 
   @override
-  _i20.Future<bool> setStringList(
+  _i24.Future<bool> setStringList(
     String? key,
     List<String>? value,
   ) =>
@@ -4412,51 +4881,51 @@ class MockSharedPreferences extends _i1.Mock implements _i41.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i20.Future<bool>.value(false),
-      ) as _i20.Future<bool>);
+        returnValue: _i24.Future<bool>.value(false),
+      ) as _i24.Future<bool>);
 
   @override
-  _i20.Future<bool> remove(String? key) => (super.noSuchMethod(
+  _i24.Future<bool> remove(String? key) => (super.noSuchMethod(
         Invocation.method(
           #remove,
           [key],
         ),
-        returnValue: _i20.Future<bool>.value(false),
-      ) as _i20.Future<bool>);
+        returnValue: _i24.Future<bool>.value(false),
+      ) as _i24.Future<bool>);
 
   @override
-  _i20.Future<bool> commit() => (super.noSuchMethod(
+  _i24.Future<bool> commit() => (super.noSuchMethod(
         Invocation.method(
           #commit,
           [],
         ),
-        returnValue: _i20.Future<bool>.value(false),
-      ) as _i20.Future<bool>);
+        returnValue: _i24.Future<bool>.value(false),
+      ) as _i24.Future<bool>);
 
   @override
-  _i20.Future<bool> clear() => (super.noSuchMethod(
+  _i24.Future<bool> clear() => (super.noSuchMethod(
         Invocation.method(
           #clear,
           [],
         ),
-        returnValue: _i20.Future<bool>.value(false),
-      ) as _i20.Future<bool>);
+        returnValue: _i24.Future<bool>.value(false),
+      ) as _i24.Future<bool>);
 
   @override
-  _i20.Future<void> reload() => (super.noSuchMethod(
+  _i24.Future<void> reload() => (super.noSuchMethod(
         Invocation.method(
           #reload,
           [],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 }
 
 /// A class which mocks [StoreProduct].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockStoreProduct extends _i1.Mock implements _i13.StoreProduct {
+class MockStoreProduct extends _i1.Mock implements _i14.StoreProduct {
   MockStoreProduct() {
     _i1.throwOnMissingStub(this);
   }
@@ -4464,7 +4933,7 @@ class MockStoreProduct extends _i1.Mock implements _i13.StoreProduct {
   @override
   String get identifier => (super.noSuchMethod(
         Invocation.getter(#identifier),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#identifier),
         ),
@@ -4473,7 +4942,7 @@ class MockStoreProduct extends _i1.Mock implements _i13.StoreProduct {
   @override
   String get description => (super.noSuchMethod(
         Invocation.getter(#description),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#description),
         ),
@@ -4482,7 +4951,7 @@ class MockStoreProduct extends _i1.Mock implements _i13.StoreProduct {
   @override
   String get title => (super.noSuchMethod(
         Invocation.getter(#title),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#title),
         ),
@@ -4497,7 +4966,7 @@ class MockStoreProduct extends _i1.Mock implements _i13.StoreProduct {
   @override
   String get priceString => (super.noSuchMethod(
         Invocation.getter(#priceString),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#priceString),
         ),
@@ -4506,21 +4975,21 @@ class MockStoreProduct extends _i1.Mock implements _i13.StoreProduct {
   @override
   String get currencyCode => (super.noSuchMethod(
         Invocation.getter(#currencyCode),
-        returnValue: _i27.dummyValue<String>(
+        returnValue: _i21.dummyValue<String>(
           this,
           Invocation.getter(#currencyCode),
         ),
       ) as String);
 
   @override
-  _i13.$StoreProductCopyWith<_i13.StoreProduct> get copyWith =>
+  _i14.$StoreProductCopyWith<_i14.StoreProduct> get copyWith =>
       (super.noSuchMethod(
         Invocation.getter(#copyWith),
-        returnValue: _Fake$StoreProductCopyWith_37<_i13.StoreProduct>(
+        returnValue: _Fake$StoreProductCopyWith_42<_i14.StoreProduct>(
           this,
           Invocation.getter(#copyWith),
         ),
-      ) as _i13.$StoreProductCopyWith<_i13.StoreProduct>);
+      ) as _i14.$StoreProductCopyWith<_i14.StoreProduct>);
 
   @override
   Map<String, dynamic> toJson() => (super.noSuchMethod(
@@ -4535,7 +5004,7 @@ class MockStoreProduct extends _i1.Mock implements _i13.StoreProduct {
 /// A class which mocks [TapDownEvent].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTapDownEvent extends _i1.Mock implements _i42.TapDownEvent {
+class MockTapDownEvent extends _i1.Mock implements _i49.TapDownEvent {
   MockTapDownEvent() {
     _i1.throwOnMissingStub(this);
   }
@@ -4547,43 +5016,43 @@ class MockTapDownEvent extends _i1.Mock implements _i42.TapDownEvent {
       ) as int);
 
   @override
-  _i2.PointerDeviceKind get deviceKind => (super.noSuchMethod(
+  _i3.PointerDeviceKind get deviceKind => (super.noSuchMethod(
         Invocation.getter(#deviceKind),
-        returnValue: _i2.PointerDeviceKind.touch,
-      ) as _i2.PointerDeviceKind);
+        returnValue: _i3.PointerDeviceKind.touch,
+      ) as _i3.PointerDeviceKind);
 
   @override
-  _i5.Vector2 get devicePosition => (super.noSuchMethod(
+  _i6.Vector2 get devicePosition => (super.noSuchMethod(
         Invocation.getter(#devicePosition),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#devicePosition),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 get canvasPosition => (super.noSuchMethod(
+  _i6.Vector2 get canvasPosition => (super.noSuchMethod(
         Invocation.getter(#canvasPosition),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#canvasPosition),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 get localPosition => (super.noSuchMethod(
+  _i6.Vector2 get localPosition => (super.noSuchMethod(
         Invocation.getter(#localPosition),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#localPosition),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  List<_i5.Vector2> get renderingTrace => (super.noSuchMethod(
+  List<_i6.Vector2> get renderingTrace => (super.noSuchMethod(
         Invocation.getter(#renderingTrace),
-        returnValue: <_i5.Vector2>[],
-      ) as List<_i5.Vector2>);
+        returnValue: <_i6.Vector2>[],
+      ) as List<_i6.Vector2>);
 
   @override
   bool get handled => (super.noSuchMethod(
@@ -4616,20 +5085,20 @@ class MockTapDownEvent extends _i1.Mock implements _i42.TapDownEvent {
       );
 
   @override
-  Iterable<_i4.Component> collectApplicableChildren(
-          {required _i4.Component? rootComponent}) =>
+  Iterable<_i5.Component> collectApplicableChildren(
+          {required _i5.Component? rootComponent}) =>
       (super.noSuchMethod(
         Invocation.method(
           #collectApplicableChildren,
           [],
           {#rootComponent: rootComponent},
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  void deliverAtPoint<T extends _i4.Component>({
-    required _i4.Component? rootComponent,
+  void deliverAtPoint<T extends _i5.Component>({
+    required _i5.Component? rootComponent,
     required void Function(T)? eventHandler,
     bool? deliverToAll = false,
   }) =>
@@ -4647,8 +5116,8 @@ class MockTapDownEvent extends _i1.Mock implements _i42.TapDownEvent {
       );
 
   @override
-  void deliverToComponents<T extends _i4.Component>(
-    _i4.Component? rootComponent,
+  void deliverToComponents<T extends _i5.Component>(
+    _i5.Component? rootComponent,
     void Function(T)? eventHandler,
   ) =>
       super.noSuchMethod(
@@ -4666,19 +5135,19 @@ class MockTapDownEvent extends _i1.Mock implements _i42.TapDownEvent {
 /// A class which mocks [TargetBoard].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
+class MockTargetBoard extends _i1.Mock implements _i29.TargetBoard {
   MockTargetBoard() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.ComponentKey get otherBoardKey => (super.noSuchMethod(
+  _i5.ComponentKey get otherBoardKey => (super.noSuchMethod(
         Invocation.getter(#otherBoardKey),
-        returnValue: _FakeComponentKey_38(
+        returnValue: _FakeComponentKey_43(
           this,
           Invocation.getter(#otherBoardKey),
         ),
-      ) as _i4.ComponentKey);
+      ) as _i5.ComponentKey);
 
   @override
   double get verticalStartFactor => (super.noSuchMethod(
@@ -4693,13 +5162,13 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       ) as bool);
 
   @override
-  _i5.Transform2D get transform => (super.noSuchMethod(
+  _i6.Transform2D get transform => (super.noSuchMethod(
         Invocation.getter(#transform),
-        returnValue: _FakeTransform2D_39(
+        returnValue: _FakeTransform2D_44(
           this,
           Invocation.getter(#transform),
         ),
-      ) as _i5.Transform2D);
+      ) as _i6.Transform2D);
 
   @override
   double get nativeAngle => (super.noSuchMethod(
@@ -4717,16 +5186,16 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i17.Decorator get decorator => (super.noSuchMethod(
+  _i20.Decorator get decorator => (super.noSuchMethod(
         Invocation.getter(#decorator),
-        returnValue: _FakeDecorator_40(
+        returnValue: _FakeDecorator_45(
           this,
           Invocation.getter(#decorator),
         ),
-      ) as _i17.Decorator);
+      ) as _i20.Decorator);
 
   @override
-  set decorator(_i17.Decorator? _decorator) => super.noSuchMethod(
+  set decorator(_i20.Decorator? _decorator) => super.noSuchMethod(
         Invocation.setter(
           #decorator,
           _decorator,
@@ -4735,25 +5204,25 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i5.Matrix4 get transformMatrix => (super.noSuchMethod(
+  _i6.Matrix4 get transformMatrix => (super.noSuchMethod(
         Invocation.getter(#transformMatrix),
-        returnValue: _FakeMatrix4_41(
+        returnValue: _FakeMatrix4_46(
           this,
           Invocation.getter(#transformMatrix),
         ),
-      ) as _i5.Matrix4);
+      ) as _i6.Matrix4);
 
   @override
-  _i5.NotifyingVector2 get position => (super.noSuchMethod(
+  _i6.NotifyingVector2 get position => (super.noSuchMethod(
         Invocation.getter(#position),
-        returnValue: _FakeNotifyingVector2_42(
+        returnValue: _FakeNotifyingVector2_47(
           this,
           Invocation.getter(#position),
         ),
-      ) as _i5.NotifyingVector2);
+      ) as _i6.NotifyingVector2);
 
   @override
-  set position(_i5.Vector2? position) => super.noSuchMethod(
+  set position(_i6.Vector2? position) => super.noSuchMethod(
         Invocation.setter(
           #position,
           position,
@@ -4807,16 +5276,16 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i5.NotifyingVector2 get scale => (super.noSuchMethod(
+  _i6.NotifyingVector2 get scale => (super.noSuchMethod(
         Invocation.getter(#scale),
-        returnValue: _FakeNotifyingVector2_42(
+        returnValue: _FakeNotifyingVector2_47(
           this,
           Invocation.getter(#scale),
         ),
-      ) as _i5.NotifyingVector2);
+      ) as _i6.NotifyingVector2);
 
   @override
-  set scale(_i5.Vector2? scale) => super.noSuchMethod(
+  set scale(_i6.Vector2? scale) => super.noSuchMethod(
         Invocation.setter(
           #scale,
           scale,
@@ -4825,16 +5294,16 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i4.Anchor get anchor => (super.noSuchMethod(
+  _i5.Anchor get anchor => (super.noSuchMethod(
         Invocation.getter(#anchor),
-        returnValue: _FakeAnchor_43(
+        returnValue: _FakeAnchor_48(
           this,
           Invocation.getter(#anchor),
         ),
-      ) as _i4.Anchor);
+      ) as _i5.Anchor);
 
   @override
-  set anchor(_i4.Anchor? anchor) => super.noSuchMethod(
+  set anchor(_i5.Anchor? anchor) => super.noSuchMethod(
         Invocation.setter(
           #anchor,
           anchor,
@@ -4843,16 +5312,16 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i5.NotifyingVector2 get size => (super.noSuchMethod(
+  _i6.NotifyingVector2 get size => (super.noSuchMethod(
         Invocation.getter(#size),
-        returnValue: _FakeNotifyingVector2_42(
+        returnValue: _FakeNotifyingVector2_47(
           this,
           Invocation.getter(#size),
         ),
-      ) as _i5.NotifyingVector2);
+      ) as _i6.NotifyingVector2);
 
   @override
-  set size(_i5.Vector2? size) => super.noSuchMethod(
+  set size(_i6.Vector2? size) => super.noSuchMethod(
         Invocation.setter(
           #size,
           size,
@@ -4891,22 +5360,22 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i5.Vector2 get scaledSize => (super.noSuchMethod(
+  _i6.Vector2 get scaledSize => (super.noSuchMethod(
         Invocation.getter(#scaledSize),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#scaledSize),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 get absoluteScaledSize => (super.noSuchMethod(
+  _i6.Vector2 get absoluteScaledSize => (super.noSuchMethod(
         Invocation.getter(#absoluteScaledSize),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#absoluteScaledSize),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
   double get absoluteAngle => (super.noSuchMethod(
@@ -4915,25 +5384,25 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       ) as double);
 
   @override
-  _i5.Vector2 get absoluteScale => (super.noSuchMethod(
+  _i6.Vector2 get absoluteScale => (super.noSuchMethod(
         Invocation.getter(#absoluteScale),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#absoluteScale),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 get topLeftPosition => (super.noSuchMethod(
+  _i6.Vector2 get topLeftPosition => (super.noSuchMethod(
         Invocation.getter(#topLeftPosition),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#topLeftPosition),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  set topLeftPosition(_i5.Vector2? point) => super.noSuchMethod(
+  set topLeftPosition(_i6.Vector2? point) => super.noSuchMethod(
         Invocation.setter(
           #topLeftPosition,
           point,
@@ -4942,16 +5411,16 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i5.Vector2 get center => (super.noSuchMethod(
+  _i6.Vector2 get center => (super.noSuchMethod(
         Invocation.getter(#center),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#center),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  set center(_i5.Vector2? point) => super.noSuchMethod(
+  set center(_i6.Vector2? point) => super.noSuchMethod(
         Invocation.setter(
           #center,
           point,
@@ -4960,31 +5429,31 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i5.Vector2 get absolutePosition => (super.noSuchMethod(
+  _i6.Vector2 get absolutePosition => (super.noSuchMethod(
         Invocation.getter(#absolutePosition),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#absolutePosition),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 get absoluteTopLeftPosition => (super.noSuchMethod(
+  _i6.Vector2 get absoluteTopLeftPosition => (super.noSuchMethod(
         Invocation.getter(#absoluteTopLeftPosition),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#absoluteTopLeftPosition),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 get absoluteCenter => (super.noSuchMethod(
+  _i6.Vector2 get absoluteCenter => (super.noSuchMethod(
         Invocation.getter(#absoluteCenter),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#absoluteCenter),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
   bool get isFlippedHorizontally => (super.noSuchMethod(
@@ -5024,16 +5493,16 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i2.Color get debugColor => (super.noSuchMethod(
+  _i3.Color get debugColor => (super.noSuchMethod(
         Invocation.getter(#debugColor),
-        returnValue: _FakeColor_4(
+        returnValue: _FakeColor_5(
           this,
           Invocation.getter(#debugColor),
         ),
-      ) as _i2.Color);
+      ) as _i3.Color);
 
   @override
-  set debugColor(_i2.Color? _debugColor) => super.noSuchMethod(
+  set debugColor(_i3.Color? _debugColor) => super.noSuchMethod(
         Invocation.setter(
           #debugColor,
           _debugColor,
@@ -5078,25 +5547,25 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       ) as bool);
 
   @override
-  _i20.Future<void> get loaded => (super.noSuchMethod(
+  _i24.Future<void> get loaded => (super.noSuchMethod(
         Invocation.getter(#loaded),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> get mounted => (super.noSuchMethod(
+  _i24.Future<void> get mounted => (super.noSuchMethod(
         Invocation.getter(#mounted),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> get removed => (super.noSuchMethod(
+  _i24.Future<void> get removed => (super.noSuchMethod(
         Invocation.getter(#removed),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  set parent(_i4.Component? newParent) => super.noSuchMethod(
+  set parent(_i5.Component? newParent) => super.noSuchMethod(
         Invocation.setter(
           #parent,
           newParent,
@@ -5105,13 +5574,13 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i4.ComponentSet get children => (super.noSuchMethod(
+  _i5.ComponentSet get children => (super.noSuchMethod(
         Invocation.getter(#children),
-        returnValue: _FakeComponentSet_5(
+        returnValue: _FakeComponentSet_6(
           this,
           Invocation.getter(#children),
         ),
-      ) as _i4.ComponentSet);
+      ) as _i5.ComponentSet);
 
   @override
   bool get hasChildren => (super.noSuchMethod(
@@ -5135,34 +5604,34 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i2.Paint get debugPaint => (super.noSuchMethod(
+  _i3.Paint get debugPaint => (super.noSuchMethod(
         Invocation.getter(#debugPaint),
-        returnValue: _FakePaint_6(
+        returnValue: _FakePaint_7(
           this,
           Invocation.getter(#debugPaint),
         ),
-      ) as _i2.Paint);
+      ) as _i3.Paint);
 
   @override
-  _i5.TextPaint get debugTextPaint => (super.noSuchMethod(
+  _i6.TextPaint get debugTextPaint => (super.noSuchMethod(
         Invocation.getter(#debugTextPaint),
-        returnValue: _FakeTextPaint_7(
+        returnValue: _FakeTextPaint_8(
           this,
           Invocation.getter(#debugTextPaint),
         ),
-      ) as _i5.TextPaint);
+      ) as _i6.TextPaint);
 
   @override
-  _i5.FlameGame<_i4.World> get game => (super.noSuchMethod(
+  _i6.FlameGame<_i5.World> get game => (super.noSuchMethod(
         Invocation.getter(#game),
-        returnValue: _FakeFlameGame_18<_i4.World>(
+        returnValue: _FakeFlameGame_19<_i5.World>(
           this,
           Invocation.getter(#game),
         ),
-      ) as _i5.FlameGame<_i4.World>);
+      ) as _i6.FlameGame<_i5.World>);
 
   @override
-  set game(_i5.FlameGame<_i4.World>? value) => super.noSuchMethod(
+  set game(_i6.FlameGame<_i5.World>? value) => super.noSuchMethod(
         Invocation.setter(
           #game,
           value,
@@ -5171,25 +5640,25 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i5.FlameGame<_i4.World> get gameRef => (super.noSuchMethod(
+  _i6.FlameGame<_i5.World> get gameRef => (super.noSuchMethod(
         Invocation.getter(#gameRef),
-        returnValue: _FakeFlameGame_18<_i4.World>(
+        returnValue: _FakeFlameGame_19<_i5.World>(
           this,
           Invocation.getter(#gameRef),
         ),
-      ) as _i5.FlameGame<_i4.World>);
+      ) as _i6.FlameGame<_i5.World>);
 
   @override
-  _i3.ColorTapWorld get world => (super.noSuchMethod(
+  _i4.ColorTapWorld get world => (super.noSuchMethod(
         Invocation.getter(#world),
-        returnValue: _FakeColorTapWorld_1(
+        returnValue: _FakeColorTapWorld_2(
           this,
           Invocation.getter(#world),
         ),
-      ) as _i3.ColorTapWorld);
+      ) as _i4.ColorTapWorld);
 
   @override
-  set world(_i3.ColorTapWorld? value) => super.noSuchMethod(
+  set world(_i4.ColorTapWorld? value) => super.noSuchMethod(
         Invocation.setter(
           #world,
           value,
@@ -5216,7 +5685,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  void render(_i2.Canvas? canvas) => super.noSuchMethod(
+  void render(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #render,
           [canvas],
@@ -5234,7 +5703,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  double distance(_i4.PositionComponent? other) => (super.noSuchMethod(
+  double distance(_i5.PositionComponent? other) => (super.noSuchMethod(
         Invocation.method(
           #distance,
           [other],
@@ -5243,7 +5712,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       ) as double);
 
   @override
-  bool containsLocalPoint(_i5.Vector2? point) => (super.noSuchMethod(
+  bool containsLocalPoint(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #containsLocalPoint,
           [point],
@@ -5252,7 +5721,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       ) as bool);
 
   @override
-  bool containsPoint(_i5.Vector2? point) => (super.noSuchMethod(
+  bool containsPoint(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #containsPoint,
           [point],
@@ -5261,128 +5730,128 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       ) as bool);
 
   @override
-  _i5.Vector2 parentToLocal(_i5.Vector2? point) => (super.noSuchMethod(
+  _i6.Vector2 parentToLocal(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #parentToLocal,
           [point],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #parentToLocal,
             [point],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 localToParent(_i5.Vector2? point) => (super.noSuchMethod(
+  _i6.Vector2 localToParent(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #localToParent,
           [point],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #localToParent,
             [point],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 positionOf(_i5.Vector2? point) => (super.noSuchMethod(
+  _i6.Vector2 positionOf(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #positionOf,
           [point],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #positionOf,
             [point],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 positionOfAnchor(_i4.Anchor? anchor) => (super.noSuchMethod(
+  _i6.Vector2 positionOfAnchor(_i5.Anchor? anchor) => (super.noSuchMethod(
         Invocation.method(
           #positionOfAnchor,
           [anchor],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #positionOfAnchor,
             [anchor],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 absolutePositionOf(_i5.Vector2? point) => (super.noSuchMethod(
+  _i6.Vector2 absolutePositionOf(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #absolutePositionOf,
           [point],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #absolutePositionOf,
             [point],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 absolutePositionOfAnchor(_i4.Anchor? anchor) =>
+  _i6.Vector2 absolutePositionOfAnchor(_i5.Anchor? anchor) =>
       (super.noSuchMethod(
         Invocation.method(
           #absolutePositionOfAnchor,
           [anchor],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #absolutePositionOfAnchor,
             [anchor],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 toLocal(_i5.Vector2? point) => (super.noSuchMethod(
+  _i6.Vector2 toLocal(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #toLocal,
           [point],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #toLocal,
             [point],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 absoluteToLocal(_i5.Vector2? point) => (super.noSuchMethod(
+  _i6.Vector2 absoluteToLocal(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #absoluteToLocal,
           [point],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #absoluteToLocal,
             [point],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  double angleTo(_i5.Vector2? target) => (super.noSuchMethod(
+  double angleTo(_i6.Vector2? target) => (super.noSuchMethod(
         Invocation.method(
           #angleTo,
           [target],
@@ -5391,7 +5860,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       ) as double);
 
   @override
-  void lookAt(_i5.Vector2? target) => super.noSuchMethod(
+  void lookAt(_i6.Vector2? target) => super.noSuchMethod(
         Invocation.method(
           #lookAt,
           [target],
@@ -5436,7 +5905,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  void renderDebugMode(_i2.Canvas? canvas) => super.noSuchMethod(
+  void renderDebugMode(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #renderDebugMode,
           [canvas],
@@ -5445,7 +5914,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  void renderTree(_i2.Canvas? canvas) => super.noSuchMethod(
+  void renderTree(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #renderTree,
           [canvas],
@@ -5454,37 +5923,37 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i2.Rect toRect() => (super.noSuchMethod(
+  _i3.Rect toRect() => (super.noSuchMethod(
         Invocation.method(
           #toRect,
           [],
         ),
-        returnValue: _FakeRect_0(
+        returnValue: _FakeRect_1(
           this,
           Invocation.method(
             #toRect,
             [],
           ),
         ),
-      ) as _i2.Rect);
+      ) as _i3.Rect);
 
   @override
-  _i2.Rect toAbsoluteRect() => (super.noSuchMethod(
+  _i3.Rect toAbsoluteRect() => (super.noSuchMethod(
         Invocation.method(
           #toAbsoluteRect,
           [],
         ),
-        returnValue: _FakeRect_0(
+        returnValue: _FakeRect_1(
           this,
           Invocation.method(
             #toAbsoluteRect,
             [],
           ),
         ),
-      ) as _i2.Rect);
+      ) as _i3.Rect);
 
   @override
-  void setByRect(_i2.Rect? rect) => super.noSuchMethod(
+  void setByRect(_i3.Rect? rect) => super.noSuchMethod(
         Invocation.method(
           #setByRect,
           [rect],
@@ -5493,22 +5962,22 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i4.ComponentSet createComponentSet() => (super.noSuchMethod(
+  _i5.ComponentSet createComponentSet() => (super.noSuchMethod(
         Invocation.method(
           #createComponentSet,
           [],
         ),
-        returnValue: _FakeComponentSet_5(
+        returnValue: _FakeComponentSet_6(
           this,
           Invocation.method(
             #createComponentSet,
             [],
           ),
         ),
-      ) as _i4.ComponentSet);
+      ) as _i5.ComponentSet);
 
   @override
-  T? findParent<T extends _i4.Component>({bool? includeSelf = false}) =>
+  T? findParent<T extends _i5.Component>({bool? includeSelf = false}) =>
       (super.noSuchMethod(Invocation.method(
         #findParent,
         [],
@@ -5516,18 +5985,18 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       )) as T?);
 
   @override
-  Iterable<_i4.Component> ancestors({bool? includeSelf = false}) =>
+  Iterable<_i5.Component> ancestors({bool? includeSelf = false}) =>
       (super.noSuchMethod(
         Invocation.method(
           #ancestors,
           [],
           {#includeSelf: includeSelf},
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  Iterable<_i4.Component> descendants({
+  Iterable<_i5.Component> descendants({
     bool? includeSelf = false,
     bool? reversed = false,
   }) =>
@@ -5540,11 +6009,11 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
             #reversed: reversed,
           },
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  bool propagateToChildren<T extends _i4.Component>(
+  bool propagateToChildren<T extends _i5.Component>(
     bool Function(T)? handler, {
     bool? includeSelf = false,
   }) =>
@@ -5558,7 +6027,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       ) as bool);
 
   @override
-  bool contains(_i4.Component? c) => (super.noSuchMethod(
+  bool contains(_i5.Component? c) => (super.noSuchMethod(
         Invocation.method(
           #contains,
           [c],
@@ -5567,7 +6036,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       ) as bool);
 
   @override
-  void onGameResize(_i5.Vector2? size) => super.noSuchMethod(
+  void onGameResize(_i6.Vector2? size) => super.noSuchMethod(
         Invocation.method(
           #onGameResize,
           [size],
@@ -5585,7 +6054,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  void onParentResize(_i5.Vector2? maxSize) => super.noSuchMethod(
+  void onParentResize(_i6.Vector2? maxSize) => super.noSuchMethod(
         Invocation.method(
           #onParentResize,
           [maxSize],
@@ -5604,8 +6073,8 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
 
   @override
   void onChildrenChanged(
-    _i4.Component? child,
-    _i4.ChildrenChangeType? type,
+    _i5.Component? child,
+    _i5.ChildrenChangeType? type,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -5619,32 +6088,32 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  _i20.FutureOr<void> add(_i4.Component? component) =>
+  _i24.FutureOr<void> add(_i5.Component? component) =>
       (super.noSuchMethod(Invocation.method(
         #add,
         [component],
-      )) as _i20.FutureOr<void>);
+      )) as _i24.FutureOr<void>);
 
   @override
-  _i20.FutureOr<void> addToParent(_i4.Component? parent) =>
+  _i24.FutureOr<void> addToParent(_i5.Component? parent) =>
       (super.noSuchMethod(Invocation.method(
         #addToParent,
         [parent],
-      )) as _i20.FutureOr<void>);
+      )) as _i24.FutureOr<void>);
 
   @override
-  _i20.Future<void> addAll(Iterable<_i4.Component>? components) =>
+  _i24.Future<void> addAll(Iterable<_i5.Component>? components) =>
       (super.noSuchMethod(
         Invocation.method(
           #addAll,
           [components],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  void remove(_i4.Component? component) => super.noSuchMethod(
+  void remove(_i5.Component? component) => super.noSuchMethod(
         Invocation.method(
           #remove,
           [component],
@@ -5662,7 +6131,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  void removeAll(Iterable<_i4.Component>? components) => super.noSuchMethod(
+  void removeAll(Iterable<_i5.Component>? components) => super.noSuchMethod(
         Invocation.method(
           #removeAll,
           [components],
@@ -5671,7 +6140,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  void removeWhere(bool Function(_i4.Component)? test) => super.noSuchMethod(
+  void removeWhere(bool Function(_i5.Component)? test) => super.noSuchMethod(
         Invocation.method(
           #removeWhere,
           [test],
@@ -5680,9 +6149,9 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
       );
 
   @override
-  Iterable<_i4.Component> componentsAtPoint(
-    _i5.Vector2? point, [
-    List<_i5.Vector2>? nestedPoints,
+  Iterable<_i5.Component> componentsAtPoint(
+    _i6.Vector2? point, [
+    List<_i6.Vector2>? nestedPoints,
   ]) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -5692,19 +6161,19 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
             nestedPoints,
           ],
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  Iterable<_i4.Component> componentsAtLocation<T>(
+  Iterable<_i5.Component> componentsAtLocation<T>(
     T? locationContext,
     List<T>? nestedContexts,
     T? Function(
-      _i4.CoordinateTransform,
+      _i5.CoordinateTransform,
       T,
     )? transformContext,
     bool Function(
-      _i4.Component,
+      _i5.Component,
       T,
     )? checkContains,
   ) =>
@@ -5718,42 +6187,42 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
             checkContains,
           ],
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventAdd(_i4.Component? parent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventAdd(_i5.Component? parent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventAdd,
           [parent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventRemove(_i4.Component? parent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventRemove(_i5.Component? parent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventRemove,
           [parent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventMove(
-          _i4.Component? newParent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventMove(
+          _i5.Component? newParent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventMove,
           [newParent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
-  void handleResize(_i5.Vector2? size) => super.noSuchMethod(
+  void handleResize(_i6.Vector2? size) => super.noSuchMethod(
         Invocation.method(
           #handleResize,
           [size],
@@ -5774,7 +6243,7 @@ class MockTargetBoard extends _i1.Mock implements _i25.TargetBoard {
 /// A class which mocks [TimeManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTimeManager extends _i1.Mock implements _i43.TimeManager {
+class MockTimeManager extends _i1.Mock implements _i50.TimeManager {
   MockTimeManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -5790,49 +6259,49 @@ class MockTimeManager extends _i1.Mock implements _i43.TimeManager {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockUrlLauncherWrapper extends _i1.Mock
-    implements _i44.UrlLauncherWrapper {
+    implements _i51.UrlLauncherWrapper {
   MockUrlLauncherWrapper() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i20.Future<bool> launch(String? url) => (super.noSuchMethod(
+  _i24.Future<bool> launch(String? url) => (super.noSuchMethod(
         Invocation.method(
           #launch,
           [url],
         ),
-        returnValue: _i20.Future<bool>.value(false),
-      ) as _i20.Future<bool>);
+        returnValue: _i24.Future<bool>.value(false),
+      ) as _i24.Future<bool>);
 }
 
 /// A class which mocks [Viewport].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockViewport extends _i1.Mock implements _i45.Viewport {
+class MockViewport extends _i1.Mock implements _i52.Viewport {
   MockViewport() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Transform2D get transform => (super.noSuchMethod(
+  _i6.Transform2D get transform => (super.noSuchMethod(
         Invocation.getter(#transform),
-        returnValue: _FakeTransform2D_39(
+        returnValue: _FakeTransform2D_44(
           this,
           Invocation.getter(#transform),
         ),
-      ) as _i5.Transform2D);
+      ) as _i6.Transform2D);
 
   @override
-  _i4.Anchor get anchor => (super.noSuchMethod(
+  _i5.Anchor get anchor => (super.noSuchMethod(
         Invocation.getter(#anchor),
-        returnValue: _FakeAnchor_43(
+        returnValue: _FakeAnchor_48(
           this,
           Invocation.getter(#anchor),
         ),
-      ) as _i4.Anchor);
+      ) as _i5.Anchor);
 
   @override
-  set anchor(_i4.Anchor? _anchor) => super.noSuchMethod(
+  set anchor(_i5.Anchor? _anchor) => super.noSuchMethod(
         Invocation.setter(
           #anchor,
           _anchor,
@@ -5841,16 +6310,16 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  _i5.Vector2 get position => (super.noSuchMethod(
+  _i6.Vector2 get position => (super.noSuchMethod(
         Invocation.getter(#position),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#position),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  set position(_i5.Vector2? value) => super.noSuchMethod(
+  set position(_i6.Vector2? value) => super.noSuchMethod(
         Invocation.setter(
           #position,
           value,
@@ -5859,25 +6328,25 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  _i5.Vector2 get size => (super.noSuchMethod(
+  _i6.Vector2 get size => (super.noSuchMethod(
         Invocation.getter(#size),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#size),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 get virtualSize => (super.noSuchMethod(
+  _i6.Vector2 get virtualSize => (super.noSuchMethod(
         Invocation.getter(#virtualSize),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.getter(#virtualSize),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  set size(_i5.Vector2? value) => super.noSuchMethod(
+  set size(_i6.Vector2? value) => super.noSuchMethod(
         Invocation.setter(
           #size,
           value,
@@ -5886,13 +6355,13 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  _i4.CameraComponent get camera => (super.noSuchMethod(
+  _i5.CameraComponent get camera => (super.noSuchMethod(
         Invocation.getter(#camera),
-        returnValue: _FakeCameraComponent_2(
+        returnValue: _FakeCameraComponent_3(
           this,
           Invocation.getter(#camera),
         ),
-      ) as _i4.CameraComponent);
+      ) as _i5.CameraComponent);
 
   @override
   bool get debugMode => (super.noSuchMethod(
@@ -5920,16 +6389,16 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  _i2.Color get debugColor => (super.noSuchMethod(
+  _i3.Color get debugColor => (super.noSuchMethod(
         Invocation.getter(#debugColor),
-        returnValue: _FakeColor_4(
+        returnValue: _FakeColor_5(
           this,
           Invocation.getter(#debugColor),
         ),
-      ) as _i2.Color);
+      ) as _i3.Color);
 
   @override
-  set debugColor(_i2.Color? _debugColor) => super.noSuchMethod(
+  set debugColor(_i3.Color? _debugColor) => super.noSuchMethod(
         Invocation.setter(
           #debugColor,
           _debugColor,
@@ -5974,25 +6443,25 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       ) as bool);
 
   @override
-  _i20.Future<void> get loaded => (super.noSuchMethod(
+  _i24.Future<void> get loaded => (super.noSuchMethod(
         Invocation.getter(#loaded),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> get mounted => (super.noSuchMethod(
+  _i24.Future<void> get mounted => (super.noSuchMethod(
         Invocation.getter(#mounted),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  _i20.Future<void> get removed => (super.noSuchMethod(
+  _i24.Future<void> get removed => (super.noSuchMethod(
         Invocation.getter(#removed),
-        returnValue: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  set parent(_i4.Component? newParent) => super.noSuchMethod(
+  set parent(_i5.Component? newParent) => super.noSuchMethod(
         Invocation.setter(
           #parent,
           newParent,
@@ -6001,13 +6470,13 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  _i4.ComponentSet get children => (super.noSuchMethod(
+  _i5.ComponentSet get children => (super.noSuchMethod(
         Invocation.getter(#children),
-        returnValue: _FakeComponentSet_5(
+        returnValue: _FakeComponentSet_6(
           this,
           Invocation.getter(#children),
         ),
-      ) as _i4.ComponentSet);
+      ) as _i5.ComponentSet);
 
   @override
   bool get hasChildren => (super.noSuchMethod(
@@ -6031,25 +6500,25 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  _i2.Paint get debugPaint => (super.noSuchMethod(
+  _i3.Paint get debugPaint => (super.noSuchMethod(
         Invocation.getter(#debugPaint),
-        returnValue: _FakePaint_6(
+        returnValue: _FakePaint_7(
           this,
           Invocation.getter(#debugPaint),
         ),
-      ) as _i2.Paint);
+      ) as _i3.Paint);
 
   @override
-  _i5.TextPaint get debugTextPaint => (super.noSuchMethod(
+  _i6.TextPaint get debugTextPaint => (super.noSuchMethod(
         Invocation.getter(#debugTextPaint),
-        returnValue: _FakeTextPaint_7(
+        returnValue: _FakeTextPaint_8(
           this,
           Invocation.getter(#debugTextPaint),
         ),
-      ) as _i5.TextPaint);
+      ) as _i6.TextPaint);
 
   @override
-  void clip(_i2.Canvas? canvas) => super.noSuchMethod(
+  void clip(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #clip,
           [canvas],
@@ -6058,7 +6527,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  bool containsLocalPoint(_i5.Vector2? point) => (super.noSuchMethod(
+  bool containsLocalPoint(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #containsLocalPoint,
           [point],
@@ -6076,9 +6545,9 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  _i5.Vector2 globalToLocal(
-    _i5.Vector2? point, {
-    _i5.Vector2? output,
+  _i6.Vector2 globalToLocal(
+    _i6.Vector2? point, {
+    _i6.Vector2? output,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -6086,7 +6555,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
           [point],
           {#output: output},
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #globalToLocal,
@@ -6094,12 +6563,12 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
             {#output: output},
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 localToGlobal(
-    _i5.Vector2? point, {
-    _i5.Vector2? output,
+  _i6.Vector2 localToGlobal(
+    _i6.Vector2? point, {
+    _i6.Vector2? output,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -6107,7 +6576,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
           [point],
           {#output: output},
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #localToGlobal,
@@ -6115,40 +6584,40 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
             {#output: output},
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 parentToLocal(_i5.Vector2? point) => (super.noSuchMethod(
+  _i6.Vector2 parentToLocal(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #parentToLocal,
           [point],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #parentToLocal,
             [point],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  _i5.Vector2 localToParent(_i5.Vector2? point) => (super.noSuchMethod(
+  _i6.Vector2 localToParent(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #localToParent,
           [point],
         ),
-        returnValue: _FakeVector2_3(
+        returnValue: _FakeVector2_4(
           this,
           Invocation.method(
             #localToParent,
             [point],
           ),
         ),
-      ) as _i5.Vector2);
+      ) as _i6.Vector2);
 
   @override
-  void transformCanvas(_i2.Canvas? canvas) => super.noSuchMethod(
+  void transformCanvas(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #transformCanvas,
           [canvas],
@@ -6157,22 +6626,22 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  _i4.ComponentSet createComponentSet() => (super.noSuchMethod(
+  _i5.ComponentSet createComponentSet() => (super.noSuchMethod(
         Invocation.method(
           #createComponentSet,
           [],
         ),
-        returnValue: _FakeComponentSet_5(
+        returnValue: _FakeComponentSet_6(
           this,
           Invocation.method(
             #createComponentSet,
             [],
           ),
         ),
-      ) as _i4.ComponentSet);
+      ) as _i5.ComponentSet);
 
   @override
-  T? findParent<T extends _i4.Component>({bool? includeSelf = false}) =>
+  T? findParent<T extends _i5.Component>({bool? includeSelf = false}) =>
       (super.noSuchMethod(Invocation.method(
         #findParent,
         [],
@@ -6180,18 +6649,18 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       )) as T?);
 
   @override
-  Iterable<_i4.Component> ancestors({bool? includeSelf = false}) =>
+  Iterable<_i5.Component> ancestors({bool? includeSelf = false}) =>
       (super.noSuchMethod(
         Invocation.method(
           #ancestors,
           [],
           {#includeSelf: includeSelf},
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  Iterable<_i4.Component> descendants({
+  Iterable<_i5.Component> descendants({
     bool? includeSelf = false,
     bool? reversed = false,
   }) =>
@@ -6204,11 +6673,11 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
             #reversed: reversed,
           },
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  bool propagateToChildren<T extends _i4.Component>(
+  bool propagateToChildren<T extends _i5.Component>(
     bool Function(T)? handler, {
     bool? includeSelf = false,
   }) =>
@@ -6222,7 +6691,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       ) as bool);
 
   @override
-  bool contains(_i4.Component? c) => (super.noSuchMethod(
+  bool contains(_i5.Component? c) => (super.noSuchMethod(
         Invocation.method(
           #contains,
           [c],
@@ -6231,7 +6700,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       ) as bool);
 
   @override
-  void onGameResize(_i5.Vector2? size) => super.noSuchMethod(
+  void onGameResize(_i6.Vector2? size) => super.noSuchMethod(
         Invocation.method(
           #onGameResize,
           [size],
@@ -6258,7 +6727,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  void onParentResize(_i5.Vector2? maxSize) => super.noSuchMethod(
+  void onParentResize(_i6.Vector2? maxSize) => super.noSuchMethod(
         Invocation.method(
           #onParentResize,
           [maxSize],
@@ -6286,8 +6755,8 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
 
   @override
   void onChildrenChanged(
-    _i4.Component? child,
-    _i4.ChildrenChangeType? type,
+    _i5.Component? child,
+    _i5.ChildrenChangeType? type,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -6301,7 +6770,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  void render(_i2.Canvas? canvas) => super.noSuchMethod(
+  void render(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #render,
           [canvas],
@@ -6310,7 +6779,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  void renderTree(_i2.Canvas? canvas) => super.noSuchMethod(
+  void renderTree(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #renderTree,
           [canvas],
@@ -6319,32 +6788,32 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  _i20.FutureOr<void> add(_i4.Component? component) =>
+  _i24.FutureOr<void> add(_i5.Component? component) =>
       (super.noSuchMethod(Invocation.method(
         #add,
         [component],
-      )) as _i20.FutureOr<void>);
+      )) as _i24.FutureOr<void>);
 
   @override
-  _i20.FutureOr<void> addToParent(_i4.Component? parent) =>
+  _i24.FutureOr<void> addToParent(_i5.Component? parent) =>
       (super.noSuchMethod(Invocation.method(
         #addToParent,
         [parent],
-      )) as _i20.FutureOr<void>);
+      )) as _i24.FutureOr<void>);
 
   @override
-  _i20.Future<void> addAll(Iterable<_i4.Component>? components) =>
+  _i24.Future<void> addAll(Iterable<_i5.Component>? components) =>
       (super.noSuchMethod(
         Invocation.method(
           #addAll,
           [components],
         ),
-        returnValue: _i20.Future<void>.value(),
-        returnValueForMissingStub: _i20.Future<void>.value(),
-      ) as _i20.Future<void>);
+        returnValue: _i24.Future<void>.value(),
+        returnValueForMissingStub: _i24.Future<void>.value(),
+      ) as _i24.Future<void>);
 
   @override
-  void remove(_i4.Component? component) => super.noSuchMethod(
+  void remove(_i5.Component? component) => super.noSuchMethod(
         Invocation.method(
           #remove,
           [component],
@@ -6362,7 +6831,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  void removeAll(Iterable<_i4.Component>? components) => super.noSuchMethod(
+  void removeAll(Iterable<_i5.Component>? components) => super.noSuchMethod(
         Invocation.method(
           #removeAll,
           [components],
@@ -6371,7 +6840,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  void removeWhere(bool Function(_i4.Component)? test) => super.noSuchMethod(
+  void removeWhere(bool Function(_i5.Component)? test) => super.noSuchMethod(
         Invocation.method(
           #removeWhere,
           [test],
@@ -6380,7 +6849,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  bool containsPoint(_i5.Vector2? point) => (super.noSuchMethod(
+  bool containsPoint(_i6.Vector2? point) => (super.noSuchMethod(
         Invocation.method(
           #containsPoint,
           [point],
@@ -6389,9 +6858,9 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       ) as bool);
 
   @override
-  Iterable<_i4.Component> componentsAtPoint(
-    _i5.Vector2? point, [
-    List<_i5.Vector2>? nestedPoints,
+  Iterable<_i5.Component> componentsAtPoint(
+    _i6.Vector2? point, [
+    List<_i6.Vector2>? nestedPoints,
   ]) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -6401,19 +6870,19 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
             nestedPoints,
           ],
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  Iterable<_i4.Component> componentsAtLocation<T>(
+  Iterable<_i5.Component> componentsAtLocation<T>(
     T? locationContext,
     List<T>? nestedContexts,
     T? Function(
-      _i4.CoordinateTransform,
+      _i5.CoordinateTransform,
       T,
     )? transformContext,
     bool Function(
-      _i4.Component,
+      _i5.Component,
       T,
     )? checkContains,
   ) =>
@@ -6427,42 +6896,42 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
             checkContains,
           ],
         ),
-        returnValue: <_i4.Component>[],
-      ) as Iterable<_i4.Component>);
+        returnValue: <_i5.Component>[],
+      ) as Iterable<_i5.Component>);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventAdd(_i4.Component? parent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventAdd(_i5.Component? parent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventAdd,
           [parent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventRemove(_i4.Component? parent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventRemove(_i5.Component? parent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventRemove,
           [parent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
-  _i22.LifecycleEventStatus handleLifecycleEventMove(
-          _i4.Component? newParent) =>
+  _i26.LifecycleEventStatus handleLifecycleEventMove(
+          _i5.Component? newParent) =>
       (super.noSuchMethod(
         Invocation.method(
           #handleLifecycleEventMove,
           [newParent],
         ),
-        returnValue: _i22.LifecycleEventStatus.skip,
-      ) as _i22.LifecycleEventStatus);
+        returnValue: _i26.LifecycleEventStatus.skip,
+      ) as _i26.LifecycleEventStatus);
 
   @override
-  void handleResize(_i5.Vector2? size) => super.noSuchMethod(
+  void handleResize(_i6.Vector2? size) => super.noSuchMethod(
         Invocation.method(
           #handleResize,
           [size],
@@ -6480,7 +6949,7 @@ class MockViewport extends _i1.Mock implements _i45.Viewport {
       );
 
   @override
-  void renderDebugMode(_i2.Canvas? canvas) => super.noSuchMethod(
+  void renderDebugMode(_i3.Canvas? canvas) => super.noSuchMethod(
         Invocation.method(
           #renderDebugMode,
           [canvas],

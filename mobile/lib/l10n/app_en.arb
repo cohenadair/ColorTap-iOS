@@ -9,6 +9,7 @@
   "menuGameOverPlayAgain": "Play Again",
   "menuOutOfLives": "Uh oh! You are out of lives!",
   "menuBuyMoreLives": "Buy More",
+  "menuFeedback": "Send Feedback",
 
   "menuDifficulty": "Difficulty: {difficulty}",
   "@menuDifficulty": {
@@ -67,5 +68,17 @@
   "difficultyEasy": "Easy",
   "difficultyNormal": "Normal",
   "difficultyHard": "Hard",
-  "difficultyExpert": "Expert"
+  "difficultyExpert": "Expert",
+
+  "feedbackPageTitle": "Email Support",
+  "feedbackPageName": "Name",
+  "feedbackPageEmail": "Email",
+  "feedbackPageMessage": "Message",
+  "feedbackPageRequired": "Required",
+  "feedbackPageInvalidEmail": "Invalid email format",
+  "feedbackPageConfirmationTitle": "Sent",
+  "feedbackPageConfirmationMessage": "Message successfully sent. Please allow 1-2 business days for a reply.",
+  "feedbackPageRequiredFields": "Please fix all form errors before sending your feedback.",
+  "feedbackPageConnectionError": "No internet connection. Please check your connection and try again.",
+  "feedbackPageErrorSending": "Error sending feedback. Please try again later, or email %s directly."
 }

@@ -9,11 +9,10 @@ import 'package:mobile/utils/theme.dart';
 import 'package:mobile/widgets/get_lives.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
 
-import '../utils/colors.dart';
+import '../pages/feedback_page.dart';
 import '../utils/page_utils.dart';
 
 class Menu extends StatelessWidget {
-  static const _titleSize = 50.0;
   static const _scoreSize = 100.0;
 
   final ColorTapGame game;
@@ -28,7 +27,6 @@ class Menu extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: appTheme(context),
-      themeMode: ThemeMode.dark,
       localizationsDelegates: Strings.localizationsDelegates,
       supportedLocales: Strings.supportedLocales,
       // Unless the system locale exactly matches supportedLocales, default to
@@ -54,7 +52,7 @@ class Menu extends StatelessWidget {
                         _buildGetLives(context),
                         const Spacer(),
                         _buildPlayButton(context),
-                        const SizedBox(height: paddingSmall),
+                        _buildFeedbackButton(context),
                         _buildSettingsButton(context),
                         const Spacer(),
                         _buildDifficulty(),
@@ -74,10 +72,7 @@ class Menu extends StatelessWidget {
     return Text(
       _data.title(context),
       textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontSize: _titleSize,
-        color: colorLightText,
-      ),
+      style: Theme.of(context).textTheme.displayLarge,
     );
   }
 
@@ -92,10 +87,7 @@ class Menu extends StatelessWidget {
 
     return Text(
       game.world.score.toString(),
-      style: const TextStyle(
-        fontSize: _scoreSize,
-        color: colorLightText,
-      ),
+      style: const TextStyle(fontSize: _scoreSize),
     );
   }
 
@@ -135,13 +127,17 @@ class Menu extends StatelessWidget {
     );
   }
 
+  Widget _buildFeedbackButton(BuildContext context) {
+    return FilledButton(
+      onPressed: () => present(context, const FeedbackPage()),
+      child: Text(Strings.of(context).menuFeedback),
+    );
+  }
+
   Widget _buildSettingsButton(BuildContext context) {
-    return Padding(
-      padding: insetsVerticalSmall,
-      child: FilledButton(
-        onPressed: () => present(context, SettingsPage()),
-        child: Text(Strings.of(context).settingsTitle),
-      ),
+    return FilledButton(
+      onPressed: () => present(context, SettingsPage()),
+      child: Text(Strings.of(context).settingsTitle),
     );
   }
 
@@ -149,20 +145,23 @@ class Menu extends StatelessWidget {
     return StreamBuilder(
       stream: PreferenceManager.get.stream,
       builder: (context, _) {
-        return Column(
-          children: [
-            Text(
-              Strings.of(context).menuDifficulty(
-                  PreferenceManager.get.difficulty.displayName(context)),
-              style: styleTextPrimary(),
-            ),
-            Text(
-              Strings.of(context).menuHighScore(
-                  PreferenceManager.get.currentHighScore?.toString() ??
-                      Strings.of(context).menuHighScoreNone),
-              style: styleTextPrimary(),
-            ),
-          ],
+        return Padding(
+          padding: insetsTopDefault,
+          child: Column(
+            children: [
+              Text(
+                Strings.of(context).menuDifficulty(
+                    PreferenceManager.get.difficulty.displayName(context)),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Text(
+                Strings.of(context).menuHighScore(
+                    PreferenceManager.get.currentHighScore?.toString() ??
+                        Strings.of(context).menuHighScoreNone),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ],
+          ),
         );
       },
     );
