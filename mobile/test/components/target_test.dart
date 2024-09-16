@@ -4,19 +4,17 @@ import 'package:flame/palette.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/components/target.dart';
 import 'package:mobile/difficulty.dart';
-import 'package:mobile/managers/preference_manager.dart';
-import 'package:mobile/managers/time_manager.dart';
 import 'package:mobile/target_color.dart';
 import 'package:mockito/mockito.dart';
 
 import '../mocks/mocks.mocks.dart';
+import '../test_utils/stubbed_managers.dart';
 
 main() {
   late MockTargetBoard board;
   late MockColorTapGame game;
   late MockColorTapWorld world;
-  late MockTimeManager timeManager;
-  late MockPreferenceManager preferenceManager;
+  late StubbedManagers managers;
 
   setUp(() {
     board = MockTargetBoard();
@@ -27,13 +25,10 @@ main() {
     when(game.size).thenReturn(Vector2(400, 1000));
     when(game.hasLayout).thenReturn(true);
 
-    timeManager = MockTimeManager();
-    when(timeManager.millisSinceEpoch).thenReturn(0);
-    TimeManager.set(timeManager);
+    managers = StubbedManagers();
+    when(managers.timeManager.millisSinceEpoch).thenReturn(0);
 
-    preferenceManager = MockPreferenceManager();
-    when(preferenceManager.difficulty).thenReturn(Difficulty.normal);
-    PreferenceManager.set(preferenceManager);
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
   });
 
   Target buildTarget() {
@@ -132,6 +127,8 @@ main() {
         verify(world.handleTargetHit(isCorrect: captureAnyNamed("isCorrect")));
     result.called(1);
     expect(result.captured.first, false);
+
+    verify(managers.audioManager.playIncorrectHit()).called(1);
   });
 
   test("update is a no-op if passed the bottom of the screen", () {
@@ -142,16 +139,16 @@ main() {
 
     // Initial update to set _isPassedBottom to true.
     target.update(0);
-    verify(timeManager.millisSinceEpoch).called(1);
+    verify(managers.timeManager.millisSinceEpoch).called(1);
 
     // Next update that exits early.
     target.update(0);
-    verifyNever(timeManager.millisSinceEpoch);
+    verifyNever(managers.timeManager.millisSinceEpoch);
   });
 
   test("update is a no-op when still on the screen", () {
     buildTarget().update(0);
-    verifyNever(timeManager.millisSinceEpoch);
+    verifyNever(managers.timeManager.millisSinceEpoch);
   });
 
   test("update is a no-op during the grace period", () {
@@ -160,7 +157,7 @@ main() {
     var target = buildTarget();
     target.position.y = game.size.y + target.radius + 1;
     target.update(0);
-    verify(timeManager.millisSinceEpoch).called(1);
+    verify(managers.timeManager.millisSinceEpoch).called(1);
     verifyNever(world.color);
   });
 

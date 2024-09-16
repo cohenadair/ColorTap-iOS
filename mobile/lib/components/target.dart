@@ -4,6 +4,7 @@ import 'package:flame/events.dart';
 import 'package:mobile/color_tap_game.dart';
 import 'package:mobile/color_tap_world.dart';
 
+import '../managers/audio_manager.dart';
 import '../managers/time_manager.dart';
 import '../target_color.dart';
 import 'target_board.dart';
@@ -86,6 +87,8 @@ class Target extends CircleComponent
   }
 
   void _handleIncorrectHit() {
+    AudioManager.get.playIncorrectHit();
+
     // Pulse the target 3 times so the user knows what they did wrong.
     add(ScaleEffect.by(
       Vector2.all(_scaleUpBy),

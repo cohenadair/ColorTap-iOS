@@ -3,15 +3,17 @@ import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:mobile/difficulty.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/utils/alert_utils.dart';
-import 'package:mobile/utils/theme.dart';
 import 'package:mobile/widgets/color_picker.dart';
 import 'package:mobile/wrappers/url_launcher_wrapper.dart';
 
+import '../managers/audio_manager.dart';
 import '../utils/dimens.dart';
+import '../widgets/audio_close_button.dart';
 
 class SettingsPage extends StatelessWidget {
   static const _urlFontLicense =
       "https://cohenadair.github.io/colour-tap/font-license.txt";
+  static const _urlAudioLicense = "https://www.zapsplat.com";
   static const _urlPrivacyPolicy =
       "https://cohenadair.github.io/colour-tap/privacy.html";
 
@@ -19,6 +21,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: AudioCloseButton(),
         title: Text(Strings.of(context).settingsTitle),
       ),
       body: SafeArea(
@@ -26,8 +29,12 @@ class SettingsPage extends StatelessWidget {
           children: [
             _buildDifficulty(context),
             _buildColorSelection(context),
+            _buildMusic(context),
+            _buildSoundEffects(context),
             const Divider(color: Colors.white10),
-            _buildLicenses(context),
+            _buildFontLicense(context),
+            _buildAudioLicense(context),
+            const Divider(color: Colors.white10),
             _buildPrivacy(context),
           ],
         ),
@@ -40,13 +47,14 @@ class SettingsPage extends StatelessWidget {
       stream: PreferenceManager.get.stream,
       builder: (context, _) {
         return ListTile(
-          title: Text(Strings.of(context).settingsDifficultyTitle),
+          title: Text(Strings.of(context).settingsDifficulty),
           contentPadding: insetsHorizontalDefault,
           trailing: DropdownButton<Difficulty>(
             value: PreferenceManager.get.difficulty,
             items: Difficulty.values.map((e) {
               return DropdownMenuItem<Difficulty>(
                 value: e,
+                onTap: AudioManager.get.onButtonPressed(),
                 child: _buildDifficultyItem(context, e),
               );
             }).toList(),
@@ -64,6 +72,7 @@ class SettingsPage extends StatelessWidget {
                 PreferenceManager.get.colorIndex = null;
               }
             },
+            onTap: AudioManager.get.onButtonPressed(),
           ),
         );
       },
@@ -85,10 +94,12 @@ class SettingsPage extends StatelessWidget {
           Text(Strings.of(context).settingsChooseColorTitle),
           IconButton(
             icon: const Icon(Icons.info_outline),
-            onPressed: () => showInfoDialog(
-              context,
-              Strings.of(context).settingsChooseColorTitle,
-              Strings.of(context).settingsChooseColorMessage,
+            onPressed: AudioManager.get.onButtonPressed(
+              () => showInfoDialog(
+                context,
+                Strings.of(context).settingsChooseColorTitle,
+                Strings.of(context).settingsChooseColorMessage,
+              ),
             ),
           ),
         ],
@@ -98,21 +109,67 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildLicenses(BuildContext context) {
+  Widget _buildMusic(BuildContext context) {
     return ListTile(
-      title: Text(Strings.of(context).settingsFontLicenseTitle),
+      contentPadding: insetsHorizontalDefault,
+      title: Text(Strings.of(context).settingsMusic),
+      trailing: StreamBuilder(
+        stream: PreferenceManager.get.stream,
+        builder: (context, snapshot) {
+          return Switch(
+            value: PreferenceManager.get.isMusicOn,
+            onChanged: (value) => AudioManager.get.onButtonPressed(
+                () => PreferenceManager.get.isMusicOn = value)(),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildSoundEffects(BuildContext context) {
+    return ListTile(
+      contentPadding: insetsHorizontalDefault,
+      title: Text(Strings.of(context).settingsSoundEffects),
+      trailing: StreamBuilder(
+        stream: PreferenceManager.get.stream,
+        builder: (context, snapshot) {
+          return Switch(
+            value: PreferenceManager.get.isSoundOn,
+            onChanged: (value) => AudioManager.get.onButtonPressed(
+                () => PreferenceManager.get.isSoundOn = value)(),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildFontLicense(BuildContext context) {
+    return ListTile(
+      title: Text(Strings.of(context).settingsFontLicense),
       contentPadding: insetsHorizontalDefault,
       trailing: const Icon(Icons.open_in_new),
-      onTap: () => UrlLauncherWrapper.get.launch(_urlFontLicense),
+      onTap: AudioManager.get.onButtonPressed(
+          () => UrlLauncherWrapper.get.launch(_urlFontLicense)),
+    );
+  }
+
+  Widget _buildAudioLicense(BuildContext context) {
+    return ListTile(
+      title: Text(Strings.of(context).settingsAudioLicense),
+      contentPadding: insetsHorizontalDefault,
+      trailing: const Icon(Icons.open_in_new),
+      onTap: AudioManager.get.onButtonPressed(
+          () => UrlLauncherWrapper.get.launch(_urlAudioLicense)),
     );
   }
 
   Widget _buildPrivacy(BuildContext context) {
     return ListTile(
-      title: Text(Strings.of(context).settingsPrivacyTitle),
+      title: Text(Strings.of(context).settingsPrivacy),
       contentPadding: insetsHorizontalDefault,
       trailing: const Icon(Icons.open_in_new),
-      onTap: () => UrlLauncherWrapper.get.launch(_urlPrivacyPolicy),
+      onTap: AudioManager.get.onButtonPressed(
+          () => UrlLauncherWrapper.get.launch(_urlPrivacyPolicy)),
     );
   }
 }

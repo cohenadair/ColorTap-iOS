@@ -44,6 +44,8 @@ void main() {
     expect(game.overlays.activeOverlays.contains(overlayIdScoreboard), true);
     expect(world.children.whereType<FpsTextComponent>().length, 1);
     expect(world.children.whereType<TargetBoard>().length, 2);
+
+    verify(managers.audioManager.playMenuBackground()).called(1);
   });
 
   testWidgets("Correct hit without color change", (tester) async {
@@ -61,6 +63,8 @@ void main() {
     expect(world.score > startScore, true);
     expect(world.color == startColor, true);
     expect(notified, true);
+    verify(managers.audioManager.playCorrectHit()).called(1);
+    verifyNever(managers.audioManager.playIncorrectHit());
   });
 
   testWidgets("Correct hit with color change", (tester) async {
@@ -77,6 +81,9 @@ void main() {
     // Time out grace period.
     await tester.pump(const Duration(milliseconds: 2000));
     expect(world.gracePeriod, isNull);
+    verify(managers.audioManager.playSwitchTarget()).called(1);
+    verify(managers.audioManager.playCorrectHit()).called(9);
+    verifyNever(managers.audioManager.playIncorrectHit());
   });
 
   testWidgets("Correct hit with Kids color set", (tester) async {
@@ -92,11 +99,17 @@ void main() {
     }
     expect(world.color == startColor, true);
     expect(world.gracePeriod, isNull);
+    verify(managers.audioManager.playCorrectHit()).called(10);
+    verifyNever(managers.audioManager.playIncorrectHit());
+    verifyNever(managers.audioManager.playSwitchTarget());
   });
 
   testWidgets("Incorrect hit ends game", (tester) async {
     await tester.pumpWidget(ColorTapGameWidget(game));
     await tester.pump();
+
+    // Reset counter.
+    verify(managers.audioManager.playMenuBackground()).called(1);
 
     var startSpeed = world.speed;
     var startScore = world.score;
@@ -111,6 +124,8 @@ void main() {
     expect(game.overlays.activeOverlays.contains(overlayIdGameOver), true);
     expect(notified, true);
     verify(managers.livesManager.loseLife()).called(1);
+    verify(managers.audioManager.playMenuBackground()).called(1);
+    verifyNever(managers.audioManager.playCorrectHit());
 
     await tester.pump();
     expect(find.text("Game Over"), findsOneWidget);
@@ -121,14 +136,20 @@ void main() {
 
     await tester.pumpWidget(ColorTapGameWidget(game));
     await tester.pump();
-    world.handleTargetHit(isCorrect: false);
 
+    // Reset counter.
+    verify(managers.audioManager.playMenuBackground()).called(1);
+
+    world.handleTargetHit(isCorrect: false);
     verifyNever(managers.livesManager.loseLife());
+    verify(managers.audioManager.playMenuBackground()).called(1);
+    verifyNever(managers.audioManager.playCorrectHit());
   });
 
   testWidgets("Target missed ends game", (tester) async {
     await tester.pumpWidget(ColorTapGameWidget(game));
     await tester.pump();
+    await tester.pump(); // Second pump ensures children are loaded.
 
     var board = world.children.whereType<TargetBoard>().first;
     var target = board.children.whereType<Target>().first;
@@ -148,6 +169,9 @@ void main() {
     // Verify target's "pulse" is invoked.
     await tester.pump(const Duration(milliseconds: 300));
     expect(board.priority, 1);
+
+    verify(managers.audioManager.playIncorrectHit()).called(1);
+    verifyNever(managers.audioManager.playCorrectHit());
   });
 
   testWidgets("Play starts the game", (tester) async {
@@ -171,5 +195,7 @@ void main() {
     expect(world.scrollingPaused, false);
     expect(notified, true);
     expect(game.overlays.activeOverlays.length, 1); // Scoreboard.
+
+    verify(managers.audioManager.playGameBackground()).called(1);
   });
 }

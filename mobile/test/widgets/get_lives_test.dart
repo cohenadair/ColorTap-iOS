@@ -1,54 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mobile/managers/lives_manager.dart';
-import 'package:mobile/managers/properties_manager.dart';
-import 'package:mobile/managers/purchases_manager.dart';
 import 'package:mobile/widgets/animated_visibility.dart';
 import 'package:mobile/widgets/get_lives.dart';
 import 'package:mobile/widgets/loading.dart';
-import 'package:mobile/wrappers/internet_address_wrapper.dart';
-import 'package:mobile/wrappers/platform_wrapper.dart';
-import 'package:mobile/wrappers/purchases_wrapper.dart';
-import 'package:mobile/wrappers/rewarded_ad_wrapper.dart';
 import 'package:mockito/mockito.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../mocks/mocks.mocks.dart';
+import '../test_utils/stubbed_managers.dart';
 import '../test_utils/test_utils.dart';
 
 void main() {
-  late MockPurchasesManager purchasesManager;
-  late MockPurchasesWrapper purchasesWrapper;
-  late MockLivesManager livesManager;
-  late MockInternetAddressWrapper internetAddressWrapper;
-  late MockRewardedAdWrapper rewardedAdWrapper;
-  late MockPropertiesManager propertiesManager;
-  late MockPlatformWrapper platformWrapper;
+  late StubbedManagers managers;
 
   setUp(() {
-    purchasesManager = MockPurchasesManager();
-    PurchasesManager.set(purchasesManager);
+    managers = StubbedManagers();
 
-    purchasesWrapper = MockPurchasesWrapper();
-    PurchasesWrapper.set(purchasesWrapper);
-
-    livesManager = MockLivesManager();
-    LivesManager.set(livesManager);
-
-    internetAddressWrapper = MockInternetAddressWrapper();
-    InternetAddressWrapper.set(internetAddressWrapper);
-
-    rewardedAdWrapper = MockRewardedAdWrapper();
-    RewardedAdWrapper.set(rewardedAdWrapper);
-
-    propertiesManager = MockPropertiesManager();
-    PropertiesManager.set(propertiesManager);
-
-    platformWrapper = MockPlatformWrapper();
-    PlatformWrapper.set(platformWrapper);
-    when(platformWrapper.isDebug).thenReturn(true);
-    when(platformWrapper.isAndroid).thenReturn(true);
+    when(managers.platformWrapper.isDebug).thenReturn(true);
+    when(managers.platformWrapper.isAndroid).thenReturn(true);
   });
 
   Package buildPackage({
@@ -100,9 +70,9 @@ void main() {
   }
 
   void stubForAdsTap() {
-    when(internetAddressWrapper.isConnected)
+    when(managers.connectionWrapper.hasInternetAddress)
         .thenAnswer((_) => Future.value(true));
-    when(rewardedAdWrapper.load(
+    when(managers.rewardedAdWrapper.load(
       adUnitId: anyNamed("adUnitId"),
       request: anyNamed("request"),
       rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
@@ -111,7 +81,7 @@ void main() {
 
   Future<void> pumpDefaultGetLives(WidgetTester tester) async {
     var offerings = buildOfferings();
-    when(purchasesWrapper.getOfferings())
+    when(managers.purchasesWrapper.getOfferings())
         .thenAnswer((_) => Future.value(offerings));
     await pumpContext(tester, (_) => const Scaffold(body: GetLives("Test")));
     await tester.pump(); // Extra pump to complete the future.
@@ -119,7 +89,7 @@ void main() {
 
   testWidgets("Offerings are loaded on startup", (tester) async {
     var offerings = buildOfferings();
-    when(purchasesWrapper.getOfferings()).thenAnswer(
+    when(managers.purchasesWrapper.getOfferings()).thenAnswer(
       (_) => Future.delayed(
         const Duration(milliseconds: 10),
         () => offerings,
@@ -151,7 +121,7 @@ void main() {
       // One ID that doesn't match an tier.
       buildPackage(id: "lives-4", price: "9.99"),
     ]);
-    when(purchasesWrapper.getOfferings())
+    when(managers.purchasesWrapper.getOfferings())
         .thenAnswer((_) => Future.value(offerings));
     await pumpContext(tester, (_) => const Scaffold(body: GetLives("Test")));
     await tester.pump(); // Extra pump to complete the future.
@@ -164,7 +134,7 @@ void main() {
 
   testWidgets("Purchase shows loading widget for purchased product only",
       (tester) async {
-    when(purchasesManager.purchase(any)).thenAnswer(
+    when(managers.purchasesManager.purchase(any)).thenAnswer(
         (_) => Future.delayed(const Duration(milliseconds: 10), () => null));
 
     await pumpDefaultGetLives(tester);
@@ -175,7 +145,7 @@ void main() {
 
     expect(loadingAt(tester, 1).isVisible, isTrue);
     expect(animatedVisibilityAt(tester, 1).isVisible, isFalse);
-    verify(purchasesManager.purchase(any)).called(1);
+    verify(managers.purchasesManager.purchase(any)).called(1);
 
     // Try to make other purchases while one is in progress. Tests that
     // multiple purchases can't be made at once.
@@ -183,13 +153,13 @@ void main() {
     await tester.pump();
     expect(loadingAt(tester, 2).isVisible, isFalse);
     expect(animatedVisibilityAt(tester, 2).isVisible, isTrue);
-    verifyNever(purchasesManager.purchase(any));
+    verifyNever(managers.purchasesManager.purchase(any));
 
     await tester.tap(find.text("500"));
     await tester.pump();
     expect(loadingAt(tester, 3).isVisible, isFalse);
     expect(animatedVisibilityAt(tester, 3).isVisible, isTrue);
-    verifyNever(purchasesManager.purchase(any));
+    verifyNever(managers.purchasesManager.purchase(any));
 
     // Exhaust timers.
     await tester.pump(const Duration(milliseconds: 10));
@@ -197,7 +167,7 @@ void main() {
 
   testWidgets("Purchase is successful", (tester) async {
     var customerInfo = MockCustomerInfo();
-    when(purchasesManager.purchase(any))
+    when(managers.purchasesManager.purchase(any))
         .thenAnswer((_) => Future.value(customerInfo));
 
     await pumpDefaultGetLives(tester);
@@ -208,7 +178,7 @@ void main() {
 
     expect(loadingAt(tester, 1).isVisible, isFalse);
     expect(animatedVisibilityAt(tester, 1).isVisible, isTrue);
-    verify(purchasesManager.purchase(any)).called(1);
+    verify(managers.purchasesManager.purchase(any)).called(1);
   });
 
   testWidgets("Ad loading icon is shown", (tester) async {
@@ -222,8 +192,8 @@ void main() {
     await tester.pump();
 
     expect(find.byType(Loading), findsNWidgets(5));
-    verify(internetAddressWrapper.isConnected).called(1);
-    verify(rewardedAdWrapper.load(
+    verify(managers.connectionWrapper.hasInternetAddress).called(1);
+    verify(managers.rewardedAdWrapper.load(
       adUnitId: anyNamed("adUnitId"),
       request: anyNamed("request"),
       rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
@@ -243,9 +213,9 @@ void main() {
 
   testWidgets("Tapping ad button is a no-op if already loading",
       (tester) async {
-    when(internetAddressWrapper.isConnected)
+    when(managers.connectionWrapper.hasInternetAddress)
         .thenAnswer((_) => Future.value(true));
-    when(rewardedAdWrapper.load(
+    when(managers.rewardedAdWrapper.load(
       adUnitId: anyNamed("adUnitId"),
       request: anyNamed("request"),
       rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
@@ -258,19 +228,19 @@ void main() {
     await tester.pump();
 
     expect(find.byType(Loading), findsNWidgets(5));
-    verify(internetAddressWrapper.isConnected).called(1);
+    verify(managers.connectionWrapper.hasInternetAddress).called(1);
 
     // Tap again while already loading.
     await tester.tap(find.text("Watch Short Ad"));
     await tester.pump();
-    verifyNever(internetAddressWrapper.isConnected);
+    verifyNever(managers.connectionWrapper.hasInternetAddress);
 
     // Exhaust timers.
     await tester.pump(const Duration(milliseconds: 10));
   });
 
   testWidgets("Error is shown if there's no network", (tester) async {
-    when(internetAddressWrapper.isConnected)
+    when(managers.connectionWrapper.hasInternetAddress)
         .thenAnswer((_) => Future.value(false));
 
     await pumpDefaultGetLives(tester);
@@ -280,10 +250,10 @@ void main() {
 
     expect(
       find.text(
-          "Network is disconnected. Please connect to the internet and try again."),
+          "No internet connection. Please check your connection and try again."),
       findsOneWidget,
     );
-    verifyNever(rewardedAdWrapper.load(
+    verifyNever(managers.rewardedAdWrapper.load(
       adUnitId: anyNamed("adUnitId"),
       request: anyNamed("request"),
       rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
@@ -297,7 +267,7 @@ void main() {
     await tester.tap(find.text("Watch Short Ad"));
     await tester.pump();
 
-    var result = verify(rewardedAdWrapper.load(
+    var result = verify(managers.rewardedAdWrapper.load(
       adUnitId: anyNamed("adUnitId"),
       request: anyNamed("request"),
       rewardedAdLoadCallback: captureAnyNamed("rewardedAdLoadCallback"),
@@ -316,8 +286,8 @@ void main() {
 
     await tester.pump();
     expect(find.byType(Loading), findsNWidgets(4));
-    verify(livesManager.rewardWatchedAd()).called(1);
-    verifyNever(livesManager.rewardAdError());
+    verify(managers.livesManager.rewardWatchedAd()).called(1);
+    verifyNever(managers.livesManager.rewardAdError());
   });
 
   testWidgets("Lives increase after a failed ad", (tester) async {
@@ -327,7 +297,7 @@ void main() {
     await tester.tap(find.text("Watch Short Ad"));
     await tester.pump();
 
-    var result = verify(rewardedAdWrapper.load(
+    var result = verify(managers.rewardedAdWrapper.load(
       adUnitId: anyNamed("adUnitId"),
       request: anyNamed("request"),
       rewardedAdLoadCallback: captureAnyNamed("rewardedAdLoadCallback"),
@@ -339,24 +309,24 @@ void main() {
 
     await tester.pump();
     expect(find.byType(Loading), findsNWidgets(4));
-    verifyNever(livesManager.rewardWatchedAd());
+    verifyNever(managers.livesManager.rewardWatchedAd());
 
     // Dismiss error dialog.
     await tester.tap(find.text("Ok"));
     await tester.pump();
-    verify(livesManager.rewardAdError()).called(1);
+    verify(managers.livesManager.rewardAdError()).called(1);
   });
 
   testWidgets("Test Android ad unit IDs are used for debug builds",
       (tester) async {
     stubForAdsTap();
-    when(platformWrapper.isDebug).thenReturn(true);
-    when(platformWrapper.isAndroid).thenReturn(true);
+    when(managers.platformWrapper.isDebug).thenReturn(true);
+    when(managers.platformWrapper.isAndroid).thenReturn(true);
 
     await pumpDefaultGetLives(tester);
     await tester.tap(find.text("Watch Short Ad"));
 
-    var result = verify(rewardedAdWrapper.load(
+    var result = verify(managers.rewardedAdWrapper.load(
       adUnitId: captureAnyNamed("adUnitId"),
       request: anyNamed("request"),
       rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
@@ -369,13 +339,13 @@ void main() {
 
   testWidgets("Test iOS ad unit IDs are used for debug builds", (tester) async {
     stubForAdsTap();
-    when(platformWrapper.isDebug).thenReturn(true);
-    when(platformWrapper.isAndroid).thenReturn(false);
+    when(managers.platformWrapper.isDebug).thenReturn(true);
+    when(managers.platformWrapper.isAndroid).thenReturn(false);
 
     await pumpDefaultGetLives(tester);
     await tester.tap(find.text("Watch Short Ad"));
 
-    var result = verify(rewardedAdWrapper.load(
+    var result = verify(managers.rewardedAdWrapper.load(
       adUnitId: captureAnyNamed("adUnitId"),
       request: anyNamed("request"),
       rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
@@ -389,14 +359,14 @@ void main() {
   testWidgets("Valid Android ad unit IDs are used for non-debug builds",
       (tester) async {
     stubForAdsTap();
-    when(platformWrapper.isDebug).thenReturn(false);
-    when(platformWrapper.isAndroid).thenReturn(true);
-    when(propertiesManager.adUnitIdAndroid).thenReturn("Android");
+    when(managers.platformWrapper.isDebug).thenReturn(false);
+    when(managers.platformWrapper.isAndroid).thenReturn(true);
+    when(managers.propertiesManager.adUnitIdAndroid).thenReturn("Android");
 
     await pumpDefaultGetLives(tester);
     await tester.tap(find.text("Watch Short Ad"));
 
-    var result = verify(rewardedAdWrapper.load(
+    var result = verify(managers.rewardedAdWrapper.load(
       adUnitId: captureAnyNamed("adUnitId"),
       request: anyNamed("request"),
       rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
@@ -404,21 +374,21 @@ void main() {
     result.called(1);
 
     expect(result.captured.first as String, "Android");
-    verify(propertiesManager.adUnitIdAndroid).called(1);
-    verifyNever(propertiesManager.adUnitIdApple);
+    verify(managers.propertiesManager.adUnitIdAndroid).called(1);
+    verifyNever(managers.propertiesManager.adUnitIdApple);
   });
 
   testWidgets("Valid iOS ad unit IDs are used for non-debug builds",
       (tester) async {
     stubForAdsTap();
-    when(platformWrapper.isDebug).thenReturn(false);
-    when(platformWrapper.isAndroid).thenReturn(false);
-    when(propertiesManager.adUnitIdApple).thenReturn("iOS");
+    when(managers.platformWrapper.isDebug).thenReturn(false);
+    when(managers.platformWrapper.isAndroid).thenReturn(false);
+    when(managers.propertiesManager.adUnitIdApple).thenReturn("iOS");
 
     await pumpDefaultGetLives(tester);
     await tester.tap(find.text("Watch Short Ad"));
 
-    var result = verify(rewardedAdWrapper.load(
+    var result = verify(managers.rewardedAdWrapper.load(
       adUnitId: captureAnyNamed("adUnitId"),
       request: anyNamed("request"),
       rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
@@ -426,7 +396,7 @@ void main() {
     result.called(1);
 
     expect(result.captured.first as String, "iOS");
-    verify(propertiesManager.adUnitIdApple).called(1);
-    verifyNever(propertiesManager.adUnitIdAndroid);
+    verify(managers.propertiesManager.adUnitIdApple).called(1);
+    verifyNever(managers.propertiesManager.adUnitIdAndroid);
   });
 }

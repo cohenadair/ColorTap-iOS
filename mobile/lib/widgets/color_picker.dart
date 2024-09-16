@@ -5,6 +5,8 @@ import 'package:mobile/target_color.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/widgets/animated_visibility.dart';
 
+import '../managers/audio_manager.dart';
+
 class ColorPicker extends StatelessWidget {
   static const _colorSize = 25.0;
   static const _colorSpacing = 5.0;
@@ -58,8 +60,8 @@ class ColorPicker extends StatelessWidget {
             borderRadius: BorderRadius.circular(_colorSize / 2),
           ),
           onTap: isEnabled
-              ? () => PreferenceManager.get.colorIndex =
-                  isSelected ? null : color.index
+              ? AudioManager.get.onButtonPressed(() => PreferenceManager
+                  .get.colorIndex = isSelected ? null : color.index)
               : null,
           child: AnimatedVisibility(
             isVisible: isSelected,

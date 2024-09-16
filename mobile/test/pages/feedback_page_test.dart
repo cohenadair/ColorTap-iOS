@@ -40,7 +40,7 @@ void main() {
     """);
     when(managers.propertiesManager.sendGridApiKey).thenReturn("API KEY");
 
-    when(managers.internetAddressWrapper.isConnected)
+    when(managers.connectionWrapper.hasInternetAddress)
         .thenAnswer((_) => Future.value(true));
 
     when(managers.packageInfoWrapper.fromPlatform()).thenAnswer(
@@ -140,7 +140,7 @@ void main() {
   });
 
   testWidgets("No network shows connection error SnackBar", (tester) async {
-    when(managers.internetAddressWrapper.isConnected)
+    when(managers.connectionWrapper.hasInternetAddress)
         .thenAnswer((_) => Future.value(false));
 
     await pumpContext(tester, (_) => const FeedbackPage());
@@ -274,7 +274,7 @@ void main() {
   testWidgets("Successful send", (tester) async {
     when(managers.preferenceManager.userName).thenReturn("User Name");
     when(managers.preferenceManager.userEmail).thenReturn("useremail@test.com");
-    when(managers.internetAddressWrapper.isConnected)
+    when(managers.connectionWrapper.hasInternetAddress)
         .thenAnswer((_) => Future.value(true));
     when(managers.platformWrapper.isIOS).thenReturn(true);
     when(managers.packageInfoWrapper.fromPlatform()).thenAnswer(

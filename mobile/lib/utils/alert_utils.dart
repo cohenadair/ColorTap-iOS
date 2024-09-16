@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:mobile/utils/colors.dart';
 
+import '../managers/audio_manager.dart';
+
 const int snackBarDurationDefault = 5;
 
 void showErrorSnackBar(BuildContext context, String errorMessage) {
@@ -11,6 +13,9 @@ void showErrorSnackBar(BuildContext context, String errorMessage) {
     backgroundColor: Colors.red,
   ));
 }
+
+void showNetworkErrorSnackBar(BuildContext context) =>
+    showErrorSnackBar(context, Strings.of(context).errorNetwork);
 
 void showInfoDialog(
   BuildContext context,
@@ -52,10 +57,10 @@ Widget _buildOkButton(
   VoidCallback? onDismissed,
 }) {
   return TextButton(
-    child: Text(Strings.of(context).ok),
-    onPressed: () {
+    onPressed: AudioManager.get.onButtonPressed(() {
       Navigator.of(context).pop();
       onDismissed?.call();
-    },
+    }),
+    child: Text(Strings.of(context).ok),
   );
 }

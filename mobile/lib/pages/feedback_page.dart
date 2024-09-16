@@ -9,16 +9,18 @@ import 'package:mobile/utils/colors.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/wrappers/device_info_wrapper.dart';
 import 'package:mobile/wrappers/http_wrapper.dart';
-import 'package:mobile/wrappers/internet_address_wrapper.dart';
 import 'package:mobile/wrappers/package_info_wrapper.dart';
 import 'package:mobile/wrappers/platform_wrapper.dart';
 import 'package:quiver/strings.dart';
 
 import '../log.dart';
+import '../managers/audio_manager.dart';
 import '../utils/alert_utils.dart';
 import '../utils/context_utils.dart';
 import '../utils/string_utils.dart';
+import '../widgets/audio_close_button.dart';
 import '../widgets/loading.dart';
+import '../wrappers/connection_wrapper.dart';
 
 class FeedbackPage extends StatefulWidget {
   const FeedbackPage();
@@ -60,13 +62,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
     if (!_isSending) {
       action = IconButton(
-        onPressed: _isSending ? null : _send,
+        onPressed: _isSending ? null : AudioManager.get.onButtonPressed(_send),
         icon: const Icon(Icons.send),
       );
     }
 
     return Scaffold(
       appBar: AppBar(
+        leading: AudioCloseButton(),
         title: Text(Strings.of(context).feedbackPageTitle),
         actions: <Widget>[action],
       ),
@@ -141,12 +144,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
     }
 
     // Check internet connection.
-    if (!await InternetAddressWrapper.get.isConnected) {
-      safeUseContext(
-        this,
-        () => showErrorSnackBar(
-            context, Strings.of(context).feedbackPageConnectionError),
-      );
+    if (!await ConnectionWrapper.get.hasInternetAddress) {
+      safeUseContext(this, () => showNetworkErrorSnackBar(context));
       return;
     }
 

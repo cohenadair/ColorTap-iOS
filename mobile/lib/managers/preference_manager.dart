@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile/difficulty.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../log.dart';
+
 class PreferenceManager {
   static var _instance = PreferenceManager._();
 
@@ -23,6 +25,8 @@ class PreferenceManager {
   static const _keyColorIndex = "color_index";
   static const _keyUserName = "user_name";
   static const _keyUserEmail = "user_email";
+  static const _keyMusicOn = "is_music_on";
+  static const _keySoundOn = "is_sound_oin";
 
   late final SharedPreferences _prefs;
 
@@ -63,17 +67,21 @@ class PreferenceManager {
 
   int? get currentHighScore => _prefs.getInt(difficulty.highScoreKey);
 
-  set userName(String? value) {
-    _setString(_keyUserName, value ?? "");
-  }
+  set userName(String? value) => _setString(_keyUserName, value ?? "");
 
   String? get userName => _prefs.getString(_keyUserName);
 
-  set userEmail(String? value) {
-    _setString(_keyUserEmail, value ?? "");
-  }
+  set userEmail(String? value) => _setString(_keyUserEmail, value ?? "");
 
   String? get userEmail => _prefs.getString(_keyUserEmail);
+
+  bool get isSoundOn => _prefs.getBool(_keySoundOn) ?? true;
+
+  set isSoundOn(bool value) => _setBool(_keySoundOn, value);
+
+  bool get isMusicOn => _prefs.getBool(_keyMusicOn) ?? true;
+
+  set isMusicOn(bool value) => _setBool(_keyMusicOn, value);
 
   void _setInt(String key, int value) {
     _prefs.setInt(key, value);
@@ -82,6 +90,11 @@ class PreferenceManager {
 
   void _setString(String key, String value) {
     _prefs.setString(key, value);
+    _notify();
+  }
+
+  void _setBool(String key, bool value) {
+    _prefs.setBool(key, value);
     _notify();
   }
 

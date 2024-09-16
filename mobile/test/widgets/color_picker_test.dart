@@ -3,25 +3,24 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/difficulty.dart';
-import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/target_color.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/widgets/color_picker.dart';
 import 'package:mockito/mockito.dart';
 
-import '../mocks/mocks.mocks.dart';
+import '../test_utils/stubbed_managers.dart';
 import '../test_utils/test_utils.dart';
 
 void main() {
-  late MockPreferenceManager preferenceManager;
+  late StubbedManagers managers;
 
   setUp(() {
-    preferenceManager = MockPreferenceManager();
-    PreferenceManager.set(preferenceManager);
+    managers = StubbedManagers();
 
-    when(preferenceManager.stream).thenAnswer((_) => const Stream.empty());
-    when(preferenceManager.difficulty).thenReturn(Difficulty.kids);
-    when(preferenceManager.colorIndex).thenReturn(null);
+    when(managers.preferenceManager.stream)
+        .thenAnswer((_) => const Stream.empty());
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.kids);
+    when(managers.preferenceManager.colorIndex).thenReturn(null);
   });
 
   Finder findCircles() {
@@ -31,7 +30,7 @@ void main() {
   }
 
   testWidgets("Picker is disabled", (tester) async {
-    when(preferenceManager.difficulty).thenReturn(Difficulty.normal);
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
     await pumpContext(tester, (_) => ColorPicker());
 
     expect(
@@ -41,7 +40,7 @@ void main() {
   });
 
   testWidgets("Picker is enabled", (tester) async {
-    when(preferenceManager.difficulty).thenReturn(Difficulty.kids);
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.kids);
     await pumpContext(tester, (_) => ColorPicker());
 
     expect(
@@ -51,7 +50,7 @@ void main() {
   });
 
   testWidgets("Picker shows selected color", (tester) async {
-    when(preferenceManager.colorIndex).thenReturn(2); // Yellow.
+    when(managers.preferenceManager.colorIndex).thenReturn(2); // Yellow.
     await pumpContext(tester, (_) => ColorPicker());
 
     var opacityWidgets = tester
@@ -63,7 +62,7 @@ void main() {
 
   testWidgets("Picker shows no selected color when preferences is null",
       (tester) async {
-    when(preferenceManager.colorIndex).thenReturn(null);
+    when(managers.preferenceManager.colorIndex).thenReturn(null);
     await pumpContext(tester, (_) => ColorPicker());
 
     var opacityWidgets = tester
@@ -83,30 +82,31 @@ void main() {
   });
 
   testWidgets("Picking a color updates preferences", (tester) async {
-    when(preferenceManager.colorIndex).thenReturn(null);
+    when(managers.preferenceManager.colorIndex).thenReturn(null);
     await pumpContext(tester, (_) => ColorPicker());
 
     // Select.
     await tapAndSettle(tester, findCircles().first);
-    var result = verify(preferenceManager.colorIndex = captureAny);
+    var result = verify(managers.preferenceManager.colorIndex = captureAny);
     result.called(1);
     expect(result.captured.first, 0);
   });
 
   testWidgets("Picking a color sets preferences to null", (tester) async {
-    when(preferenceManager.colorIndex).thenReturn(0);
+    when(managers.preferenceManager.colorIndex).thenReturn(0);
     await pumpContext(tester, (_) => ColorPicker());
 
     // Deselect.
     await tapAndSettle(tester, findCircles().first);
-    var result = verify(preferenceManager.colorIndex = captureAny);
+    var result = verify(managers.preferenceManager.colorIndex = captureAny);
     result.called(1);
     expect(result.captured.first, isNull);
   });
 
   testWidgets("Picker updates when preferences updates", (tester) async {
     var controller = StreamController.broadcast();
-    when(preferenceManager.stream).thenAnswer((_) => controller.stream);
+    when(managers.preferenceManager.stream)
+        .thenAnswer((_) => controller.stream);
 
     await pumpContext(tester, (_) => ColorPicker());
 
@@ -116,7 +116,7 @@ void main() {
       1.0,
     );
 
-    when(preferenceManager.difficulty).thenReturn(Difficulty.normal);
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
     controller.add(null);
     await tester.pump(const Duration(milliseconds: 500));
 

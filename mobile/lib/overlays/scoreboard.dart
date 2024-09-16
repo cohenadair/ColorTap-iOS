@@ -5,6 +5,7 @@ import 'package:mobile/utils/theme.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
 
 import '../color_tap_world.dart';
+import '../managers/audio_manager.dart';
 import '../utils/colors.dart';
 import '../utils/dimens.dart';
 
@@ -124,10 +125,15 @@ class _ScoreboardState extends State<Scoreboard> {
             ? const Icon(Icons.play_arrow)
             : const Icon(Icons.pause),
         iconSize: _iconSize,
-        onPressed: () {
+        onPressed: AudioManager.get.onButtonPressed(() {
           _game.world.scrollingPaused = !_game.world.scrollingPaused;
+          if (_game.world.scrollingPaused) {
+            AudioManager.get.pauseMusic();
+          } else {
+            AudioManager.get.resumeMusic();
+          }
           setState(() {});
-        },
+        }),
       ),
     );
   }

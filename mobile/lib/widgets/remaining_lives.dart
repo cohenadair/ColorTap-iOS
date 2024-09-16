@@ -35,9 +35,10 @@ class RemainingLives extends StatelessWidget {
 
                 return Text(
                   LivesManager.get.lives.toString(),
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: fontWeightBold,
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontWeight: fontWeightBold),
                 );
               },
             );

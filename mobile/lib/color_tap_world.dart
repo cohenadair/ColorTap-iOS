@@ -10,6 +10,7 @@ import 'package:mobile/managers/preference_manager.dart';
 import 'components/target.dart';
 import 'components/target_board.dart';
 import 'effects/target_board_rewind_effect.dart';
+import 'managers/audio_manager.dart';
 import 'managers/lives_manager.dart';
 import 'managers/time_manager.dart';
 import 'target_color.dart';
@@ -50,6 +51,7 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
 
     game.overlays.add(overlayIdScoreboard);
     game.overlays.add(overlayIdMainMenu);
+    AudioManager.get.playMenuBackground();
 
     add(FpsTextComponent(
       priority: 1,
@@ -89,6 +91,9 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
         _color = TargetColor.random(exclude: _color);
         _startGracePeriod();
         _updateColorResetMod();
+        AudioManager.get.playSwitchTarget();
+      } else {
+        AudioManager.get.playCorrectHit();
       }
     } else {
       // Kids mode has infinite lives.
@@ -97,6 +102,7 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
       }
       game.overlays.add(overlayIdGameOver);
       PreferenceManager.get.updateCurrentHighScore(score);
+      AudioManager.get.playMenuBackground();
     }
 
     notifyListeners();
@@ -113,6 +119,8 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
   }
 
   void play() {
+    AudioManager.get.playGameBackground();
+
     _targetBoard(_board1Key).resetForNewGame();
     _targetBoard(_board2Key).resetForNewGame();
 

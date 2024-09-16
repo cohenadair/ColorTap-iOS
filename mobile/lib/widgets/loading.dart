@@ -6,8 +6,12 @@ class Loading extends StatelessWidget {
   static const _strokeWidth = 2.0;
 
   final bool isVisible;
+  final Color color;
 
-  const Loading({this.isVisible = true});
+  const Loading({
+    this.isVisible = true,
+    this.color = colorLightText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +19,9 @@ class Loading extends StatelessWidget {
       visible: isVisible,
       child: SizedBox.fromSize(
         size: const Size(_size, _size),
-        child: const CircularProgressIndicator(
+        child: CircularProgressIndicator(
           strokeWidth: _strokeWidth,
-          color: colorLightText,
+          color: color,
         ),
       ),
     );

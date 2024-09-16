@@ -9,6 +9,7 @@ import 'package:mobile/utils/theme.dart';
 import 'package:mobile/widgets/get_lives.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
 
+import '../managers/audio_manager.dart';
 import '../pages/feedback_page.dart';
 import '../utils/page_utils.dart';
 
@@ -120,7 +121,7 @@ class Menu extends StatelessWidget {
       stream: LivesManager.get.stream,
       builder: (context, _) => LivesManager.get.canPlay
           ? FilledButton(
-              onPressed: game.world.play,
+              onPressed: AudioManager.get.onButtonPressed(game.world.play),
               child: Text(_data.playText(context)),
             )
           : const SizedBox(),
@@ -129,14 +130,16 @@ class Menu extends StatelessWidget {
 
   Widget _buildFeedbackButton(BuildContext context) {
     return FilledButton(
-      onPressed: () => present(context, const FeedbackPage()),
+      onPressed: AudioManager.get
+          .onButtonPressed(() => present(context, const FeedbackPage())),
       child: Text(Strings.of(context).menuFeedback),
     );
   }
 
   Widget _buildSettingsButton(BuildContext context) {
     return FilledButton(
-      onPressed: () => present(context, SettingsPage()),
+      onPressed: AudioManager.get
+          .onButtonPressed(() => present(context, SettingsPage())),
       child: Text(Strings.of(context).settingsTitle),
     );
   }

@@ -17,6 +17,8 @@ void main() {
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
     when(managers.preferenceManager.colorIndex).thenReturn(null);
+    when(managers.preferenceManager.isMusicOn).thenReturn(false);
+    when(managers.preferenceManager.isSoundOn).thenReturn(false);
   });
 
   testWidgets("Font license link opens license", (tester) async {

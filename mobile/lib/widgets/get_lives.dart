@@ -4,14 +4,16 @@ import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/managers/purchases_manager.dart';
+import 'package:mobile/utils/colors.dart';
 import 'package:mobile/utils/context_utils.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/utils/alert_utils.dart';
-import 'package:mobile/wrappers/internet_address_wrapper.dart';
+import 'package:mobile/wrappers/connection_wrapper.dart';
 import 'package:mobile/wrappers/purchases_wrapper.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../log.dart';
+import '../managers/audio_manager.dart';
 import '../managers/properties_manager.dart';
 import '../wrappers/platform_wrapper.dart';
 import '../wrappers/rewarded_ad_wrapper.dart';
@@ -132,7 +134,8 @@ class _GetLivesState extends State<GetLives> {
         ),
         padding: insetsDefault,
       ),
-      onPressed: () => _purchaseLives(tier, package),
+      onPressed:
+          AudioManager.get.onButtonPressed(() => _purchaseLives(tier, package)),
       child: Stack(
         children: [
           _buildFillingLoading(isVisible: isLoading),
@@ -142,10 +145,9 @@ class _GetLivesState extends State<GetLives> {
               children: [
                 Text(
                   (tier?.numberOfLives ?? 0).toString(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge
-                      ?.copyWith(fontWeight: fontWeightBold),
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
+                  ),
                 ),
                 Text(Strings.of(context).getLivesQuantityMessage),
                 Text(package?.storeProduct.priceString ?? ""),
@@ -184,6 +186,8 @@ class _AdOption extends StatefulWidget {
 }
 
 class _AdOptionState extends State<_AdOption> {
+  static const _log = Log("_AdOptionState");
+
   bool _isLoading = false;
 
   @override
@@ -194,7 +198,7 @@ class _AdOptionState extends State<_AdOption> {
           icon: _isLoading
               ? const Padding(
                   padding: insetsRightSmall,
-                  child: Loading(),
+                  child: Loading(color: colorDarkText),
                 )
               : const SizedBox(),
           label: Text(Strings.of(context).getLivesWatchAd),
@@ -215,12 +219,8 @@ class _AdOptionState extends State<_AdOption> {
       return;
     }
 
-    if (!await InternetAddressWrapper.get.isConnected) {
-      safeUseContext(
-        this,
-        () => showErrorSnackBar(
-            context, Strings.of(context).getLivesNoNetworkMessage),
-      );
+    if (!await ConnectionWrapper.get.hasInternetAddress) {
+      safeUseContext(this, () => showNetworkErrorSnackBar(context));
       return;
     }
 
@@ -231,13 +231,22 @@ class _AdOptionState extends State<_AdOption> {
       request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (ad) {
+          AudioManager.get.pauseMusic();
+
+          // Resume music when ad is closed by the user.
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (_) =>
+                AudioManager.get.resumeMusic(),
+          );
+
           ad.show(
             onUserEarnedReward: (_, __) => LivesManager.get.rewardWatchedAd(),
           );
+
           setState(() => _isLoading = false);
         },
         onAdFailedToLoad: (error) {
-          debugPrint("Error loading ad: $error");
+          _log.d("Error loading ad: $error");
           setState(() => _isLoading = false);
           showErrorDialog(
             context,
@@ -245,6 +254,7 @@ class _AdOptionState extends State<_AdOption> {
                 .getLivesAdErrorMessage(LivesManager.adErrorReward),
             onDismissed: () => LivesManager.get.rewardAdError(),
           );
+          AudioManager.get.resumeMusic();
         },
       ),
     );
