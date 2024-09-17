@@ -5217,6 +5217,21 @@ class MockPreferenceManager extends _i1.Mock implements _i44.PreferenceManager {
       );
 
   @override
+  bool get isFpsOn => (super.noSuchMethod(
+        Invocation.getter(#isFpsOn),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  set isFpsOn(bool? value) => super.noSuchMethod(
+        Invocation.setter(
+          #isFpsOn,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   _i4.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
           #init,

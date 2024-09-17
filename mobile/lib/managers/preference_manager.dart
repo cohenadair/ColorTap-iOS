@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile/difficulty.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../log.dart';
-
 class PreferenceManager {
   static var _instance = PreferenceManager._();
 
@@ -26,7 +24,8 @@ class PreferenceManager {
   static const _keyUserName = "user_name";
   static const _keyUserEmail = "user_email";
   static const _keyMusicOn = "is_music_on";
-  static const _keySoundOn = "is_sound_oin";
+  static const _keySoundOn = "is_sound_on";
+  static const _keyFpsOn = "is_fps_on";
 
   late final SharedPreferences _prefs;
 
@@ -82,6 +81,10 @@ class PreferenceManager {
   bool get isMusicOn => _prefs.getBool(_keyMusicOn) ?? true;
 
   set isMusicOn(bool value) => _setBool(_keyMusicOn, value);
+
+  bool get isFpsOn => _prefs.getBool(_keyFpsOn) ?? false;
+
+  set isFpsOn(bool value) => _setBool(_keyFpsOn, value);
 
   void _setInt(String key, int value) {
     _prefs.setInt(key, value);

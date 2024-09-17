@@ -21,6 +21,17 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
   final _board1Key = ComponentKey.unique();
   final _board2Key = ComponentKey.unique();
 
+  final _fpsComponent = FpsTextComponent(
+    priority: 1,
+    position: Vector2(paddingDefault, 150),
+    textRenderer: TextPaint(
+      style: const TextStyle(
+        color: Colors.green,
+        fontSize: 20,
+      ),
+    ),
+  );
+
   late double _speed;
   late int _colorResetMod;
   late TargetColor _color;
@@ -53,17 +64,6 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
     game.overlays.add(overlayIdMainMenu);
     AudioManager.get.playMenuBackground();
 
-    add(FpsTextComponent(
-      priority: 1,
-      position: Vector2(paddingDefault, 150),
-      textRenderer: TextPaint(
-        style: const TextStyle(
-          color: Colors.green,
-          fontSize: 20,
-        ),
-      ),
-    ));
-
     add(TargetBoard(
       verticalStartFactor: 2,
       otherBoardKey: _board2Key,
@@ -76,6 +76,19 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
       key: _board2Key,
       isUpdater: false,
     ));
+
+    // FPS counter.
+    if (PreferenceManager.get.isFpsOn) {
+      add(_fpsComponent);
+    }
+
+    PreferenceManager.get.stream.listen((_) {
+      if (PreferenceManager.get.isFpsOn && !_fpsComponent.isMounted) {
+        add(_fpsComponent);
+      } else if (!PreferenceManager.get.isFpsOn && _fpsComponent.isMounted) {
+        remove(_fpsComponent);
+      }
+    });
   }
 
   void handleTargetHit({required bool isCorrect}) {

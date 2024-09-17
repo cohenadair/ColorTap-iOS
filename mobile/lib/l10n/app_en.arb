@@ -41,6 +41,7 @@
   "settingsChooseColorMessage": "Selecting a color ensures the target color never changes in the game. This option is only available in the Kids difficulty.",
   "settingsMusic": "Music",
   "settingsSoundEffects": "Sound Effects",
+  "settingsFps": "Show FPS",
   "settingsFontLicense": "Font License",
   "settingsAudioLicense": "Music & Sound by ZapSplat",
   "settingsPrivacy": "Privacy Policy",

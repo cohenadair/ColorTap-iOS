@@ -19,6 +19,7 @@ void main() {
     when(managers.preferenceManager.colorIndex).thenReturn(null);
     when(managers.preferenceManager.isMusicOn).thenReturn(false);
     when(managers.preferenceManager.isSoundOn).thenReturn(false);
+    when(managers.preferenceManager.isFpsOn).thenReturn(false);
   });
 
   testWidgets("Font license link opens license", (tester) async {

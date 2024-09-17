@@ -31,6 +31,7 @@ class SettingsPage extends StatelessWidget {
             _buildColorSelection(context),
             _buildMusic(context),
             _buildSoundEffects(context),
+            _buildFps(context),
             const Divider(color: Colors.white10),
             _buildFontLicense(context),
             _buildAudioLicense(context),
@@ -110,33 +111,48 @@ class SettingsPage extends StatelessWidget {
   }
 
   Widget _buildMusic(BuildContext context) {
-    return ListTile(
-      contentPadding: insetsHorizontalDefault,
-      title: Text(Strings.of(context).settingsMusic),
-      trailing: StreamBuilder(
-        stream: PreferenceManager.get.stream,
-        builder: (context, snapshot) {
-          return Switch(
-            value: PreferenceManager.get.isMusicOn,
-            onChanged: (value) => AudioManager.get.onButtonPressed(
-                () => PreferenceManager.get.isMusicOn = value)(),
-          );
-        },
-      ),
+    return _buildPreferenceSwitch(
+      context,
+      label: Strings.of(context).settingsMusic,
+      value: () => PreferenceManager.get.isMusicOn,
+      setValue: (value) => PreferenceManager.get.isMusicOn = value,
     );
   }
 
   Widget _buildSoundEffects(BuildContext context) {
+    return _buildPreferenceSwitch(
+      context,
+      label: Strings.of(context).settingsSoundEffects,
+      value: () => PreferenceManager.get.isSoundOn,
+      setValue: (value) => PreferenceManager.get.isSoundOn = value,
+    );
+  }
+
+  Widget _buildFps(BuildContext context) {
+    return _buildPreferenceSwitch(
+      context,
+      label: Strings.of(context).settingsFps,
+      value: () => PreferenceManager.get.isFpsOn,
+      setValue: (value) => PreferenceManager.get.isFpsOn = value,
+    );
+  }
+
+  Widget _buildPreferenceSwitch(
+    BuildContext context, {
+    required String label,
+    required bool Function() value,
+    required void Function(bool) setValue,
+  }) {
     return ListTile(
       contentPadding: insetsHorizontalDefault,
-      title: Text(Strings.of(context).settingsSoundEffects),
+      title: Text(label),
       trailing: StreamBuilder(
         stream: PreferenceManager.get.stream,
         builder: (context, snapshot) {
           return Switch(
-            value: PreferenceManager.get.isSoundOn,
-            onChanged: (value) => AudioManager.get.onButtonPressed(
-                () => PreferenceManager.get.isSoundOn = value)(),
+            value: value(),
+            onChanged: (value) =>
+                AudioManager.get.onButtonPressed(() => setValue(value))(),
           );
         },
       ),

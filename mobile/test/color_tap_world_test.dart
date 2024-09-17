@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flame/components.dart';
@@ -31,6 +32,7 @@ void main() {
     when(managers.preferenceManager.currentHighScore).thenReturn(null);
     when(managers.preferenceManager.updateCurrentHighScore(any))
         .thenAnswer((_) {});
+    when(managers.preferenceManager.isFpsOn).thenReturn(false);
 
     world = ColorTapWorld();
     game = ColorTapGame(world: world);
@@ -42,10 +44,44 @@ void main() {
 
     expect(game.overlays.activeOverlays.contains(overlayIdMainMenu), true);
     expect(game.overlays.activeOverlays.contains(overlayIdScoreboard), true);
-    expect(world.children.whereType<FpsTextComponent>().length, 1);
+    expect(world.children.whereType<FpsTextComponent>().length, 0);
     expect(world.children.whereType<TargetBoard>().length, 2);
 
     verify(managers.audioManager.playMenuBackground()).called(1);
+  });
+
+  testWidgets("FPS component is shown", (tester) async {
+    when(managers.preferenceManager.isFpsOn).thenReturn(true);
+
+    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pump();
+
+    expect(world.children.whereType<FpsTextComponent>().length, 1);
+  });
+
+  testWidgets("FPS component is added/removed on preference change",
+      (tester) async {
+    var controller = StreamController.broadcast();
+    when(managers.preferenceManager.stream)
+        .thenAnswer((_) => controller.stream);
+    when(managers.preferenceManager.isFpsOn).thenReturn(true);
+
+    // Verify FPS is already shown.
+    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pump();
+    expect(world.children.whereType<FpsTextComponent>().length, 1);
+
+    // Turn FPS off.
+    when(managers.preferenceManager.isFpsOn).thenReturn(false);
+    controller.add(null);
+    await tester.pump();
+    expect(world.children.whereType<FpsTextComponent>().length, 0);
+
+    // Turn FPS back on.
+    when(managers.preferenceManager.isFpsOn).thenReturn(true);
+    controller.add(null);
+    await tester.pump();
+    expect(world.children.whereType<FpsTextComponent>().length, 1);
   });
 
   testWidgets("Correct hit without color change", (tester) async {
