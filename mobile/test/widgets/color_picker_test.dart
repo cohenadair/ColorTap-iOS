@@ -51,13 +51,19 @@ void main() {
 
   testWidgets("Picker shows selected color", (tester) async {
     when(managers.preferenceManager.colorIndex).thenReturn(2); // Yellow.
-    await pumpContext(tester, (_) => ColorPicker());
+    var context = await pumpContext(tester, (_) => ColorPicker());
 
-    var opacityWidgets = tester
-        .widgetList<AnimatedOpacity>(find.byType(AnimatedOpacity))
+    var colors = tester
+        .widgetList<Container>(find.byWidgetPredicate((widget) =>
+            widget is Container &&
+            widget.constraints?.minWidth == 30 &&
+            widget.constraints?.minHeight == 30))
         .toList();
-    expect(opacityWidgets.length, 5);
-    expect(opacityWidgets[2].opacity, 1.0); // Check icon for "orange" .
+    expect(colors.length, 4);
+    expect(
+      (colors[1].decoration as BoxDecoration).border!.bottom.color,
+      Theme.of(context).colorScheme.primary,
+    );
   });
 
   testWidgets("Picker shows no selected color when preferences is null",
@@ -65,14 +71,20 @@ void main() {
     when(managers.preferenceManager.colorIndex).thenReturn(null);
     await pumpContext(tester, (_) => ColorPicker());
 
-    var opacityWidgets = tester
-        .widgetList<AnimatedOpacity>(find.byType(AnimatedOpacity))
+    var colors = tester
+        .widgetList<Container>(find.byWidgetPredicate((widget) =>
+            widget is Container &&
+            widget.constraints?.minWidth == 30 &&
+            widget.constraints?.minHeight == 30))
         .toList();
-    expect(opacityWidgets.length, 5);
+    expect(colors.length, 4);
 
     // No check icons are visible.
-    for (var widget in opacityWidgets.sublist(1)) {
-      expect(widget.opacity, 0.0);
+    for (var widget in colors.sublist(1)) {
+      expect(
+        (widget.decoration as BoxDecoration).border!.bottom.color,
+        Colors.transparent,
+      );
     }
   });
 

@@ -38,7 +38,7 @@
   "settingsTitle": "Settings",
   "settingsDifficulty": "Difficulty",
   "settingsChooseColorTitle": "Color",
-  "settingsChooseColorMessage": "Selecting a color ensures the target color never changes in the game. This option is only available in the Kids difficulty.",
+  "settingsChooseColorMessage": "Selecting a color ensures the same target color is always used in the game. If none is selected, a random color is used. This option is only available in the Kids difficulty.",
   "settingsMusic": "Music",
   "settingsSoundEffects": "Sound Effects",
   "settingsFps": "Show FPS",

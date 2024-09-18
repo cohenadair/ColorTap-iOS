@@ -3,14 +3,13 @@ import 'package:mobile/difficulty.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/target_color.dart';
 import 'package:mobile/utils/dimens.dart';
-import 'package:mobile/widgets/animated_visibility.dart';
 
 import '../managers/audio_manager.dart';
 
 class ColorPicker extends StatelessWidget {
-  static const _colorSize = 25.0;
+  static const _colorSize = 30.0;
   static const _colorSpacing = 5.0;
-  static const _selectedIconSize = 18.0;
+  static const _selectedBorderSize = 2.0;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +29,7 @@ class ColorPicker extends StatelessWidget {
             spacing: _colorSpacing,
             children: Difficulty.kids.colors().map((e) {
               return _buildColor(
+                context,
                 e,
                 isSelected: e == selectedColor,
                 isEnabled: isEnabled,
@@ -42,36 +42,27 @@ class ColorPicker extends StatelessWidget {
   }
 
   Widget _buildColor(
+    BuildContext context,
     TargetColor color, {
     required bool isSelected,
     required bool isEnabled,
   }) {
-    return Container(
-      width: _colorSize,
-      height: _colorSize,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: color.color,
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          customBorder: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(_colorSize / 2),
-          ),
-          onTap: isEnabled
-              ? AudioManager.get.onButtonPressed(() => PreferenceManager
-                  .get.colorIndex = isSelected ? null : color.index)
-              : null,
-          child: AnimatedVisibility(
-            isVisible: isSelected,
-            child: const Center(
-              child: Icon(
-                Icons.check,
-                color: Colors.black,
-                size: _selectedIconSize,
-              ),
-            ),
+    return GestureDetector(
+      onTap: isEnabled
+          ? AudioManager.get.onButtonPressed(() => PreferenceManager
+              .get.colorIndex = isSelected ? null : color.index)
+          : null,
+      child: Container(
+        width: _colorSize,
+        height: _colorSize,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: color.color,
+          border: Border.all(
+            color: isSelected
+                ? Theme.of(context).colorScheme.primary
+                : Colors.transparent,
+            width: _selectedBorderSize,
           ),
         ),
       ),
