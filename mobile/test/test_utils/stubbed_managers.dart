@@ -15,6 +15,7 @@ import 'package:mobile/wrappers/purchases_wrapper.dart';
 import 'package:mobile/wrappers/rewarded_ad_wrapper.dart';
 import 'package:mobile/wrappers/url_launcher_wrapper.dart';
 import 'package:mockito/mockito.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../mocks/mocks.mocks.dart';
 
@@ -82,6 +83,16 @@ class StubbedManagers {
     ConnectionWrapper.set(connectionWrapper);
 
     packageInfoWrapper = MockPackageInfoWrapper();
+    when(packageInfoWrapper.fromPlatform()).thenAnswer(
+      (_) => Future.value(
+        PackageInfo(
+          buildNumber: "5",
+          appName: "Test",
+          version: "2.7.0",
+          packageName: "test.com",
+        ),
+      ),
+    );
     PackageInfoWrapper.set(packageInfoWrapper);
 
     platformWrapper = MockPlatformWrapper();

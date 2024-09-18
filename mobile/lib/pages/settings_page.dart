@@ -4,7 +4,9 @@ import 'package:mobile/difficulty.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/utils/alert_utils.dart';
 import 'package:mobile/widgets/color_picker.dart';
+import 'package:mobile/wrappers/package_info_wrapper.dart';
 import 'package:mobile/wrappers/url_launcher_wrapper.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../managers/audio_manager.dart';
 import '../utils/dimens.dart';
@@ -37,6 +39,7 @@ class SettingsPage extends StatelessWidget {
             _buildAudioLicense(context),
             const Divider(color: Colors.white10),
             _buildPrivacy(context),
+            _buildVersion(context),
           ],
         ),
       ),
@@ -186,6 +189,22 @@ class SettingsPage extends StatelessWidget {
       trailing: const Icon(Icons.open_in_new),
       onTap: AudioManager.get.onButtonPressed(
           () => UrlLauncherWrapper.get.launch(_urlPrivacyPolicy)),
+    );
+  }
+
+  Widget _buildVersion(BuildContext context) {
+    return ListTile(
+      title: Text(Strings.of(context).settingsVersion),
+      contentPadding: insetsHorizontalDefault,
+      trailing: FutureBuilder<PackageInfo>(
+        future: PackageInfoWrapper.get.fromPlatform(),
+        builder: (context, snapshot) => Text(
+          snapshot.hasData
+              ? "${snapshot.data!.version} (${snapshot.data!.buildNumber})"
+              : "",
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+      ),
     );
   }
 }

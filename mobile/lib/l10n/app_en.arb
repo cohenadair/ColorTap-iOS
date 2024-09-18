@@ -45,6 +45,7 @@
   "settingsFontLicense": "Font License",
   "settingsAudioLicense": "Music & Sound by ZapSplat",
   "settingsPrivacy": "Privacy Policy",
+  "settingsVersion": "Version",
 
   "getLivesRefundableMessage": "Life purchases are non-refundable and do not sync across devices. Purchased lives will be lost if the app is uninstalled.",
   "getLivesQuantityMessage": "lives for",
