@@ -23,13 +23,15 @@ void main() {
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
     when(managers.preferenceManager.colorIndex).thenReturn(null);
-    when(managers.preferenceManager.currentHighScore).thenReturn(null);
     when(managers.preferenceManager.isMusicOn).thenReturn(false);
     when(managers.preferenceManager.isSoundOn).thenReturn(false);
     when(managers.preferenceManager.isFpsOn).thenReturn(false);
 
     when(managers.purchasesWrapper.getOfferings())
         .thenAnswer((_) => Future.value(MockOfferings()));
+
+    when(managers.statsManager.currentHighScore).thenReturn(0);
+    when(managers.statsManager.currentGamesPlayed).thenReturn(0);
 
     world = MockColorTapWorld();
     when(world.play()).thenAnswer((_) {});
@@ -101,21 +103,28 @@ void main() {
   testWidgets("Difficulty text is shown", (tester) async {
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.hard);
     await pumpContext(tester, (context) => Menu.main(game));
-    expect(find.text("Difficulty: Hard"), findsOneWidget);
+    expect(find.text("Hard"), findsOneWidget);
   });
 
   testWidgets("High score text shows none", (tester) async {
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.hard);
-    when(managers.preferenceManager.currentHighScore).thenReturn(null);
+    when(managers.statsManager.currentHighScore).thenReturn(0);
     await pumpContext(tester, (context) => Menu.main(game));
-    expect(find.text("High Score: None"), findsOneWidget);
+    expect(find.text("None"), findsOneWidget);
   });
 
   testWidgets("High score text shows value", (tester) async {
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.hard);
-    when(managers.preferenceManager.currentHighScore).thenReturn(50);
+    when(managers.statsManager.currentHighScore).thenReturn(50);
     await pumpContext(tester, (context) => Menu.main(game));
-    expect(find.text("High Score: 50"), findsOneWidget);
+    expect(find.text("50"), findsOneWidget);
+  });
+
+  testWidgets("Games played text is shown", (tester) async {
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.hard);
+    when(managers.statsManager.currentGamesPlayed).thenReturn(25);
+    await pumpContext(tester, (context) => Menu.main(game));
+    expect(find.text("25"), findsOneWidget);
   });
 
   testWidgets("Text updates when difficulty changes", (tester) async {
@@ -125,16 +134,24 @@ void main() {
 
     // Test initial value.
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.hard);
+    when(managers.statsManager.currentHighScore).thenReturn(50);
+    when(managers.statsManager.currentGamesPlayed).thenReturn(25);
     await pumpContext(tester, (context) => Menu.main(game));
-    expect(find.text("Difficulty: Hard"), findsOneWidget);
-    expect(find.text("Difficulty: Normal"), findsNothing);
+    expect(find.text("Hard"), findsOneWidget);
+    expect(find.text("Normal"), findsNothing);
+    expect(find.text("50"), findsOneWidget);
+    expect(find.text("25"), findsOneWidget);
 
     // Update value.
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
+    when(managers.statsManager.currentHighScore).thenReturn(60);
+    when(managers.statsManager.currentGamesPlayed).thenReturn(30);
     controller.add(null);
     await tester.pump(const Duration(milliseconds: 50));
 
-    expect(find.text("Difficulty: Hard"), findsNothing);
-    expect(find.text("Difficulty: Normal"), findsOneWidget);
+    expect(find.text("Hard"), findsNothing);
+    expect(find.text("Normal"), findsOneWidget);
+    expect(find.text("60"), findsOneWidget);
+    expect(find.text("30"), findsOneWidget);
   });
 }

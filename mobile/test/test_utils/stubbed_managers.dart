@@ -3,6 +3,7 @@ import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/managers/properties_manager.dart';
 import 'package:mobile/managers/purchases_manager.dart';
+import 'package:mobile/managers/stats_manager.dart';
 import 'package:mobile/managers/time_manager.dart';
 import 'package:mobile/wrappers/device_info_wrapper.dart';
 import 'package:mobile/wrappers/fgbg_wrapper.dart';
@@ -25,6 +26,7 @@ class StubbedManagers {
   late final MockPreferenceManager preferenceManager;
   late final MockPropertiesManager propertiesManager;
   late final MockPurchasesManager purchasesManager;
+  late final MockStatsManager statsManager;
   late final MockTimeManager timeManager;
 
   late final MockDeviceInfoWrapper deviceInfoWrapper;
@@ -60,6 +62,9 @@ class StubbedManagers {
     purchasesManager = MockPurchasesManager();
     when(purchasesManager.init()).thenAnswer((_) => Future.value());
     PurchasesManager.set(purchasesManager);
+
+    statsManager = MockStatsManager();
+    StatsManager.set(statsManager);
 
     timeManager = MockTimeManager();
     when(timeManager.millisSinceEpoch)

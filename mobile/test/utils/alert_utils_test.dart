@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/difficulty.dart';
-import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/overlays/menu.dart';
 import 'package:mobile/utils/alert_utils.dart';
 import 'package:mockito/mockito.dart';
@@ -25,7 +24,9 @@ void main() {
     when(managers.livesManager.lives).thenReturn(3);
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
-    when(managers.preferenceManager.currentHighScore).thenReturn(null);
+
+    when(managers.statsManager.currentHighScore).thenReturn(0);
+    when(managers.statsManager.currentGamesPlayed).thenReturn(0);
   });
 
   testWidgets("showErrorDialog", (tester) async {

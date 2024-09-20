@@ -5,6 +5,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mobile/managers/audio_manager.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/managers/properties_manager.dart';
+import 'package:mobile/managers/stats_manager.dart';
 
 import 'color_tap_game.dart';
 import 'color_tap_game_widget.dart';
@@ -25,6 +26,7 @@ void main() async {
   await PropertiesManager.get.init();
   await PurchasesManager.get.init();
   await AudioManager.get.init();
+  await StatsManager.get.init();
 
   final myGame = ColorTapGame(world: ColorTapWorld());
   runApp(ColorTapGameWidget(myGame));

@@ -6,6 +6,7 @@ import 'package:flame/text.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/difficulty.dart';
 import 'package:mobile/managers/preference_manager.dart';
+import 'package:mobile/managers/stats_manager.dart';
 
 import 'components/target.dart';
 import 'components/target_board.dart';
@@ -114,7 +115,8 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
         LivesManager.get.loseLife();
       }
       game.overlays.add(overlayIdGameOver);
-      PreferenceManager.get.updateCurrentHighScore(score);
+      StatsManager.get.updateCurrentHighScore(score);
+      StatsManager.get.incCurrentGamesPlayed();
       AudioManager.get.playMenuBackground();
     }
 

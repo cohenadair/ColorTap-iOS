@@ -19,8 +19,10 @@ void main() {
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
     when(managers.preferenceManager.colorIndex).thenReturn(null);
-    when(managers.preferenceManager.currentHighScore).thenReturn(null);
     when(managers.preferenceManager.isFpsOn).thenReturn(false);
+
+    when(managers.statsManager.currentHighScore).thenReturn(0);
+    when(managers.statsManager.currentGamesPlayed).thenReturn(0);
   });
 
   testWidgets("onLoad", (tester) async {

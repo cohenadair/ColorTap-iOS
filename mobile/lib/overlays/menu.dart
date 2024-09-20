@@ -5,11 +5,13 @@ import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/pages/settings_page.dart';
 import 'package:mobile/utils/dimens.dart';
+import 'package:mobile/utils/text_utils.dart';
 import 'package:mobile/utils/theme.dart';
 import 'package:mobile/widgets/get_lives.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
 
 import '../managers/audio_manager.dart';
+import '../managers/stats_manager.dart';
 import '../pages/feedback_page.dart';
 import '../utils/page_utils.dart';
 
@@ -56,7 +58,7 @@ class Menu extends StatelessWidget {
                         _buildFeedbackButton(context),
                         _buildSettingsButton(context),
                         const Spacer(),
-                        _buildDifficulty(),
+                        _buildStats(),
                       ],
                     ),
                   ),
@@ -144,24 +146,44 @@ class Menu extends StatelessWidget {
     );
   }
 
-  Widget _buildDifficulty() {
+  Widget _buildStats() {
     return StreamBuilder(
       stream: PreferenceManager.get.stream,
       builder: (context, _) {
         return Padding(
-          padding: insetsTopDefault,
-          child: Column(
+          padding: insetsVerticalDefault,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
             children: [
-              Text(
-                Strings.of(context).menuDifficulty(
-                    PreferenceManager.get.difficulty.displayName(context)),
-                style: Theme.of(context).textTheme.titleMedium,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TitleMediumText(Strings.of(context).menuDifficulty),
+                  TitleMediumText(Strings.of(context).menuHighScore),
+                  TitleMediumText(Strings.of(context).menuGamesPlayed),
+                ],
               ),
-              Text(
-                Strings.of(context).menuHighScore(
-                    PreferenceManager.get.currentHighScore?.toString() ??
-                        Strings.of(context).menuHighScoreNone),
-                style: Theme.of(context).textTheme.titleMedium,
+              Column(children: [
+                PaddedColonText(),
+                PaddedColonText(),
+                PaddedColonText(),
+              ]),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TitleMediumBoldText(
+                    PreferenceManager.get.difficulty.displayName(context),
+                  ),
+                  TitleMediumBoldText(
+                    StatsManager.get.currentHighScore > 0
+                        ? StatsManager.get.currentHighScore.toString()
+                        : Strings.of(context).none,
+                  ),
+                  TitleMediumBoldText(
+                    StatsManager.get.currentGamesPlayed.toString(),
+                  ),
+                ],
               ),
             ],
           ),

@@ -29,10 +29,11 @@ void main() {
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
     when(managers.preferenceManager.colorIndex).thenReturn(null);
-    when(managers.preferenceManager.currentHighScore).thenReturn(null);
-    when(managers.preferenceManager.updateCurrentHighScore(any))
-        .thenAnswer((_) {});
     when(managers.preferenceManager.isFpsOn).thenReturn(false);
+
+    when(managers.statsManager.currentHighScore).thenReturn(0);
+    when(managers.statsManager.currentGamesPlayed).thenReturn(0);
+    when(managers.statsManager.updateCurrentHighScore(any)).thenAnswer((_) {});
 
     world = ColorTapWorld();
     game = ColorTapGame(world: world);
@@ -161,6 +162,8 @@ void main() {
     expect(notified, true);
     verify(managers.livesManager.loseLife()).called(1);
     verify(managers.audioManager.playMenuBackground()).called(1);
+    verify(managers.statsManager.updateCurrentHighScore(any)).called(1);
+    verify(managers.statsManager.incCurrentGamesPlayed()).called(1);
     verifyNever(managers.audioManager.playCorrectHit());
 
     await tester.pump();
@@ -180,6 +183,8 @@ void main() {
     verifyNever(managers.livesManager.loseLife());
     verify(managers.audioManager.playMenuBackground()).called(1);
     verifyNever(managers.audioManager.playCorrectHit());
+    verify(managers.statsManager.updateCurrentHighScore(any)).called(1);
+    verify(managers.statsManager.incCurrentGamesPlayed()).called(1);
   });
 
   testWidgets("Target missed ends game", (tester) async {

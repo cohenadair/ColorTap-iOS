@@ -4,6 +4,7 @@
 
   "ok": "Ok",
   "or": "Or",
+  "none": "None",
 
   "menuMainTitle": "Color Tap Coordination",
   "menuMainPlay": "Play",
@@ -12,25 +13,9 @@
   "menuOutOfLives": "Uh oh! You are out of lives!",
   "menuBuyMoreLives": "Buy More",
   "menuFeedback": "Send Feedback",
-
-  "menuDifficulty": "Difficulty: {difficulty}",
-  "@menuDifficulty": {
-    "placeholders": {
-      "difficulty": {
-        "type": "String"
-      }
-    }
-  },
-
-  "menuHighScore": "High Score: {highScore}",
-  "@menuHighScore": {
-    "placeholders": {
-      "highScore": {
-        "type": "String"
-      }
-    }
-  },
-  "menuHighScoreNone": "None",
+  "menuDifficulty": "Difficulty",
+  "menuHighScore": "High Score",
+  "menuGamesPlayed": "Games Played",
 
   "storeTitle": "Store",
   "storeBuyLives": "Buy Lives",

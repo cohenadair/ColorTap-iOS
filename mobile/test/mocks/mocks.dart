@@ -15,6 +15,7 @@ import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/managers/properties_manager.dart';
 import 'package:mobile/managers/purchases_manager.dart';
+import 'package:mobile/managers/stats_manager.dart';
 import 'package:mobile/managers/time_manager.dart';
 import 'package:mobile/wrappers/connection_wrapper.dart';
 import 'package:mobile/wrappers/device_info_wrapper.dart';
@@ -61,6 +62,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 @GenerateMocks([RewardedAd])
 @GenerateMocks([RewardedAdWrapper])
 @GenerateMocks([SharedPreferences])
+@GenerateMocks([StatsManager])
 @GenerateMocks([StoreProduct])
 @GenerateMocks([TapDownEvent])
 @GenerateMocks([TargetBoard])

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/difficulty.dart';
@@ -39,5 +37,48 @@ void main() {
     expect(Difficulty.normal.displayName(context), "Normal");
     expect(Difficulty.hard.displayName(context), "Hard");
     expect(Difficulty.expert.displayName(context), "Expert");
+  });
+
+  test("DifficultyStats fromJson()", () {
+    var stats = DifficultyStats.fromJson(const {
+      "difficultyIndex": 1,
+      "highScore": 5,
+      "gamesPlayed": 10,
+    });
+    expect(stats.difficultyIndex, 1);
+    expect(stats.highScore, 5);
+    expect(stats.gamesPlayed, 10);
+  });
+
+  test("DifficultyStats toJson()", () {
+    var stats = const DifficultyStats(
+      difficultyIndex: 1,
+      highScore: 10,
+      gamesPlayed: 5,
+    );
+    expect(stats.toJson(), const {
+      "difficultyIndex": 1,
+      "highScore": 10,
+      "gamesPlayed": 5,
+    });
+  });
+
+  test("DifficultyStats withIncedGamesPlayed()", () {
+    var stats = const DifficultyStats(
+      difficultyIndex: 1,
+      highScore: 10,
+      gamesPlayed: 5,
+    );
+    expect(stats.withIncedGamesPlayed().gamesPlayed, 6);
+  });
+
+  test("DifficultyStats withHighScore()", () {
+    var stats = const DifficultyStats(
+      difficultyIndex: 1,
+      highScore: 10,
+      gamesPlayed: 5,
+    );
+    expect(stats.withHighScore(8).highScore, 10);
+    expect(stats.withHighScore(15).highScore, 15);
   });
 }

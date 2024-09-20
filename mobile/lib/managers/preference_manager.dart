@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:mobile/difficulty.dart';
@@ -26,6 +27,7 @@ class PreferenceManager {
   static const _keyMusicOn = "is_music_on";
   static const _keySoundOn = "is_sound_on";
   static const _keyFpsOn = "is_fps_on";
+  static const _keyDifficultyStats = "difficulty_stats";
 
   late final SharedPreferences _prefs;
 
@@ -58,14 +60,6 @@ class PreferenceManager {
     }
   }
 
-  void updateCurrentHighScore(int score) {
-    if (score > (currentHighScore ?? 0)) {
-      _setInt(difficulty.highScoreKey, score);
-    }
-  }
-
-  int? get currentHighScore => _prefs.getInt(difficulty.highScoreKey);
-
   set userName(String? value) => _setString(_keyUserName, value ?? "");
 
   String? get userName => _prefs.getString(_keyUserName);
@@ -86,6 +80,14 @@ class PreferenceManager {
 
   set isFpsOn(bool value) => _setBool(_keyFpsOn, value);
 
+  Map<int, DifficultyStats> get difficultyStats =>
+      _jsonMap(_keyDifficultyStats).map((key, value) =>
+          MapEntry(int.parse(key), DifficultyStats.fromJson(value)));
+
+  set difficultyStats(Map<int, DifficultyStats> value) => _setJsonMap(
+      _keyDifficultyStats,
+      value.map((key, stats) => MapEntry(key.toString(), stats.toJson())));
+
   void _setInt(String key, int value) {
     _prefs.setInt(key, value);
     _notify();
@@ -99,6 +101,16 @@ class PreferenceManager {
   void _setBool(String key, bool value) {
     _prefs.setBool(key, value);
     _notify();
+  }
+
+  void _setJsonMap(String key, Map<String, Map<String, dynamic>> json) {
+    _prefs.setString(key, jsonEncode(json));
+    _notify();
+  }
+
+  Map<String, Map<String, dynamic>> _jsonMap(String key) {
+    return (jsonDecode(_prefs.getString(key) ?? "{}") as Map<String, dynamic>)
+        .map((key, value) => MapEntry(key, value as Map<String, dynamic>));
   }
 
   void _remove(String key) {

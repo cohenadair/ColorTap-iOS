@@ -63,33 +63,29 @@ void main() {
     expect(PreferenceManager.get.colorIndex, null);
   });
 
-  test("High score is set from nothing", () async {
-    await stubValues({"difficulty": 1});
-    expect(PreferenceManager.get.currentHighScore, isNull);
-
-    PreferenceManager.get.updateCurrentHighScore(50);
-    expect(PreferenceManager.get.currentHighScore, 50);
+  test("difficultyStats returns empty map", () async {
+    await stubValues({});
+    var stats = PreferenceManager.get.difficultyStats;
+    expect(stats, isEmpty);
   });
 
-  test("High score overrides old value", () async {
-    await stubValues({
-      "difficulty": 1,
-      Difficulty.easy.highScoreKey: 50,
-    });
-    expect(PreferenceManager.get.currentHighScore, 50);
+  test("difficultyStats is written and read correctly", () async {
+    await stubValues({});
 
-    PreferenceManager.get.updateCurrentHighScore(75);
-    expect(PreferenceManager.get.currentHighScore, 75);
-  });
+    // Write.
+    PreferenceManager.get.difficultyStats = {
+      1: const DifficultyStats(
+        difficultyIndex: 1,
+        highScore: 5,
+        gamesPlayed: 6,
+      ),
+    };
 
-  test("Setting high score that is too low", () async {
-    await stubValues({
-      "difficulty": 1,
-      Difficulty.easy.highScoreKey: 50,
-    });
-    expect(PreferenceManager.get.currentHighScore, 50);
-
-    PreferenceManager.get.updateCurrentHighScore(40);
-    expect(PreferenceManager.get.currentHighScore, 50);
+    // Read back.
+    var stats = PreferenceManager.get.difficultyStats;
+    expect(stats.length, 1);
+    expect(stats[1]!.difficultyIndex, 1);
+    expect(stats[1]!.highScore, 5);
+    expect(stats[1]!.gamesPlayed, 6);
   });
 }

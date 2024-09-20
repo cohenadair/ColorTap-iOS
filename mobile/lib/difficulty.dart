@@ -11,18 +11,17 @@ import 'target_color.dart';
 /// be changed.
 enum Difficulty {
   kids(
-    highScoreKey: "high_score_kids",
     minTargetsPerRow: 3,
     canChooseColor: true,
     hasUnlimitedLives: true,
     startSpeed: 3.0,
     incSpeedBy: 0,
     colorChangeGracePeriodMs: -1,
-    colorChangeFrequencyRange: (1000000, 1000000), // Never change.
+    colorChangeFrequencyRange: (1000000, 1000000),
+    // Never change.
     colors: TargetColor.kids,
   ),
   easy(
-    highScoreKey: "high_score_easy",
     minTargetsPerRow: 4,
     canChooseColor: false,
     hasUnlimitedLives: false,
@@ -33,7 +32,6 @@ enum Difficulty {
     colors: TargetColor.all,
   ),
   normal(
-    highScoreKey: "high_score_normal",
     minTargetsPerRow: 4,
     canChooseColor: false,
     hasUnlimitedLives: false,
@@ -44,7 +42,6 @@ enum Difficulty {
     colors: TargetColor.all,
   ),
   hard(
-    highScoreKey: "high_score_hard",
     minTargetsPerRow: 5,
     canChooseColor: false,
     hasUnlimitedLives: false,
@@ -55,14 +52,14 @@ enum Difficulty {
     colors: TargetColor.all,
   ),
   expert(
-    highScoreKey: "high_score_expert",
     minTargetsPerRow: 5,
     canChooseColor: false,
     hasUnlimitedLives: false,
     startSpeed: 6.0,
     incSpeedBy: 0.00015,
     colorChangeGracePeriodMs: 1000,
-    colorChangeFrequencyRange: (7, 15), // Arbitrary numbers.
+    colorChangeFrequencyRange: (7, 15),
+    // Arbitrary numbers.
     colors: TargetColor.all,
   );
 
@@ -70,10 +67,6 @@ enum Difficulty {
   /// increased by [_incTargetsPerRowBy].
   final int _incTargetsPerRowThreshold = 600;
   final int _incTargetsPerRowBy = 1;
-
-  /// The key used to save the current high score in [PreferenceManager]. This
-  /// value shouldn't ever change for any single [Difficulty].
-  final String highScoreKey;
 
   /// The minimum targets per row. This value may be added to depending on the
   /// type of device (tablet/iPad/phone) being used.
@@ -105,7 +98,6 @@ enum Difficulty {
   final List<TargetColor> Function() colors;
 
   const Difficulty({
-    required this.highScoreKey,
     required this.minTargetsPerRow,
     required this.canChooseColor,
     required this.hasUnlimitedLives,
@@ -139,5 +131,55 @@ enum Difficulty {
       case Difficulty.expert:
         return Strings.of(context).difficultyExpert;
     }
+  }
+}
+
+@immutable
+class DifficultyStats {
+  static const _keyDifficultyIndex = "difficultyIndex";
+  static const _keyHighScore = "highScore";
+  static const _keyGamesPlayed = "gamesPlayed";
+
+  final int difficultyIndex;
+  final int highScore;
+  final int gamesPlayed;
+
+  const DifficultyStats({
+    required this.difficultyIndex,
+    this.highScore = 0,
+    this.gamesPlayed = 0,
+  });
+
+  DifficultyStats.fromJson(Map<String, dynamic> json)
+      : difficultyIndex = json[_keyDifficultyIndex] as int,
+        highScore = json[_keyHighScore] as int,
+        gamesPlayed = json[_keyGamesPlayed] as int;
+
+  Map<String, dynamic> toJson() {
+    return {
+      _keyDifficultyIndex: difficultyIndex,
+      _keyHighScore: highScore,
+      _keyGamesPlayed: gamesPlayed,
+    };
+  }
+
+  DifficultyStats withIncedGamesPlayed() {
+    return DifficultyStats(
+      difficultyIndex: difficultyIndex,
+      highScore: highScore,
+      gamesPlayed: gamesPlayed + 1,
+    );
+  }
+
+  DifficultyStats withHighScore(int newHighScore) {
+    if (highScore >= newHighScore) {
+      return this;
+    }
+
+    return DifficultyStats(
+      difficultyIndex: difficultyIndex,
+      highScore: newHighScore,
+      gamesPlayed: gamesPlayed,
+    );
   }
 }
