@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   collection: ^1.18.0                             # https://pub.dev/packages/collection (Dart)
+  confetti: ^0.7.0                                # https://pub.dev/packages/confetti (verified)
   device_info_plus: ^10.1.2                       # https://pub.dev/packages/device_info_plus (verified)
   flame: ^1.13.1                                  # https://pub.dev/packages/flame (Flame Engine)
   flame_audio: ^2.10.3                            # https://pub.dev/packages/flame_audio (verified)

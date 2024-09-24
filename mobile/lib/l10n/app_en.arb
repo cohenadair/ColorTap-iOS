@@ -5,6 +5,8 @@
   "ok": "Ok",
   "or": "Or",
   "none": "None",
+  "continueLabel": "Continue",
+  "cancel": "Cancel",
 
   "menuMainTitle": "Color Tap Coordination",
   "menuMainPlay": "Play",
@@ -31,6 +33,8 @@
   "settingsAudioLicense": "Music & Sound by ZapSplat",
   "settingsPrivacy": "Privacy Policy",
   "settingsVersion": "Version",
+  "settingsResetTitle": "Reset Stats",
+  "settingsResetMessage": "Games played and high scores for all difficulties will be reset to 0. This cannot be undone.",
 
   "getLivesRefundableMessage": "Life purchases are non-refundable and do not sync across devices. Purchased lives will be lost if the app is uninstalled.",
   "getLivesQuantityMessage": "lives for",
@@ -69,5 +73,8 @@
   "feedbackPageConfirmationTitle": "Sent",
   "feedbackPageConfirmationMessage": "Message successfully sent. Please allow 1-2 business days for a reply.",
   "feedbackPageRequiredFields": "Please fix all form errors before sending your feedback.",
-  "feedbackPageErrorSending": "Error sending feedback. Please try again later, or email %s directly."
+  "feedbackPageErrorSending": "Error sending feedback. Please try again later, or email %s directly.",
+
+  "newHighScorePageTitle": "High Score",
+  "newHighScorePageDifficulty": "Difficulty"
 }

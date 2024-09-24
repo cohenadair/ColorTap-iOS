@@ -15,6 +15,7 @@ void main() {
 
   setUp(() {
     world = MockColorTapWorld();
+    when(world.shouldShowNewHighScore).thenReturn(false);
 
     game = MockColorTapGame();
     when(game.world).thenReturn(world);
@@ -44,6 +45,25 @@ void main() {
 
     await tapAndSettle(tester, find.text("Ok"));
     expect(find.text("Test error message"), findsNothing);
+    expect(wasCalled, isTrue);
+  });
+
+  testWidgets("showContinueDialog", (tester) async {
+    var context = await pumpContext(tester, (_) => Menu.main(game));
+    var wasCalled = false;
+
+    showContinueDialog(
+      context,
+      "Title",
+      "Test continue message",
+      onDismissed: () => wasCalled = true,
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text("Test continue message"), findsOneWidget);
+
+    await tapAndSettle(tester, find.text("Continue"));
+    expect(find.text("Test continue message"), findsNothing);
     expect(wasCalled, isTrue);
   });
 }

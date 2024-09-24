@@ -69,7 +69,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: AudioCloseButton(),
+        leading: const AudioCloseButton(),
         title: Text(Strings.of(context).feedbackPageTitle),
         actions: <Widget>[action],
       ),

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:confetti/confetti.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
@@ -17,6 +18,7 @@ import 'package:mobile/managers/properties_manager.dart';
 import 'package:mobile/managers/purchases_manager.dart';
 import 'package:mobile/managers/stats_manager.dart';
 import 'package:mobile/managers/time_manager.dart';
+import 'package:mobile/wrappers/confetti_wrapper.dart';
 import 'package:mobile/wrappers/connection_wrapper.dart';
 import 'package:mobile/wrappers/device_info_wrapper.dart';
 import 'package:mobile/wrappers/fgbg_wrapper.dart';
@@ -41,6 +43,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 @GenerateMocks([ColorTapWorld])
 @GenerateMocks([], customMocks: [MockSpec<ComponentsNotifier>()])
 @GenerateMocks([ConnectionWrapper])
+@GenerateMocks([ConfettiController])
+@GenerateMocks([ConfettiWrapper])
 @GenerateMocks([CustomerInfo])
 @GenerateMocks([DeviceInfoWrapper])
 @GenerateMocks([FgbgWrapper])

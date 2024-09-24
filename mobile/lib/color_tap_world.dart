@@ -19,16 +19,20 @@ import 'utils/dimens.dart';
 import 'utils/overlay_utils.dart';
 
 class ColorTapWorld extends World with HasGameRef, Notifier {
+  static const _fpsPriority = 1;
+  static const _fpsVerticalOffset = 150.0;
+  static const _fpsFontSize = 20.0;
+
   final _board1Key = ComponentKey.unique();
   final _board2Key = ComponentKey.unique();
 
   final _fpsComponent = FpsTextComponent(
-    priority: 1,
-    position: Vector2(paddingDefault, 150),
+    priority: _fpsPriority,
+    position: Vector2(paddingDefault, _fpsVerticalOffset),
     textRenderer: TextPaint(
       style: const TextStyle(
         color: Colors.green,
-        fontSize: 20,
+        fontSize: _fpsFontSize,
       ),
     ),
   );
@@ -39,6 +43,7 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
 
   var _score = 0;
   var scrollingPaused = true;
+  var shouldShowNewHighScore = false;
 
   /// If set, a "grace period" is active, where users are allowed to miss
   /// targets. This is to prevent immediate loss after a color change due
@@ -115,9 +120,9 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
         LivesManager.get.loseLife();
       }
       game.overlays.add(overlayIdGameOver);
-      StatsManager.get.updateCurrentHighScore(score);
       StatsManager.get.incCurrentGamesPlayed();
       AudioManager.get.playMenuBackground();
+      shouldShowNewHighScore = StatsManager.get.updateCurrentHighScore(score);
     }
 
     notifyListeners();

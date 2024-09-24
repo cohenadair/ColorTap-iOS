@@ -108,7 +108,7 @@ void main() {
     controller.add(FGBGType.foreground);
     await Future.delayed(const Duration(milliseconds: 50));
 
-    verifyNever(menuPlayer.pause());
+    verify(menuPlayer.pause()).called(1);
     verify(menuPlayer.resume()).called(1);
     verify(gamePlayer.pause()).called(1);
     verifyNever(gamePlayer.resume());
@@ -142,7 +142,7 @@ void main() {
     controller.add(null);
     await Future.delayed(const Duration(milliseconds: 50));
 
-    verifyNever(menuPlayer.pause());
+    verify(menuPlayer.pause()).called(1);
     verify(menuPlayer.resume()).called(1);
     verify(gamePlayer.pause()).called(1);
     verifyNever(gamePlayer.resume());
@@ -166,7 +166,7 @@ void main() {
     verify(menuPlayer.pause()).called(1);
     verifyNever(menuPlayer.resume());
     verify(gamePlayer.resume()).called(1);
-    verifyNever(gamePlayer.pause());
+    verify(gamePlayer.pause()).called(1);
   });
 
   test("resumeMusic in menu", () async {
@@ -174,7 +174,7 @@ void main() {
 
     await AudioManager.get.playMenuBackground();
     verify(menuPlayer.resume()).called(1);
-    verifyNever(menuPlayer.pause());
+    verify(menuPlayer.pause()).called(1);
     verify(gamePlayer.pause()).called(1);
     verifyNever(gamePlayer.resume());
   });
@@ -211,7 +211,7 @@ void main() {
     verify(menuPlayer.pause()).called(1);
     verifyNever(menuPlayer.resume());
     verifyNever(gamePlayer.resume());
-    verifyNever(gamePlayer.pause());
+    verify(gamePlayer.pause()).called(1);
   });
 
   test("Incorrect hit pauses music", () async {

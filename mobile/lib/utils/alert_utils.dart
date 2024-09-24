@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:mobile/utils/colors.dart';
+import 'package:mobile/utils/dimens.dart';
 
 import '../managers/audio_manager.dart';
 
@@ -52,8 +53,46 @@ void showErrorDialog(
   );
 }
 
+void showContinueDialog(
+  BuildContext context,
+  String title,
+  String message, {
+  VoidCallback? onDismissed,
+}) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(title),
+      content: Text(message),
+      actions: <Widget>[
+        _buildButton(context, Text(Strings.of(context).cancel)),
+        _buildButton(
+          context,
+          Text(
+            Strings.of(context).continueLabel,
+            style: const TextStyle(fontWeight: fontWeightBold),
+          ),
+          onDismissed: onDismissed,
+        ),
+      ],
+    ),
+  );
+}
+
 Widget _buildOkButton(
   BuildContext context, {
+  VoidCallback? onDismissed,
+}) {
+  return _buildButton(
+    context,
+    Text(Strings.of(context).ok),
+    onDismissed: onDismissed,
+  );
+}
+
+Widget _buildButton(
+  BuildContext context,
+  Widget text, {
   VoidCallback? onDismissed,
 }) {
   return TextButton(
@@ -61,6 +100,6 @@ Widget _buildOkButton(
       Navigator.of(context).pop();
       onDismissed?.call();
     }),
-    child: Text(Strings.of(context).ok),
+    child: text,
   );
 }

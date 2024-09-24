@@ -172,10 +172,6 @@ class DifficultyStats {
   }
 
   DifficultyStats withHighScore(int newHighScore) {
-    if (highScore >= newHighScore) {
-      return this;
-    }
-
     return DifficultyStats(
       difficultyIndex: difficultyIndex,
       highScore: newHighScore,

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:confetti/confetti.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/difficulty.dart';
 import 'package:mobile/overlays/menu.dart';
@@ -35,6 +36,7 @@ void main() {
 
     world = MockColorTapWorld();
     when(world.play()).thenAnswer((_) {});
+    when(world.shouldShowNewHighScore).thenReturn(false);
 
     game = MockColorTapGame();
     when(game.world).thenReturn(world);
@@ -153,5 +155,38 @@ void main() {
     expect(find.text("Normal"), findsOneWidget);
     expect(find.text("60"), findsOneWidget);
     expect(find.text("30"), findsOneWidget);
+  });
+
+  testWidgets("High score page is not shown", (tester) async {
+    when(world.shouldShowNewHighScore).thenReturn(false);
+    await pumpContext(tester, (context) => Menu.main(game));
+    await tester.pump();
+
+    // Verify NewHighScorePage.initState() is not called instead of checking if
+    // widget is visible: the confetti infinite animation doesn't allow
+    // pumpAndSettle.
+    verifyNever(managers.confettiWrapper
+        .newConfettiController(duration: anyNamed("duration")));
+    verify(world.shouldShowNewHighScore).called(1);
+  });
+
+  testWidgets("High score page is shown", (tester) async {
+    when(world.shouldShowNewHighScore).thenReturn(true);
+    when(world.score).thenReturn(50);
+
+    when(managers.confettiWrapper.newConfettiController(
+      duration: anyNamed("duration"),
+    )).thenReturn(ConfettiController(duration: const Duration(seconds: 5)));
+
+    await pumpContext(tester, (context) => Menu.gameOver(game));
+    await tester.pump();
+
+    // Verify NewHighScorePage.initState() is called instead of checking if
+    // widget is visible: the confetti infinite animation doesn't allow
+    // pumpAndSettle.
+    verify(managers.confettiWrapper.newConfettiController(
+      duration: anyNamed("duration"),
+    )).called(1);
+    verify(world.shouldShowNewHighScore = false).called(1);
   });
 }

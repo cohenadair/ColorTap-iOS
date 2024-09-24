@@ -36,7 +36,27 @@ void main() {
 
   test("updateCurrentHighScore", () {
     expect(StatsManager.get.currentHighScore, 0);
+
+    // New high score.
     StatsManager.get.updateCurrentHighScore(50);
     expect(StatsManager.get.currentHighScore, 50);
+    verify(managers.preferenceManager.difficultyStats = any).called(1);
+
+    // Not high enough.
+    StatsManager.get.updateCurrentHighScore(40);
+    expect(StatsManager.get.currentHighScore, 50);
+    verifyNever(managers.preferenceManager.difficultyStats = any);
+  });
+
+  test("reset", () {
+    // Set some value.
+    StatsManager.get.updateCurrentHighScore(50);
+    expect(StatsManager.get.currentHighScore, 50);
+    verify(managers.preferenceManager.difficultyStats = any).called(1);
+
+    // Clear and verify.
+    StatsManager.get.reset();
+    expect(StatsManager.get.currentHighScore, 0);
+    verify(managers.preferenceManager.difficultyStats = any).called(1);
   });
 }

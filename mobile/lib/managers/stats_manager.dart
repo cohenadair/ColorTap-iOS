@@ -32,14 +32,26 @@ class StatsManager {
   void incCurrentGamesPlayed() {
     _difficulties[_currentDifficultyIndex] =
         currentDifficultyStats.withIncedGamesPlayed();
-    PreferenceManager.get.difficultyStats = _difficulties;
+    _updatePreferences();
   }
 
-  void updateCurrentHighScore(int newHighScore) {
+  bool updateCurrentHighScore(int newHighScore) {
+    if (currentHighScore >= newHighScore) {
+      return false;
+    }
     _difficulties[_currentDifficultyIndex] =
         currentDifficultyStats.withHighScore(newHighScore);
-    PreferenceManager.get.difficultyStats = _difficulties;
+    _updatePreferences();
+    return true;
+  }
+
+  void reset() {
+    _difficulties.clear();
+    _updatePreferences();
   }
 
   int get _currentDifficultyIndex => PreferenceManager.get.difficulty.index;
+
+  void _updatePreferences() =>
+      PreferenceManager.get.difficultyStats = _difficulties;
 }

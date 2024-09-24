@@ -3,10 +3,10 @@ import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:mobile/color_tap_game.dart';
 import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/managers/preference_manager.dart';
+import 'package:mobile/pages/new_high_score_page.dart';
 import 'package:mobile/pages/settings_page.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/utils/text_utils.dart';
-import 'package:mobile/utils/theme.dart';
 import 'package:mobile/widgets/get_lives.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
 
@@ -14,16 +14,36 @@ import '../managers/audio_manager.dart';
 import '../managers/stats_manager.dart';
 import '../pages/feedback_page.dart';
 import '../utils/page_utils.dart';
+import '../widgets/scroll_scaffold.dart';
+import '../utils/theme.dart';
 
-class Menu extends StatelessWidget {
-  static const _scoreSize = 100.0;
-
+class Menu extends StatefulWidget {
   final ColorTapGame game;
   final _MenuData _data;
 
   Menu.main(this.game) : _data = _MainMenuData();
 
   Menu.gameOver(this.game) : _data = _GameOverMenuData();
+
+  @override
+  State<Menu> createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> {
+  static const _scoreSize = 100.0;
+
+  BuildContext? _navigatorContext;
+
+  _MenuData get _data => widget._data;
+
+  ColorTapGame get _game => widget.game;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => _showNewHighScorePageIfNeeded());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,37 +56,23 @@ class Menu extends StatelessWidget {
       // US English.
       localeResolutionCallback: (locale, locales) =>
           locales.contains(locale) ? locale : const Locale("en"),
-      home: Scaffold(
-        body: LayoutBuilder(
-          builder: (context, constraints) => SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: IntrinsicHeight(
-                child: SafeArea(
-                  child: Padding(
-                    padding: insetsDefault,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Spacer(),
-                        _buildTitle(context),
-                        _buildLives(),
-                        _buildScore(),
-                        _buildGetLives(context),
-                        const Spacer(),
-                        _buildPlayButton(context),
-                        _buildFeedbackButton(context),
-                        _buildSettingsButton(context),
-                        const Spacer(),
-                        _buildStats(),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
+      home: ScrollScaffold(
+        childBuilder: (context) {
+          _navigatorContext ??= context;
+          return [
+            const Spacer(),
+            _buildTitle(context),
+            _buildLives(),
+            _buildScore(),
+            _buildGetLives(context),
+            const Spacer(),
+            _buildPlayButton(context),
+            _buildFeedbackButton(context),
+            _buildSettingsButton(context),
+            const Spacer(),
+            _buildStats(),
+          ];
+        },
       ),
     );
   }
@@ -89,7 +95,7 @@ class Menu extends StatelessWidget {
     }
 
     return Text(
-      game.world.score.toString(),
+      _game.world.score.toString(),
       style: const TextStyle(fontSize: _scoreSize),
     );
   }
@@ -123,7 +129,7 @@ class Menu extends StatelessWidget {
       stream: LivesManager.get.stream,
       builder: (context, _) => LivesManager.get.canPlay
           ? FilledButton(
-              onPressed: AudioManager.get.onButtonPressed(game.world.play),
+              onPressed: AudioManager.get.onButtonPressed(_game.world.play),
               child: Text(_data.playText(context)),
             )
           : const SizedBox(),
@@ -190,6 +196,15 @@ class Menu extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _showNewHighScorePageIfNeeded() {
+    if (!_game.world.shouldShowNewHighScore || _navigatorContext == null) {
+      return;
+    }
+
+    present(_navigatorContext!, NewHighScorePage(_game));
+    _game.world.shouldShowNewHighScore = false;
   }
 }
 

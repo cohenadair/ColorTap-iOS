@@ -33,7 +33,7 @@ void main() {
 
     when(managers.statsManager.currentHighScore).thenReturn(0);
     when(managers.statsManager.currentGamesPlayed).thenReturn(0);
-    when(managers.statsManager.updateCurrentHighScore(any)).thenAnswer((_) {});
+    when(managers.statsManager.updateCurrentHighScore(any)).thenReturn(false);
 
     world = ColorTapWorld();
     game = ColorTapGame(world: world);

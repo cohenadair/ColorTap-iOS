@@ -84,12 +84,13 @@ class AudioManager {
   }
 
   Future<void> resumeMusic() async {
+    // Stop all players before resuming the correct one.
+    await pauseMusic();
+
     switch (_gameState) {
       case _AudioManagerState.inGame:
-        await _menuPlayer.pause();
         return _resumePlayer(_gamePlayer);
       case _AudioManagerState.inMenu:
-        await _gamePlayer.pause();
         return _resumePlayer(_menuPlayer);
     }
   }

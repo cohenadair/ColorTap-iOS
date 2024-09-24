@@ -9,6 +9,7 @@ import 'package:mobile/wrappers/url_launcher_wrapper.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../managers/audio_manager.dart';
+import '../managers/stats_manager.dart';
 import '../utils/dimens.dart';
 import '../widgets/audio_close_button.dart';
 
@@ -23,7 +24,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: AudioCloseButton(),
+        leading: const AudioCloseButton(),
         title: Text(Strings.of(context).settingsTitle),
       ),
       body: SafeArea(
@@ -34,6 +35,7 @@ class SettingsPage extends StatelessWidget {
             _buildMusic(context),
             _buildSoundEffects(context),
             _buildFps(context),
+            _buildDataReset(context),
             const Divider(color: Colors.white10),
             _buildFontLicense(context),
             _buildAudioLicense(context),
@@ -137,6 +139,24 @@ class SettingsPage extends StatelessWidget {
       label: Strings.of(context).settingsFps,
       value: () => PreferenceManager.get.isFpsOn,
       setValue: (value) => PreferenceManager.get.isFpsOn = value,
+    );
+  }
+
+  Widget _buildDataReset(BuildContext context) {
+    return ListTile(
+      title: Text(
+        Strings.of(context).settingsResetTitle,
+        style: Theme.of(context)
+            .textTheme
+            .titleMedium
+            ?.copyWith(color: Theme.of(context).colorScheme.primary),
+      ),
+      onTap: () => showContinueDialog(
+        context,
+        Strings.of(context).settingsResetTitle,
+        Strings.of(context).settingsResetMessage,
+        onDismissed: () => StatsManager.get.reset(),
+      ),
     );
   }
 

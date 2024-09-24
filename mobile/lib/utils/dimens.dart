@@ -17,6 +17,8 @@ const insetsRightSmall = EdgeInsets.only(right: paddingSmall);
 
 const insetsVerticalDefault = EdgeInsets.symmetric(vertical: paddingDefault);
 
+const insetsVerticalXLarge = EdgeInsets.symmetric(vertical: paddingXLarge);
+
 const insetsVerticalSmall = EdgeInsets.symmetric(vertical: paddingSmall);
 
 const insetsBottomDefault = EdgeInsets.only(bottom: paddingDefault);

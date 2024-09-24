@@ -5,6 +5,7 @@ import 'package:mobile/managers/properties_manager.dart';
 import 'package:mobile/managers/purchases_manager.dart';
 import 'package:mobile/managers/stats_manager.dart';
 import 'package:mobile/managers/time_manager.dart';
+import 'package:mobile/wrappers/confetti_wrapper.dart';
 import 'package:mobile/wrappers/device_info_wrapper.dart';
 import 'package:mobile/wrappers/fgbg_wrapper.dart';
 import 'package:mobile/wrappers/flame_audio_wrapper.dart';
@@ -34,6 +35,7 @@ class StubbedManagers {
   late final MockFlameAudioWrapper flameAudioWrapper;
   late final MockHttpWrapper httpWrapper;
   late final MockConnectionWrapper connectionWrapper;
+  late final MockConfettiWrapper confettiWrapper;
   late final MockPackageInfoWrapper packageInfoWrapper;
   late final MockPlatformWrapper platformWrapper;
   late final MockPurchasesWrapper purchasesWrapper;
@@ -86,6 +88,9 @@ class StubbedManagers {
 
     connectionWrapper = MockConnectionWrapper();
     ConnectionWrapper.set(connectionWrapper);
+
+    confettiWrapper = MockConfettiWrapper();
+    ConfettiWrapper.set(confettiWrapper);
 
     packageInfoWrapper = MockPackageInfoWrapper();
     when(packageInfoWrapper.fromPlatform()).thenAnswer(

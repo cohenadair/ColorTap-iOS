@@ -110,4 +110,16 @@ void main() {
     await tapAndSettle(tester, find.text("Ok"));
     expect(find.text("Colour"), findsOneWidget); // Settings
   });
+
+  testWidgets("Stats reset dialog is shown", (tester) async {
+    await pumpContext(tester, (_) => SettingsPage());
+    await tapAndSettle(tester, find.text("Reset Stats"));
+    expect(find.text("Continue"), findsOneWidget);
+
+    // Clear dialog.
+    when(managers.statsManager.reset()).thenAnswer((_) {});
+    await tapAndSettle(tester, find.text("Continue"));
+    expect(find.text("Continue"), findsNothing);
+    verify(managers.statsManager.reset()).called(1);
+  });
 }

@@ -78,7 +78,6 @@ void main() {
       highScore: 10,
       gamesPlayed: 5,
     );
-    expect(stats.withHighScore(8).highScore, 10);
     expect(stats.withHighScore(15).highScore, 15);
   });
 }
