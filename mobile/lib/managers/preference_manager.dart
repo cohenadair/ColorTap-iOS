@@ -18,94 +18,100 @@ class PreferenceManager {
 
   PreferenceManager._();
 
+  static const keyLives = "lives";
+  static const keyDifficulty = "difficulty";
+  static const keyColorIndex = "color_index";
+  static const keyUserName = "user_name";
+  static const keyUserEmail = "user_email";
+  static const keyMusicOn = "is_music_on";
+  static const keySoundOn = "is_sound_on";
+  static const keyFpsOn = "is_fps_on";
+  static const keyDifficultyStats = "difficulty_stats";
+  static const keyDidOnboard = "did_onboard_user";
+
   static const _defaultLives = 10;
-  static const _keyLives = "lives";
-  static const _keyDifficulty = "difficulty";
-  static const _keyColorIndex = "color_index";
-  static const _keyUserName = "user_name";
-  static const _keyUserEmail = "user_email";
-  static const _keyMusicOn = "is_music_on";
-  static const _keySoundOn = "is_sound_on";
-  static const _keyFpsOn = "is_fps_on";
-  static const _keyDifficultyStats = "difficulty_stats";
 
   late final SharedPreferences _prefs;
 
-  final _controller = StreamController.broadcast();
+  final _controller = StreamController<String>.broadcast();
 
-  Stream get stream => _controller.stream;
+  Stream<String> get stream => _controller.stream;
 
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  int get lives => _prefs.getInt(_keyLives) ?? _defaultLives;
+  int get lives => _prefs.getInt(keyLives) ?? _defaultLives;
 
-  set lives(int value) => _setInt(_keyLives, value);
+  set lives(int value) => _setInt(keyLives, value);
 
-  void clearLives() => _remove(_keyLives);
+  void clearLives() => _remove(keyLives);
 
   Difficulty get difficulty => Difficulty
-      .values[_prefs.getInt(_keyDifficulty) ?? Difficulty.normal.index];
+      .values[_prefs.getInt(keyDifficulty) ?? Difficulty.normal.index];
 
-  set difficulty(Difficulty value) => _setInt(_keyDifficulty, value.index);
+  set difficulty(Difficulty value) => _setInt(keyDifficulty, value.index);
 
-  int? get colorIndex => _prefs.getInt(_keyColorIndex);
+  int? get colorIndex => _prefs.getInt(keyColorIndex);
 
   set colorIndex(int? value) {
     if (value == null) {
-      _remove(_keyColorIndex);
+      _remove(keyColorIndex);
     } else {
-      _setInt(_keyColorIndex, value);
+      _setInt(keyColorIndex, value);
     }
   }
 
-  set userName(String? value) => _setString(_keyUserName, value ?? "");
+  set userName(String? value) => _setString(keyUserName, value ?? "");
 
-  String? get userName => _prefs.getString(_keyUserName);
+  String? get userName => _prefs.getString(keyUserName);
 
-  set userEmail(String? value) => _setString(_keyUserEmail, value ?? "");
+  set userEmail(String? value) => _setString(keyUserEmail, value ?? "");
 
-  String? get userEmail => _prefs.getString(_keyUserEmail);
+  String? get userEmail => _prefs.getString(keyUserEmail);
 
-  bool get isSoundOn => _prefs.getBool(_keySoundOn) ?? true;
+  bool get isSoundOn => _prefs.getBool(keySoundOn) ?? true;
 
-  set isSoundOn(bool value) => _setBool(_keySoundOn, value);
+  set isSoundOn(bool value) => _setBool(keySoundOn, value);
 
-  bool get isMusicOn => _prefs.getBool(_keyMusicOn) ?? true;
+  bool get isMusicOn => _prefs.getBool(keyMusicOn) ?? true;
 
-  set isMusicOn(bool value) => _setBool(_keyMusicOn, value);
+  set isMusicOn(bool value) => _setBool(keyMusicOn, value);
 
-  bool get isFpsOn => _prefs.getBool(_keyFpsOn) ?? false;
+  bool get isFpsOn => _prefs.getBool(keyFpsOn) ?? false;
 
-  set isFpsOn(bool value) => _setBool(_keyFpsOn, value);
+  set isFpsOn(bool value) => _setBool(keyFpsOn, value);
 
   Map<int, DifficultyStats> get difficultyStats =>
-      _jsonMap(_keyDifficultyStats).map((key, value) =>
+      _jsonMap(keyDifficultyStats).map((key, value) =>
           MapEntry(int.parse(key), DifficultyStats.fromJson(value)));
 
   set difficultyStats(Map<int, DifficultyStats> value) => _setJsonMap(
-      _keyDifficultyStats,
+      keyDifficultyStats,
       value.map((key, stats) => MapEntry(key.toString(), stats.toJson())));
+
+  bool get didOnboard => _prefs.getBool(keyDidOnboard) ?? false;
+
+  set didOnboard(bool value) => _setBool(keyDidOnboard, value);
 
   void _setInt(String key, int value) {
     _prefs.setInt(key, value);
-    _notify();
+    _notify(key);
   }
 
   void _setString(String key, String value) {
     _prefs.setString(key, value);
-    _notify();
+    _notify(key);
   }
 
   void _setBool(String key, bool value) {
     _prefs.setBool(key, value);
-    _notify();
+    _notify(key);
   }
 
   void _setJsonMap(String key, Map<String, Map<String, dynamic>> json) {
     _prefs.setString(key, jsonEncode(json));
-    _notify();
+    _notify(key);
   }
 
   Map<String, Map<String, dynamic>> _jsonMap(String key) {
@@ -115,8 +121,8 @@ class PreferenceManager {
 
   void _remove(String key) {
     _prefs.remove(key);
-    _notify();
+    _notify(key);
   }
 
-  void _notify() => _controller.add(null);
+  void _notify(String key) => _controller.add(key);
 }

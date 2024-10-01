@@ -17,6 +17,7 @@ class ColorTapGameWidget extends StatelessWidget {
         overlayIdMainMenu: buildMainMenu,
         overlayIdGameOver: buildGameOver,
         overlayIdScoreboard: buildScoreboard,
+        overlayIdInstructions: buildInstructions,
       },
     );
   }

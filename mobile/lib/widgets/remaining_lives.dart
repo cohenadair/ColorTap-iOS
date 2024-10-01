@@ -8,7 +8,7 @@ import '../utils/dimens.dart';
 class RemainingLives extends StatelessWidget {
   static const _iconSize = 30.0;
 
-  const RemainingLives();
+  const RemainingLives({super.key});
 
   @override
   Widget build(BuildContext context) {

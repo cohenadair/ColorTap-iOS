@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/components/target.dart';
 import 'package:mobile/components/target_board.dart';
 import 'package:mobile/difficulty.dart';
+import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/utils/target_utils.dart';
 import 'package:mockito/mockito.dart';
 
@@ -151,7 +152,7 @@ main() {
     when(world.speed).thenReturn(2.0);
     when(game.findByKey(any)).thenReturn(buildBoard());
 
-    var controller = StreamController.broadcast();
+    var controller = StreamController<String>.broadcast();
     when(managers.preferenceManager.stream)
         .thenAnswer((_) => controller.stream);
 
@@ -167,8 +168,13 @@ main() {
     board.update(0);
     expect(board.position.y, startY + 2);
 
+    // Fire preferences event that isn't a difficulty change.
+    controller.add(PreferenceManager.keyMusicOn);
+    await tester.pump(const Duration(seconds: 1)); // Streams are async.
+    expect(board.position.y, startY + 2);
+
     // Verify reset.
-    controller.add(null);
+    controller.add(PreferenceManager.keyDifficulty);
     await tester.pump(const Duration(seconds: 1)); // Streams are async.
     expect(board.position.y, startY);
     expect(board.children.length, startChildren);
@@ -196,5 +202,21 @@ main() {
       (result.captured.first as Paint).color,
       (Paint()..color = Colors.red).color,
     );
+  });
+
+  testWidgets("Only one target has a key value", (tester) async {
+    stubScreenSize(tester);
+    when(world.scrollingPaused).thenReturn(false);
+    when(world.speed).thenReturn(2.0);
+    when(game.findByKey(any)).thenReturn(buildBoard());
+
+    var board = buildBoard();
+    board.onLoad();
+
+    var targetsWithKey = 0;
+    for (var child in board.children) {
+      targetsWithKey += child is Target && child.key != null ? 1 : 0;
+    }
+    expect(targetsWithKey, 1);
   });
 }

@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mobile/color_tap_game.dart';
 import 'package:mobile/color_tap_world.dart';
+import 'package:mobile/components/target.dart';
 import 'package:mobile/components/target_board.dart';
 import 'package:mobile/managers/audio_manager.dart';
 import 'package:mobile/managers/lives_manager.dart';
@@ -69,6 +70,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 @GenerateMocks([StatsManager])
 @GenerateMocks([StoreProduct])
 @GenerateMocks([TapDownEvent])
+@GenerateMocks([Target])
 @GenerateMocks([TargetBoard])
 @GenerateMocks([TimeManager])
 @GenerateMocks([UrlLauncherWrapper])

@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/color_tap_game.dart';
+import 'package:mobile/utils/keys.dart';
 import 'package:mobile/utils/theme.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
 
@@ -86,30 +87,33 @@ class _ScoreboardState extends State<Scoreboard> {
   }
 
   Widget _buildLives() {
-    return const Align(
+    return Align(
       alignment: Alignment.bottomLeft,
-      child: RemainingLives(),
+      child: RemainingLives(key: keyLives),
     );
   }
 
   Widget _buildTarget() {
-    return Positioned(
-      top: _height - _targetPositionOffset,
-      left: 0,
-      right: 0,
-      child: Container(
-        width: _targetSize,
-        height: _targetSize,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: _game.world.color.color,
-        ),
-        child: Center(
-          child: Text(
-            _game.world.score.toString(),
-            style: const TextStyle(
-              fontSize: _scoreFontSize,
-              color: colorDarkText,
+    return Padding(
+      padding: EdgeInsets.only(top: _height - _targetPositionOffset),
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Container(
+          key: keyCurrentTarget,
+          width: _targetSize,
+          height: _targetSize,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _game.world.color.color,
+          ),
+          child: Center(
+            child: Text(
+              _game.world.score.toString(),
+              key: keyScoreboardScore,
+              style: const TextStyle(
+                fontSize: _scoreFontSize,
+                color: colorDarkText,
+              ),
             ),
           ),
         ),
@@ -121,17 +125,13 @@ class _ScoreboardState extends State<Scoreboard> {
     return Align(
       alignment: Alignment.bottomRight,
       child: IconButton(
+        key: keyPauseResume,
         icon: _game.world.scrollingPaused
             ? const Icon(Icons.play_arrow)
             : const Icon(Icons.pause),
         iconSize: _iconSize,
         onPressed: AudioManager.get.onButtonPressed(() {
           _game.world.scrollingPaused = !_game.world.scrollingPaused;
-          if (_game.world.scrollingPaused) {
-            AudioManager.get.pauseMusic();
-          } else {
-            AudioManager.get.resumeMusic();
-          }
           setState(() {});
         }),
       ),

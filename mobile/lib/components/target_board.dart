@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/color_tap_world.dart';
+import 'package:mobile/utils/keys.dart';
 import 'package:mobile/utils/target_utils.dart';
 
 import '../managers/preference_manager.dart';
@@ -40,8 +41,12 @@ class TargetBoard extends PositionComponent
 
   @override
   FutureOr<void> onLoad() {
-    _preferenceManagerSub =
-        PreferenceManager.get.stream.listen((_) => _resetForNewDifficulty());
+    _preferenceManagerSub = PreferenceManager.get.stream.listen((key) {
+      if (key != PreferenceManager.keyDifficulty) {
+        return;
+      }
+      _resetForNewDifficulty();
+    });
 
     size = targetBoardSize(game.size);
     _resetForNewDifficulty();
@@ -128,6 +133,12 @@ class TargetBoard extends PositionComponent
           ),
           diameter / 2,
           this,
+          // Mark a target to be used in the game instructions.
+          key: r == numRows - 2 && // Second to last row.
+                  c == numColumns - 1 &&
+                  verticalStartFactor == 1 // First board.
+              ? keyInstructionsTarget
+              : null,
         ));
       }
     }

@@ -59,7 +59,11 @@ class AudioManager {
       }
     });
 
-    PreferenceManager.get.stream.listen((_) {
+    PreferenceManager.get.stream.listen((key) {
+      if (key != PreferenceManager.keyMusicOn) {
+        return;
+      }
+
       if (PreferenceManager.get.isMusicOn) {
         resumeMusic();
       } else {

@@ -116,7 +116,7 @@ void main() {
   });
 
   testWidgets("Picker updates when preferences updates", (tester) async {
-    var controller = StreamController.broadcast();
+    var controller = StreamController<String>.broadcast();
     when(managers.preferenceManager.stream)
         .thenAnswer((_) => controller.stream);
 
@@ -129,7 +129,7 @@ void main() {
     );
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
-    controller.add(null);
+    controller.add("");
     await tester.pump(const Duration(milliseconds: 500));
 
     // Verify disabled.

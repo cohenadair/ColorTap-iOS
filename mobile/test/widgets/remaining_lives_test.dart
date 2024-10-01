@@ -33,7 +33,7 @@ void main() {
   });
 
   testWidgets("Widget updates when difficulty change", (tester) async {
-    var controller = StreamController.broadcast();
+    var controller = StreamController<String>.broadcast();
     when(managers.preferenceManager.stream)
         .thenAnswer((_) => controller.stream);
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
@@ -43,7 +43,7 @@ void main() {
     expect(find.text("10"), findsOneWidget);
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.kids);
-    controller.add(null);
+    controller.add("");
     await tester.pump();
 
     expect(find.text("10"), findsNothing);

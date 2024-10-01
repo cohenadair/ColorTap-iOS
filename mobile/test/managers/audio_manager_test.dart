@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_fgbg/flutter_fgbg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/managers/audio_manager.dart';
+import 'package:mobile/managers/preference_manager.dart';
 import 'package:mockito/mockito.dart';
 
 import '../mocks/mocks.mocks.dart';
@@ -114,15 +115,29 @@ void main() {
     verifyNever(gamePlayer.resume());
   });
 
+  test("Non-music preferences update is a no-op", () async {
+    var controller = StreamController<String>.broadcast();
+    when(managers.preferenceManager.stream)
+        .thenAnswer((_) => controller.stream);
+
+    await AudioManager.get.init();
+    when(managers.preferenceManager.isMusicOn).thenReturn(true);
+    controller.add(PreferenceManager.keyDifficulty);
+    await Future.delayed(const Duration(milliseconds: 50));
+
+    verifyNever(menuPlayer.resume());
+    verifyNever(gamePlayer.resume());
+  });
+
   test("Music is paused when turned off in preferences", () async {
-    var controller = StreamController.broadcast();
+    var controller = StreamController<String>.broadcast();
     when(managers.preferenceManager.stream)
         .thenAnswer((_) => controller.stream);
     when(managers.preferenceManager.isMusicOn).thenReturn(true);
 
     await AudioManager.get.init();
     when(managers.preferenceManager.isMusicOn).thenReturn(false);
-    controller.add(null);
+    controller.add(PreferenceManager.keyMusicOn);
     await Future.delayed(const Duration(milliseconds: 50));
 
     verify(menuPlayer.pause()).called(1);
@@ -132,14 +147,14 @@ void main() {
   });
 
   test("Music is resumed when turned on in preferences", () async {
-    var controller = StreamController.broadcast();
+    var controller = StreamController<String>.broadcast();
     when(managers.preferenceManager.stream)
         .thenAnswer((_) => controller.stream);
     when(managers.preferenceManager.isMusicOn).thenReturn(false);
 
     await AudioManager.get.init();
     when(managers.preferenceManager.isMusicOn).thenReturn(true);
-    controller.add(null);
+    controller.add(PreferenceManager.keyMusicOn);
     await Future.delayed(const Duration(milliseconds: 50));
 
     verify(menuPlayer.pause()).called(1);

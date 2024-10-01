@@ -29,8 +29,12 @@ class Target extends CircleComponent
 
   TargetColor get color => _color;
 
-  Target(Vector2 position, double radius, TargetBoard board)
-      : _board = board,
+  Target(
+    Vector2 position,
+    double radius,
+    TargetBoard board, {
+    super.key,
+  })  : _board = board,
         super(
           position: position,
           radius: radius,

@@ -10,6 +10,7 @@ import 'package:mobile/components/target.dart';
 import 'package:mobile/components/target_board.dart';
 import 'package:mobile/difficulty.dart';
 import 'package:mobile/effects/target_board_rewind_effect.dart';
+import 'package:mobile/overlays/instructions.dart';
 import 'package:mobile/utils/overlay_utils.dart';
 import 'package:mockito/mockito.dart';
 
@@ -30,6 +31,7 @@ void main() {
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
     when(managers.preferenceManager.colorIndex).thenReturn(null);
     when(managers.preferenceManager.isFpsOn).thenReturn(false);
+    when(managers.preferenceManager.didOnboard).thenReturn(true);
 
     when(managers.statsManager.currentHighScore).thenReturn(0);
     when(managers.statsManager.currentGamesPlayed).thenReturn(0);
@@ -62,7 +64,7 @@ void main() {
 
   testWidgets("FPS component is added/removed on preference change",
       (tester) async {
-    var controller = StreamController.broadcast();
+    var controller = StreamController<String>.broadcast();
     when(managers.preferenceManager.stream)
         .thenAnswer((_) => controller.stream);
     when(managers.preferenceManager.isFpsOn).thenReturn(true);
@@ -74,13 +76,13 @@ void main() {
 
     // Turn FPS off.
     when(managers.preferenceManager.isFpsOn).thenReturn(false);
-    controller.add(null);
+    controller.add("");
     await tester.pump();
     expect(world.children.whereType<FpsTextComponent>().length, 0);
 
     // Turn FPS back on.
     when(managers.preferenceManager.isFpsOn).thenReturn(true);
-    controller.add(null);
+    controller.add("");
     await tester.pump();
     expect(world.children.whereType<FpsTextComponent>().length, 1);
   });
@@ -238,5 +240,57 @@ void main() {
     expect(game.overlays.activeOverlays.length, 1); // Scoreboard.
 
     verify(managers.audioManager.playGameBackground()).called(1);
+  });
+
+  testWidgets("Pausing/resuming stops/plays music", (tester) async {
+    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pump();
+    verify(managers.audioManager.pauseMusic()).called(1); // From onLoad.
+
+    world.scrollingPaused = true;
+    verify(managers.audioManager.pauseMusic()).called(1);
+    verifyNever(managers.audioManager.resumeMusic());
+
+    world.scrollingPaused = false;
+    verify(managers.audioManager.resumeMusic()).called(1);
+    verifyNever(managers.audioManager.pauseMusic());
+  });
+
+  testWidgets("Hiding instructions updates preferences", (tester) async {
+    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pump();
+
+    world.hideInstructions();
+    verify(managers.preferenceManager.didOnboard = true).called(1);
+  });
+
+  testWidgets("Show instructions exits early if already onboarded",
+      (tester) async {
+    when(managers.preferenceManager.didOnboard).thenReturn(true);
+
+    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pump();
+
+    world.play();
+    await tester.pump();
+
+    expect(game.overlays.activeOverlays.length, 1); // Scoreboard.
+  });
+
+  testWidgets("Instructions are shown", (tester) async {
+    when(managers.preferenceManager.didOnboard).thenReturn(false);
+
+    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pump();
+
+    world.play();
+
+    // Delay that shows the instructions.
+    await tester.pump(const Duration(milliseconds: 2000));
+
+    // Fade in duration.
+    await tester.pump(const Duration(milliseconds: 50));
+
+    expect(find.byType(Instructions), findsOneWidget);
   });
 }

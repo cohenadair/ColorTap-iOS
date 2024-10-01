@@ -14,8 +14,8 @@ import '../managers/audio_manager.dart';
 import '../managers/stats_manager.dart';
 import '../pages/feedback_page.dart';
 import '../utils/page_utils.dart';
+import '../widgets/localized_material_app.dart';
 import '../widgets/scroll_scaffold.dart';
-import '../utils/theme.dart';
 
 class Menu extends StatefulWidget {
   final ColorTapGame game;
@@ -47,16 +47,8 @@ class _MenuState extends State<Menu> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: appTheme(context),
-      localizationsDelegates: Strings.localizationsDelegates,
-      supportedLocales: Strings.supportedLocales,
-      // Unless the system locale exactly matches supportedLocales, default to
-      // US English.
-      localeResolutionCallback: (locale, locales) =>
-          locales.contains(locale) ? locale : const Locale("en"),
-      home: ScrollScaffold(
+    return LocalizedMaterialApp(
+      (context) => ScrollScaffold(
         childBuilder: (context) {
           _navigatorContext ??= context;
           return [

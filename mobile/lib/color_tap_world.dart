@@ -22,6 +22,7 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
   static const _fpsPriority = 1;
   static const _fpsVerticalOffset = 150.0;
   static const _fpsFontSize = 20.0;
+  static const _onboardingDelay = Duration(milliseconds: 2000);
 
   final _board1Key = ComponentKey.unique();
   final _board2Key = ComponentKey.unique();
@@ -42,7 +43,7 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
   late TargetColor _color;
 
   var _score = 0;
-  var scrollingPaused = true;
+  var _scrollingPaused = true;
   var shouldShowNewHighScore = false;
 
   /// If set, a "grace period" is active, where users are allowed to miss
@@ -60,6 +61,17 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
   int? get gracePeriod => _gracePeriod;
 
   Difficulty get _difficulty => PreferenceManager.get.difficulty;
+
+  bool get scrollingPaused => _scrollingPaused;
+
+  set scrollingPaused(bool paused) {
+    _scrollingPaused = paused;
+    if (_scrollingPaused) {
+      AudioManager.get.pauseMusic();
+    } else {
+      AudioManager.get.resumeMusic();
+    }
+  }
 
   @override
   void onLoad() {
@@ -149,6 +161,25 @@ class ColorTapWorld extends World with HasGameRef, Notifier {
     notifyListeners();
 
     game.overlays.removeAll([overlayIdMainMenu, overlayIdGameOver]);
+    _showInstructionsIfNeeded();
+  }
+
+  void hideInstructions() {
+    game.overlays.remove(overlayIdInstructions);
+    PreferenceManager.get.didOnboard = true;
+  }
+
+  void _showInstructionsIfNeeded() {
+    if (PreferenceManager.get.didOnboard) {
+      return;
+    }
+
+    // Allow some targets to scroll down the page before pausing for user
+    // onboarding.
+    Future.delayed(_onboardingDelay, () {
+      scrollingPaused = true;
+      game.overlays.add(overlayIdInstructions);
+    });
   }
 
   TargetBoard _targetBoard(ComponentKey key) =>
