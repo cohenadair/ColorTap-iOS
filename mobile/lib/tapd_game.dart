@@ -1,11 +1,11 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/color_tap_world.dart';
+import 'package:mobile/tapd_world.dart';
 
 import 'utils/colors.dart';
 
-class ColorTapGame extends FlameGame<ColorTapWorld> {
-  ColorTapGame({
+class TapdGame extends FlameGame<TapdWorld> {
+  TapdGame({
     super.world,
   });
 

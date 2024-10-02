@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/strings.dart';
-import 'package:mobile/color_tap_game.dart';
+import 'package:mobile/tapd_game.dart';
 import 'package:mobile/components/target.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/utils/keys.dart';
@@ -12,7 +12,7 @@ import '../managers/audio_manager.dart';
 import '../widgets/localized_material_app.dart';
 
 class Instructions extends StatefulWidget {
-  final ColorTapGame game;
+  final TapdGame game;
 
   const Instructions(this.game);
 
@@ -180,7 +180,7 @@ class _Step {
 
   static _CutoutPosition _positionFromComponentKey(
     ComponentKey key,
-    ColorTapGame game,
+    TapdGame game,
   ) {
     var target = game.findByKey(key) as Target;
     var size = target.size.x + paddingXLarge;
@@ -198,7 +198,7 @@ class _Step {
   final String Function(BuildContext) descriptionTextBuilder;
   final TextAlign textAlign;
   final Alignment buttonAlign;
-  final _CutoutPosition Function(BuildContext, ColorTapGame) cutoutPosition;
+  final _CutoutPosition Function(BuildContext, TapdGame) cutoutPosition;
 
   _Step({
     required this.next,

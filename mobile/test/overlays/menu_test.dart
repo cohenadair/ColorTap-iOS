@@ -14,8 +14,8 @@ import '../test_utils/test_utils.dart';
 
 void main() {
   late StubbedManagers managers;
-  late MockColorTapGame game;
-  late MockColorTapWorld world;
+  late MockTapdGame game;
+  late MockTapdWorld world;
 
   setUp(() {
     managers = StubbedManagers();
@@ -34,11 +34,11 @@ void main() {
     when(managers.statsManager.currentHighScore).thenReturn(0);
     when(managers.statsManager.currentGamesPlayed).thenReturn(0);
 
-    world = MockColorTapWorld();
+    world = MockTapdWorld();
     when(world.play()).thenAnswer((_) {});
     when(world.shouldShowNewHighScore).thenReturn(false);
 
-    game = MockColorTapGame();
+    game = MockTapdGame();
     when(game.world).thenReturn(world);
   });
 

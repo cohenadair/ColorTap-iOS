@@ -7,9 +7,9 @@ import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/managers/properties_manager.dart';
 import 'package:mobile/managers/stats_manager.dart';
 
-import 'color_tap_game.dart';
-import 'color_tap_game_widget.dart';
-import 'color_tap_world.dart';
+import 'tapd_game.dart';
+import 'tapd_game_widget.dart';
+import 'tapd_world.dart';
 import 'managers/purchases_manager.dart';
 
 void main() async {
@@ -28,6 +28,6 @@ void main() async {
   await AudioManager.get.init();
   await StatsManager.get.init();
 
-  final myGame = ColorTapGame(world: ColorTapWorld());
-  runApp(ColorTapGameWidget(myGame));
+  final myGame = TapdGame(world: TapdWorld());
+  runApp(TapdGameWidget(myGame));
 }

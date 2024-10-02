@@ -3,9 +3,9 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobile/color_tap_game.dart';
-import 'package:mobile/color_tap_game_widget.dart';
-import 'package:mobile/color_tap_world.dart';
+import 'package:mobile/tapd_game.dart';
+import 'package:mobile/tapd_game_widget.dart';
+import 'package:mobile/tapd_world.dart';
 import 'package:mobile/components/target.dart';
 import 'package:mobile/components/target_board.dart';
 import 'package:mobile/difficulty.dart';
@@ -19,8 +19,8 @@ import 'test_utils/stubbed_managers.dart';
 void main() {
   late StubbedManagers managers;
 
-  late ColorTapGame game;
-  late ColorTapWorld world;
+  late TapdGame game;
+  late TapdWorld world;
 
   setUp(() {
     managers = StubbedManagers();
@@ -37,12 +37,12 @@ void main() {
     when(managers.statsManager.currentGamesPlayed).thenReturn(0);
     when(managers.statsManager.updateCurrentHighScore(any)).thenReturn(false);
 
-    world = ColorTapWorld();
-    game = ColorTapGame(world: world);
+    world = TapdWorld();
+    game = TapdGame(world: world);
   });
 
   testWidgets("onLoad", (tester) async {
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
 
     expect(game.overlays.activeOverlays.contains(overlayIdMainMenu), true);
@@ -56,7 +56,7 @@ void main() {
   testWidgets("FPS component is shown", (tester) async {
     when(managers.preferenceManager.isFpsOn).thenReturn(true);
 
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
 
     expect(world.children.whereType<FpsTextComponent>().length, 1);
@@ -70,7 +70,7 @@ void main() {
     when(managers.preferenceManager.isFpsOn).thenReturn(true);
 
     // Verify FPS is already shown.
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
     expect(world.children.whereType<FpsTextComponent>().length, 1);
 
@@ -88,14 +88,14 @@ void main() {
   });
 
   testWidgets("Correct hit without color change", (tester) async {
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
 
     var startSpeed = world.speed;
     var startScore = world.score;
     var startColor = world.color;
     var notified = false;
-    game.componentsNotifier<ColorTapWorld>().addListener(() => notified = true);
+    game.componentsNotifier<TapdWorld>().addListener(() => notified = true);
     world.handleTargetHit(isCorrect: true);
 
     expect(world.speed > startSpeed, true);
@@ -107,7 +107,7 @@ void main() {
   });
 
   testWidgets("Correct hit with color change", (tester) async {
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
 
     var startColor = world.color;
@@ -129,7 +129,7 @@ void main() {
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.kids);
     when(managers.preferenceManager.colorIndex).thenReturn(1);
 
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
 
     var startColor = world.color;
@@ -144,7 +144,7 @@ void main() {
   });
 
   testWidgets("Incorrect hit ends game", (tester) async {
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
 
     // Reset counter.
@@ -154,7 +154,7 @@ void main() {
     var startScore = world.score;
     var startColor = world.color;
     var notified = false;
-    game.componentsNotifier<ColorTapWorld>().addListener(() => notified = true);
+    game.componentsNotifier<TapdWorld>().addListener(() => notified = true);
     world.handleTargetHit(isCorrect: false);
 
     expect(world.speed == startSpeed, true);
@@ -175,7 +175,7 @@ void main() {
   testWidgets("Incorrect hit doesn't lose life for kids mode", (tester) async {
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.kids);
 
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
 
     // Reset counter.
@@ -190,7 +190,7 @@ void main() {
   });
 
   testWidgets("Target missed ends game", (tester) async {
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
     await tester.pump(); // Second pump ensures children are loaded.
 
@@ -222,9 +222,9 @@ void main() {
     tester.view.physicalSize = const Size(600, 1000);
 
     var notified = false;
-    game.componentsNotifier<ColorTapWorld>().addListener(() => notified = true);
+    game.componentsNotifier<TapdWorld>().addListener(() => notified = true);
 
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     var startColor = world.color;
 
     world.play();
@@ -243,7 +243,7 @@ void main() {
   });
 
   testWidgets("Pausing/resuming stops/plays music", (tester) async {
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
     verify(managers.audioManager.pauseMusic()).called(1); // From onLoad.
 
@@ -257,7 +257,7 @@ void main() {
   });
 
   testWidgets("Hiding instructions updates preferences", (tester) async {
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
 
     world.hideInstructions();
@@ -268,7 +268,7 @@ void main() {
       (tester) async {
     when(managers.preferenceManager.didOnboard).thenReturn(true);
 
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
 
     world.play();
@@ -280,7 +280,7 @@ void main() {
   testWidgets("Instructions are shown", (tester) async {
     when(managers.preferenceManager.didOnboard).thenReturn(false);
 
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
 
     world.play();

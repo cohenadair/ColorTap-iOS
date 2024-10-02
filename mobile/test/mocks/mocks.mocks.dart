@@ -36,8 +36,6 @@ import 'package:flutter_fgbg/flutter_fgbg.dart' as _i41;
 import 'package:google_mobile_ads/google_mobile_ads.dart' as _i54;
 import 'package:google_mobile_ads/src/ad_listeners.dart' as _i23;
 import 'package:http/http.dart' as _i19;
-import 'package:mobile/color_tap_game.dart' as _i26;
-import 'package:mobile/color_tap_world.dart' as _i6;
 import 'package:mobile/components/target.dart' as _i33;
 import 'package:mobile/components/target_board.dart' as _i34;
 import 'package:mobile/difficulty.dart' as _i24;
@@ -48,6 +46,8 @@ import 'package:mobile/managers/properties_manager.dart' as _i50;
 import 'package:mobile/managers/purchases_manager.dart' as _i51;
 import 'package:mobile/managers/stats_manager.dart' as _i57;
 import 'package:mobile/managers/time_manager.dart' as _i62;
+import 'package:mobile/tapd_game.dart' as _i26;
+import 'package:mobile/tapd_world.dart' as _i6;
 import 'package:mobile/target_color.dart' as _i15;
 import 'package:mobile/wrappers/confetti_wrapper.dart' as _i37;
 import 'package:mobile/wrappers/connection_wrapper.dart' as _i35;
@@ -136,8 +136,8 @@ class _FakeRect_4 extends _i1.SmartFake implements _i5.Rect {
         );
 }
 
-class _FakeColorTapWorld_5 extends _i1.SmartFake implements _i6.ColorTapWorld {
-  _FakeColorTapWorld_5(
+class _FakeTapdWorld_5 extends _i1.SmartFake implements _i6.TapdWorld {
+  _FakeTapdWorld_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -679,8 +679,8 @@ class _FakeAnchor_55 extends _i1.SmartFake implements _i7.Anchor {
         );
 }
 
-class _FakeColorTapGame_56 extends _i1.SmartFake implements _i26.ColorTapGame {
-  _FakeColorTapGame_56(
+class _FakeTapdGame_56 extends _i1.SmartFake implements _i26.TapdGame {
+  _FakeTapdGame_56(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -2116,11 +2116,11 @@ class MockCanvas extends _i1.Mock implements _i5.Canvas {
       );
 }
 
-/// A class which mocks [ColorTapGame].
+/// A class which mocks [TapdGame].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockColorTapGame extends _i1.Mock implements _i26.ColorTapGame {
-  MockColorTapGame() {
+class MockTapdGame extends _i1.Mock implements _i26.TapdGame {
+  MockTapdGame() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -2147,16 +2147,16 @@ class MockColorTapGame extends _i1.Mock implements _i26.ColorTapGame {
       );
 
   @override
-  _i6.ColorTapWorld get world => (super.noSuchMethod(
+  _i6.TapdWorld get world => (super.noSuchMethod(
         Invocation.getter(#world),
-        returnValue: _FakeColorTapWorld_5(
+        returnValue: _FakeTapdWorld_5(
           this,
           Invocation.getter(#world),
         ),
-      ) as _i6.ColorTapWorld);
+      ) as _i6.TapdWorld);
 
   @override
-  set world(_i6.ColorTapWorld? newWorld) => super.noSuchMethod(
+  set world(_i6.TapdWorld? newWorld) => super.noSuchMethod(
         Invocation.setter(
           #world,
           newWorld,
@@ -3290,11 +3290,11 @@ class MockColorTapGame extends _i1.Mock implements _i26.ColorTapGame {
       );
 }
 
-/// A class which mocks [ColorTapWorld].
+/// A class which mocks [TapdWorld].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockColorTapWorld extends _i1.Mock implements _i6.ColorTapWorld {
-  MockColorTapWorld() {
+class MockTapdWorld extends _i1.Mock implements _i6.TapdWorld {
+  MockTapdWorld() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -6865,16 +6865,16 @@ class MockTarget extends _i1.Mock implements _i33.Target {
       );
 
   @override
-  _i26.ColorTapGame get game => (super.noSuchMethod(
+  _i26.TapdGame get game => (super.noSuchMethod(
         Invocation.getter(#game),
-        returnValue: _FakeColorTapGame_56(
+        returnValue: _FakeTapdGame_56(
           this,
           Invocation.getter(#game),
         ),
-      ) as _i26.ColorTapGame);
+      ) as _i26.TapdGame);
 
   @override
-  set game(_i26.ColorTapGame? value) => super.noSuchMethod(
+  set game(_i26.TapdGame? value) => super.noSuchMethod(
         Invocation.setter(
           #game,
           value,
@@ -6883,25 +6883,25 @@ class MockTarget extends _i1.Mock implements _i33.Target {
       );
 
   @override
-  _i26.ColorTapGame get gameRef => (super.noSuchMethod(
+  _i26.TapdGame get gameRef => (super.noSuchMethod(
         Invocation.getter(#gameRef),
-        returnValue: _FakeColorTapGame_56(
+        returnValue: _FakeTapdGame_56(
           this,
           Invocation.getter(#gameRef),
         ),
-      ) as _i26.ColorTapGame);
+      ) as _i26.TapdGame);
 
   @override
-  _i6.ColorTapWorld get world => (super.noSuchMethod(
+  _i6.TapdWorld get world => (super.noSuchMethod(
         Invocation.getter(#world),
-        returnValue: _FakeColorTapWorld_5(
+        returnValue: _FakeTapdWorld_5(
           this,
           Invocation.getter(#world),
         ),
-      ) as _i6.ColorTapWorld);
+      ) as _i6.TapdWorld);
 
   @override
-  set world(_i6.ColorTapWorld? value) => super.noSuchMethod(
+  set world(_i6.TapdWorld? value) => super.noSuchMethod(
         Invocation.setter(
           #world,
           value,
@@ -8278,16 +8278,16 @@ class MockTargetBoard extends _i1.Mock implements _i34.TargetBoard {
       ) as _i8.FlameGame<_i7.World>);
 
   @override
-  _i6.ColorTapWorld get world => (super.noSuchMethod(
+  _i6.TapdWorld get world => (super.noSuchMethod(
         Invocation.getter(#world),
-        returnValue: _FakeColorTapWorld_5(
+        returnValue: _FakeTapdWorld_5(
           this,
           Invocation.getter(#world),
         ),
-      ) as _i6.ColorTapWorld);
+      ) as _i6.TapdWorld);
 
   @override
-  set world(_i6.ColorTapWorld? value) => super.noSuchMethod(
+  set world(_i6.TapdWorld? value) => super.noSuchMethod(
         Invocation.setter(
           #world,
           value,

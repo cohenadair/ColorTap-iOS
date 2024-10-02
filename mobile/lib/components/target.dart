@@ -1,8 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
-import 'package:mobile/color_tap_game.dart';
-import 'package:mobile/color_tap_world.dart';
+import 'package:mobile/tapd_game.dart';
+import 'package:mobile/tapd_world.dart';
 
 import '../managers/audio_manager.dart';
 import '../managers/time_manager.dart';
@@ -10,10 +10,7 @@ import '../target_color.dart';
 import 'target_board.dart';
 
 class Target extends CircleComponent
-    with
-        HasGameRef<ColorTapGame>,
-        HasWorldReference<ColorTapWorld>,
-        TapCallbacks {
+    with HasGameRef<TapdGame>, HasWorldReference<TapdWorld>, TapCallbacks {
   static const _scaleDownBy = 0.20;
   static const _scaleDownDuration = 0.15;
   static const _scaleUpBy = 1.5;

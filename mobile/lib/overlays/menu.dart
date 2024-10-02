@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/strings.dart';
-import 'package:mobile/color_tap_game.dart';
+import 'package:mobile/tapd_game.dart';
 import 'package:mobile/managers/lives_manager.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/pages/new_high_score_page.dart';
@@ -18,7 +18,7 @@ import '../widgets/localized_material_app.dart';
 import '../widgets/scroll_scaffold.dart';
 
 class Menu extends StatefulWidget {
-  final ColorTapGame game;
+  final TapdGame game;
   final _MenuData _data;
 
   Menu.main(this.game) : _data = _MainMenuData();
@@ -36,7 +36,7 @@ class _MenuState extends State<Menu> {
 
   _MenuData get _data => widget._data;
 
-  ColorTapGame get _game => widget.game;
+  TapdGame get _game => widget.game;
 
   @override
   void initState() {

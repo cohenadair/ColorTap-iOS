@@ -1,17 +1,17 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/color_tap_game.dart';
+import 'package:mobile/tapd_game.dart';
 import 'package:mobile/utils/keys.dart';
 import 'package:mobile/utils/theme.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
 
-import '../color_tap_world.dart';
+import '../tapd_world.dart';
 import '../managers/audio_manager.dart';
 import '../utils/colors.dart';
 import '../utils/dimens.dart';
 
 class Scoreboard extends StatefulWidget {
-  final ColorTapGame game;
+  final TapdGame game;
 
   const Scoreboard(this.game);
 
@@ -28,9 +28,9 @@ class _ScoreboardState extends State<Scoreboard> {
   static const _targetSize = 115.0;
 
   late double _targetPositionOffset;
-  late ComponentsNotifier<ColorTapWorld> _worldNotifier;
+  late ComponentsNotifier<TapdWorld> _worldNotifier;
 
-  ColorTapGame get _game => widget.game;
+  TapdGame get _game => widget.game;
 
   double get _height =>
       MediaQuery.of(context).padding.top + _targetPositionOffset + paddingSmall;
@@ -40,7 +40,7 @@ class _ScoreboardState extends State<Scoreboard> {
     super.initState();
 
     _targetPositionOffset = _targetSize * _scorePositionOffsetFactor;
-    _worldNotifier = _game.componentsNotifier<ColorTapWorld>()
+    _worldNotifier = _game.componentsNotifier<TapdWorld>()
       ..addListener(_onWorldUpdated);
   }
 

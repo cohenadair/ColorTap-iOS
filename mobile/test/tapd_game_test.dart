@@ -1,9 +1,9 @@
 import 'package:flame/game.dart';
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobile/color_tap_game.dart';
-import 'package:mobile/color_tap_game_widget.dart';
-import 'package:mobile/color_tap_world.dart';
+import 'package:mobile/tapd_game.dart';
+import 'package:mobile/tapd_game_widget.dart';
+import 'package:mobile/tapd_world.dart';
 import 'package:mobile/difficulty.dart';
 import 'package:mockito/mockito.dart';
 
@@ -29,9 +29,9 @@ void main() {
     tester.view.devicePixelRatio = 1.0;
     tester.view.physicalSize = const Size(600, 1000);
 
-    final game = ColorTapGame(world: ColorTapWorld());
+    final game = TapdGame(world: TapdWorld());
 
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
     expect(game.camera.viewport.position, Vector2(-300, -500));
   });

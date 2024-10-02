@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobile/color_tap_world.dart';
+import 'package:mobile/tapd_world.dart';
 import 'package:mobile/difficulty.dart';
 import 'package:mobile/overlays/scoreboard.dart';
 import 'package:mobile/target_color.dart';
@@ -13,33 +13,33 @@ import '../test_utils/test_utils.dart';
 
 void main() {
   late StubbedManagers managers;
-  late MockColorTapWorld world;
-  late MockColorTapGame game;
+  late MockTapdWorld world;
+  late MockTapdGame game;
 
   setUp(() {
     managers = StubbedManagers();
     when(managers.livesManager.lives).thenReturn(15);
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
 
-    world = MockColorTapWorld();
+    world = MockTapdWorld();
     when(world.score).thenReturn(10);
     when(world.scrollingPaused).thenReturn(true);
     when(world.scrollingPaused = any).thenAnswer((_) {});
     when(world.color).thenReturn(TargetColor.random());
 
-    game = MockColorTapGame();
+    game = MockTapdGame();
     when(game.world).thenReturn(world);
     when(game.size).thenReturn(Vector2(400, 1000));
-    when(game.componentsNotifier<ColorTapWorld>())
-        .thenReturn(ComponentsNotifier<ColorTapWorld>([]));
+    when(game.componentsNotifier<TapdWorld>())
+        .thenReturn(ComponentsNotifier<TapdWorld>([]));
   });
 
   testWidgets("State is updated on world changes", (tester) async {
-    var notifier = ComponentsNotifier<ColorTapWorld>([]);
-    when(game.componentsNotifier<ColorTapWorld>()).thenReturn(notifier);
+    var notifier = ComponentsNotifier<TapdWorld>([]);
+    when(game.componentsNotifier<TapdWorld>()).thenReturn(notifier);
 
     await pumpContext(tester, (context) => Scoreboard(game));
-    verify(game.componentsNotifier<ColorTapWorld>()).called(1);
+    verify(game.componentsNotifier<TapdWorld>()).called(1);
     expect(find.text("10"), findsOneWidget);
 
     when(world.score).thenReturn(20);
@@ -50,8 +50,8 @@ void main() {
   });
 
   testWidgets("World listener is removed on dispose", (tester) async {
-    var notifier = MockComponentsNotifier<ColorTapWorld>();
-    when(game.componentsNotifier<ColorTapWorld>()).thenReturn(notifier);
+    var notifier = MockComponentsNotifier<TapdWorld>();
+    when(game.componentsNotifier<TapdWorld>()).thenReturn(notifier);
 
     await pumpContext(
       tester,

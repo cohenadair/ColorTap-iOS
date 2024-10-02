@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/color_tap_world.dart';
+import 'package:mobile/tapd_world.dart';
 import 'package:mobile/utils/keys.dart';
 import 'package:mobile/utils/target_utils.dart';
 
@@ -11,7 +11,7 @@ import '../managers/preference_manager.dart';
 import 'target.dart';
 
 class TargetBoard extends PositionComponent
-    with HasGameRef, HasWorldReference<ColorTapWorld> {
+    with HasGameRef, HasWorldReference<TapdWorld> {
   late final StreamSubscription _preferenceManagerSub;
   final ComponentKey otherBoardKey;
   final double verticalStartFactor;

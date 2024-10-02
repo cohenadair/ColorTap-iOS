@@ -1,13 +1,13 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/color_tap_game.dart';
+import 'package:mobile/tapd_game.dart';
 
 import 'utils/overlay_utils.dart';
 
-class ColorTapGameWidget extends StatelessWidget {
-  final ColorTapGame game;
+class TapdGameWidget extends StatelessWidget {
+  final TapdGame game;
 
-  const ColorTapGameWidget(this.game);
+  const TapdGameWidget(this.game);
 
   @override
   Widget build(BuildContext context) {

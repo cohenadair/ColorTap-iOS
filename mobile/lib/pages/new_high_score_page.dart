@@ -8,12 +8,12 @@ import 'package:mobile/managers/stats_manager.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/wrappers/confetti_wrapper.dart';
 
-import '../color_tap_game.dart';
+import '../tapd_game.dart';
 import '../widgets/scroll_scaffold.dart';
 import '../widgets/audio_close_button.dart';
 
 class NewHighScorePage extends StatefulWidget {
-  final ColorTapGame game;
+  final TapdGame game;
 
   const NewHighScorePage(this.game);
 

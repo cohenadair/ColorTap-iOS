@@ -10,14 +10,14 @@ import '../test_utils/test_utils.dart';
 
 void main() {
   late StubbedManagers managers;
-  late MockColorTapGame game;
-  late MockColorTapWorld world;
+  late MockTapdGame game;
+  late MockTapdWorld world;
 
   setUp(() {
-    world = MockColorTapWorld();
+    world = MockTapdWorld();
     when(world.shouldShowNewHighScore).thenReturn(false);
 
-    game = MockColorTapGame();
+    game = MockTapdGame();
     when(game.world).thenReturn(world);
 
     managers = StubbedManagers();

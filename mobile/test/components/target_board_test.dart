@@ -15,8 +15,8 @@ import '../test_utils/stubbed_managers.dart';
 
 main() {
   late StubbedManagers managers;
-  late MockColorTapGame game;
-  late MockColorTapWorld world;
+  late MockTapdGame game;
+  late MockTapdWorld world;
 
   const width = 400.0;
   const height = 1000.0;
@@ -25,10 +25,10 @@ main() {
     managers = StubbedManagers();
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
 
-    world = MockColorTapWorld();
+    world = MockTapdWorld();
     when(world.speed).thenReturn(1.0);
 
-    game = MockColorTapGame();
+    game = MockTapdGame();
     when(game.world).thenReturn(world);
     when(game.size).thenReturn(Vector2(width, height));
     when(game.hasLayout).thenReturn(true);

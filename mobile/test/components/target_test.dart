@@ -12,15 +12,15 @@ import '../test_utils/stubbed_managers.dart';
 
 main() {
   late MockTargetBoard board;
-  late MockColorTapGame game;
-  late MockColorTapWorld world;
+  late MockTapdGame game;
+  late MockTapdWorld world;
   late StubbedManagers managers;
 
   setUp(() {
     board = MockTargetBoard();
-    world = MockColorTapWorld();
+    world = MockTapdWorld();
 
-    game = MockColorTapGame();
+    game = MockTapdGame();
     when(game.world).thenReturn(world);
     when(game.size).thenReturn(Vector2(400, 1000));
     when(game.hasLayout).thenReturn(true);

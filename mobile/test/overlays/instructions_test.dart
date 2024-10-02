@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobile/color_tap_game.dart';
-import 'package:mobile/color_tap_game_widget.dart';
-import 'package:mobile/color_tap_world.dart';
+import 'package:mobile/tapd_game.dart';
+import 'package:mobile/tapd_game_widget.dart';
+import 'package:mobile/tapd_world.dart';
 import 'package:mobile/difficulty.dart';
 import 'package:mobile/overlays/instructions.dart';
 import 'package:mobile/utils/dimens.dart';
@@ -14,8 +14,8 @@ import '../test_utils/stubbed_managers.dart';
 void main() {
   late StubbedManagers managers;
 
-  late ColorTapGame game;
-  late ColorTapWorld world;
+  late TapdGame game;
+  late TapdWorld world;
 
   setUp(() {
     managers = StubbedManagers();
@@ -33,8 +33,8 @@ void main() {
     when(managers.statsManager.currentHighScore).thenReturn(50);
     when(managers.statsManager.currentGamesPlayed).thenReturn(100);
 
-    world = ColorTapWorld();
-    game = ColorTapGame(world: world);
+    world = TapdWorld();
+    game = TapdGame(world: world);
   });
 
   testWidgets("Entire flow", (tester) async {
@@ -43,7 +43,7 @@ void main() {
 
     when(managers.preferenceManager.didOnboard).thenReturn(false);
 
-    await tester.pumpWidget(ColorTapGameWidget(game));
+    await tester.pumpWidget(TapdGameWidget(game));
     await tester.pump();
 
     world.play();

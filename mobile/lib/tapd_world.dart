@@ -18,7 +18,7 @@ import 'target_color.dart';
 import 'utils/dimens.dart';
 import 'utils/overlay_utils.dart';
 
-class ColorTapWorld extends World with HasGameRef, Notifier {
+class TapdWorld extends World with HasGameRef, Notifier {
   static const _fpsPriority = 1;
   static const _fpsVerticalOffset = 150.0;
   static const _fpsFontSize = 20.0;
