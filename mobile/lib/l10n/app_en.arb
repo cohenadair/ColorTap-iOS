@@ -9,7 +9,9 @@
   "cancel": "Cancel",
   "next": "Next",
 
-  "menuMainTitle": "Color Tap Coordination",
+  "gameTitle": "Tapd",
+  "gameSubtitle": "A Coordination Game",
+
   "menuMainPlay": "Play",
   "menuGameOverTitle": "Game Over",
   "menuGameOverPlayAgain": "Play Again",

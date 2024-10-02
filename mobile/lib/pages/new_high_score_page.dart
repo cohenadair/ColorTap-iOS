@@ -95,7 +95,7 @@ class _NewHighScorePageState extends State<NewHighScorePage> {
 
   Widget _buildAppName(BuildContext context) {
     return Text(
-      Strings.of(context).menuMainTitle,
+      Strings.of(context).gameTitle,
       style: Theme.of(context).textTheme.titleLarge,
     );
   }

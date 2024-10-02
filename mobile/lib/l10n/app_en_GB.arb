@@ -1,6 +1,4 @@
 {
-  "menuMainTitle": "Colour Tap Coordination",
-
   "settingsChooseColorTitle": "Colour",
   "settingsChooseColorMessage": "Selecting a colour ensures the same target color is always used in the game. If none is selected, a random colour is used. This option is only available in the Kids difficulty."
 }

@@ -70,11 +70,7 @@ class _MenuState extends State<Menu> {
   }
 
   Widget _buildTitle(BuildContext context) {
-    return Text(
-      _data.title(context),
-      textAlign: TextAlign.center,
-      style: Theme.of(context).textTheme.displayLarge,
-    );
+    return _data.title(context);
   }
 
   Widget _buildLives() {
@@ -205,7 +201,7 @@ abstract class _MenuData {
 
   String playText(BuildContext context);
 
-  String title(BuildContext context);
+  Widget title(BuildContext context);
 }
 
 class _MainMenuData implements _MenuData {
@@ -216,7 +212,24 @@ class _MainMenuData implements _MenuData {
   String playText(BuildContext context) => Strings.of(context).menuMainPlay;
 
   @override
-  String title(BuildContext context) => Strings.of(context).menuMainTitle;
+  Widget title(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          Strings.of(context).gameTitle,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.displayLarge,
+        ),
+        const SizedBox(height: paddingSmall),
+        Text(
+          Strings.of(context).gameSubtitle,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        const SizedBox(height: paddingSmall),
+      ],
+    );
+  }
 }
 
 class _GameOverMenuData implements _MenuData {
@@ -228,5 +241,11 @@ class _GameOverMenuData implements _MenuData {
       Strings.of(context).menuGameOverPlayAgain;
 
   @override
-  String title(BuildContext context) => Strings.of(context).menuGameOverTitle;
+  Widget title(BuildContext context) {
+    return Text(
+      Strings.of(context).menuGameOverTitle,
+      textAlign: TextAlign.center,
+      style: Theme.of(context).textTheme.displayLarge,
+    );
+  }
 }
