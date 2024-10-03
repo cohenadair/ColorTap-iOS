@@ -9,6 +9,7 @@ import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/utils/text_utils.dart';
 import 'package:mobile/widgets/get_lives.dart';
 import 'package:mobile/widgets/remaining_lives.dart';
+import 'package:mobile/wrappers/in_app_review_wrapper.dart';
 
 import '../managers/audio_manager.dart';
 import '../managers/stats_manager.dart';
@@ -31,6 +32,7 @@ class Menu extends StatefulWidget {
 
 class _MenuState extends State<Menu> {
   static const _scoreSize = 100.0;
+  static const _gamesPlayedReviewThreshold = 15;
 
   BuildContext? _navigatorContext;
 
@@ -42,7 +44,7 @@ class _MenuState extends State<Menu> {
   void initState() {
     super.initState();
     WidgetsBinding.instance
-        .addPostFrameCallback((_) => _showNewHighScorePageIfNeeded());
+        .addPostFrameCallback((_) => _showPostGameIfNeeded());
   }
 
   @override
@@ -186,13 +188,19 @@ class _MenuState extends State<Menu> {
     );
   }
 
-  void _showNewHighScorePageIfNeeded() {
-    if (!_game.world.shouldShowNewHighScore || _navigatorContext == null) {
+  Future<void> _showPostGameIfNeeded() async {
+    // High score page.
+    if (_game.world.shouldShowNewHighScore && _navigatorContext != null) {
+      present(_navigatorContext!, NewHighScorePage(_game));
+      _game.world.shouldShowNewHighScore = false;
       return;
     }
 
-    present(_navigatorContext!, NewHighScorePage(_game));
-    _game.world.shouldShowNewHighScore = false;
+    // In-app review dialog.
+    if (await InAppReviewWrapper.get.isAvailable() &&
+        StatsManager.get.gamesPlayed >= _gamesPlayedReviewThreshold) {
+      InAppReviewWrapper.get.requestReview();
+    }
   }
 }
 

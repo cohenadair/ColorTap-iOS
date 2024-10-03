@@ -33,6 +33,9 @@ void main() {
     when(managers.statsManager.currentHighScore).thenReturn(50);
     when(managers.statsManager.currentGamesPlayed).thenReturn(100);
 
+    when(managers.inAppReviewWrapper.isAvailable())
+        .thenAnswer((_) => Future.value(false));
+
     world = TapdWorld();
     game = TapdGame(world: world);
   });

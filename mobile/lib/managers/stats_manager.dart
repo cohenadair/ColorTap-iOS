@@ -21,6 +21,9 @@ class StatsManager {
     _difficulties = PreferenceManager.get.difficultyStats;
   }
 
+  int get gamesPlayed => _difficulties.values
+      .fold(0, (value, stats) => value += stats.gamesPlayed);
+
   DifficultyStats get currentDifficultyStats =>
       _difficulties[_currentDifficultyIndex] ??
       DifficultyStats(difficultyIndex: _currentDifficultyIndex);

@@ -28,6 +28,30 @@ void main() {
     expect(stats.gamesPlayed, 0);
   });
 
+  test("gamesPlayed", () async {
+    when(managers.preferenceManager.difficultyStats).thenReturn({
+      Difficulty.kids.index: DifficultyStats(
+        difficultyIndex: Difficulty.kids.index,
+        highScore: 5,
+        gamesPlayed: 3,
+      ),
+      Difficulty.easy.index: DifficultyStats(
+        difficultyIndex: Difficulty.easy.index,
+        highScore: 10,
+        gamesPlayed: 15,
+      ),
+      Difficulty.normal.index: DifficultyStats(
+        difficultyIndex: Difficulty.normal.index,
+        highScore: 50,
+        gamesPlayed: 300,
+      ),
+    });
+
+    StatsManager.suicide();
+    await StatsManager.get.init();
+    expect(StatsManager.get.gamesPlayed, 318);
+  });
+
   test("incCurrentGamesPlayed", () {
     expect(StatsManager.get.currentGamesPlayed, 0);
     StatsManager.get.incCurrentGamesPlayed();

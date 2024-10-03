@@ -11,6 +11,7 @@ import 'package:mobile/wrappers/fgbg_wrapper.dart';
 import 'package:mobile/wrappers/flame_audio_wrapper.dart';
 import 'package:mobile/wrappers/http_wrapper.dart';
 import 'package:mobile/wrappers/connection_wrapper.dart';
+import 'package:mobile/wrappers/in_app_review_wrapper.dart';
 import 'package:mobile/wrappers/package_info_wrapper.dart';
 import 'package:mobile/wrappers/platform_wrapper.dart';
 import 'package:mobile/wrappers/purchases_wrapper.dart';
@@ -34,6 +35,7 @@ class StubbedManagers {
   late final MockFgbgWrapper fgbgWrapper;
   late final MockFlameAudioWrapper flameAudioWrapper;
   late final MockHttpWrapper httpWrapper;
+  late final MockInAppReviewWrapper inAppReviewWrapper;
   late final MockConnectionWrapper connectionWrapper;
   late final MockConfettiWrapper confettiWrapper;
   late final MockPackageInfoWrapper packageInfoWrapper;
@@ -85,6 +87,9 @@ class StubbedManagers {
 
     httpWrapper = MockHttpWrapper();
     HttpWrapper.set(httpWrapper);
+
+    inAppReviewWrapper = MockInAppReviewWrapper();
+    InAppReviewWrapper.set(inAppReviewWrapper);
 
     connectionWrapper = MockConnectionWrapper();
     ConnectionWrapper.set(connectionWrapper);

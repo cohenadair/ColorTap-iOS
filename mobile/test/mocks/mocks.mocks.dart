@@ -6,7 +6,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 import 'dart:convert' as _i44;
-import 'dart:isolate' as _i47;
+import 'dart:isolate' as _i48;
 import 'dart:typed_data' as _i30;
 import 'dart:ui' as _i5;
 
@@ -14,15 +14,15 @@ import 'package:confetti/confetti.dart' as _i16;
 import 'package:confetti/src/enums/confetti_controller_state.dart' as _i36;
 import 'package:device_info_plus/device_info_plus.dart' as _i2;
 import 'package:flame/cache.dart' as _i9;
-import 'package:flame/camera.dart' as _i64;
+import 'package:flame/camera.dart' as _i65;
 import 'package:flame/components.dart' as _i7;
-import 'package:flame/events.dart' as _i58;
+import 'package:flame/events.dart' as _i59;
 import 'package:flame/game.dart' as _i8;
-import 'package:flame/geometry.dart' as _i59;
+import 'package:flame/geometry.dart' as _i60;
 import 'package:flame/src/components/core/component_tree_root.dart' as _i31;
 import 'package:flame/src/effects/provider_interfaces.dart' as _i27;
-import 'package:flame/src/events/messages/tap_cancel_event.dart' as _i61;
-import 'package:flame/src/events/messages/tap_up_event.dart' as _i60;
+import 'package:flame/src/events/messages/tap_cancel_event.dart' as _i62;
+import 'package:flame/src/events/messages/tap_up_event.dart' as _i61;
 import 'package:flame/src/game/game_render_box.dart' as _i12;
 import 'package:flame/src/game/game_widget/gesture_detector_builder.dart'
     as _i10;
@@ -33,19 +33,19 @@ import 'package:flutter/foundation.dart' as _i13;
 import 'package:flutter/rendering.dart' as _i32;
 import 'package:flutter/services.dart' as _i14;
 import 'package:flutter_fgbg/flutter_fgbg.dart' as _i41;
-import 'package:google_mobile_ads/google_mobile_ads.dart' as _i54;
+import 'package:google_mobile_ads/google_mobile_ads.dart' as _i55;
 import 'package:google_mobile_ads/src/ad_listeners.dart' as _i23;
 import 'package:http/http.dart' as _i19;
 import 'package:mobile/components/target.dart' as _i33;
 import 'package:mobile/components/target_board.dart' as _i34;
 import 'package:mobile/difficulty.dart' as _i24;
 import 'package:mobile/managers/audio_manager.dart' as _i29;
-import 'package:mobile/managers/lives_manager.dart' as _i45;
-import 'package:mobile/managers/preference_manager.dart' as _i49;
-import 'package:mobile/managers/properties_manager.dart' as _i50;
-import 'package:mobile/managers/purchases_manager.dart' as _i51;
-import 'package:mobile/managers/stats_manager.dart' as _i57;
-import 'package:mobile/managers/time_manager.dart' as _i62;
+import 'package:mobile/managers/lives_manager.dart' as _i46;
+import 'package:mobile/managers/preference_manager.dart' as _i50;
+import 'package:mobile/managers/properties_manager.dart' as _i51;
+import 'package:mobile/managers/purchases_manager.dart' as _i52;
+import 'package:mobile/managers/stats_manager.dart' as _i58;
+import 'package:mobile/managers/time_manager.dart' as _i63;
 import 'package:mobile/tapd_game.dart' as _i26;
 import 'package:mobile/tapd_world.dart' as _i6;
 import 'package:mobile/target_color.dart' as _i15;
@@ -55,11 +55,12 @@ import 'package:mobile/wrappers/device_info_wrapper.dart' as _i39;
 import 'package:mobile/wrappers/fgbg_wrapper.dart' as _i40;
 import 'package:mobile/wrappers/flame_audio_wrapper.dart' as _i42;
 import 'package:mobile/wrappers/http_wrapper.dart' as _i43;
-import 'package:mobile/wrappers/package_info_wrapper.dart' as _i46;
-import 'package:mobile/wrappers/platform_wrapper.dart' as _i48;
-import 'package:mobile/wrappers/purchases_wrapper.dart' as _i52;
-import 'package:mobile/wrappers/rewarded_ad_wrapper.dart' as _i55;
-import 'package:mobile/wrappers/url_launcher_wrapper.dart' as _i63;
+import 'package:mobile/wrappers/in_app_review_wrapper.dart' as _i45;
+import 'package:mobile/wrappers/package_info_wrapper.dart' as _i47;
+import 'package:mobile/wrappers/platform_wrapper.dart' as _i49;
+import 'package:mobile/wrappers/purchases_wrapper.dart' as _i53;
+import 'package:mobile/wrappers/rewarded_ad_wrapper.dart' as _i56;
+import 'package:mobile/wrappers/url_launcher_wrapper.dart' as _i64;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i28;
 import 'package:package_info_plus/package_info_plus.dart' as _i22;
@@ -69,8 +70,8 @@ import 'package:purchases_flutter/models/offering_wrapper.dart' as _i20;
 import 'package:purchases_flutter/models/package_wrapper.dart' as _i21;
 import 'package:purchases_flutter/models/store_transaction.dart' as _i38;
 import 'package:purchases_flutter/object_wrappers.dart' as _i18;
-import 'package:purchases_flutter/purchases_flutter.dart' as _i53;
-import 'package:shared_preferences/shared_preferences.dart' as _i56;
+import 'package:purchases_flutter/purchases_flutter.dart' as _i54;
+import 'package:shared_preferences/shared_preferences.dart' as _i57;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -4583,10 +4584,39 @@ class MockHttpWrapper extends _i1.Mock implements _i43.HttpWrapper {
       ) as _i4.Future<_i19.Response>);
 }
 
+/// A class which mocks [InAppReviewWrapper].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockInAppReviewWrapper extends _i1.Mock
+    implements _i45.InAppReviewWrapper {
+  MockInAppReviewWrapper() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<bool> isAvailable() => (super.noSuchMethod(
+        Invocation.method(
+          #isAvailable,
+          [],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
+
+  @override
+  _i4.Future<void> requestReview() => (super.noSuchMethod(
+        Invocation.method(
+          #requestReview,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}
+
 /// A class which mocks [LivesManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLivesManager extends _i1.Mock implements _i45.LivesManager {
+class MockLivesManager extends _i1.Mock implements _i46.LivesManager {
   MockLivesManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -4824,7 +4854,7 @@ class MockPackage extends _i1.Mock implements _i21.Package {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockPackageInfoWrapper extends _i1.Mock
-    implements _i46.PackageInfoWrapper {
+    implements _i47.PackageInfoWrapper {
   MockPackageInfoWrapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -5181,7 +5211,7 @@ class MockPlatformDispatcher extends _i1.Mock
     String? name,
     _i30.ByteData? data,
     int? identifier,
-    _i47.SendPort? port,
+    _i48.SendPort? port,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -5299,7 +5329,7 @@ class MockPlatformException extends _i1.Mock implements _i14.PlatformException {
 /// A class which mocks [PlatformWrapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPlatformWrapper extends _i1.Mock implements _i48.PlatformWrapper {
+class MockPlatformWrapper extends _i1.Mock implements _i49.PlatformWrapper {
   MockPlatformWrapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -5326,7 +5356,7 @@ class MockPlatformWrapper extends _i1.Mock implements _i48.PlatformWrapper {
 /// A class which mocks [PreferenceManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPreferenceManager extends _i1.Mock implements _i49.PreferenceManager {
+class MockPreferenceManager extends _i1.Mock implements _i50.PreferenceManager {
   MockPreferenceManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -5493,7 +5523,7 @@ class MockPreferenceManager extends _i1.Mock implements _i49.PreferenceManager {
 /// A class which mocks [PropertiesManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPropertiesManager extends _i1.Mock implements _i50.PropertiesManager {
+class MockPropertiesManager extends _i1.Mock implements _i51.PropertiesManager {
   MockPropertiesManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -5584,7 +5614,7 @@ class MockPropertiesManager extends _i1.Mock implements _i50.PropertiesManager {
 /// A class which mocks [PurchasesManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPurchasesManager extends _i1.Mock implements _i51.PurchasesManager {
+class MockPurchasesManager extends _i1.Mock implements _i52.PurchasesManager {
   MockPurchasesManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -5628,7 +5658,7 @@ class MockPurchasesManager extends _i1.Mock implements _i51.PurchasesManager {
 /// A class which mocks [PurchasesWrapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPurchasesWrapper extends _i1.Mock implements _i52.PurchasesWrapper {
+class MockPurchasesWrapper extends _i1.Mock implements _i53.PurchasesWrapper {
   MockPurchasesWrapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -5645,7 +5675,7 @@ class MockPurchasesWrapper extends _i1.Mock implements _i52.PurchasesWrapper {
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> setLogLevel(_i53.LogLevel? logLevel) => (super.noSuchMethod(
+  _i4.Future<void> setLogLevel(_i54.LogLevel? logLevel) => (super.noSuchMethod(
         Invocation.method(
           #setLogLevel,
           [logLevel],
@@ -5704,7 +5734,7 @@ class MockPurchasesWrapper extends _i1.Mock implements _i52.PurchasesWrapper {
 /// A class which mocks [RewardedAd].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRewardedAd extends _i1.Mock implements _i54.RewardedAd {
+class MockRewardedAd extends _i1.Mock implements _i55.RewardedAd {
   MockRewardedAd() {
     _i1.throwOnMissingStub(this);
   }
@@ -5720,7 +5750,7 @@ class MockRewardedAd extends _i1.Mock implements _i54.RewardedAd {
 
   @override
   set fullScreenContentCallback(
-          _i23.FullScreenContentCallback<_i54.RewardedAd>?
+          _i23.FullScreenContentCallback<_i55.RewardedAd>?
               _fullScreenContentCallback) =>
       super.noSuchMethod(
         Invocation.setter(
@@ -5760,7 +5790,7 @@ class MockRewardedAd extends _i1.Mock implements _i54.RewardedAd {
       ) as String);
 
   @override
-  set responseInfo(_i54.ResponseInfo? _responseInfo) => super.noSuchMethod(
+  set responseInfo(_i55.ResponseInfo? _responseInfo) => super.noSuchMethod(
         Invocation.setter(
           #responseInfo,
           _responseInfo,
@@ -5783,7 +5813,7 @@ class MockRewardedAd extends _i1.Mock implements _i54.RewardedAd {
 
   @override
   _i4.Future<void> setServerSideOptions(
-          _i54.ServerSideVerificationOptions? options) =>
+          _i55.ServerSideVerificationOptions? options) =>
       (super.noSuchMethod(
         Invocation.method(
           #setServerSideOptions,
@@ -5818,7 +5848,7 @@ class MockRewardedAd extends _i1.Mock implements _i54.RewardedAd {
 /// A class which mocks [RewardedAdWrapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRewardedAdWrapper extends _i1.Mock implements _i55.RewardedAdWrapper {
+class MockRewardedAdWrapper extends _i1.Mock implements _i56.RewardedAdWrapper {
   MockRewardedAdWrapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -5826,7 +5856,7 @@ class MockRewardedAdWrapper extends _i1.Mock implements _i55.RewardedAdWrapper {
   @override
   _i4.Future<void> load({
     required String? adUnitId,
-    required _i54.AdRequest? request,
+    required _i55.AdRequest? request,
     required _i23.RewardedAdLoadCallback? rewardedAdLoadCallback,
   }) =>
       (super.noSuchMethod(
@@ -5847,7 +5877,7 @@ class MockRewardedAdWrapper extends _i1.Mock implements _i55.RewardedAdWrapper {
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i56.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i57.SharedPreferences {
   MockSharedPreferences() {
     _i1.throwOnMissingStub(this);
   }
@@ -6028,10 +6058,16 @@ class MockSharedPreferences extends _i1.Mock implements _i56.SharedPreferences {
 /// A class which mocks [StatsManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockStatsManager extends _i1.Mock implements _i57.StatsManager {
+class MockStatsManager extends _i1.Mock implements _i58.StatsManager {
   MockStatsManager() {
     _i1.throwOnMissingStub(this);
   }
+
+  @override
+  int get gamesPlayed => (super.noSuchMethod(
+        Invocation.getter(#gamesPlayed),
+        returnValue: 0,
+      ) as int);
 
   @override
   _i24.DifficultyStats get currentDifficultyStats => (super.noSuchMethod(
@@ -6174,7 +6210,7 @@ class MockStoreProduct extends _i1.Mock implements _i18.StoreProduct {
 /// A class which mocks [TapDownEvent].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTapDownEvent extends _i1.Mock implements _i58.TapDownEvent {
+class MockTapDownEvent extends _i1.Mock implements _i59.TapDownEvent {
   MockTapDownEvent() {
     _i1.throwOnMissingStub(this);
   }
@@ -6950,7 +6986,7 @@ class MockTarget extends _i1.Mock implements _i33.Target {
       ) as _i4.Future<void>);
 
   @override
-  void onTapDown(_i58.TapDownEvent? event) => super.noSuchMethod(
+  void onTapDown(_i59.TapDownEvent? event) => super.noSuchMethod(
         Invocation.method(
           #onTapDown,
           [event],
@@ -7023,7 +7059,7 @@ class MockTarget extends _i1.Mock implements _i33.Target {
 
   @override
   List<_i8.Vector2> lineSegmentIntersections(
-    _i59.LineSegment? lineSegment, {
+    _i60.LineSegment? lineSegment, {
     double? epsilon = 5e-324,
   }) =>
       (super.noSuchMethod(
@@ -7764,7 +7800,7 @@ class MockTarget extends _i1.Mock implements _i33.Target {
       ) as _i27.OpacityProvider);
 
   @override
-  void onLongTapDown(_i58.TapDownEvent? event) => super.noSuchMethod(
+  void onLongTapDown(_i59.TapDownEvent? event) => super.noSuchMethod(
         Invocation.method(
           #onLongTapDown,
           [event],
@@ -7773,7 +7809,7 @@ class MockTarget extends _i1.Mock implements _i33.Target {
       );
 
   @override
-  void onTapUp(_i60.TapUpEvent? event) => super.noSuchMethod(
+  void onTapUp(_i61.TapUpEvent? event) => super.noSuchMethod(
         Invocation.method(
           #onTapUp,
           [event],
@@ -7782,7 +7818,7 @@ class MockTarget extends _i1.Mock implements _i33.Target {
       );
 
   @override
-  void onTapCancel(_i61.TapCancelEvent? event) => super.noSuchMethod(
+  void onTapCancel(_i62.TapCancelEvent? event) => super.noSuchMethod(
         Invocation.method(
           #onTapCancel,
           [event],
@@ -8932,7 +8968,7 @@ class MockTargetBoard extends _i1.Mock implements _i34.TargetBoard {
 /// A class which mocks [TimeManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTimeManager extends _i1.Mock implements _i62.TimeManager {
+class MockTimeManager extends _i1.Mock implements _i63.TimeManager {
   MockTimeManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -8948,7 +8984,7 @@ class MockTimeManager extends _i1.Mock implements _i62.TimeManager {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockUrlLauncherWrapper extends _i1.Mock
-    implements _i63.UrlLauncherWrapper {
+    implements _i64.UrlLauncherWrapper {
   MockUrlLauncherWrapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -8966,7 +9002,7 @@ class MockUrlLauncherWrapper extends _i1.Mock
 /// A class which mocks [Viewport].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockViewport extends _i1.Mock implements _i64.Viewport {
+class MockViewport extends _i1.Mock implements _i65.Viewport {
   MockViewport() {
     _i1.throwOnMissingStub(this);
   }

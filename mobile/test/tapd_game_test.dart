@@ -23,6 +23,9 @@ void main() {
 
     when(managers.statsManager.currentHighScore).thenReturn(0);
     when(managers.statsManager.currentGamesPlayed).thenReturn(0);
+
+    when(managers.inAppReviewWrapper.isAvailable())
+        .thenAnswer((_) => Future.value(false));
   });
 
   testWidgets("onLoad", (tester) async {

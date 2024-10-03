@@ -34,6 +34,9 @@ void main() {
     when(managers.statsManager.currentHighScore).thenReturn(0);
     when(managers.statsManager.currentGamesPlayed).thenReturn(0);
 
+    when(managers.inAppReviewWrapper.isAvailable())
+        .thenAnswer((_) => Future.value(false));
+
     world = MockTapdWorld();
     when(world.play()).thenAnswer((_) {});
     when(world.shouldShowNewHighScore).thenReturn(false);
@@ -188,5 +191,38 @@ void main() {
       duration: anyNamed("duration"),
     )).called(1);
     verify(world.shouldShowNewHighScore = false).called(1);
+  });
+
+  testWidgets("App review is requested", (tester) async {
+    when(world.shouldShowNewHighScore).thenReturn(false);
+    when(world.score).thenReturn(50);
+
+    when(managers.inAppReviewWrapper.isAvailable())
+        .thenAnswer((_) => Future.value(true));
+    when(managers.inAppReviewWrapper.requestReview())
+        .thenAnswer((_) => Future.value());
+
+    when(managers.statsManager.gamesPlayed).thenReturn(15);
+
+    await pumpContext(tester, (context) => Menu.gameOver(game));
+    await tester.pump();
+
+    verify(managers.inAppReviewWrapper.requestReview()).called(1);
+  });
+
+  testWidgets("Not enough games have been played for app review",
+      (tester) async {
+    when(world.shouldShowNewHighScore).thenReturn(false);
+    when(world.score).thenReturn(50);
+
+    when(managers.inAppReviewWrapper.isAvailable())
+        .thenAnswer((_) => Future.value(true));
+
+    when(managers.statsManager.gamesPlayed).thenReturn(5);
+
+    await pumpContext(tester, (context) => Menu.gameOver(game));
+    await tester.pump();
+
+    verifyNever(managers.inAppReviewWrapper.requestReview());
   });
 }

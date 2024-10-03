@@ -25,6 +25,7 @@ import 'package:mobile/wrappers/device_info_wrapper.dart';
 import 'package:mobile/wrappers/fgbg_wrapper.dart';
 import 'package:mobile/wrappers/flame_audio_wrapper.dart';
 import 'package:mobile/wrappers/http_wrapper.dart';
+import 'package:mobile/wrappers/in_app_review_wrapper.dart';
 import 'package:mobile/wrappers/package_info_wrapper.dart';
 import 'package:mobile/wrappers/platform_wrapper.dart';
 import 'package:mobile/wrappers/purchases_wrapper.dart';
@@ -52,6 +53,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 @GenerateMocks([FlameAudioWrapper])
 @GenerateMocks([FlutterView])
 @GenerateMocks([HttpWrapper])
+@GenerateMocks([InAppReviewWrapper])
 @GenerateMocks([LivesManager])
 @GenerateMocks([Offering])
 @GenerateMocks([Offerings])
