@@ -5608,6 +5608,21 @@ class MockPurchasesManager extends _i1.Mock implements _i51.PurchasesManager {
         ),
         returnValue: _i4.Future<_i18.CustomerInfo?>.value(),
       ) as _i4.Future<_i18.CustomerInfo?>);
+
+  @override
+  _i4.Future<String> userId() => (super.noSuchMethod(
+        Invocation.method(
+          #userId,
+          [],
+        ),
+        returnValue: _i4.Future<String>.value(_i28.dummyValue<String>(
+          this,
+          Invocation.method(
+            #userId,
+            [],
+          ),
+        )),
+      ) as _i4.Future<String>);
 }
 
 /// A class which mocks [PurchasesWrapper].
@@ -5653,6 +5668,21 @@ class MockPurchasesWrapper extends _i1.Mock implements _i52.PurchasesWrapper {
           ),
         )),
       ) as _i4.Future<_i18.Offerings>);
+
+  @override
+  _i4.Future<_i18.CustomerInfo> getCustomerInfo() => (super.noSuchMethod(
+        Invocation.method(
+          #getCustomerInfo,
+          [],
+        ),
+        returnValue: _i4.Future<_i18.CustomerInfo>.value(_FakeCustomerInfo_47(
+          this,
+          Invocation.method(
+            #getCustomerInfo,
+            [],
+          ),
+        )),
+      ) as _i4.Future<_i18.CustomerInfo>);
 
   @override
   _i4.Future<_i18.CustomerInfo> purchasePackage(_i21.Package? package) =>

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/strings.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/managers/properties_manager.dart';
+import 'package:mobile/managers/purchases_manager.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:mobile/utils/dimens.dart';
 import 'package:mobile/wrappers/device_info_wrapper.dart';
@@ -172,6 +173,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     var name = _nameController.text;
     var email = _emailController.text;
     var message = _messageController.text;
+    var purchasesId = await PurchasesManager.get.userId();
 
     // API data, per https://sendgrid.com/docs/api-reference/.
     var body = <String, dynamic>{
@@ -197,6 +199,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             isNotEmpty(osVersion) ? osVersion : "Unknown",
             isNotEmpty(deviceModel) ? deviceModel : "Unknown",
             isNotEmpty(deviceId) ? deviceId : "Unknown",
+            isNotEmpty(purchasesId) ? purchasesId : "Unknown",
             isNotEmpty(name) ? name : "Unknown",
             email,
             message,

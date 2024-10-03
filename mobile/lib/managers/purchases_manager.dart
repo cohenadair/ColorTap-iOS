@@ -43,4 +43,7 @@ class PurchasesManager {
       return null;
     }
   }
+
+  Future<String> userId() async =>
+      (await PurchasesWrapper.get.getCustomerInfo()).originalAppUserId;
 }

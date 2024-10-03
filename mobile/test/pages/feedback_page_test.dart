@@ -33,6 +33,7 @@ void main() {
       OS version: %s
       Device: %s
       Device ID: %s
+      RevenueCat ID: %s
 
       Name: %s
       Email: %s
@@ -51,6 +52,9 @@ void main() {
         buildNumber: "1000",
       )),
     );
+
+    when(managers.purchasesManager.userId())
+        .thenAnswer((_) => Future.value("TestUserID"));
 
     when(managers.httpWrapper.post(
       any,

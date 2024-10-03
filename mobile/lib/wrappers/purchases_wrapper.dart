@@ -19,6 +19,8 @@ class PurchasesWrapper {
 
   Future<Offerings> getOfferings() => Purchases.getOfferings();
 
+  Future<CustomerInfo> getCustomerInfo() => Purchases.getCustomerInfo();
+
   Future<CustomerInfo> purchasePackage(Package package) =>
       Purchases.purchasePackage(package);
 }
