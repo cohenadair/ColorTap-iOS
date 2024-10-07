@@ -246,7 +246,7 @@ class _AdOptionState extends State<_AdOption> {
           setState(() => _isLoading = false);
         },
         onAdFailedToLoad: (error) {
-          _log.d("Error loading ad: $error");
+          _log.e(StackTrace.current, "Error loading ad: $error");
           setState(() => _isLoading = false);
           showErrorDialog(
             context,

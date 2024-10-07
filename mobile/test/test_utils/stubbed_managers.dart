@@ -5,7 +5,9 @@ import 'package:mobile/managers/properties_manager.dart';
 import 'package:mobile/managers/purchases_manager.dart';
 import 'package:mobile/managers/stats_manager.dart';
 import 'package:mobile/managers/time_manager.dart';
+import 'package:mobile/wrappers/analytics_wrapper.dart';
 import 'package:mobile/wrappers/confetti_wrapper.dart';
+import 'package:mobile/wrappers/crashlytics_wrapper.dart';
 import 'package:mobile/wrappers/device_info_wrapper.dart';
 import 'package:mobile/wrappers/fgbg_wrapper.dart';
 import 'package:mobile/wrappers/flame_audio_wrapper.dart';
@@ -31,6 +33,8 @@ class StubbedManagers {
   late final MockStatsManager statsManager;
   late final MockTimeManager timeManager;
 
+  late final MockAnalyticsWrapper analyticsWrapper;
+  late final MockCrashlyticsWrapper crashlyticsWrapper;
   late final MockDeviceInfoWrapper deviceInfoWrapper;
   late final MockFgbgWrapper fgbgWrapper;
   late final MockFlameAudioWrapper flameAudioWrapper;
@@ -81,6 +85,12 @@ class StubbedManagers {
 
     flameAudioWrapper = MockFlameAudioWrapper();
     FlameAudioWrapper.set(flameAudioWrapper);
+
+    analyticsWrapper = MockAnalyticsWrapper();
+    AnalyticsWrapper.set(analyticsWrapper);
+
+    crashlyticsWrapper = MockCrashlyticsWrapper();
+    CrashlyticsWrapper.set(crashlyticsWrapper);
 
     deviceInfoWrapper = MockDeviceInfoWrapper();
     DeviceInfoWrapper.set(deviceInfoWrapper);

@@ -1,67 +1,63 @@
-import 'package:mobile/managers/properties_manager.dart';
 import 'package:mobile/managers/purchases_manager.dart';
-import 'package:mobile/wrappers/platform_wrapper.dart';
-import 'package:mobile/wrappers/purchases_wrapper.dart';
 import 'package:mockito/mockito.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:test/test.dart';
 
 import '../mocks/mocks.mocks.dart';
+import '../test_utils/stubbed_managers.dart';
 
 void main() {
-  late MockPurchasesWrapper purchasesWrapper;
-  late MockPlatformWrapper platformWrapper;
-  late MockPropertiesManager propertiesManager;
+  late StubbedManagers managers;
 
   setUp(() {
-    purchasesWrapper = MockPurchasesWrapper();
-    when(purchasesWrapper.setLogLevel(any)).thenAnswer((_) => Future.value());
-    when(purchasesWrapper.configure(any)).thenAnswer((_) => Future.value());
-    PurchasesWrapper.set(purchasesWrapper);
+    managers = StubbedManagers();
 
-    platformWrapper = MockPlatformWrapper();
-    when(platformWrapper.isDebug).thenReturn(true);
-    when(platformWrapper.isAndroid).thenReturn(true);
-    PlatformWrapper.set(platformWrapper);
+    when(managers.purchasesWrapper.setLogLevel(any))
+        .thenAnswer((_) => Future.value());
+    when(managers.purchasesWrapper.configure(any))
+        .thenAnswer((_) => Future.value());
 
-    propertiesManager = MockPropertiesManager();
-    when(propertiesManager.revenueCatKeyAndroid).thenReturn("android");
-    when(propertiesManager.revenueCatKeyApple).thenReturn("apple");
-    PropertiesManager.set(propertiesManager);
+    when(managers.platformWrapper.isDebug).thenReturn(true);
+    when(managers.platformWrapper.isAndroid).thenReturn(true);
+
+    when(managers.propertiesManager.revenueCatKeyAndroid).thenReturn("android");
+    when(managers.propertiesManager.revenueCatKeyApple).thenReturn("apple");
+
+    PurchasesManager.suicide();
   });
 
   test("init verbose log", () async {
-    when(platformWrapper.isDebug).thenReturn(true);
+    when(managers.platformWrapper.isDebug).thenReturn(true);
     await PurchasesManager.get.init();
 
-    var result = verify(purchasesWrapper.setLogLevel(captureAny));
+    var result = verify(managers.purchasesWrapper.setLogLevel(captureAny));
     result.called(1);
     expect(result.captured.first, LogLevel.verbose);
   });
 
   test("init error log", () async {
-    when(platformWrapper.isDebug).thenReturn(false);
+    when(managers.platformWrapper.isDebug).thenReturn(false);
     await PurchasesManager.get.init();
 
-    var result = verify(purchasesWrapper.setLogLevel(captureAny));
+    var result = verify(managers.purchasesWrapper.setLogLevel(captureAny));
     result.called(1);
     expect(result.captured.first, LogLevel.error);
   });
 
   test("init for Android", () async {
-    when(platformWrapper.isAndroid).thenReturn(true);
+    when(managers.platformWrapper.isAndroid).thenReturn(true);
     await PurchasesManager.get.init();
 
-    var result = verify(purchasesWrapper.configure(captureAny));
+    var result = verify(managers.purchasesWrapper.configure(captureAny));
     result.called(1);
     expect(result.captured.first.apiKey, "android");
   });
 
   test("init for iOS", () async {
-    when(platformWrapper.isAndroid).thenReturn(false);
+    when(managers.platformWrapper.isAndroid).thenReturn(false);
     await PurchasesManager.get.init();
 
-    var result = verify(purchasesWrapper.configure(captureAny));
+    var result = verify(managers.purchasesWrapper.configure(captureAny));
     result.called(1);
     expect(result.captured.first.apiKey, "apple");
   });
@@ -71,7 +67,7 @@ void main() {
     when(exception.code)
         .thenReturn(PurchasesErrorCode.configurationError.index.toString());
     when(exception.message).thenReturn("Test error");
-    when(purchasesWrapper.purchasePackage(any)).thenThrow(exception);
+    when(managers.purchasesWrapper.purchasePackage(any)).thenThrow(exception);
 
     expect(await PurchasesManager.get.purchase(MockPackage()), isNull);
     verify(exception.message).called(1);
@@ -81,7 +77,7 @@ void main() {
     var exception = MockPlatformException();
     when(exception.code)
         .thenReturn(PurchasesErrorCode.purchaseCancelledError.index.toString());
-    when(purchasesWrapper.purchasePackage(any)).thenThrow(exception);
+    when(managers.purchasesWrapper.purchasePackage(any)).thenThrow(exception);
 
     expect(await PurchasesManager.get.purchase(MockPackage()), isNull);
     verifyNever(exception.message);
@@ -91,7 +87,7 @@ void main() {
     var exception = MockPlatformException();
     when(exception.code)
         .thenReturn(PurchasesErrorCode.storeProblemError.index.toString());
-    when(purchasesWrapper.purchasePackage(any)).thenThrow(exception);
+    when(managers.purchasesWrapper.purchasePackage(any)).thenThrow(exception);
 
     expect(await PurchasesManager.get.purchase(MockPackage()), isNull);
     verifyNever(exception.message);

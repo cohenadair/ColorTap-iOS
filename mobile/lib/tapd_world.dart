@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/difficulty.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/managers/stats_manager.dart';
+import 'package:mobile/wrappers/analytics_wrapper.dart';
 
 import 'components/target.dart';
 import 'components/target_board.dart';
@@ -152,6 +153,7 @@ class TapdWorld extends World with HasGameRef, Notifier {
 
   void play() {
     AudioManager.get.playGameBackground();
+    AnalyticsWrapper.get.logEvent(name: "game_played");
 
     _targetBoard(_board1Key).resetForNewGame();
     _targetBoard(_board2Key).resetForNewGame();

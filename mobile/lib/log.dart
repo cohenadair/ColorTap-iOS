@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:mobile/wrappers/crashlytics_wrapper.dart';
 
 class Log {
   final String _className;
@@ -9,7 +10,7 @@ class Log {
     bool isDebug = kDebugMode,
   }) : _isDebug = isDebug;
 
-  String get _prefix => "CT-$_className: ";
+  String get _prefix => "Tapd-$_className: ";
 
   void d(String msg) {
     _log("D/$_prefix$msg");
@@ -31,6 +32,11 @@ class Log {
       print(msg);
       return;
     }
-    // TODO #36: Engage Crashlytics
+
+    if (stackTrace == null) {
+      CrashlyticsWrapper.get.log(msg);
+    } else {
+      CrashlyticsWrapper.get.recordError(msg, stackTrace, "Logged error");
+    }
   }
 }

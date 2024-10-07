@@ -15,6 +15,9 @@ class PurchasesManager {
   @visibleForTesting
   static void set(PurchasesManager manager) => _instance = manager;
 
+  @visibleForTesting
+  static void suicide() => _instance = PurchasesManager._();
+
   PurchasesManager._();
 
   static const _log = Log("PurchasesManager");
