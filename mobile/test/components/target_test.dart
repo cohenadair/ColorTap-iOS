@@ -29,6 +29,7 @@ main() {
     when(managers.timeManager.millisSinceEpoch).thenReturn(0);
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
+    when(managers.preferenceManager.didOnboard).thenReturn(true);
   });
 
   Target buildTarget() {
@@ -74,6 +75,19 @@ main() {
     verify(world.color).called(1);
 
     // Next hit.
+    target.onTapDown(MockTapDownEvent());
+    verifyNever(world.color);
+  });
+
+  test("onTapDown is a no-op if user isn't onboarded", () {
+    when(managers.preferenceManager.didOnboard).thenReturn(false);
+
+    var target = buildTarget();
+    when(world.scrollingPaused).thenReturn(false);
+    when(world.color).thenReturn(target.color);
+    when(world.handleTargetHit(isCorrect: anyNamed("isCorrect")))
+        .thenAnswer((_) {});
+
     target.onTapDown(MockTapDownEvent());
     verifyNever(world.color);
   });

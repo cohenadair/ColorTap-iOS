@@ -77,7 +77,7 @@ void main() {
     await tester.pump();
 
     expect(
-      find.text("The number of lives you have remaining."),
+      find.text("This is the number of lives you have remaining."),
       findsOneWidget,
     );
     await tester.tap(find.text("Next"));

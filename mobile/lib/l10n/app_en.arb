@@ -84,7 +84,7 @@
   "instructionsResume": "Resume Game",
   "instructionsScore": "Your score will increase by 1 each time you tap a correct target.",
   "instructionsCurrentTarget": "Watch out! The current target will change throughout the game.",
-  "instructionsLives": "The number of lives you have remaining.",
+  "instructionsLives": "This is the number of lives you have remaining.",
   "instructionsPauseResume": "You can pause and resume the game at any time.",
   "instructionsTargets": "Tap the targets that match the current target as they fall down the screen. Tapping the incorrect target, or missing a target will end the game."
 }

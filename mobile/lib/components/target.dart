@@ -5,6 +5,7 @@ import 'package:mobile/tapd_game.dart';
 import 'package:mobile/tapd_world.dart';
 
 import '../managers/audio_manager.dart';
+import '../managers/preference_manager.dart';
 import '../managers/time_manager.dart';
 import '../target_color.dart';
 import 'target_board.dart';
@@ -46,7 +47,7 @@ class Target extends CircleComponent
 
   @override
   void onTapDown(TapDownEvent event) {
-    if (world.scrollingPaused || _wasHit) {
+    if (world.scrollingPaused || _wasHit || !PreferenceManager.get.didOnboard) {
       return;
     }
 
