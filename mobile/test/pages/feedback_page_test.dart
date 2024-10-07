@@ -24,6 +24,9 @@ void main() {
     when(managers.preferenceManager.userName = any).thenAnswer((_) {});
     when(managers.preferenceManager.userEmail = any).thenAnswer((_) {});
 
+    when(managers.platformWrapper.isIOS).thenReturn(true);
+    when(managers.platformWrapper.isAndroid).thenReturn(false);
+
     when(managers.propertiesManager.supportEmail)
         .thenReturn("support@test.com");
     when(managers.propertiesManager.clientSenderEmail)

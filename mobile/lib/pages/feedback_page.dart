@@ -187,10 +187,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
         }
       ],
       "from": {
-        "name": "Colour Tap App",
+        "name": "Tapd ${PlatformWrapper.get.isAndroid ? "Android" : "iOS"} App",
         "email": PropertiesManager.get.clientSenderEmail,
       },
-      "subject": "User Feedback",
+      "reply_to": {
+        "email": email,
+        "name": name,
+      },
+      "subject": "Tapd Feedback",
       "content": [
         {
           "type": "text/plain",
