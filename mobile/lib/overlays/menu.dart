@@ -198,7 +198,8 @@ class _MenuState extends State<Menu> {
 
     // In-app review dialog.
     if (await InAppReviewWrapper.get.isAvailable() &&
-        StatsManager.get.gamesPlayed >= _gamesPlayedReviewThreshold) {
+        StatsManager.get.gamesPlayed > 0 &&
+        StatsManager.get.gamesPlayed % _gamesPlayedReviewThreshold == 0) {
       InAppReviewWrapper.get.requestReview();
     }
   }

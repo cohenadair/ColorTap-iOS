@@ -202,12 +202,28 @@ void main() {
     when(managers.inAppReviewWrapper.requestReview())
         .thenAnswer((_) => Future.value());
 
-    when(managers.statsManager.gamesPlayed).thenReturn(15);
+    when(managers.statsManager.gamesPlayed).thenReturn(30);
 
     await pumpContext(tester, (context) => Menu.gameOver(game));
     await tester.pump();
 
     verify(managers.inAppReviewWrapper.requestReview()).called(1);
+  });
+
+  testWidgets("Review not shown when no games have been played",
+      (tester) async {
+    when(world.shouldShowNewHighScore).thenReturn(false);
+    when(world.score).thenReturn(50);
+
+    when(managers.inAppReviewWrapper.isAvailable())
+        .thenAnswer((_) => Future.value(true));
+
+    when(managers.statsManager.gamesPlayed).thenReturn(0);
+
+    await pumpContext(tester, (context) => Menu.gameOver(game));
+    await tester.pump();
+
+    verifyNever(managers.inAppReviewWrapper.requestReview());
   });
 
   testWidgets("Not enough games have been played for app review",
@@ -219,6 +235,21 @@ void main() {
         .thenAnswer((_) => Future.value(true));
 
     when(managers.statsManager.gamesPlayed).thenReturn(5);
+
+    await pumpContext(tester, (context) => Menu.gameOver(game));
+    await tester.pump();
+
+    verifyNever(managers.inAppReviewWrapper.requestReview());
+  });
+
+  testWidgets("Over review threshold, but not mod == 0", (tester) async {
+    when(world.shouldShowNewHighScore).thenReturn(false);
+    when(world.score).thenReturn(50);
+
+    when(managers.inAppReviewWrapper.isAvailable())
+        .thenAnswer((_) => Future.value(true));
+
+    when(managers.statsManager.gamesPlayed).thenReturn(25);
 
     await pumpContext(tester, (context) => Menu.gameOver(game));
     await tester.pump();
