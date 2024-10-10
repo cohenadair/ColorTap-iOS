@@ -31,6 +31,12 @@ void main() {
     when(result.resume()).thenAnswer((_) => Future.value());
     return result;
   }
+  
+  Future<void> initAudioManager() async {
+    await AudioManager.get.init();
+    verify(gamePlayer.pause()).called(1);
+    verify(menuPlayer.pause()).called(1);
+  }
 
   setUp(() {
     managers = StubbedManagers();
@@ -91,7 +97,7 @@ void main() {
     var controller = StreamController<FGBGType>.broadcast();
     when(managers.fgbgWrapper.stream).thenAnswer((_) => controller.stream);
 
-    await AudioManager.get.init();
+    await initAudioManager();
     controller.add(FGBGType.background);
     await Future.delayed(const Duration(milliseconds: 50));
 
@@ -105,7 +111,7 @@ void main() {
     var controller = StreamController<FGBGType>.broadcast();
     when(managers.fgbgWrapper.stream).thenAnswer((_) => controller.stream);
 
-    await AudioManager.get.init();
+    await initAudioManager();
     controller.add(FGBGType.foreground);
     await Future.delayed(const Duration(milliseconds: 50));
 
@@ -120,7 +126,7 @@ void main() {
     when(managers.preferenceManager.stream)
         .thenAnswer((_) => controller.stream);
 
-    await AudioManager.get.init();
+    await initAudioManager();
     when(managers.preferenceManager.isMusicOn).thenReturn(true);
     controller.add(PreferenceManager.keyDifficulty);
     await Future.delayed(const Duration(milliseconds: 50));
@@ -135,7 +141,7 @@ void main() {
         .thenAnswer((_) => controller.stream);
     when(managers.preferenceManager.isMusicOn).thenReturn(true);
 
-    await AudioManager.get.init();
+    await initAudioManager();
     when(managers.preferenceManager.isMusicOn).thenReturn(false);
     controller.add(PreferenceManager.keyMusicOn);
     await Future.delayed(const Duration(milliseconds: 50));
@@ -152,7 +158,7 @@ void main() {
         .thenAnswer((_) => controller.stream);
     when(managers.preferenceManager.isMusicOn).thenReturn(false);
 
-    await AudioManager.get.init();
+    await initAudioManager();
     when(managers.preferenceManager.isMusicOn).thenReturn(true);
     controller.add(PreferenceManager.keyMusicOn);
     await Future.delayed(const Duration(milliseconds: 50));
@@ -164,7 +170,7 @@ void main() {
   });
 
   test("onButtonPressed plays sound and relays input", () async {
-    await AudioManager.get.init();
+    await initAudioManager();
 
     var called = false;
     var callback = AudioManager.get.onButtonPressed(() => called = true);
@@ -175,7 +181,7 @@ void main() {
   });
 
   test("resumeMusic in game", () async {
-    await AudioManager.get.init();
+    await initAudioManager();
 
     await AudioManager.get.playGameBackground();
     verify(menuPlayer.pause()).called(1);
@@ -185,7 +191,7 @@ void main() {
   });
 
   test("resumeMusic in menu", () async {
-    await AudioManager.get.init();
+    await initAudioManager();
 
     await AudioManager.get.playMenuBackground();
     verify(menuPlayer.resume()).called(1);
@@ -195,7 +201,7 @@ void main() {
   });
 
   test("pauseMusic pauses both players", () async {
-    await AudioManager.get.init();
+    await initAudioManager();
 
     await AudioManager.get.pauseMusic();
     verify(menuPlayer.pause()).called(1);
@@ -207,7 +213,7 @@ void main() {
   test("Sound not played when turned off", () async {
     when(managers.preferenceManager.isSoundOn).thenReturn(false);
 
-    await AudioManager.get.init();
+    await initAudioManager();
 
     var called = false;
     var callback = AudioManager.get.onButtonPressed(() => called = true);
@@ -220,7 +226,7 @@ void main() {
   test("Music not played when turned off", () async {
     when(managers.preferenceManager.isMusicOn).thenReturn(false);
 
-    await AudioManager.get.init();
+    await initAudioManager();
     await AudioManager.get.playGameBackground();
 
     verify(menuPlayer.pause()).called(1);
@@ -230,7 +236,7 @@ void main() {
   });
 
   test("Incorrect hit pauses music", () async {
-    await AudioManager.get.init();
+    await initAudioManager();
     await AudioManager.get.playIncorrectHit();
 
     verify(menuPlayer.pause()).called(1);
@@ -239,13 +245,13 @@ void main() {
   });
 
   test("Correct hit plays right sound", () async {
-    await AudioManager.get.init();
+    await initAudioManager();
     await AudioManager.get.playCorrectHit();
     verify(targetCorrectPool.start(volume: anyNamed("volume"))).called(1);
   });
 
   test("Switch target plays right sound", () async {
-    await AudioManager.get.init();
+    await initAudioManager();
     await AudioManager.get.playSwitchTarget();
     verify(targetSwitchPool.start(volume: anyNamed("volume"))).called(1);
   });

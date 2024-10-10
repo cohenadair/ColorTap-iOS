@@ -71,8 +71,8 @@ class AudioManager {
       }
     });
 
-    _gamePlayer = await _createMusicPlayer(_fileGame);
-    _menuPlayer = await _createMusicPlayer(_fileMenu);
+    _gamePlayer = await _createMusicPlayer(_fileGame)..pause();
+    _menuPlayer = await _createMusicPlayer(_fileMenu)..pause();
 
     _buttonTapPool = await _createSoundPool(_fileButtonTap);
     _targetCorrectPool = await _createSoundPool(_fileTargetCorrect);
