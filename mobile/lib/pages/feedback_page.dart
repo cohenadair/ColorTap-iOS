@@ -194,7 +194,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
         "email": email,
         "name": name,
       },
-      "subject": "Tapd Feedback",
+      "subject": "Feedback",
       "content": [
         {
           "type": "text/plain",
