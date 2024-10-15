@@ -148,6 +148,7 @@ main() {
 
   testWidgets("Board is reset when difficulty changes", (tester) async {
     stubScreenSize(tester);
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.kids);
     when(world.scrollingPaused).thenReturn(false);
     when(world.speed).thenReturn(2.0);
     when(game.findByKey(any)).thenReturn(buildBoard());
@@ -159,7 +160,7 @@ main() {
     var board = buildBoard();
     board.onLoad();
     var startY = board.position.y;
-    var startChildren = board.children.length;
+    var startHeight = board.height;
 
     // Verify listener was added.
     expect(controller.hasListener, isTrue);
@@ -173,11 +174,14 @@ main() {
     await tester.pump(const Duration(seconds: 1)); // Streams are async.
     expect(board.position.y, startY + 2);
 
+    // Change difficulty to one that requires a board size change.
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.hard);
     // Verify reset.
     controller.add(PreferenceManager.keyDifficulty);
     await tester.pump(const Duration(seconds: 1)); // Streams are async.
-    expect(board.position.y, startY);
-    expect(board.children.length, startChildren);
+    expect(board.position.y, -board.size.y);
+    expect(board.children.length, greaterThan(0));
+    expect(startHeight == board.height, isFalse);
 
     // Verify stream sub is cancelled.
     board.onRemove();

@@ -149,7 +149,7 @@ main() {
     when(world.gracePeriod).thenReturn(0);
 
     var target = buildTarget();
-    target.position.y = game.size.y + target.radius + 1;
+    target.position.y = game.size.y + target.height + 1;
 
     // Initial update to set _isPassedBottom to true.
     target.update(0);
@@ -169,7 +169,7 @@ main() {
     when(world.gracePeriod).thenReturn(0);
 
     var target = buildTarget();
-    target.position.y = game.size.y + target.radius + 1;
+    target.position.y = game.size.y + target.height + 1;
     target.update(0);
     verify(managers.timeManager.millisSinceEpoch).called(1);
     verifyNever(world.color);
@@ -177,7 +177,7 @@ main() {
 
   test("update is a no-op if color doesn't match", () {
     var target = buildTarget();
-    target.position.y = game.size.y + target.radius + 1;
+    target.position.y = game.size.y + target.height + 1;
 
     stubDifferentWorldColor(target);
     when(world.gracePeriod).thenReturn(null);
@@ -190,7 +190,7 @@ main() {
 
   test("update is a no-op if already hit", () {
     var target = buildTarget();
-    target.position.y = game.size.y + target.radius + 1;
+    target.position.y = game.size.y + target.height + 1;
 
     when(world.color).thenReturn(target.color);
     when(world.gracePeriod).thenReturn(null);
@@ -214,7 +214,7 @@ main() {
 
   test("update is a no-op if scrolling is paused", () {
     var target = buildTarget();
-    target.position.y = game.size.y + target.radius + 1;
+    target.position.y = game.size.y + target.height + 1;
 
     when(world.color).thenReturn(target.color);
     when(world.gracePeriod).thenReturn(null);
@@ -228,7 +228,7 @@ main() {
 
   test("update handles target missed", () {
     var target = buildTarget();
-    target.position.y = game.size.y + target.radius + 1;
+    target.position.y = game.size.y + target.height + 1;
 
     when(world.color).thenReturn(target.color);
     when(world.gracePeriod).thenReturn(null);

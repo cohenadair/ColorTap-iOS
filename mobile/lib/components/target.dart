@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
+import 'package:flutter/material.dart';
 import 'package:mobile/tapd_game.dart';
 import 'package:mobile/tapd_world.dart';
 
@@ -10,7 +13,7 @@ import '../managers/time_manager.dart';
 import '../target_color.dart';
 import 'target_board.dart';
 
-class Target extends CircleComponent
+class Target extends RectangleComponent
     with HasGameRef<TapdGame>, HasWorldReference<TapdWorld>, TapCallbacks {
   static const _scaleDownBy = 0.20;
   static const _scaleDownDuration = 0.15;
@@ -18,8 +21,10 @@ class Target extends CircleComponent
   static const _scaleUpDuration = 0.3;
   static const _scaleResetBy = 1 / _scaleDownBy;
   static const _scaleResetDuration = 0.0;
+  static const _padding = 1.0;
 
   final TargetBoard _board;
+  final CircleComponent _paddedTarget;
 
   var _isPassedBottom = false;
   var _wasHit = false;
@@ -29,19 +34,28 @@ class Target extends CircleComponent
 
   Target(
     Vector2 position,
-    double radius,
+    double size,
     TargetBoard board, {
     super.key,
   })  : _board = board,
+        _paddedTarget = CircleComponent(
+          position: Vector2(
+            size + _padding / 2.0,
+            size + _padding / 2.0,
+          ),
+          radius: size - _padding,
+          anchor: Anchor.center,
+        ),
         super(
           position: position,
-          radius: radius,
+          size: Vector2(size * 2, size * 2),
           anchor: Anchor.center,
+          paint: Paint()..color = Colors.transparent,
         );
 
   @override
-  Future<void> onLoad() {
-    paint = _color.paint;
+  FutureOr<void> onLoad() {
+    add(_paddedTarget);
     return super.onLoad();
   }
 
@@ -61,7 +75,7 @@ class Target extends CircleComponent
 
   @override
   void update(double dt) {
-    if (_isPassedBottom || absolutePosition.y - radius <= game.size.y) {
+    if (_isPassedBottom || absolutePosition.y - height <= game.size.y) {
       // Target is still on the screen, or passed the bottom, where it's no
       // longer relevant.
       return;
@@ -124,7 +138,7 @@ class Target extends CircleComponent
     _isPassedBottom = false;
     _wasHit = false;
     _color = TargetColor.random();
-    paint = _color.paint;
+    _paddedTarget.paint = _color.paint;
   }
 
   void pulse() => _handleIncorrectHit();

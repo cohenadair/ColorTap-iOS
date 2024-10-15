@@ -20,7 +20,7 @@ void main() {
     tester.view.physicalSize = const Size(100, 100);
 
     await pumpContext(tester, (_) => Container());
-    expect(targetDiameterForRect(const Rect.fromLTRB(0, 0, 100, 100)), 21);
+    expect(targetDiameterForRect(const Rect.fromLTRB(0, 0, 100, 100)), 25);
   });
 
   testWidgets("targetRadiusForSize returns the correct radius", (tester) async {
@@ -30,10 +30,10 @@ void main() {
     tester.view.physicalSize = const Size(100, 100);
 
     await pumpContext(tester, (_) => Container());
-    expect(targetRadiusForSize(Vector2(100, 100)), 10.5);
+    expect(targetRadiusForSize(Vector2(100, 100)), 12.5);
   });
 
   test("targetBoardSize returns the correct size", () {
-    expect(targetBoardSize(Vector2(100, 1000)), Vector2(100, 2075));
+    expect(targetBoardSize(Vector2(100, 1000)), Vector2(100, 1750));
   });
 }

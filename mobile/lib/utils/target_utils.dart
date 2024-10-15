@@ -3,9 +3,6 @@ import 'dart:ui';
 import 'package:flame/components.dart';
 import 'package:mobile/managers/preference_manager.dart';
 
-/// Horizontal spacing between targets.
-const targetSpacing = 4.0;
-
 /// This value is multiplied by the game's height to determine how far to
 /// scroll back the game when a target is missed.
 const targetMissedOffsetFactor = 0.5;
@@ -22,9 +19,7 @@ double targetScrollBackDistance(double gameHeight) =>
     gameHeight * targetMissedOffsetFactor;
 
 double targetDiameterForRect(Rect rect) {
-  var targetsPerRow = PreferenceManager.get.difficulty.targetsPerRow;
-  return ((rect.width - targetsPerRow * targetSpacing) / targetsPerRow)
-      .floorToDouble();
+  return rect.width / PreferenceManager.get.difficulty.targetsPerRow.toDouble();
 }
 
 double targetRadiusForSize(Vector2 size) =>
@@ -34,6 +29,5 @@ Vector2 targetBoardSize(Vector2 gameSize) {
   var targetSize = targetDiameterForRect(gameSize.toRect());
   // Rounding removes all fractional spacing between targets.
   var numOfRows = (gameSize.y * targetBoardHeightFactor / targetSize).round();
-  return Vector2(
-      gameSize.x, targetSize * numOfRows + numOfRows * targetSpacing);
+  return Vector2(gameSize.x, targetSize * numOfRows);
 }

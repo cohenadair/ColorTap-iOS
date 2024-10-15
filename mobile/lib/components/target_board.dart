@@ -96,6 +96,7 @@ class TargetBoard extends PositionComponent
   }
 
   void _resetForNewDifficulty() {
+    size = targetBoardSize(game.size);
     _resetPos();
     _clearAndAddTargets();
   }
@@ -120,16 +121,12 @@ class TargetBoard extends PositionComponent
     var numColumns = (bounds.width / diameter).floorToDouble();
     var numRows = (bounds.height / diameter).floorToDouble();
 
-    // Account for the spacing between targets.
-    var ySpacing = (bounds.height - numRows * diameter) / numRows;
-    var xSpacing = (bounds.width - numColumns * diameter) / (numColumns + 1);
-
     for (var r = 0; r < numRows; r++) {
       for (var c = 0; c < numColumns; c++) {
         _targets.add(Target(
           Vector2(
-            c * diameter + (c + 1) * xSpacing + diameter / 2,
-            r * diameter + (r + 1) * ySpacing + diameter / 2,
+            c * diameter + diameter / 2,
+            r * diameter + diameter / 2,
           ),
           diameter / 2,
           this,
