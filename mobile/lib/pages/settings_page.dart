@@ -14,11 +14,9 @@ import '../utils/dimens.dart';
 import '../widgets/audio_close_button.dart';
 
 class SettingsPage extends StatelessWidget {
-  static const _urlFontLicense =
-      "https://cohenadair.github.io/colour-tap/font-license.txt";
+  static const _urlFontLicense = "https://tapd.ca/font-license.txt";
   static const _urlAudioLicense = "https://www.zapsplat.com";
-  static const _urlPrivacyPolicy =
-      "https://cohenadair.github.io/colour-tap/privacy.html";
+  static const _urlPrivacyPolicy = "https://tapd.ca/privacy.html";
 
   @override
   Widget build(BuildContext context) {
