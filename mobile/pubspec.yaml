@@ -2,7 +2,7 @@ name: mobile
 description: "A mobile tap arcade game that tests users' coordination skills."
 publish_to: "none"
 
-version: 1.0.3+2024021601
+version: 2.0.0+2024101601
 
 environment:
   sdk: ">=3.2.3 <4.0.0"
