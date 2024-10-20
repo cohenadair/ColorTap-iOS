@@ -78,7 +78,13 @@ void main() async {
 
   // Init game settings.
   await Flame.device.fullScreen();
-  await Flame.device.setPortrait();
+
+  // Restrict orientation to portrait for devices with a small width. A width
+  // of 740 is less than the smallest iPad, and most Android tablets.
+  var display = PlatformDispatcher.instance.views.first.display;
+  if (display.size.shortestSide / display.devicePixelRatio < 740) {
+    await Flame.device.setPortrait();
+  }
 
   // Init singletons.
   await MobileAds.instance.initialize();

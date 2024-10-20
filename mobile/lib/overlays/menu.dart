@@ -65,6 +65,7 @@ class _MenuState extends State<Menu> {
             _buildSettingsButton(context),
             const Spacer(),
             _buildStats(),
+            const Spacer(),
           ];
         },
       ),
