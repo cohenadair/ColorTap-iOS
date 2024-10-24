@@ -30,6 +30,7 @@ class GetLives extends StatefulWidget {
 }
 
 class _GetLivesState extends State<GetLives> {
+  static const _maxWidth = 500.0; // Arbitrary value that looks fine on tablets.
   static const _buyOptionCornerRadius = 15.0;
   static const _log = Log("GetLives");
 
@@ -45,13 +46,16 @@ class _GetLivesState extends State<GetLives> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _buildSeparator(widget.title),
-        _buildBuyOptions(),
-        _buildSeparator(Strings.of(context).or),
-        _AdOption(),
-      ],
+    return Container(
+      constraints: const BoxConstraints(maxWidth: _maxWidth),
+      child: Column(
+        children: [
+          _buildSeparator(widget.title),
+          _buildBuyOptions(),
+          _buildSeparator(Strings.of(context).or),
+          _AdOption(),
+        ],
+      ),
     );
   }
 
