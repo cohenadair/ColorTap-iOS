@@ -103,7 +103,7 @@ main() {
     board.onLoad();
 
     board.position = Vector2(board.x, targetBoardSize(game.size).y);
-    board.update(0);
+    board.update(1 / 60);
     expect(board.position.y, -2799);
   });
 
@@ -117,13 +117,13 @@ main() {
     board.onLoad();
     var startY = board.position.y;
 
-    board.update(0);
+    board.update(1 / 60);
     expect(board.position.y, startY + 2);
 
-    board.update(0);
+    board.update(1 / 60);
     expect(board.position.y, startY + 4);
 
-    board.update(0);
+    board.update(1 / 60);
     expect(board.position.y, startY + 6);
   });
 
@@ -138,7 +138,7 @@ main() {
     var startY = board.position.y;
     var startChildren = board.children.length;
 
-    board.update(0);
+    board.update(1 / 60);
     expect(board.position.y, startY + 2);
 
     board.resetForNewGame();
@@ -166,7 +166,7 @@ main() {
     expect(controller.hasListener, isTrue);
 
     // Move the board a little.
-    board.update(0);
+    board.update(1 / 60);
     expect(board.position.y, startY + 2);
 
     // Fire preferences event that isn't a difficulty change.

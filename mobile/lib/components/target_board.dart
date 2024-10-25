@@ -72,8 +72,12 @@ class TargetBoard extends PositionComponent
 
     // Update both boards' position. This must be done before moving a board to
     // the top of the game so the new position is exactly correct.
-    position.y += world.speed;
-    _otherBoard!.position.y += world.speed;
+    //
+    // Calculate the change in position relative to 60 FPS, but account for
+    // variable frame rates.
+    var delta = world.speed / (1 / 60 / dt);
+    position.y += delta;
+    _otherBoard!.position.y += delta;
 
     // Reset boards.
     _moveToTopIfNeeded(_otherBoard);
