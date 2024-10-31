@@ -20,15 +20,12 @@ class Scoreboard extends StatefulWidget {
 }
 
 class _ScoreboardState extends State<Scoreboard> {
-  static const _scoreFontSize = 40.0;
   static const _scorePositionOffsetFactor = 0.6;
   static const _shadowBlur = 5.0;
   static const _shadowOffset = Offset(0, _shadowBlur);
   static const _iconSize = 30.0;
-  static const _targetSize = 115.0;
 
   late double _targetPositionOffset;
-  late ComponentsNotifier<TapdWorld> _worldNotifier;
 
   TapdGame get _game => widget.game;
 
@@ -38,16 +35,8 @@ class _ScoreboardState extends State<Scoreboard> {
   @override
   void initState() {
     super.initState();
-
-    _targetPositionOffset = _targetSize * _scorePositionOffsetFactor;
-    _worldNotifier = _game.componentsNotifier<TapdWorld>()
-      ..addListener(_onWorldUpdated);
-  }
-
-  @override
-  void dispose() {
-    _worldNotifier.removeListener(_onWorldUpdated);
-    super.dispose();
+    _targetPositionOffset =
+        _CurrentTargetState._targetSize * _scorePositionOffsetFactor;
   }
 
   @override
@@ -98,25 +87,7 @@ class _ScoreboardState extends State<Scoreboard> {
       padding: EdgeInsets.only(top: _height - _targetPositionOffset),
       child: Align(
         alignment: Alignment.topCenter,
-        child: Container(
-          key: keyCurrentTarget,
-          width: _targetSize,
-          height: _targetSize,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: _game.world.color.color,
-          ),
-          child: Center(
-            child: Text(
-              _game.world.score.toString(),
-              key: keyScoreboardScore,
-              style: const TextStyle(
-                fontSize: _scoreFontSize,
-                color: colorDarkText,
-              ),
-            ),
-          ),
-        ),
+        child: _CurrentTarget(_game),
       ),
     );
   }
@@ -134,6 +105,58 @@ class _ScoreboardState extends State<Scoreboard> {
           _game.world.scrollingPaused = !_game.world.scrollingPaused;
           setState(() {});
         }),
+      ),
+    );
+  }
+}
+
+class _CurrentTarget extends StatefulWidget {
+  final TapdGame game;
+
+  const _CurrentTarget(this.game);
+
+  @override
+  State<_CurrentTarget> createState() => _CurrentTargetState();
+}
+
+class _CurrentTargetState extends State<_CurrentTarget> {
+  static const _fontSize = 40.0;
+  static const _targetSize = 115.0;
+
+  late ComponentsNotifier<TapdWorld> _worldNotifier;
+
+  @override
+  void initState() {
+    super.initState();
+    _worldNotifier = widget.game.componentsNotifier<TapdWorld>()
+      ..addListener(_onWorldUpdated);
+  }
+
+  @override
+  void dispose() {
+    _worldNotifier.removeListener(_onWorldUpdated);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key: keyCurrentTarget,
+      width: _targetSize,
+      height: _targetSize,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: widget.game.world.color.color,
+      ),
+      child: Center(
+        child: Text(
+          widget.game.world.score.toString(),
+          key: keyScoreboardScore,
+          style: const TextStyle(
+            fontSize: _fontSize,
+            color: colorDarkText,
+          ),
+        ),
       ),
     );
   }

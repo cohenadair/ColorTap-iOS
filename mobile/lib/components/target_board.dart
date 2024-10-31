@@ -12,6 +12,8 @@ import 'target.dart';
 
 class TargetBoard extends PositionComponent
     with HasGameRef, HasWorldReference<TapdWorld> {
+  static const _timeDeltaBaseline = 1 / 60;
+
   late final StreamSubscription _preferenceManagerSub;
   final ComponentKey otherBoardKey;
   final double verticalStartFactor;
@@ -30,6 +32,7 @@ class TargetBoard extends PositionComponent
 
   final _targets = <Target>[];
   TargetBoard? _otherBoard;
+  double? _fpsDelta;
 
   TargetBoard({
     required this.otherBoardKey,
@@ -75,7 +78,8 @@ class TargetBoard extends PositionComponent
     //
     // Calculate the change in position relative to 60 FPS, but account for
     // variable frame rates.
-    var delta = world.speed / (1 / 60 / dt);
+    _fpsDelta ??= _timeDeltaBaseline / dt;
+    var delta = world.speed / (_fpsDelta ?? 1.0);
     position.y += delta;
     _otherBoard!.position.y += delta;
 

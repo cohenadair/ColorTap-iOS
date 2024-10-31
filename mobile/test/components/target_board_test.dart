@@ -127,6 +127,27 @@ main() {
     expect(board.position.y, startY + 6);
   });
 
+  testWidgets("Update scrolls down 120 FPS", (tester) async {
+    stubScreenSize(tester);
+    when(world.scrollingPaused).thenReturn(false);
+    when(world.speed).thenReturn(2.0);
+    when(game.findByKey(any)).thenReturn(buildBoard());
+
+    var board = buildBoard();
+    board.onLoad();
+    var startY = board.position.y;
+
+    // Changes in y position for 120 FPS should be 0.5 * 60 FPS.
+    board.update(1 / 120);
+    expect(board.position.y, startY + 1);
+
+    board.update(1 / 120);
+    expect(board.position.y, startY + 2);
+
+    board.update(1 / 120);
+    expect(board.position.y, startY + 3);
+  });
+
   testWidgets("Reset", (tester) async {
     stubScreenSize(tester);
     when(world.scrollingPaused).thenReturn(false);
