@@ -5,7 +5,6 @@ import 'package:mobile/widgets/animated_visibility.dart';
 import 'package:mobile/widgets/get_lives.dart';
 import 'package:mobile/widgets/loading.dart';
 import 'package:mockito/mockito.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../mocks/mocks.mocks.dart';
 import '../test_utils/stubbed_managers.dart';
@@ -20,45 +19,6 @@ void main() {
     when(managers.platformWrapper.isDebug).thenReturn(true);
     when(managers.platformWrapper.isAndroid).thenReturn(true);
   });
-
-  Package buildPackage({
-    required String id,
-    required String price,
-  }) {
-    var product = MockStoreProduct();
-    when(product.priceString).thenReturn(price);
-
-    var package = MockPackage();
-    when(package.identifier).thenReturn(id);
-    when(package.storeProduct).thenReturn(product);
-
-    return package;
-  }
-
-  Offerings buildOfferings([List<Package>? inPackages]) {
-    var package1 = MockPackage();
-    when(package1.identifier).thenReturn("lives-1");
-
-    var package2 = MockPackage();
-    when(package2.identifier).thenReturn("lives-2");
-
-    var package3 = MockPackage();
-    when(package3.identifier).thenReturn("lives-3");
-
-    var offering = MockOffering();
-    var packages = inPackages ??
-        [
-          buildPackage(id: "lives-1", price: "0.99"),
-          buildPackage(id: "lives-2", price: "2.99"),
-          buildPackage(id: "lives-3", price: "9.99"),
-        ];
-    when(offering.availablePackages).thenReturn(packages);
-
-    var offerings = MockOfferings();
-    when(offerings.getOffering(any)).thenReturn(offering);
-
-    return offerings;
-  }
 
   Loading loadingAt(WidgetTester tester, int index) {
     return tester.widgetList(find.byType(Loading)).toList()[index] as Loading;
@@ -80,15 +40,13 @@ void main() {
   }
 
   Future<void> pumpDefaultGetLives(WidgetTester tester) async {
-    var offerings = buildOfferings();
-    when(managers.purchasesWrapper.getOfferings())
-        .thenAnswer((_) => Future.value(offerings));
+    stubPurchasesOfferings(managers);
     await pumpContext(tester, (_) => const Scaffold(body: GetLives("Test")));
     await tester.pump(); // Extra pump to complete the future.
   }
 
   testWidgets("Offerings are loaded on startup", (tester) async {
-    var offerings = buildOfferings();
+    var offerings = stubPurchasesOfferings(managers);
     when(managers.purchasesWrapper.getOfferings()).thenAnswer(
       (_) => Future.delayed(
         const Duration(milliseconds: 10),
@@ -115,11 +73,11 @@ void main() {
   });
 
   testWidgets("Offering doesn't have required package", (tester) async {
-    var offerings = buildOfferings([
-      buildPackage(id: "lives-1", price: "0.99"),
-      buildPackage(id: "lives-2", price: "2.99"),
+    var offerings = buildPurchasesOfferings([
+      buildPurchasesPackage(id: "lives-1", price: "0.99"),
+      buildPurchasesPackage(id: "lives-2", price: "2.99"),
       // One ID that doesn't match an tier.
-      buildPackage(id: "lives-4", price: "9.99"),
+      buildPurchasesPackage(id: "lives-4", price: "9.99"),
     ]);
     when(managers.purchasesWrapper.getOfferings())
         .thenAnswer((_) => Future.value(offerings));

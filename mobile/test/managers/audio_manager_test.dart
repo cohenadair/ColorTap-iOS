@@ -31,7 +31,7 @@ void main() {
     when(result.resume()).thenAnswer((_) => Future.value());
     return result;
   }
-  
+
   Future<void> initAudioManager() async {
     await AudioManager.get.init();
     verify(gamePlayer.pause()).called(1);

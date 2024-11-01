@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:confetti/confetti.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/difficulty.dart';
 import 'package:mobile/overlays/menu.dart';
 import 'package:mobile/pages/settings_page.dart';
-import 'package:mobile/widgets/get_lives.dart';
 import 'package:mockito/mockito.dart';
 
 import '../mocks/mocks.mocks.dart';
@@ -36,6 +36,8 @@ void main() {
 
     when(managers.inAppReviewWrapper.isAvailable())
         .thenAnswer((_) => Future.value(false));
+
+    stubPurchasesOfferings(managers);
 
     world = MockTapdWorld();
     when(world.play()).thenAnswer((_) {});
@@ -78,13 +80,25 @@ void main() {
   testWidgets("GetLives is hidden when lives > 0", (tester) async {
     when(managers.livesManager.canPlay).thenReturn(true);
     await pumpContext(tester, (context) => Menu.main(game));
-    expect(find.byType(GetLives), findsNothing);
+    expect(
+      tester
+          .firstWidget<AnimatedCrossFade>(find.byType(AnimatedCrossFade))
+          .crossFadeState,
+      CrossFadeState.showFirst,
+    );
   });
 
   testWidgets("GetLives is shown when lives == 0", (tester) async {
     when(managers.livesManager.canPlay).thenReturn(false);
+
+    await tester.binding.setSurfaceSize(const Size(800, 1000));
     await pumpContext(tester, (context) => Menu.main(game));
-    expect(find.byType(GetLives), findsOneWidget);
+    expect(
+      tester
+          .firstWidget<AnimatedCrossFade>(find.byType(AnimatedCrossFade))
+          .crossFadeState,
+      CrossFadeState.showSecond,
+    );
   });
 
   testWidgets("Play button is hidden when lives == 0", (tester) async {

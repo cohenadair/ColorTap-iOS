@@ -31,6 +31,8 @@ void main() {
 
     when(managers.inAppReviewWrapper.isAvailable())
         .thenAnswer((_) => Future.value(false));
+
+    stubPurchasesOfferings(managers);
   });
 
   testWidgets("showErrorDialog", (tester) async {

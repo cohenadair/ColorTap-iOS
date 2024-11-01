@@ -10,6 +10,7 @@ import 'package:mobile/utils/dimens.dart';
 import 'package:mockito/mockito.dart';
 
 import '../test_utils/stubbed_managers.dart';
+import '../test_utils/test_utils.dart';
 
 void main() {
   late StubbedManagers managers;
@@ -35,6 +36,8 @@ void main() {
 
     when(managers.inAppReviewWrapper.isAvailable())
         .thenAnswer((_) => Future.value(false));
+
+    stubPurchasesOfferings(managers);
 
     world = TapdWorld();
     game = TapdGame(world: world);
