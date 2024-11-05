@@ -138,7 +138,8 @@ class Target extends RectangleComponent
     _isPassedBottom = false;
     _wasHit = false;
     _color = TargetColor.random();
-    _paddedTarget.paint = _color.paint;
+    _paddedTarget.paintLayers =
+        color.innerShadow().map((e) => e.toPaint()).toList();
   }
 
   void pulse() => _handleIncorrectHit();

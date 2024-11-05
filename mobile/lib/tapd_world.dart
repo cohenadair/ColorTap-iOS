@@ -159,7 +159,7 @@ class TapdWorld extends World with HasGameRef, Notifier {
     _targetBoard(_board2Key).resetForNewGame();
 
     scrollingPaused = false;
-    _resetForNewGame();
+    _resetForNewGame(exclude: _color);
     notifyListeners();
 
     game.overlays.removeAll([overlayIdMainMenu, overlayIdGameOver]);
@@ -204,9 +204,9 @@ class TapdWorld extends World with HasGameRef, Notifier {
     _colorResetMod = min == max ? min : min + Random().nextInt(max - min);
   }
 
-  void _resetForNewGame() {
+  void _resetForNewGame({TargetColor? exclude}) {
     _speed = _difficulty.startSpeed;
-    _color = TargetColor.fromPreferences();
+    _color = TargetColor.fromPreferences(exclude: exclude);
     _score = 0;
     _gracePeriod = null;
     _updateColorResetMod();
