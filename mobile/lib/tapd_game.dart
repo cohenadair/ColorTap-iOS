@@ -13,7 +13,9 @@ class TapdGame extends FlameGame<TapdWorld> {
   Color backgroundColor() => colorGame;
 
   @override
-  void onLoad() {
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
+
     // Set origin (0, 0) to top left of screen.
     camera.viewport.position = Vector2(
       -camera.viewport.size.x / 2,

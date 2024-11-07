@@ -13,6 +13,7 @@ import 'package:mobile/managers/audio_manager.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/managers/properties_manager.dart';
 import 'package:mobile/managers/stats_manager.dart';
+import 'package:mobile/utils/orientation_utils.dart';
 
 import 'firebase_options.dart';
 import 'tapd_game.dart';
@@ -78,13 +79,7 @@ void main() async {
 
   // Init game settings.
   await Flame.device.fullScreen();
-
-  // Restrict orientation to portrait for devices with a small width. A width
-  // of 740 is less than the smallest iPad, and most Android tablets.
-  var display = PlatformDispatcher.instance.views.first.display;
-  if (display.size.shortestSide / display.devicePixelRatio < 740) {
-    await Flame.device.setPortrait();
-  }
+  await resetOrientations();
 
   // Init singletons.
   await MobileAds.instance.initialize();

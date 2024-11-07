@@ -54,11 +54,12 @@ main() {
     tester.view.physicalSize = const Size(100, 100);
   }
 
-  testWidgets("onLoad", (tester) async {
+  testWidgets("onGameResize", (tester) async {
     stubScreenSize(tester);
 
     var board = buildBoard();
-    board.onLoad();
+    board.onGameResize(Vector2(
+        tester.view.physicalSize.width, tester.view.physicalSize.height));
 
     // Height * targetBoardHeightFactor.
     expect(board.position.y, -1800);
@@ -100,7 +101,8 @@ main() {
     when(game.findByKey(any)).thenReturn(otherBoard);
 
     var board = buildBoard();
-    board.onLoad();
+    board.onGameResize(Vector2(
+        tester.view.physicalSize.width, tester.view.physicalSize.height));
 
     board.position = Vector2(board.x, targetBoardSize(game.size).y);
     board.update(1 / 60);
@@ -236,7 +238,8 @@ main() {
     when(game.findByKey(any)).thenReturn(buildBoard());
 
     var board = buildBoard();
-    board.onLoad();
+    board.onGameResize(Vector2(
+        tester.view.physicalSize.width, tester.view.physicalSize.height));
 
     var targetsWithKey = 0;
     for (var child in board.children) {

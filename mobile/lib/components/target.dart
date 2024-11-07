@@ -55,6 +55,7 @@ class Target extends RectangleComponent
 
   @override
   FutureOr<void> onLoad() {
+    _updatePaddedTargetLayers();
     add(_paddedTarget);
     return super.onLoad();
   }
@@ -127,6 +128,11 @@ class Target extends RectangleComponent
     world.scrollingPaused = true;
   }
 
+  void _updatePaddedTargetLayers() {
+    _paddedTarget.paintLayers =
+        color.innerShadow().map((e) => e.toPaint()).toList();
+  }
+
   void reset() {
     if (_wasHit) {
       add(ScaleEffect.by(
@@ -138,8 +144,7 @@ class Target extends RectangleComponent
     _isPassedBottom = false;
     _wasHit = false;
     _color = TargetColor.random();
-    _paddedTarget.paintLayers =
-        color.innerShadow().map((e) => e.toPaint()).toList();
+    _updatePaddedTargetLayers();
   }
 
   void pulse() => _handleIncorrectHit();

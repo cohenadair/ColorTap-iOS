@@ -11,13 +11,18 @@ class TapdGameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameWidget(
-      game: game,
-      overlayBuilderMap: const {
-        overlayIdMainMenu: buildMainMenu,
-        overlayIdGameOver: buildGameOver,
-        overlayIdScoreboard: buildScoreboard,
-        overlayIdInstructions: buildInstructions,
+    return OrientationBuilder(
+      builder: (_, orientation) {
+        game.world.orientation = orientation;
+        return GameWidget(
+          game: game,
+          overlayBuilderMap: const {
+            overlayIdMainMenu: buildMainMenu,
+            overlayIdGameOver: buildGameOver,
+            overlayIdScoreboard: buildScoreboard,
+            overlayIdInstructions: buildInstructions,
+          },
+        );
       },
     );
   }

@@ -48,8 +48,6 @@ class TargetBoard extends PositionComponent
       _resetForNewDifficulty();
     });
 
-    size = targetBoardSize(game.size);
-    _resetForNewDifficulty();
     return super.onLoad();
   }
 
@@ -57,6 +55,12 @@ class TargetBoard extends PositionComponent
   void onRemove() {
     super.onRemove();
     _preferenceManagerSub.cancel();
+  }
+
+  @override
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
+    _resetForNewDifficulty();
   }
 
   @override
