@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mobile/managers/audio_manager.dart';
+import 'package:mobile/managers/orientation_manager.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/managers/properties_manager.dart';
 import 'package:mobile/managers/stats_manager.dart';
-import 'package:mobile/utils/orientation_utils.dart';
 
 import 'firebase_options.dart';
 import 'tapd_game.dart';
@@ -79,7 +79,7 @@ void main() async {
 
   // Init game settings.
   await Flame.device.fullScreen();
-  await resetOrientations();
+  await OrientationManager.get.reset();
 
   // Init singletons.
   await MobileAds.instance.initialize();

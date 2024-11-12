@@ -8,6 +8,7 @@ import 'package:flame/events.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:mobile/managers/orientation_manager.dart';
 import 'package:mobile/tapd_game.dart';
 import 'package:mobile/tapd_world.dart';
 import 'package:mobile/components/target.dart';
@@ -26,9 +27,11 @@ import 'package:mobile/wrappers/crashlytics_wrapper.dart';
 import 'package:mobile/wrappers/device_info_wrapper.dart';
 import 'package:mobile/wrappers/fgbg_wrapper.dart';
 import 'package:mobile/wrappers/flame_audio_wrapper.dart';
+import 'package:mobile/wrappers/flame_wrapper.dart';
 import 'package:mobile/wrappers/http_wrapper.dart';
 import 'package:mobile/wrappers/in_app_review_wrapper.dart';
 import 'package:mobile/wrappers/package_info_wrapper.dart';
+import 'package:mobile/wrappers/platform_dispatcher_wrapper.dart';
 import 'package:mobile/wrappers/platform_wrapper.dart';
 import 'package:mobile/wrappers/purchases_wrapper.dart';
 import 'package:mobile/wrappers/rewarded_ad_wrapper.dart';
@@ -54,6 +57,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 @GenerateMocks([CustomerInfo])
 @GenerateMocks([DeviceInfoWrapper])
 @GenerateMocks([FgbgWrapper])
+@GenerateMocks([FlameWrapper])
 @GenerateMocks([FlameAudioWrapper])
 @GenerateMocks([FlutterView])
 @GenerateMocks([HttpWrapper])
@@ -61,9 +65,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 @GenerateMocks([LivesManager])
 @GenerateMocks([Offering])
 @GenerateMocks([Offerings])
+@GenerateMocks([OrientationManager])
 @GenerateMocks([Package])
 @GenerateMocks([PackageInfoWrapper])
 @GenerateMocks([PlatformDispatcher])
+@GenerateMocks([PlatformDispatcherWrapper])
 @GenerateMocks([PlatformException])
 @GenerateMocks([PlatformWrapper])
 @GenerateMocks([PreferenceManager])

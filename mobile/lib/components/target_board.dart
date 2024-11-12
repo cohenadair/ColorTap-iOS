@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/managers/orientation_manager.dart';
 import 'package:mobile/tapd_world.dart';
 import 'package:mobile/utils/keys.dart';
 import 'package:mobile/utils/target_utils.dart';
@@ -13,6 +14,8 @@ import 'target.dart';
 class TargetBoard extends PositionComponent
     with HasGameRef, HasWorldReference<TapdWorld> {
   late final StreamSubscription _preferenceManagerSub;
+  late final StreamSubscription _orientationManagerSub;
+
   final ComponentKey otherBoardKey;
   final double verticalStartFactor;
   final Color? backgroundColor;
@@ -48,6 +51,10 @@ class TargetBoard extends PositionComponent
       _resetForNewDifficulty();
     });
 
+    _orientationManagerSub =
+        OrientationManager.get.stream.listen((_) => _resetForNewDifficulty());
+
+    _resetForNewDifficulty();
     return super.onLoad();
   }
 
@@ -55,12 +62,7 @@ class TargetBoard extends PositionComponent
   void onRemove() {
     super.onRemove();
     _preferenceManagerSub.cancel();
-  }
-
-  @override
-  void onGameResize(Vector2 size) {
-    super.onGameResize(size);
-    _resetForNewDifficulty();
+    _orientationManagerSub.cancel();
   }
 
   @override

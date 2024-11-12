@@ -54,12 +54,11 @@ main() {
     tester.view.physicalSize = const Size(100, 100);
   }
 
-  testWidgets("onGameResize", (tester) async {
+  testWidgets("onLoad", (tester) async {
     stubScreenSize(tester);
 
     var board = buildBoard();
-    board.onGameResize(Vector2(
-        tester.view.physicalSize.width, tester.view.physicalSize.height));
+    board.onLoad();
 
     // Height * targetBoardHeightFactor.
     expect(board.position.y, -1800);
@@ -101,8 +100,7 @@ main() {
     when(game.findByKey(any)).thenReturn(otherBoard);
 
     var board = buildBoard();
-    board.onGameResize(Vector2(
-        tester.view.physicalSize.width, tester.view.physicalSize.height));
+    board.onLoad();
 
     board.position = Vector2(board.x, targetBoardSize(game.size).y);
     board.update(1 / 60);
@@ -211,6 +209,43 @@ main() {
     expect(controller.hasListener, isFalse);
   });
 
+  testWidgets("Board is reset on orientation change", (tester) async {
+    stubScreenSize(tester);
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.kids);
+    when(world.scrollingPaused).thenReturn(false);
+    when(world.speed).thenReturn(2.0);
+    when(game.findByKey(any)).thenReturn(buildBoard());
+
+    var controller = StreamController<void>.broadcast();
+    when(managers.orientationManager.stream)
+        .thenAnswer((_) => controller.stream);
+
+    var board = buildBoard();
+    board.onLoad();
+    var startY = board.position.y;
+    var startHeight = board.height;
+
+    // Verify listener was added.
+    expect(controller.hasListener, isTrue);
+
+    // Move the board a little.
+    board.update(1 / 60);
+    expect(board.position.y, startY + 2);
+
+    // Change difficulty to one that requires a board size change.
+    when(managers.preferenceManager.difficulty).thenReturn(Difficulty.hard);
+    // Verify reset.
+    controller.add(null);
+    await tester.pump(const Duration(seconds: 1)); // Streams are async.
+    expect(board.position.y, -board.size.y);
+    expect(board.children.length, greaterThan(0));
+    expect(startHeight == board.height, isFalse);
+
+    // Verify stream sub is cancelled.
+    board.onRemove();
+    expect(controller.hasListener, isFalse);
+  });
+
   testWidgets("Renders background", (tester) async {
     stubScreenSize(tester);
     when(world.scrollingPaused).thenReturn(false);
@@ -238,8 +273,7 @@ main() {
     when(game.findByKey(any)).thenReturn(buildBoard());
 
     var board = buildBoard();
-    board.onGameResize(Vector2(
-        tester.view.physicalSize.width, tester.view.physicalSize.height));
+    board.onLoad();
 
     var targetsWithKey = 0;
     for (var child in board.children) {

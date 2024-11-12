@@ -172,6 +172,7 @@ void main() {
     verify(managers.audioManager.playMenuBackground()).called(1);
     verify(managers.statsManager.updateCurrentHighScore(any)).called(1);
     verify(managers.statsManager.incCurrentGamesPlayed()).called(1);
+    verify(managers.orientationManager.reset()).called(1);
     verifyNever(managers.audioManager.playCorrectHit());
 
     await tester.pump();
@@ -246,6 +247,7 @@ void main() {
     expect(game.overlays.activeOverlays.length, 1); // Scoreboard.
 
     verify(managers.audioManager.playGameBackground()).called(1);
+    verify(managers.orientationManager.lockCurrent()).called(1);
   });
 
   testWidgets("Pausing/resuming stops/plays music", (tester) async {

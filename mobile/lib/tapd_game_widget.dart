@@ -1,5 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/managers/orientation_manager.dart';
 import 'package:mobile/tapd_game.dart';
 
 import 'utils/overlay_utils.dart';
@@ -13,7 +14,7 @@ class TapdGameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (_, orientation) {
-        game.world.orientation = orientation;
+        OrientationManager.get.orientation = orientation;
         return GameWidget(
           game: game,
           overlayBuilderMap: const {
