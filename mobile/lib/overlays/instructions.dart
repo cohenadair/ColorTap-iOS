@@ -81,10 +81,13 @@ class _InstructionsState extends State<Instructions> {
         padding: insetsDefault,
         child: Column(
           children: [
-            Text(
-              _step.descriptionTextBuilder(context),
-              style: Theme.of(context).textTheme.titleLarge,
-              textAlign: _step.textAlign,
+            Align(
+              alignment: _step.buttonAlign,
+              child: Text(
+                _step.descriptionTextBuilder(context),
+                style: Theme.of(context).textTheme.titleLarge,
+                textAlign: _step.textAlign,
+              ),
             ),
             const SizedBox(height: paddingDefault),
             Align(

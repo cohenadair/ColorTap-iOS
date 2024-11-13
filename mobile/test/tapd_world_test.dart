@@ -294,7 +294,7 @@ void main() {
     world.play();
 
     // Delay that shows the instructions.
-    await tester.pump(const Duration(milliseconds: 2000));
+    await tester.pump(const Duration(milliseconds: 3000));
 
     // Fade in duration.
     await tester.pump(const Duration(milliseconds: 50));

@@ -24,7 +24,7 @@ class TapdWorld extends World with HasGameRef, Notifier {
   static const _fpsPriority = 1;
   static const _fpsVerticalOffset = 150.0;
   static const _fpsFontSize = 20.0;
-  static const _onboardingDelay = Duration(milliseconds: 2000);
+  static const _onboardingDelay = Duration(milliseconds: 3000);
 
   final _board1Key = ComponentKey.unique();
   final _board2Key = ComponentKey.unique();
