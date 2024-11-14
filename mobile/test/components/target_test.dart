@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/palette.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/components/target.dart';
 import 'package:mobile/difficulty.dart';
@@ -49,9 +50,10 @@ main() {
     });
   }
 
-  test("onLoad", () {
+  test("onLoad", () async {
+    WidgetsFlutterBinding.ensureInitialized();
     var target = buildTarget();
-    target.onLoad();
+    await target.onLoad();
     expect(target.paint.color == BasicPalette.white.color, isFalse);
   });
 
@@ -239,7 +241,8 @@ main() {
     verify(world.handleTargetMissed(any, any)).called(1);
   });
 
-  test("reset", () {
+  test("reset", () async {
+    WidgetsFlutterBinding.ensureInitialized();
     var target = buildTarget();
 
     when(world.color).thenReturn(target.color);

@@ -95,6 +95,8 @@ class StubbedManagers {
 
     flameWrapper = MockFlameWrapper();
     FlameWrapper.set(flameWrapper);
+    when(flameWrapper.loadSprite(any))
+        .thenAnswer((_) => Future.value(MockSprite()));
 
     flameAudioWrapper = MockFlameAudioWrapper();
     FlameAudioWrapper.set(flameAudioWrapper);

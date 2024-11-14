@@ -1,3 +1,4 @@
+import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -18,4 +19,6 @@ class FlameWrapper {
 
   Future<void> setOrientations(List<DeviceOrientation> orientations) =>
       Flame.device.setOrientations(orientations);
+
+  Future<Sprite> loadSprite(String src) => Sprite.load(src);
 }

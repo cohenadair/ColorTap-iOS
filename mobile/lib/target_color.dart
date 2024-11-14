@@ -2,17 +2,23 @@ import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:flame/palette.dart';
-import 'package:flutter/painting.dart';
 
 import 'managers/preference_manager.dart';
 
 class TargetColor {
-  static const _shadowDarkenFactor = 0.40;
-  static const _shadowSpreadRadius = -15.0;
-  static const _shadowBlurRadius = 20.0;
+  /// Supported targets by [TargetColor]. The indexes of these colors should
+  /// never change, as they may be persisted in the database.
+  static const _images = [
+    "target_red.png",
+    "target_orange.png",
+    "target_yellow.png",
+    "target_green.png",
+    "target_blue.png",
+    "target_purple.png",
+    "target_magenta.png",
+    "target_cyan.png",
+  ];
 
-  /// Supported colors by the game. The indexes of these colors should never
-  /// change, as they may be persisted in the database.
   static const _palettes = [
     BasicPalette.red,
     BasicPalette.orange,
@@ -24,85 +30,62 @@ class TargetColor {
     BasicPalette.cyan,
   ];
 
-  static PaletteEntry _randomPaletteEntry({
+  static String _randomImage({
     TargetColor? exclude,
   }) {
-    var palettes = PreferenceManager.get.difficulty
-        .colors()
-        .map((e) => e._paletteEntry)
-        .toList();
+    var images =
+        PreferenceManager.get.difficulty.colors().map((e) => e._image).toList();
 
     if (exclude != null) {
-      palettes.remove(exclude._paletteEntry);
+      images.remove(exclude._image);
     }
 
-    return palettes[Random().nextInt(palettes.length)];
+    return images[Random().nextInt(images.length)];
   }
 
-  static PaletteEntry? _preferencePaletteEntry() {
+  static String? _preferenceImage() {
     var index = PreferenceManager.get.colorIndex;
-    return index == null ? null : _palettes[index];
+    return index == null ? null : _images[index];
   }
 
-  static List<TargetColor> all() => _palettes
-      .mapIndexed((index, _) => TargetColor.from(index: index))
-      .toList();
+  static List<TargetColor> all() =>
+      _images.mapIndexed((index, _) => TargetColor.from(index: index)).toList();
 
-  static List<TargetColor> kids() => [
-        TargetColor.from(index: 0),
-        TargetColor.from(index: 2),
-        TargetColor.from(index: 3),
-        TargetColor.from(index: 4),
-      ];
+  static List<TargetColor> kids() {
+    return [
+      TargetColor.from(index: 0),
+      TargetColor.from(index: 2),
+      TargetColor.from(index: 3),
+      TargetColor.from(index: 4),
+    ];
+  }
 
-  final PaletteEntry _paletteEntry;
+  final String _image;
 
   /// Returns a [TargetColor] instance of the user-selected color, or a random
   /// [TargetColor] if there isn't one selected.
   TargetColor.fromPreferences({TargetColor? exclude})
-      : _paletteEntry =
-            _preferencePaletteEntry() ?? _randomPaletteEntry(exclude: exclude);
+      : _image = _preferenceImage() ?? _randomImage(exclude: exclude);
 
   TargetColor.random({TargetColor? exclude})
-      : _paletteEntry = _randomPaletteEntry(exclude: exclude);
+      : _image = _randomImage(exclude: exclude);
 
   TargetColor.from({
     required int index,
-  }) : _paletteEntry = _palettes[index];
+  }) : _image = _images[index];
 
-  Paint get paint => _paletteEntry.paint();
+  String get image => _image;
 
-  Color get color => _paletteEntry.color;
+  String get path => "assets/images/$_image";
 
-  int get index => _palettes.indexOf(_paletteEntry);
+  Color get color => _palettes[index].color;
 
-  /// Need to be able to set a few properties here so it can be used in the
-  /// [Scoreboard], which renders shadows slightly differently because it's a
-  /// [Widget] rather than a [Component].
-  List<BoxShadow> innerShadow({
-    BlurStyle blurStyle = BlurStyle.inner,
-    double spreadRadius = _shadowSpreadRadius,
-  }) {
-    return [
-      // Shadow
-      BoxShadow(
-        color: color.darken(_shadowDarkenFactor),
-        blurStyle: blurStyle,
-      ),
-      // Background color.
-      BoxShadow(
-        color: color,
-        spreadRadius: spreadRadius,
-        blurRadius: _shadowBlurRadius,
-        blurStyle: blurStyle,
-      ),
-    ];
-  }
+  int get index => _images.indexOf(_image);
 
   @override
   bool operator ==(Object other) =>
-      other is TargetColor && other._paletteEntry.color == _paletteEntry.color;
+      other is TargetColor && other._image == _image;
 
   @override
-  int get hashCode => _paletteEntry.color.hashCode;
+  int get hashCode => _image.hashCode;
 }

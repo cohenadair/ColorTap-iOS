@@ -6,6 +6,7 @@ import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/tapd_game.dart';
 import 'package:mobile/tapd_world.dart';
+import 'package:mobile/wrappers/flame_wrapper.dart';
 
 import '../managers/audio_manager.dart';
 import '../managers/preference_manager.dart';
@@ -21,10 +22,10 @@ class Target extends RectangleComponent
   static const _scaleUpDuration = 0.3;
   static const _scaleResetBy = 1 / _scaleDownBy;
   static const _scaleResetDuration = 0.0;
-  static const _padding = 1.0;
+  static const _padding = 3.0;
 
   final TargetBoard _board;
-  final CircleComponent _paddedTarget;
+  final SpriteComponent _targetSprite;
 
   var _isPassedBottom = false;
   var _wasHit = false;
@@ -34,29 +35,29 @@ class Target extends RectangleComponent
 
   Target(
     Vector2 position,
-    double size,
+    double radius,
     TargetBoard board, {
     super.key,
   })  : _board = board,
-        _paddedTarget = CircleComponent(
+        _targetSprite = SpriteComponent(
           position: Vector2(
-            size + _padding / 2.0,
-            size + _padding / 2.0,
+            radius + _padding / 2.0,
+            radius + _padding / 2.0,
           ),
-          radius: size - _padding,
+          size: Vector2(radius * 2 - _padding, radius * 2 - _padding),
           anchor: Anchor.center,
         ),
         super(
           position: position,
-          size: Vector2(size * 2, size * 2),
+          size: Vector2(radius * 2, radius * 2),
           anchor: Anchor.center,
           paint: Paint()..color = Colors.transparent,
         );
 
   @override
-  FutureOr<void> onLoad() {
-    _updatePaddedTargetLayers();
-    add(_paddedTarget);
+  FutureOr<void> onLoad() async {
+    await _updateSpriteColor();
+    add(_targetSprite);
     return super.onLoad();
   }
 
@@ -128,9 +129,8 @@ class Target extends RectangleComponent
     world.scrollingPaused = true;
   }
 
-  void _updatePaddedTargetLayers() {
-    _paddedTarget.paintLayers =
-        color.innerShadow().map((e) => e.toPaint()).toList();
+  Future<void> _updateSpriteColor() async {
+    _targetSprite.sprite = await FlameWrapper.get.loadSprite(_color.image);
   }
 
   void reset() {
@@ -144,7 +144,7 @@ class Target extends RectangleComponent
     _isPassedBottom = false;
     _wasHit = false;
     _color = TargetColor.random();
-    _updatePaddedTargetLayers();
+    _updateSpriteColor();
   }
 
   void pulse() => _handleIncorrectHit();

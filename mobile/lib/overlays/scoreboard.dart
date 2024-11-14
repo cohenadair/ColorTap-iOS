@@ -122,7 +122,6 @@ class _CurrentTarget extends StatefulWidget {
 class _CurrentTargetState extends State<_CurrentTarget> {
   static const _fontSize = 40.0;
   static const _targetSize = 115.0;
-  static const _targetSpreadRadius = -2.0;
 
   late ComponentsNotifier<TapdWorld> _worldNotifier;
 
@@ -141,29 +140,25 @@ class _CurrentTargetState extends State<_CurrentTarget> {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(_targetSize / 2.0)),
-      child: Container(
-        key: keyCurrentTarget,
-        width: _targetSize,
-        height: _targetSize,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          boxShadow: widget.game.world.color.innerShadow(
-            blurStyle: BlurStyle.normal,
-            spreadRadius: _targetSpreadRadius,
-          ),
-        ),
-        child: Center(
-          child: Text(
-            widget.game.world.score.toString(),
-            key: keyScoreboardScore,
-            style: const TextStyle(
-              fontSize: _fontSize,
-              color: colorDarkText,
+    return SizedBox(
+      key: keyCurrentTarget,
+      width: _targetSize,
+      height: _targetSize,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(widget.game.world.color.path),
+          Center(
+            child: Text(
+              widget.game.world.score.toString(),
+              key: keyScoreboardScore,
+              style: const TextStyle(
+                fontSize: _fontSize,
+                color: colorDarkText,
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

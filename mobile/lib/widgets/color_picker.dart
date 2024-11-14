@@ -57,7 +57,6 @@ class ColorPicker extends StatelessWidget {
         height: _colorSize,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: color.color,
           border: Border.all(
             color: isSelected
                 ? Theme.of(context).colorScheme.primary
@@ -65,6 +64,7 @@ class ColorPicker extends StatelessWidget {
             width: _selectedBorderSize,
           ),
         ),
+        child: Image.asset(color.path),
       ),
     );
   }
