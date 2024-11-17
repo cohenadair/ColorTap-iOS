@@ -289,12 +289,15 @@ void main() {
     when(managers.preferenceManager.didOnboard).thenReturn(false);
 
     await tester.pumpWidget(TapdGameWidget(game));
-    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
 
     world.play();
 
-    // Delay that shows the instructions.
+    // Delay so instructions are shown.
     await tester.pump(const Duration(milliseconds: 3000));
+
+    // Trigger start rendering of instructions.
+    await tester.pump();
 
     // Fade in duration.
     await tester.pump(const Duration(milliseconds: 50));

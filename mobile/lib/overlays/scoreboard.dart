@@ -37,6 +37,9 @@ class _ScoreboardState extends State<Scoreboard> {
     super.initState();
     _targetPositionOffset =
         _CurrentTargetState._targetSize * _scorePositionOffsetFactor;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) =>
+        _game.world.instructionsY = _height + _CurrentTargetState._targetSize);
   }
 
   @override

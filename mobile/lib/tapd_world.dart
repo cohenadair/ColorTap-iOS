@@ -8,6 +8,7 @@ import 'package:mobile/difficulty.dart';
 import 'package:mobile/managers/orientation_manager.dart';
 import 'package:mobile/managers/preference_manager.dart';
 import 'package:mobile/managers/stats_manager.dart';
+import 'package:mobile/utils/keys.dart';
 import 'package:mobile/wrappers/analytics_wrapper.dart';
 
 import 'components/target.dart';
@@ -24,7 +25,6 @@ class TapdWorld extends World with HasGameRef, Notifier {
   static const _fpsPriority = 1;
   static const _fpsVerticalOffset = 150.0;
   static const _fpsFontSize = 20.0;
-  static const _onboardingDelay = Duration(milliseconds: 3000);
 
   final _board1Key = ComponentKey.unique();
   final _board2Key = ComponentKey.unique();
@@ -53,6 +53,8 @@ class TapdWorld extends World with HasGameRef, Notifier {
   /// to the new colour already being at the bottom of the screen.
   int? _gracePeriod;
   async.Timer? _gracePeriodTimer;
+
+  double? instructionsY;
 
   double get speed => _speed;
 
@@ -111,6 +113,11 @@ class TapdWorld extends World with HasGameRef, Notifier {
     });
   }
 
+  @override
+  void update(double dt) {
+    _showInstructionsIfNeeded();
+  }
+
   void handleTargetHit({required bool isCorrect}) {
     if (isCorrect) {
       // The amount of speed added after each touch is dependent on the screen
@@ -166,7 +173,6 @@ class TapdWorld extends World with HasGameRef, Notifier {
     notifyListeners();
 
     game.overlays.removeAll([overlayIdMainMenu, overlayIdGameOver]);
-    _showInstructionsIfNeeded();
   }
 
   void hideInstructions() {
@@ -175,16 +181,21 @@ class TapdWorld extends World with HasGameRef, Notifier {
   }
 
   void _showInstructionsIfNeeded() {
-    if (PreferenceManager.get.didOnboard) {
+    if (PreferenceManager.get.didOnboard ||
+        scrollingPaused ||
+        instructionsY == null) {
       return;
     }
 
-    // Allow some targets to scroll down the page before pausing for user
-    // onboarding.
-    Future.delayed(_onboardingDelay, () {
+    var target = game.findByKey(keyInstructionsTarget);
+    if (target == null) {
+      return;
+    }
+
+    if ((target as Target).absoluteTopLeftPosition.y >= instructionsY!) {
       scrollingPaused = true;
       game.overlays.add(overlayIdInstructions);
-    });
+    }
   }
 
   TargetBoard _targetBoard(ComponentKey key) =>

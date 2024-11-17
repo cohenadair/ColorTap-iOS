@@ -21,6 +21,7 @@ void main() {
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
     when(managers.preferenceManager.colorIndex).thenReturn(null);
     when(managers.preferenceManager.isFpsOn).thenReturn(false);
+    when(managers.preferenceManager.didOnboard).thenReturn(true);
 
     when(managers.statsManager.currentHighScore).thenReturn(0);
     when(managers.statsManager.currentGamesPlayed).thenReturn(0);

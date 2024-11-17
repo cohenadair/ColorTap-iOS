@@ -98,6 +98,7 @@ void main() {
           "Tap the targets that match the current target as they fall down the screen. Tapping the incorrect target, or missing a target will end the game."),
       findsOneWidget,
     );
+    when(managers.preferenceManager.didOnboard).thenReturn(true);
     await tester.ensureVisible(find.text("Resume Game"));
     await tester.tap(find.text("Resume Game"));
     await tester.pump(animDurationDefault); // Fade out.

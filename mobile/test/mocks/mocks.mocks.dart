@@ -3419,6 +3419,15 @@ class MockTapdWorld extends _i1.Mock implements _i6.TapdWorld {
       );
 
   @override
+  set instructionsY(double? _instructionsY) => super.noSuchMethod(
+        Invocation.setter(
+          #instructionsY,
+          _instructionsY,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   double get speed => (super.noSuchMethod(
         Invocation.getter(#speed),
         returnValue: 0.0,
@@ -3645,6 +3654,15 @@ class MockTapdWorld extends _i1.Mock implements _i6.TapdWorld {
       );
 
   @override
+  void update(double? dt) => super.noSuchMethod(
+        Invocation.method(
+          #update,
+          [dt],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   void handleTargetHit({required bool? isCorrect}) => super.noSuchMethod(
         Invocation.method(
           #handleTargetHit,
@@ -3835,15 +3853,6 @@ class MockTapdWorld extends _i1.Mock implements _i6.TapdWorld {
         Invocation.method(
           #onParentResize,
           [maxSize],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void update(double? dt) => super.noSuchMethod(
-        Invocation.method(
-          #update,
-          [dt],
         ),
         returnValueForMissingStub: null,
       );
