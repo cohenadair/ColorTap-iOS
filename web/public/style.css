@@ -1,0 +1,49 @@
+@font-face { 
+  font-family: Quicksand; src: url('./Quicksand-Regular.ttf'); 
+}
+
+body {
+  background-color: #bb86fc;
+  font-family: Quicksand;
+}
+
+#content {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  width: 100%;
+}
+
+#logo {
+  margin-top: 30px;
+  width: 250px;
+  height: 250px;
+}
+
+h1 {
+  font-size: 75px;
+  margin: 0;
+}
+
+h3 {
+  font-size: 30px;
+  margin: 0;
+}
+
+.badge {
+  margin-top: 30px;
+  width: 40%;
+  vertical-align: middle;
+
+  /* Size of google-play.png */
+  max-width: 270px;
+  max-height: 80px;
+}
+
+#contact {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 15px;
+}

@@ -18,3 +18,7 @@ DerivedData
 
 ColorTap/ColorTap.xcodeproj/project.xcworkspace/xcuserdata/cohen.xcuserdatad/UserInterfaceState.xcuserstate
 TapThatColour/TapThatColour.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+mobile/coverage/lcov.info
+mobile/assets/sensitive.properties
+mobile/android/keystore.properties
+mobile/Test Results - tests_in_test.html
