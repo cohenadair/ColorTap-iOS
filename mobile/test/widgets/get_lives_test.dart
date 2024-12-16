@@ -72,6 +72,31 @@ void main() {
     expect(find.text("500"), findsOneWidget);
   });
 
+  testWidgets("Offerings are loaded with metadata", (tester) async {
+    var offerings = stubPurchasesOfferings(managers, {
+      "adReward": 50,
+      "livesOneReward": 80,
+      "livesTwoReward": 500,
+      "livesThreeReward": 1000,
+    });
+    when(managers.purchasesWrapper.getOfferings())
+        .thenAnswer((_) => Future.value(offerings));
+    await pumpContext(tester, (_) => const Scaffold(body: GetLives("Test")));
+    await tester.pump();
+
+    // Verify loaded state.
+    expect(loadingAt(tester, 0).isVisible, isFalse);
+    expect(animatedVisibilityAt(tester, 0).isVisible, isTrue);
+    expect(find.text("0"), findsNothing);
+    expect(
+      find.text("Watching a short ad will earn you 50 lives."),
+      findsOneWidget,
+    );
+    expect(find.text("80"), findsOneWidget);
+    expect(find.text("500"), findsOneWidget);
+    expect(find.text("1000"), findsOneWidget);
+  });
+
   testWidgets("Offering doesn't have required package", (tester) async {
     var offerings = buildPurchasesOfferings([
       buildPurchasesPackage(id: "lives-1", price: "0.99"),
@@ -244,7 +269,7 @@ void main() {
 
     await tester.pump();
     expect(find.byType(Loading), findsNWidgets(4));
-    verify(managers.livesManager.rewardWatchedAd()).called(1);
+    verify(managers.livesManager.rewardWatchedAd(10)).called(1);
     verifyNever(managers.livesManager.rewardAdError());
   });
 
@@ -267,7 +292,7 @@ void main() {
 
     await tester.pump();
     expect(find.byType(Loading), findsNWidgets(4));
-    verifyNever(managers.livesManager.rewardWatchedAd());
+    verifyNever(managers.livesManager.rewardWatchedAd(null));
 
     // Dismiss error dialog.
     await tester.tap(find.text("Ok"));

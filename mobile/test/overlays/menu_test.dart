@@ -80,12 +80,7 @@ void main() {
   testWidgets("GetLives is hidden when lives > 0", (tester) async {
     when(managers.livesManager.canPlay).thenReturn(true);
     await pumpContext(tester, (context) => Menu.main(game));
-    expect(
-      tester
-          .firstWidget<AnimatedCrossFade>(find.byType(AnimatedCrossFade))
-          .crossFadeState,
-      CrossFadeState.showFirst,
-    );
+    expect(find.text("Uh oh! You are out of lives!"), findsNothing);
   });
 
   testWidgets("GetLives is shown when lives == 0", (tester) async {
@@ -93,12 +88,7 @@ void main() {
 
     await tester.binding.setSurfaceSize(const Size(800, 1000));
     await pumpContext(tester, (context) => Menu.main(game));
-    expect(
-      tester
-          .firstWidget<AnimatedCrossFade>(find.byType(AnimatedCrossFade))
-          .crossFadeState,
-      CrossFadeState.showSecond,
-    );
+    expect(find.text("Uh oh! You are out of lives!"), findsOneWidget);
   });
 
   testWidgets("Play button is hidden when lives == 0", (tester) async {

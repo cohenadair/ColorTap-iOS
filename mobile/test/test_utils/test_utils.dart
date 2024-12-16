@@ -95,7 +95,10 @@ Package buildPurchasesPackage({
   return package;
 }
 
-Offerings buildPurchasesOfferings([List<Package>? inPackages]) {
+Offerings buildPurchasesOfferings([
+  List<Package>? inPackages,
+  Map<String, Object>? metadata,
+]) {
   var package1 = MockPackage();
   when(package1.identifier).thenReturn("lives-1");
 
@@ -113,15 +116,20 @@ Offerings buildPurchasesOfferings([List<Package>? inPackages]) {
         buildPurchasesPackage(id: "lives-3", price: "9.99"),
       ];
   when(offering.availablePackages).thenReturn(packages);
+  when(offering.metadata).thenReturn(metadata ?? {});
 
   var offerings = MockOfferings();
   when(offerings.getOffering(any)).thenReturn(offering);
+  when(offerings.current).thenReturn(offering);
 
   return offerings;
 }
 
-Offerings stubPurchasesOfferings(StubbedManagers managers) {
-  var offerings = buildPurchasesOfferings();
+Offerings stubPurchasesOfferings(
+  StubbedManagers managers, [
+  Map<String, Object>? metadata,
+]) {
+  var offerings = buildPurchasesOfferings(null, metadata);
   when(managers.purchasesWrapper.getOfferings())
       .thenAnswer((_) => Future.value(offerings));
   return offerings;

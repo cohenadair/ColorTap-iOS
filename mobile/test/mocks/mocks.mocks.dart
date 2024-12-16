@@ -4835,10 +4835,10 @@ class MockLivesManager extends _i1.Mock implements _i52.LivesManager {
       );
 
   @override
-  void rewardWatchedAd() => super.noSuchMethod(
+  void rewardWatchedAd(int? reward) => super.noSuchMethod(
         Invocation.method(
           #rewardWatchedAd,
-          [],
+          [reward],
         ),
         returnValueForMissingStub: null,
       );

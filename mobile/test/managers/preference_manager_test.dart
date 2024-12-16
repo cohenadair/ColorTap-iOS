@@ -17,13 +17,13 @@ void main() {
 
   test("lives default value", () async {
     await stubValues({});
-    expect(PreferenceManager.get.lives, 10);
+    expect(PreferenceManager.get.lives, 20);
   });
 
   test("clearLives", () async {
     await stubValues({"lives": 1});
     PreferenceManager.get.clearLives();
-    expect(PreferenceManager.get.lives, 10);
+    expect(PreferenceManager.get.lives, 20);
   });
 
   test("Set lives", () async {

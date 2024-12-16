@@ -94,25 +94,20 @@ class _MenuState extends State<Menu> {
   Widget _buildGetLives(BuildContext context) {
     return StreamBuilder(
       stream: LivesManager.get.stream,
-      builder: (context, _) => AnimatedCrossFade(
-        crossFadeState: LivesManager.get.canPlay
-            ? CrossFadeState.showFirst
-            : CrossFadeState.showSecond,
-        duration: animDurationDefault,
-        firstChild: Container(),
-        secondChild: Padding(
-          padding: insetsVerticalDefault,
-          child: Column(
-            children: [
-              Text(
-                Strings.of(context).menuOutOfLives,
-                style: Theme.of(context).textTheme.titleLarge,
+      builder: (context, _) => LivesManager.get.canPlay
+          ? Container()
+          : Padding(
+              padding: insetsVerticalDefault,
+              child: Column(
+                children: [
+                  Text(
+                    Strings.of(context).menuOutOfLives,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  GetLives(Strings.of(context).menuBuyMoreLives),
+                ],
               ),
-              GetLives(Strings.of(context).menuBuyMoreLives),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 

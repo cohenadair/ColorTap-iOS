@@ -37,6 +37,7 @@ class _GetLivesState extends State<GetLives> {
   late Future<Offerings> _offeringsFuture;
 
   String? _inProgressTierId;
+  Offering? _offering;
 
   @override
   void initState() {
@@ -46,16 +47,22 @@ class _GetLivesState extends State<GetLives> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: _maxWidth),
-      child: Column(
-        children: [
-          _buildSeparator(widget.title),
-          _buildBuyOptions(),
-          _buildSeparator(Strings.of(context).or),
-          _AdOption(),
-        ],
-      ),
+    return FutureBuilder<Offerings>(
+      future: _offeringsFuture,
+      builder: (context, snapshot) {
+        _offering ??= snapshot.data?.current;
+        return Container(
+          constraints: const BoxConstraints(maxWidth: _maxWidth),
+          child: Column(
+            children: [
+              _buildSeparator(widget.title),
+              _buildBuyOptions(),
+              _buildSeparator(Strings.of(context).or),
+              _AdOption(_offering?.metadata["adReward"] as int?),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -73,48 +80,41 @@ class _GetLivesState extends State<GetLives> {
   }
 
   Widget _buildBuyOptions() {
-    return FutureBuilder<Offerings>(
-      future: _offeringsFuture,
-      builder: (context, snapshot) {
-        return Stack(
-          children: [
-            _buildFillingLoading(isVisible: !snapshot.hasData),
-            AnimatedVisibility(
-              isVisible: snapshot.hasData,
-              child: Column(
+    return Stack(
+      children: [
+        _buildFillingLoading(isVisible: _offering == null),
+        AnimatedVisibility(
+          isVisible: _offering != null,
+          child: Column(
+            children: [
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: paddingDefault,
                 children: [
-                  Wrap(
-                    alignment: WrapAlignment.center,
-                    spacing: paddingDefault,
-                    children: [
-                      _buildBuyOption(snapshot.data, LivesTier.one),
-                      _buildBuyOption(snapshot.data, LivesTier.two),
-                      _buildBuyOption(snapshot.data, LivesTier.three),
-                    ].whereNotNull().toList(),
-                  ),
-                  Text(
-                    Strings.of(context).getLivesRefundableMessage,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+                  _buildBuyOption(LivesTier.one),
+                  _buildBuyOption(LivesTier.two),
+                  _buildBuyOption(LivesTier.three),
+                ].whereNotNull().toList(),
               ),
-            ),
-          ],
-        );
-      },
+              Text(
+                Strings.of(context).getLivesRefundableMessage,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
-  Widget? _buildBuyOption(Offerings? offerings, LivesTier tier) {
-    if (offerings == null) {
+  Widget? _buildBuyOption(LivesTier tier) {
+    if (_offering == null) {
       // Offerings haven't loaded yet. Render a placeholder option so the
       // loading widget renders at the correct size.
       return _buildBuyOptionButton();
     }
 
-    var package = offerings
-        .getOffering("lives")
-        ?.availablePackages
+    var package = _offering?.availablePackages
         .firstWhereOrNull((e) => e.identifier == tier.id);
 
     if (package == null) {
@@ -130,6 +130,7 @@ class _GetLivesState extends State<GetLives> {
 
   Widget _buildBuyOptionButton([LivesTier? tier, Package? package]) {
     var isLoading = _inProgressTierId != null && _inProgressTierId == tier?.id;
+    var numberOfLives = tier?.numberOfLives(_offering?.metadata) ?? 0;
 
     return FilledButton(
       style: FilledButton.styleFrom(
@@ -138,8 +139,8 @@ class _GetLivesState extends State<GetLives> {
         ),
         padding: insetsDefault,
       ),
-      onPressed:
-          AudioManager.get.onButtonPressed(() => _purchaseLives(tier, package)),
+      onPressed: AudioManager.get
+          .onButtonPressed(() => _purchaseLives(numberOfLives, package)),
       child: Stack(
         children: [
           _buildFillingLoading(isVisible: isLoading),
@@ -148,7 +149,7 @@ class _GetLivesState extends State<GetLives> {
             child: Column(
               children: [
                 Text(
-                  (tier?.numberOfLives ?? 0).toString(),
+                  numberOfLives.toString(),
                   style: TextStyle(
                     fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
                   ),
@@ -163,15 +164,15 @@ class _GetLivesState extends State<GetLives> {
     );
   }
 
-  Future<void> _purchaseLives(LivesTier? tier, Package? package) async {
-    if (_inProgressTierId != null || tier == null || package == null) {
+  Future<void> _purchaseLives(int numberOfLives, Package? package) async {
+    if (_inProgressTierId != null || numberOfLives <= 0 || package == null) {
       return;
     }
 
     setState(() => _inProgressTierId = package.identifier);
 
     if (await PurchasesManager.get.purchase(package) != null) {
-      LivesManager.get.incLives(tier.numberOfLives);
+      LivesManager.get.incLives(numberOfLives);
     }
 
     setState(() => _inProgressTierId = null);
@@ -187,6 +188,10 @@ class _GetLivesState extends State<GetLives> {
 }
 
 class _AdOption extends StatefulWidget {
+  final int? livesReward;
+
+  const _AdOption(this.livesReward);
+
   @override
   State<_AdOption> createState() => _AdOptionState();
 }
@@ -195,6 +200,9 @@ class _AdOptionState extends State<_AdOption> {
   static const _log = Log("_AdOptionState");
 
   bool _isLoading = false;
+
+  int get livesReward =>
+      widget.livesReward ?? LivesManager.defaultRewardedAdAmount;
 
   @override
   Widget build(BuildContext context) {
@@ -212,8 +220,7 @@ class _AdOptionState extends State<_AdOption> {
         ),
         const SizedBox(height: paddingSmall),
         Text(
-          Strings.of(context)
-              .getLivesAdRewardMessage(LivesManager.rewardedAdAmount),
+          Strings.of(context).getLivesAdRewardMessage(livesReward),
           textAlign: TextAlign.center,
         ),
       ],
@@ -246,8 +253,8 @@ class _AdOptionState extends State<_AdOption> {
           );
 
           ad.show(
-            onUserEarnedReward: (_, __) => LivesManager.get.rewardWatchedAd(),
-          );
+              onUserEarnedReward: (_, __) =>
+                  LivesManager.get.rewardWatchedAd(livesReward));
 
           setState(() => _isLoading = false);
         },
@@ -281,12 +288,23 @@ class _AdOptionState extends State<_AdOption> {
 
 @immutable
 class LivesTier {
-  static const one = LivesTier._(15, "lives-1");
-  static const two = LivesTier._(75, "lives-2");
-  static const three = LivesTier._(500, "lives-3");
+  static const one = LivesTier._(15, "livesOneReward", "lives-1");
+  static const two = LivesTier._(75, "livesTwoReward", "lives-2");
+  static const three = LivesTier._(500, "livesThreeReward", "lives-3");
 
-  final int numberOfLives;
+  /// Equal to the ID in the RevenueCat dashboard. This _cannot_ change.
   final String id;
 
-  const LivesTier._(this.numberOfLives, this.id);
+  /// The number of lives if, for some unknown reason, the [Offering] metadata
+  /// could not be fetched.
+  final int _defaultNumberOfLives;
+
+  /// The [Offering] metadata key associated with this tier. The key must be
+  /// equal to the associated key in the RevenueCat dashboard.
+  final String _metadataKey;
+
+  const LivesTier._(this._defaultNumberOfLives, this._metadataKey, this.id);
+
+  int numberOfLives(Map<String, Object>? metadata) =>
+      metadata?[_metadataKey] as int? ?? _defaultNumberOfLives;
 }

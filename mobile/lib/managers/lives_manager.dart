@@ -16,7 +16,7 @@ class LivesManager {
 
   LivesManager._();
 
-  static const rewardedAdAmount = 10;
+  static const defaultRewardedAdAmount = 10;
   static const adErrorReward = 5;
 
   final _controller = StreamController.broadcast();
@@ -39,7 +39,8 @@ class LivesManager {
     _notify();
   }
 
-  void rewardWatchedAd() => incLives(rewardedAdAmount);
+  void rewardWatchedAd(int? reward) =>
+      incLives(reward ?? defaultRewardedAdAmount);
 
   void rewardAdError() => incLives(adErrorReward);
 

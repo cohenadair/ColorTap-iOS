@@ -29,7 +29,7 @@ class PreferenceManager {
   static const keyDifficultyStats = "difficulty_stats";
   static const keyDidOnboard = "did_onboard_user";
 
-  static const _defaultLives = 10;
+  static const _defaultLives = 20;
 
   late final SharedPreferences _prefs;
 

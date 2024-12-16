@@ -55,4 +55,14 @@ void main() {
 
     verify(preferenceManager.lives = 8).called(1);
   });
+
+  test("rewardWatchedAd", () {
+    when(preferenceManager.lives).thenReturn(3);
+    LivesManager.get.rewardWatchedAd(null);
+
+    verify(preferenceManager.lives = 13).called(1);
+
+    LivesManager.get.rewardWatchedAd(40);
+    verify(preferenceManager.lives = 43).called(1);
+  });
 }
