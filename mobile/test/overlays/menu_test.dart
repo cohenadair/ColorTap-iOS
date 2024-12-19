@@ -19,6 +19,20 @@ void main() {
 
   setUp(() {
     managers = StubbedManagers();
+
+    var banner = MockBannerAd();
+    when(banner.dispose()).thenAnswer((_) => Future.value());
+    when(banner.load()).thenAnswer((_) => Future.value());
+    when(managers.bannerAdWrapper.newAd(
+      size: anyNamed("size"),
+      adUnitId: anyNamed("adUnitId"),
+      listener: anyNamed("listener"),
+      request: anyNamed("request"),
+    )).thenReturn(banner);
+
+    when(managers.platformWrapper.isDebug).thenReturn(true);
+    when(managers.platformWrapper.isAndroid).thenReturn(true);
+
     when(managers.livesManager.canPlay).thenReturn(true);
     when(managers.livesManager.lives).thenReturn(3);
 
@@ -27,6 +41,11 @@ void main() {
     when(managers.preferenceManager.isMusicOn).thenReturn(false);
     when(managers.preferenceManager.isSoundOn).thenReturn(false);
     when(managers.preferenceManager.isFpsOn).thenReturn(false);
+
+    when(managers.propertiesManager.adBannerUnitIdAndroid)
+        .thenReturn("test-id-android");
+    when(managers.propertiesManager.adBannerUnitIdIos)
+        .thenReturn("test-id-ios");
 
     when(managers.purchasesWrapper.getOfferings())
         .thenAnswer((_) => Future.value(MockOfferings()));

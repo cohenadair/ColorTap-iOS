@@ -21,10 +21,28 @@ void main() {
     when(game.world).thenReturn(world);
 
     managers = StubbedManagers();
+
+    var bannerAd = MockBannerAd();
+    when(bannerAd.load()).thenAnswer((_) => Future.value());
+    when(managers.bannerAdWrapper.newAd(
+      size: anyNamed("size"),
+      adUnitId: anyNamed("adUnitId"),
+      listener: anyNamed("listener"),
+      request: anyNamed("request"),
+    )).thenReturn(bannerAd);
+
     when(managers.livesManager.canPlay).thenReturn(true);
     when(managers.livesManager.lives).thenReturn(3);
 
+    when(managers.platformWrapper.isDebug).thenReturn(true);
+    when(managers.platformWrapper.isAndroid).thenReturn(true);
+
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
+
+    when(managers.propertiesManager.adBannerUnitIdAndroid)
+        .thenReturn("test-id-android");
+    when(managers.propertiesManager.adBannerUnitIdIos)
+        .thenReturn("test-id-ios");
 
     when(managers.statsManager.currentHighScore).thenReturn(0);
     when(managers.statsManager.currentGamesPlayed).thenReturn(0);

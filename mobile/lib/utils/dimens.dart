@@ -23,6 +23,8 @@ const insetsVerticalSmall = EdgeInsets.symmetric(vertical: paddingSmall);
 
 const insetsBottomDefault = EdgeInsets.only(bottom: paddingDefault);
 
+const insetsBottomXLarge = EdgeInsets.only(bottom: paddingXLarge);
+
 const insetsTopDefault = EdgeInsets.only(top: paddingDefault);
 
 const fontWeightBold = FontWeight.w600;

@@ -17,8 +17,10 @@ class PropertiesManager {
 
   PropertiesManager._();
 
-  final String _keyAdUnitIdApple = "adUnitId.apple";
-  final String _keyAdUnitIdAndroid = "adUnitId.android";
+  final String _keyAdRewardedUnitIdIos = "adRewardedUnitId.ios";
+  final String _keyAdRewardedUnitIdAndroid = "adRewardedUnitId.android";
+  final String _keyAdBannerUnitIdIos = "adBannerUnitId.ios";
+  final String _keyAdBannerUnitIdAndroid = "adBannerUnitId.android";
   final String _keyRevenueCatApple = "revenueCat.apple";
   final String _keyRevenueCatAndroid = "revenueCat.android";
   final String _keySupportEmail = "support.email";
@@ -36,9 +38,17 @@ class PropertiesManager {
     _feedbackTemplate = await rootBundle.loadString(_feedbackTemplatePath);
   }
 
-  String get adUnitIdApple => _properties.stringForKey(_keyAdUnitIdApple);
+  String get adRewardedUnitIdIos =>
+      _properties.stringForKey(_keyAdRewardedUnitIdIos);
 
-  String get adUnitIdAndroid => _properties.stringForKey(_keyAdUnitIdAndroid);
+  String get adRewardedUnitIdAndroid =>
+      _properties.stringForKey(_keyAdRewardedUnitIdAndroid);
+
+  String get adBannerUnitIdIos =>
+      _properties.stringForKey(_keyAdBannerUnitIdIos);
+
+  String get adBannerUnitIdAndroid =>
+      _properties.stringForKey(_keyAdBannerUnitIdAndroid);
 
   String get revenueCatKeyApple =>
       _properties.stringForKey(_keyRevenueCatApple);

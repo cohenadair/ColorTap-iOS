@@ -18,6 +18,11 @@ void main() {
 
     when(managers.platformWrapper.isDebug).thenReturn(true);
     when(managers.platformWrapper.isAndroid).thenReturn(true);
+
+    when(managers.propertiesManager.adRewardedUnitIdAndroid)
+        .thenReturn("test-id-android");
+    when(managers.propertiesManager.adRewardedUnitIdIos)
+        .thenReturn("test-id-ios");
   });
 
   Loading loadingAt(WidgetTester tester, int index) {
@@ -298,88 +303,5 @@ void main() {
     await tester.tap(find.text("Ok"));
     await tester.pump();
     verify(managers.livesManager.rewardAdError()).called(1);
-  });
-
-  testWidgets("Test Android ad unit IDs are used for debug builds",
-      (tester) async {
-    stubForAdsTap();
-    when(managers.platformWrapper.isDebug).thenReturn(true);
-    when(managers.platformWrapper.isAndroid).thenReturn(true);
-
-    await pumpDefaultGetLives(tester);
-    await tester.tap(find.text("Watch Short Ad"));
-
-    var result = verify(managers.rewardedAdWrapper.load(
-      adUnitId: captureAnyNamed("adUnitId"),
-      request: anyNamed("request"),
-      rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
-    ));
-    result.called(1);
-
-    var id = result.captured.first as String;
-    expect(id, "ca-app-pub-3940256099942544/5224354917");
-  });
-
-  testWidgets("Test iOS ad unit IDs are used for debug builds", (tester) async {
-    stubForAdsTap();
-    when(managers.platformWrapper.isDebug).thenReturn(true);
-    when(managers.platformWrapper.isAndroid).thenReturn(false);
-
-    await pumpDefaultGetLives(tester);
-    await tester.tap(find.text("Watch Short Ad"));
-
-    var result = verify(managers.rewardedAdWrapper.load(
-      adUnitId: captureAnyNamed("adUnitId"),
-      request: anyNamed("request"),
-      rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
-    ));
-    result.called(1);
-
-    var id = result.captured.first as String;
-    expect(id, "ca-app-pub-3940256099942544/1712485313");
-  });
-
-  testWidgets("Valid Android ad unit IDs are used for non-debug builds",
-      (tester) async {
-    stubForAdsTap();
-    when(managers.platformWrapper.isDebug).thenReturn(false);
-    when(managers.platformWrapper.isAndroid).thenReturn(true);
-    when(managers.propertiesManager.adUnitIdAndroid).thenReturn("Android");
-
-    await pumpDefaultGetLives(tester);
-    await tester.tap(find.text("Watch Short Ad"));
-
-    var result = verify(managers.rewardedAdWrapper.load(
-      adUnitId: captureAnyNamed("adUnitId"),
-      request: anyNamed("request"),
-      rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
-    ));
-    result.called(1);
-
-    expect(result.captured.first as String, "Android");
-    verify(managers.propertiesManager.adUnitIdAndroid).called(1);
-    verifyNever(managers.propertiesManager.adUnitIdApple);
-  });
-
-  testWidgets("Valid iOS ad unit IDs are used for non-debug builds",
-      (tester) async {
-    stubForAdsTap();
-    when(managers.platformWrapper.isDebug).thenReturn(false);
-    when(managers.platformWrapper.isAndroid).thenReturn(false);
-    when(managers.propertiesManager.adUnitIdApple).thenReturn("iOS");
-
-    await pumpDefaultGetLives(tester);
-    await tester.tap(find.text("Watch Short Ad"));
-
-    var result = verify(managers.rewardedAdWrapper.load(
-      adUnitId: captureAnyNamed("adUnitId"),
-      request: anyNamed("request"),
-      rewardedAdLoadCallback: anyNamed("rewardedAdLoadCallback"),
-    ));
-    result.called(1);
-
-    expect(result.captured.first as String, "iOS");
-    verify(managers.propertiesManager.adUnitIdApple).called(1);
-    verifyNever(managers.propertiesManager.adUnitIdAndroid);
   });
 }

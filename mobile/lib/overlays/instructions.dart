@@ -56,7 +56,7 @@ class _InstructionsState extends State<Instructions> {
   Widget _buildCutout(_CutoutPosition position) {
     return ColorFiltered(
       colorFilter: ColorFilter.mode(
-        Colors.black.withOpacity(_backgroundOpacity),
+        Colors.black.withValues(alpha: _backgroundOpacity),
         BlendMode.srcOut,
       ),
       child: Stack(

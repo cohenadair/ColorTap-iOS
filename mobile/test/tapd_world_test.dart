@@ -14,6 +14,7 @@ import 'package:mobile/overlays/instructions.dart';
 import 'package:mobile/utils/overlay_utils.dart';
 import 'package:mockito/mockito.dart';
 
+import 'mocks/mocks.mocks.dart';
 import 'test_utils/stubbed_managers.dart';
 import 'test_utils/test_utils.dart';
 
@@ -25,14 +26,32 @@ void main() {
 
   setUp(() {
     managers = StubbedManagers();
+
+    var bannerAd = MockBannerAd();
+    when(bannerAd.load()).thenAnswer((_) => Future.value());
+    when(managers.bannerAdWrapper.newAd(
+      size: anyNamed("size"),
+      adUnitId: anyNamed("adUnitId"),
+      listener: anyNamed("listener"),
+      request: anyNamed("request"),
+    )).thenReturn(bannerAd);
+
     when(managers.livesManager.loseLife()).thenAnswer((_) {});
     when(managers.livesManager.lives).thenReturn(3);
     when(managers.livesManager.canPlay).thenReturn(true);
+
+    when(managers.platformWrapper.isDebug).thenReturn(true);
+    when(managers.platformWrapper.isAndroid).thenReturn(true);
 
     when(managers.preferenceManager.difficulty).thenReturn(Difficulty.normal);
     when(managers.preferenceManager.colorIndex).thenReturn(null);
     when(managers.preferenceManager.isFpsOn).thenReturn(false);
     when(managers.preferenceManager.didOnboard).thenReturn(true);
+
+    when(managers.propertiesManager.adBannerUnitIdAndroid)
+        .thenReturn("test-id-android");
+    when(managers.propertiesManager.adBannerUnitIdIos)
+        .thenReturn("test-id-ios");
 
     when(managers.statsManager.currentHighScore).thenReturn(0);
     when(managers.statsManager.currentGamesPlayed).thenReturn(0);

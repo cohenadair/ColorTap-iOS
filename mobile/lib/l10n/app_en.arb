@@ -39,7 +39,7 @@
   "settingsResetTitle": "Reset Stats",
   "settingsResetMessage": "Games played and high scores for all difficulties will be reset to 0. This cannot be undone.",
 
-  "getLivesRefundableMessage": "Life purchases are non-refundable and do not sync across devices. Purchased lives will be lost if the app is uninstalled.",
+  "getLivesRefundableMessage": "Life purchases are non-refundable and do not sync across devices. Purchased lives will be lost if Tapd is uninstalled.",
   "getLivesQuantityMessage": "lives for",
   "getLivesWatchAd": "Watch Short Ad",
 

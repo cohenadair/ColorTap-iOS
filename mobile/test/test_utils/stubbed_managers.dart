@@ -7,6 +7,7 @@ import 'package:mobile/managers/purchases_manager.dart';
 import 'package:mobile/managers/stats_manager.dart';
 import 'package:mobile/managers/time_manager.dart';
 import 'package:mobile/wrappers/analytics_wrapper.dart';
+import 'package:mobile/wrappers/banner_ad_wrapper.dart';
 import 'package:mobile/wrappers/confetti_wrapper.dart';
 import 'package:mobile/wrappers/crashlytics_wrapper.dart';
 import 'package:mobile/wrappers/device_info_wrapper.dart';
@@ -38,6 +39,7 @@ class StubbedManagers {
   late final MockTimeManager timeManager;
 
   late final MockAnalyticsWrapper analyticsWrapper;
+  late final MockBannerAdWrapper bannerAdWrapper;
   late final MockCrashlyticsWrapper crashlyticsWrapper;
   late final MockDeviceInfoWrapper deviceInfoWrapper;
   late final MockFgbgWrapper fgbgWrapper;
@@ -103,6 +105,9 @@ class StubbedManagers {
 
     analyticsWrapper = MockAnalyticsWrapper();
     AnalyticsWrapper.set(analyticsWrapper);
+
+    bannerAdWrapper = MockBannerAdWrapper();
+    BannerAdWrapper.set(bannerAdWrapper);
 
     crashlyticsWrapper = MockCrashlyticsWrapper();
     CrashlyticsWrapper.set(crashlyticsWrapper);

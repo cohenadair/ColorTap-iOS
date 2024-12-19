@@ -15,6 +15,7 @@ import '../managers/audio_manager.dart';
 import '../managers/stats_manager.dart';
 import '../pages/feedback_page.dart';
 import '../utils/page_utils.dart';
+import '../widgets/ad_banner.dart';
 import '../widgets/localized_material_app.dart';
 import '../widgets/scroll_scaffold.dart';
 
@@ -55,6 +56,8 @@ class _MenuState extends State<Menu> {
           _navigatorContext ??= context;
           return [
             const Spacer(),
+            _buildAdBanner(),
+            const Spacer(),
             _buildTitle(context),
             _buildLives(),
             _buildScore(),
@@ -69,6 +72,13 @@ class _MenuState extends State<Menu> {
           ];
         },
       ),
+    );
+  }
+
+  Widget _buildAdBanner() {
+    return const Padding(
+      padding: insetsBottomDefault,
+      child: AdBanner(),
     );
   }
 
