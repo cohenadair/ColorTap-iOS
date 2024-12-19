@@ -17,7 +17,7 @@ import 'target_board.dart';
 class Target extends RectangleComponent
     with HasGameRef<TapdGame>, HasWorldReference<TapdWorld>, TapCallbacks {
   static const _scaleDownBy = 0.20;
-  static const _scaleDownDuration = 0.15;
+  static const _scaleDownDuration = 0.12; // Matches sound effect length.
   static const _scaleUpBy = 1.5;
   static const _scaleUpDuration = 0.3;
   static const _scaleResetBy = 1 / _scaleDownBy;
